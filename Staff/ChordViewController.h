@@ -1,0 +1,74 @@
+//
+//  ChordViewController.h
+//  COMP150ISWFinalProject
+//
+//  Created by Hu Huang on 3/15/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "DraggedChord.h"
+
+@interface ChordViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate>
+{
+    NSString *currentKey; 
+    
+    // 8 Buttons for chord pickers
+    DraggedChord *picker1;
+    DraggedChord *picker2;
+    DraggedChord *picker3;
+    DraggedChord *picker4;
+    DraggedChord *picker5;
+    DraggedChord *picker6;
+    DraggedChord *picker7;
+    DraggedChord *picker8;
+    
+    // 8 Buttons for the chords chosen
+    UIButton *chordChosen1;
+    UIButton *chordChosen2;
+    UIButton *chordChosen3;
+    UIButton *chordChosen4;
+    UIButton *chordChosen5;
+    UIButton *chordChosen6;
+    UIButton *chordChosen7;
+    UIButton *chordChosen8;
+    
+    // 4 Buttons, Play, Stop, Clear All and Switch keys
+    UIButton *play;
+    UIButton *stop;
+    UIButton *clearAll;
+    
+    DraggedChord *draggedChord; // The chord that is selected and is dragged
+    
+    BOOL isPaused;
+    
+    UIPopoverController *popOverController;
+}
+
+-(NSString *) currentKey;
+-(void) currentKey: (NSString *) newKey;
+-(void) setUpChords:(NSArray*)theChords;
+
+
+// Chord Pickers are the buttons at the bottom which the user can use to select the chords to be played
+-(void) layoutChordPickers;
+
+// Chords to be played are the buttons at the top that are to be played in the chord progression
+-(void) layoutChordsToBePlayed;
+
+// Control bar are the buttons in the middle
+-(void) layoutControlBar;
+
+// Drag and drop handlers
+-(void) dispatchTouchEndEvent:(UIView *)theView toPosition:(CGPoint)position;
+-(void) dispatchTouchEvent:(UIView *)theView toPosition:(CGPoint)position;
+-(void) dispatchFirstTouchAtPoint:(CGPoint)touchPoint forEvent:(UIEvent *)event;
+-(void) animateFirstTouchAtPoint:(CGPoint)touchPoint forView:(UIView *)theView;
+-(void) animateView:(UIView *)theView toPosition:(CGPoint)thePosition;
+
+-(void) clearButton_onTouchUpInside;
+-(void) playButton_onTouchUpInside;
+-(void) stopButton_onTouchUpInside;
+-(void) chordChosen_onTouchUpInside:(id)sender;
+
+@end
