@@ -10,8 +10,6 @@
 
 @implementation solidLine
 
-//ONLY SHOW UP ON TEMP BRANCH
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
