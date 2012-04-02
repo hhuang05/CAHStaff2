@@ -32,7 +32,7 @@
 -(void)stopNote;
 
 // called by ChordController
--(void)queueChords:(NSDictionary*)progression;
+-(void)queueChords:(NSArray*)progression;
 -(void)playChords;
 -(void)pauseChords;
 -(void)stopChords;

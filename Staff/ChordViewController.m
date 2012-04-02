@@ -18,8 +18,7 @@
 
 -(void) setUpChords:(NSArray*)theChords{
     chordChoices = theChords;
-    
-    
+
     [picker1  changeChordName:[[theChords objectAtIndex: 0] name]];
     [picker2  changeChordName:[[theChords objectAtIndex: 1] name]];
     [picker3  changeChordName:[[theChords objectAtIndex: 2] name]];
@@ -81,7 +80,7 @@
     picker8 = [[DraggedChord alloc] init];
     picker8.frame = CGRectMake(440, 650, 80, 80);
     
-    chordPickerArray = [[NSArray alloc] initWithObjects:picker1, picker2, picker3, picker4, picker5, picker6, picker7, picker8, nil];
+    pickerArray = [[NSArray alloc] initWithObjects:picker1, picker2, picker3, picker4, picker5, picker6, picker7, picker8, nil];
     
     if (self.view)
     {
@@ -132,6 +131,9 @@
     chordChosen8.frame = CGRectMake(440, 140, 80, 80);
     [chordChosen8 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
+    chordsToBePlayed = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", @"", nil];
+    chosenChordButtonsArray = [[NSArray alloc] initWithObjects:chordChosen1, chordChosen2, chordChosen3, chordChosen4, chordChosen5, chordChosen6, chordChosen7, chordChosen8, nil];
+    
     if (self.view)
     {
         [self.view addSubview: chordChosen1];
@@ -164,8 +166,6 @@
     clearAll.frame = CGRectMake(290, 340, 120, 90);
     [clearAll setTitle:@"Clear All" forState:UIControlStateNormal];
     [clearAll addTarget:self action:@selector(clearButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
-    
-    //    chordChosen4.frame = CGRectMake(640, 440, 80, 80);
     
     if (self.view)
     {
@@ -238,27 +238,43 @@
 	// Check to see which view, or views,  the point is in and then animate to that position.
 	if (CGRectContainsPoint([chordChosen1 frame], position)) {
 		[chordChosen1 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:0 withObject: draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([chordChosen2 frame], position)) {
 		[chordChosen2 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:1 withObject: draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([chordChosen3 frame], position)) {
 		[chordChosen3 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:2 withObject: draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([chordChosen4 frame], position)) {
 		[chordChosen4 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:3 withObject: draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([chordChosen5 frame], position)) {
 		[chordChosen5 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:4 withObject: draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([chordChosen6 frame], position)) {
 		[chordChosen6 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:5 withObject: draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([chordChosen7 frame], position)) {
 		[chordChosen7 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:6 withObject: draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([chordChosen8 frame], position)) {
 		[chordChosen8 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
+        
+        [chordsToBePlayed replaceObjectAtIndex:7 withObject: draggedChord.chordChosen];
 	}
     // Now we must remove the dragged chord
     [draggedChord removeFromSuperview]; 
@@ -278,45 +294,68 @@
         [draggedChord changeChordName:picker1.chordName];
         touchIsInPicker = true;
         
-        draggedChord.chordChosen = [chordChoices objectAtIndex: [chordPickerArray indexOfObject:picker1]];
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker1]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker1] withObject:draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([picker2 frame], touchPoint)) {
         [draggedChord setFrame:[picker2 frame]];
         [draggedChord changeChordName:picker2.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker2]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker2] withObject:draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([picker3 frame], touchPoint)) {
         [draggedChord setFrame:[picker3 frame]];
         [draggedChord changeChordName:picker3.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker3]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker3] withObject:draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([picker4 frame], touchPoint)) {
         [draggedChord setFrame:[picker4 frame]];
         [draggedChord changeChordName:picker4.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker4]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker4] withObject:draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([picker5 frame], touchPoint)) {
         [draggedChord setFrame:[picker5 frame]];
         [draggedChord changeChordName:picker5.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker5]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker5] withObject:draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([picker6 frame], touchPoint)) {
         [draggedChord setFrame:[picker6 frame]];
         [draggedChord changeChordName:picker6.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker6]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker6] withObject:draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([picker7 frame], touchPoint)) {
         [draggedChord setFrame:[picker7 frame]];
         [draggedChord changeChordName:picker7.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker7]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker7] withObject:draggedChord.chordChosen];
 	}
     if (CGRectContainsPoint([picker8 frame], touchPoint)) {
         [draggedChord setFrame:[picker8 frame]];
         [draggedChord changeChordName:picker8.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [pickerArray indexOfObject:picker8]];
+        [chordsToBePlayed replaceObjectAtIndex:[pickerArray indexOfObject:picker8] withObject:draggedChord.chordChosen];
 	}
     
     if (touchIsInPicker) {
+        
         [self.view addSubview:draggedChord];
         [self animateFirstTouchAtPoint:touchPoint forView:draggedChord];
     }
@@ -361,9 +400,11 @@
     [chordChosen7 setTitle:@"" forState:UIControlStateNormal] ;
     [chordChosen8 setTitle:@"" forState:UIControlStateNormal] ;
     
-    // Clear the data structure
+    // Clear the data structure by replacing all items with an NSString
+    for (int x=0; x<chordsToBePlayed.count; x++) {
+        [chordsToBePlayed replaceObjectAtIndex:x withObject:@""];
+    }
 }
-
 // Hit it once, it pauses, hit it again it plays. Basically a toggle button
 -(void) playButton_onTouchUpInside
 {
@@ -391,20 +432,46 @@
 // Todo need to send chords
 -(void) chordChosen_onTouchUpInside:(id)sender
 {
-    ChordOptionsViewController *chordOptionsController = [[ChordOptionsViewController alloc] init];
-    
-    if (popOverController == nil) {
-        UIPopoverController *popOver = [[UIPopoverController alloc] initWithContentViewController:chordOptionsController];
-    
-        // Specifiying size
-        popOver.popoverContentSize = CGSizeMake(200, 180);
-        popOver.delegate = self;
-        popOverController = popOver;
+    // We check if the chord to be played is of a type of chord class, this is only true if
+    // the position is filled with a chord
+    if ([[chordsToBePlayed objectAtIndex: [chosenChordButtonsArray indexOfObject:sender]] isKindOfClass:[Chord class]]) 
+    {
+        ChordOptionsViewController *chordOptionsController = [[ChordOptionsViewController alloc] init];
+        
+        // Send in the chord to the view controller and add it to the list of things to be played
+        chordOptionsController.theChord = [chordChoices objectAtIndex:[chosenChordButtonsArray indexOfObject:sender]];
+        [chordsToBePlayed replaceObjectAtIndex:[chosenChordButtonsArray indexOfObject:sender] withObject:chordOptionsController.theChord];
+        
+        if (popOverController == nil) {
+            UIPopoverController *popOver = [[UIPopoverController alloc] initWithContentViewController:chordOptionsController];
+            [chordOptionsController setPopoverController:popOver];
+        
+            // Specifiying size
+            popOver.popoverContentSize = CGSizeMake(200, 180);
+            popOver.delegate = self;
+            popOverController = popOver;
+        }
+        
+        [popOverController presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:TRUE];
     }
-    
-    [popOverController presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:TRUE];
 }
-     
+
+// Implemented as part of UIPopoverControllerdelegate
+-(void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    // Must check if delete was pressed since this call back is executed for non-programmatic calls
+    if ([(ChordOptionsViewController *)popOverController.contentViewController wasDeletePressed]) {
+        // Remove the chord and reset the button
+        
+        // Gets the appropriate button from the chord chosen and we remove the text associated
+        UIButton *buttonChosen = (UIButton *)[chosenChordButtonsArray objectAtIndex:[chordChoices indexOfObject:[(ChordOptionsViewController *)popOverController.contentViewController theChord]]];
+        
+        [buttonChosen setTitle:@"" forState:UIControlStateNormal];
+        
+        // Now we remove the chord also from the array
+        [chordsToBePlayed replaceObjectAtIndex:[chordChoices indexOfObject:[(ChordOptionsViewController *)popOverController.contentViewController theChord]] withObject:@""]; 
+    }
+}
 
 
 - (void)didReceiveMemoryWarning
