@@ -13,9 +13,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "13"
-         endingLineNumber = "13"
-         landmarkName = "@implementation ChordViewController"
-         landmarkType = "3">
+         endingLineNumber = "13">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -28,7 +26,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "380"
          endingLineNumber = "380"
-         landmarkName = "-chordChosen_onTouchUpInside:"
+         landmarkName = "-stopButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -44,6 +42,20 @@
          endingLineNumber = "19"
          landmarkName = "beats"
          landmarkType = "19">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Staff/ChordViewController.m"
+         timestampString = "355023776.341932"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "20"
+         endingLineNumber = "20"
+         landmarkName = "-setUpChords:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

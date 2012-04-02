@@ -17,6 +17,9 @@
 #define SHRINK_ANIMATION_DURATION_SECONDS 0.15  // Determines how fast a piece size shrinks when a piece stops moving.
 
 -(void) setUpChords:(NSArray*)theChords{
+    chordChoices = theChords;
+    
+    
     [picker1  changeChordName:[[theChords objectAtIndex: 0] name]];
     [picker2  changeChordName:[[theChords objectAtIndex: 1] name]];
     [picker3  changeChordName:[[theChords objectAtIndex: 2] name]];
@@ -77,6 +80,8 @@
     
     picker8 = [[DraggedChord alloc] init];
     picker8.frame = CGRectMake(440, 650, 80, 80);
+    
+    chordPickerArray = [[NSArray alloc] initWithObjects:picker1, picker2, picker3, picker4, picker5, picker6, picker7, picker8, nil];
     
     if (self.view)
     {
@@ -272,6 +277,8 @@
         [draggedChord setFrame:[picker1 frame]];
         [draggedChord changeChordName:picker1.chordName];
         touchIsInPicker = true;
+        
+        draggedChord.chordChosen = [chordChoices objectAtIndex: [chordPickerArray indexOfObject:picker1]];
 	}
     if (CGRectContainsPoint([picker2 frame], touchPoint)) {
         [draggedChord setFrame:[picker2 frame]];
