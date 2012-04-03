@@ -36,10 +36,6 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-    _chord.beats = 16;
-    _chord.measures = 1;
-    _chord.name = @"C";
-    
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 180)];
     
     deleteImage = [UIImage imageNamed:@"DeleteIcon.png"];
@@ -57,9 +53,10 @@
     // Set min and max
     [beatStepper setMinimumValue:1];
     [beatStepper setMaximumValue:16];
+    beatStepper.value = _chord.beats;
     
     // Value wraps around from minimum to maximum
-    [beatStepper setWraps:YES];
+    [beatStepper setWraps:NO];
     
     // If continuos (default), changes are sent for each change in stepper,
     // otherwise, change event occurs once user lets up on button
@@ -86,7 +83,9 @@
 
 -(void) stepperPressed:(id)sender
 {
-    
+    // Set the value of the label and increment the beats
+    _chord.beats = beatStepper.value;
+    [beatLabel setText:[NSString stringWithFormat:@"%d", _chord.beats]];
 }
 
 -(void) delete_onTouchUpInside

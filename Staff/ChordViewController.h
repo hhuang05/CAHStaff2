@@ -38,6 +38,12 @@
     UIButton *stop;
     UIButton *clearAll;
     
+    // 4 Icons to show when the chord player starts playing
+    UIImageView *star1;
+    UIImageView *star2;
+    UIImageView *star3;
+    UIImageView *star4;
+    
     DraggedChord *draggedChord; // The chord that is selected and is dragged
     
     BOOL isPaused;
@@ -63,6 +69,7 @@
 
 // Control bar are the buttons in the middle
 -(void) layoutControlBar;
+-(void) layoutStars;
 
 // Drag and drop handlers
 -(void) dispatchTouchEndEvent:(UIView *)theView toPosition:(CGPoint)position;

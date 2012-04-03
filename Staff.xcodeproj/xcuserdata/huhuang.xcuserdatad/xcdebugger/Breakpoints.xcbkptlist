@@ -21,11 +21,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "355028651.43924"
+         timestampString = "355180300.68244"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "412"
-         endingLineNumber = "412"
+         startingLineNumber = "433"
+         endingLineNumber = "433"
          landmarkName = "-playButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
@@ -63,26 +63,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "355025619.466964"
+         timestampString = "355180300.68244"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "242"
-         endingLineNumber = "242"
+         startingLineNumber = "263"
+         endingLineNumber = "263"
          landmarkName = "-dispatchTouchEndEvent:toPosition:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Staff/ChordViewController.m"
-         timestampString = "355031262.073459"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "452"
-         endingLineNumber = "452"
-         landmarkName = "-popoverControllerDidDismissPopover:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -91,12 +77,40 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "355030727.306431"
+         timestampString = "355180300.68244"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "428"
-         endingLineNumber = "428"
+         startingLineNumber = "473"
+         endingLineNumber = "473"
          landmarkName = "-chordChosen_onTouchUpInside:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Staff/ChordViewController.m"
+         timestampString = "355180300.68244"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "449"
+         endingLineNumber = "449"
+         landmarkName = "-stopButton_onTouchUpInside"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Staff/ChordOptionsViewController.m"
+         timestampString = "355180190.577972"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
+         landmarkName = "-stepperPressed:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -24,6 +24,7 @@
 		0826BDDA1523E876004A9B22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0826BDD91523E876004A9B22 /* AVFoundation.framework */; };
 		0826BDE31523EFED004A9B22 /* ChordOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */; };
 		0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */; };
+		08ACF4BC152B9D1F00512760 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ACF4BB152B9D1F00512760 /* star.png */; };
 		2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7315154B72008C538D /* UIKit.framework */; };
 		2AE1DE7615154B72008C538D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7515154B72008C538D /* Foundation.framework */; };
 		2AE1DE7815154B72008C538D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7715154B72008C538D /* CoreGraphics.framework */; };
@@ -61,6 +62,7 @@
 		0826BDE11523EFED004A9B22 /* ChordOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordOptionsViewController.h; sourceTree = "<group>"; };
 		0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordOptionsViewController.m; sourceTree = "<group>"; };
 		0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteIcon.png; sourceTree = "<group>"; };
+		08ACF4BB152B9D1F00512760 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		2AE1DE6F15154B72008C538D /* Staff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE1DE7315154B72008C538D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2AE1DE7515154B72008C538D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +146,7 @@
 				A77FAE3D152501490080F08B /* crsynth.dlsc */,
 				0826BDE11523EFED004A9B22 /* ChordOptionsViewController.h */,
 				0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */,
+				08ACF4BB152B9D1F00512760 /* star.png */,
 				0826BDB61523E5AF004A9B22 /* CyanSquare.png */,
 				0826BDB71523E5AF004A9B22 /* dashedLine.h */,
 				0826BDB81523E5AF004A9B22 /* dashedLine.m */,
@@ -225,6 +228,7 @@
 				0826BDD61523E5C2004A9B22 /* smallsharp.gif in Resources */,
 				0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */,
 				A77FAE3E152501490080F08B /* crsynth.dlsc in Resources */,
+				08ACF4BC152B9D1F00512760 /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
