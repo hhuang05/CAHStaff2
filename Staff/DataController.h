@@ -31,7 +31,6 @@
 -(void)stopNote;
 
 // called by ChordController
-<<<<<<< HEAD
 -(void)playChords:(NSArray*)progression;
 -(void)pauseChords;
 -(void)stopChords;
