@@ -10,6 +10,7 @@
 #import "ChordViewController.h"
 #import "DraggedChord.h"
 #import "ChordOptionsViewController.h"
+#import "DataController.h"
 
 @implementation ChordViewController
 
@@ -430,9 +431,10 @@
 -(void) playButton_onTouchUpInside
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    NSArray* progression = [[NSArray alloc] init];
     
     if (isPaused) {
-        [mainDelegate.viewController.dataController playChords];
+        [mainDelegate.viewController.dataController playChords:(NSArray*)progression];
         isPaused = FALSE;
         [play setTitle:@"Pause" forState:UIControlStateNormal];
     }

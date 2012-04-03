@@ -14,6 +14,7 @@
 
 @interface DataController : NSObject{
     int halfStepAlteration;
+    int currentNote;
     NSArray *currentKeySignatureNotes;
 }
 
@@ -21,8 +22,6 @@
 @property (nonatomic, retain) NSDictionary *keySignatureNoteMap;
 @property (nonatomic, retain) NSDictionary *chordsForKeySignatures;
 @property (nonatomic, retain) NSString *currentKeySignature;
-@property (nonatomic, retain) AVAudioPlayer *notePlayer;
-@property (nonatomic, retain) AVAudioPlayer  *chordPlayer;
 
 
 -(void)keySignatureWasChosen:(NSString*)choice;
@@ -32,8 +31,8 @@
 -(void)stopNote;
 
 // called by ChordController
--(void)queueChords:(NSArray*)progression;
--(void)playChords;
+<<<<<<< HEAD
+-(void)playChords:(NSArray*)progression;
 -(void)pauseChords;
 -(void)stopChords;
 

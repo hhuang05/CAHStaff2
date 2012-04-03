@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Tufts University. All rights reserved.
 //
 
+#import <AudioToolbox/AudioToolbox.h>
 #import "AppDelegate.h"
 #import "MainController.h"
 #import "StaffController.h"
@@ -13,7 +14,7 @@
 
 @implementation DataController
 
-@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, notePlayer = _notePlayer, chordPlayer = _chordPlayer, keySignatureNoteMap = _keySignatureNoteMap;
+@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, keySignatureNoteMap = _keySignatureNoteMap;
 
 -(id) init{    
     self = [super init];
@@ -28,9 +29,7 @@
     // Initialize key signature choice to F
     [self setCurrentKeySignature:@"F"];
     [self keySignatureWasChosen:_currentKeySignature]; 
-    
-    _notePlayer = [[AVAudioPlayer alloc] init];
-    _chordPlayer = [[AVAudioPlayer alloc] init];
+
     halfStepAlteration = 0;
     
     return TRUE;
@@ -213,26 +212,36 @@
     if(twoFingerTouch){
         noteNumber += halfStepAlteration;
     }
+    currentNote = noteNumber;
     
     NSLog(@"Playing note %d", noteNumber);
     
-    // begin playing given note
+    /******
+     MIDI CHANNEL MESSAGE FUNCTIONS ADAPTED TO OUR PROGRAM.  I BELIEVE THAT ALL WE HAVE TO DO IS COPY
+     THE MIDI NUMBER WE WISH TO PLAY AS THE FOURTH ARGUMENT, WHICH I DID, BASED ON
+     THEIR IMPLEMENTATION IN THE SAMPLE2 PROJECT.   THE SAME GOES FOR stopNote BELOW.
+     ******/
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
 }
 
 -(void)stopNote{
     NSLog(@"Stopped playing note");
-    //[_notePlayer stop];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, currentNote, 0x00);
 }
 
-
--(void)queueChords:(NSArray*)progression{
-    // prep chord progression for playing
-}
-
-
--(void)playChords{
+-(void)playChords:(NSArray*)progression{
     NSLog(@"received message to play chords");
-    //[_chordPlayer play];
+    // this is going to have to be on a different channel.  A new instance of CRMD_FUNC, or change the
+    // channel number?
+    
+    // how to set the timing? NSTimer in a NSRunLoop?  Set up an array of NSTimers? This is a challenge
+    /*
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+	appDelegate.api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
+     */
 }
 
 
