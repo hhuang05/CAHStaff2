@@ -7,15 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataController.h"
 #import "MainController.h"
+#import "crmd.h"
 
 @class StaffController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+// sample MIDI app has NSObject, not UIResponder type
+@interface AppDelegate : NSObject <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) MainController *viewController;
+
+@property CRMD_HANDLE handle;
+
+@property CRMD_FUNC *_api;
+
+@property CRMD_FUNC midiFunctions;
+
+@property BOOL mix;
 
 @end
