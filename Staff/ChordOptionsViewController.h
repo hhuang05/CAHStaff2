@@ -16,12 +16,17 @@
     UILabel *beatStepperLabel;
     UILabel *beatLabel;
     UIStepper *beatStepper;
+    UIPopoverController *_popOverController;
     
     Chord *_chord;
+    BOOL deletePressed;
 }
 
 @property (retain) Chord *theChord;
 
 -(void) stepperPressed:(id)sender;
+-(void) setPopoverController:(UIPopoverController *) popOverController;
+-(void) delete_onTouchUpInside;
+-(BOOL) wasDeletePressed;
 
 @end

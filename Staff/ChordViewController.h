@@ -43,6 +43,11 @@
     BOOL isPaused;
     
     UIPopoverController *popOverController;
+    
+    NSArray *chordChoices; //The chords that can be chosen for a specific key
+    NSArray *pickerArray;
+    NSArray *chosenChordButtonsArray;
+    NSMutableArray *chordsToBePlayed; // These are the chords that are chosen that are to be played
 }
 
 -(NSString *) currentKey;

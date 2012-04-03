@@ -11,6 +11,8 @@
 
 @implementation DraggedChord
 
+@synthesize chordChosen = _chordToPlay;
+
 - (id)init
 {
     self = [super init];

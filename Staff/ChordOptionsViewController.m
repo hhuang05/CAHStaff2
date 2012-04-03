@@ -68,16 +68,38 @@
     deleteChord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     deleteChord.frame = CGRectMake(30, 80, 60, 60);
     [deleteChord setImage:deleteImage forState:UIControlStateNormal];
+    [deleteChord addTarget:self action:@selector(delete_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:beatStepperLabel];
     [self.view addSubview:beatLabel];
     [self.view addSubview:beatStepper];
     [self.view addSubview:deleteChord];
+    
+    deletePressed = FALSE;
+}
+
+-(void) setPopoverController:(UIPopoverController *) popOverController
+{
+    // We need a reference to the popover controller so that we can dismiss it
+    _popOverController = popOverController;
 }
 
 -(void) stepperPressed:(id)sender
 {
     
+}
+
+-(void) delete_onTouchUpInside
+{
+    // We will manually call the delegate function
+    deletePressed = TRUE;
+    [_popOverController dismissPopoverAnimated:TRUE];
+    [_popOverController.delegate popoverControllerDidDismissPopover:_popOverController];
+}
+
+-(BOOL) wasDeletePressed
+{
+    return deletePressed;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

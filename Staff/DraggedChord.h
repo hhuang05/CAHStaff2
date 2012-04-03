@@ -12,7 +12,10 @@
 {
     UIImageView *theImage;
     UILabel *theChord;
+    Chord *_chordToPlay;
 }
+
+@property (retain) Chord *chordChosen;
 
 -(void) changeChordName:(NSString *)chord;
 -(NSString *) chordName;
