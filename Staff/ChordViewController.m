@@ -178,16 +178,18 @@
 
 -(void) layoutStars
 {
-    star1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+    starImage = [UIImage imageNamed:@"star.png"];
+    
+    star1 = [[UIImageView alloc] initWithImage:starImage];
     [star1 setFrame:CGRectMake(30, 280, 40, 40)];
     
-    star2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+    star2 = [[UIImageView alloc] initWithImage:starImage];
     [star2 setFrame:CGRectMake(80, 280, 40, 40)];
     
-    star3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+    star3 = [[UIImageView alloc] initWithImage:starImage];
     [star3 setFrame:CGRectMake(130, 280, 40, 40)];
     
-    star4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+    star4 = [[UIImageView alloc] initWithImage:starImage];
     [star4 setFrame:CGRectMake(180, 280, 40, 40)];
     
     [self.view addSubview:star1];

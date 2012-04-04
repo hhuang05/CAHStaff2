@@ -12,6 +12,7 @@
 @interface ChordViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate>
 {
     NSString *currentKey; 
+    UIImage *starImage;
     
     // 8 Buttons for chord pickers
     DraggedChord *picker1;
