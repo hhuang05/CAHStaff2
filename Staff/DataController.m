@@ -216,12 +216,6 @@
     
     NSLog(@"Playing note %d", noteNumber);
     
-    /******
-     MIDI CHANNEL MESSAGE FUNCTIONS ADAPTED TO OUR PROGRAM.  I BELIEVE THAT ALL WE HAVE TO DO IS COPY
-     THE MIDI NUMBER WE WISH TO PLAY AS THE FOURTH ARGUMENT, WHICH I DID, BASED ON
-     THEIR IMPLEMENTATION IN THE SAMPLE2 PROJECT.   THE SAME GOES FOR stopNote BELOW.
-     ******/
-    
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
 }

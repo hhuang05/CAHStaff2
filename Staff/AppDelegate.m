@@ -10,17 +10,12 @@
 #import "AppDelegate.h"
 #import "MainController.h"
 
-// uncomment to run with attempt 2
-//
-//static CRMD_FUNC staticCRMD_FUNC;
-
 @interface AppDelegate (Private)
 - (void)callback:(CRMD_CALLBACK_TYPE) type data:(void *)data;
 @end
 
 static void _callback (CRMD_HANDLE handle, CRMD_CALLBACK_TYPE type, void *data, void *user)
 {
-    // __bridge was added after an error message requested the change for reference counting reasons
 	AppDelegate *appDelegate = (__bridge AppDelegate *) user;
 	[appDelegate callback:type data:data];
 }
@@ -29,12 +24,11 @@ static void _callback (CRMD_HANDLE handle, CRMD_CALLBACK_TYPE type, void *data, 
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
-@synthesize mix = _mix, handle = _handle, _api, midiFunctions = _midiFunctions;
+@synthesize mix = _mix, handle = _handle, _api;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // set up MIDI API
-    // bridged void* cast added in response to error message
     AudioSessionInitialize(NULL, NULL, NULL, (__bridge void*) self);
 	UInt32 category = kAudioSessionCategory_AmbientSound;
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(category), &category);
@@ -46,31 +40,6 @@ static void _callback (CRMD_HANDLE handle, CRMD_CALLBACK_TYPE type, void *data, 
 	AudioSessionSetProperty(kAudioSessionProperty_PreferredHardwareIOBufferDuration, size, &bufferSize);
     
 	_api = crmdLoad ();
-
-     /*  ADD COMMENTS TO THE LINE ABOVE AND UNCOMMENT ONE OF MY THREE SUGGESSTED SOULTIONS BELOW
-      
-      _api is a CRMD_FUNC*, and CRMD_FUNC is C struct with funcion pointers to the functions we'll call 
-      
-      these relevant declarations are in crmd.h:
-      
-      typedef CRMD_FUNC* (*CRMD_LOAD) (void);
-      CRMD_FUNC *crmdLoad (void); 
-      
-      In short, we need to allocate a struct of type CRMD_FUNC (see crmd.h) that contains
-      function pointers to the MIDI functions.  I rewrote the line they gave us below.
-      
-      */
-    
-    // 1.
-    // - caused EXC_BAD_ACCESS on the "err = _api->..." assignemnt below  the key[64]
-    //
-    //_api = (CRMD_FUNC*)malloc(sizeof(CRMD_FUNC));
-    
-    // 2. 
-    // see declaration near top of file - I needed a struct that would live beyond the method call
-    // - caused EXC_BAD_ACCESS on the "err = _api->..." assignemnt below  the key[64]
-    //
-    //_api = &staticCRMD_FUNC;
     
 	CRMD_ERR err = CRMD_OK;
 	
@@ -89,10 +58,6 @@ static void _callback (CRMD_HANDLE handle, CRMD_CALLBACK_TYPE type, void *data, 
             0xE4, 0x62, 0x89, 0x45, 0x9F, 0xC7, 0xA5, 0x62,
 		};
 		err = _api->initializeWithSoundLib (&_handle, _callback, (__bridge void *) self, lib, NULL, key);
-        
-        // 3.
-        // used a CRMD_FUNC member variable - caused EXC_BAD_ACCESS on this call
-        //err = _midiFunctions.initializeWithSoundLib (&_handle, _callback, (__bridge void *) self, lib, NULL, key);
 	}
     
 	if (err == CRMD_OK) {
@@ -110,9 +75,6 @@ static void _callback (CRMD_HANDLE handle, CRMD_CALLBACK_TYPE type, void *data, 
 		// start realtime MIDI
 		err = _api->start (_handle);
 	}
-
-    
-    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

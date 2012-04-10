@@ -23,8 +23,6 @@
 
 @property CRMD_FUNC *_api;
 
-@property CRMD_FUNC midiFunctions;
-
 @property BOOL mix;
 
 @end

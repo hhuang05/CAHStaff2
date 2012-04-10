@@ -267,7 +267,7 @@
             //NSLog(@"Began - Tag: %d",touch.view.tag);
             
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-            [mainDelegate.viewController.dataController playNoteAt:touch.view.tag WithHalfStepAlteration:FALSE];
+            [mainDelegate.viewController.dataController playNoteAt:touch.view.tag -1 WithHalfStepAlteration:FALSE];
         }
     }
 }
