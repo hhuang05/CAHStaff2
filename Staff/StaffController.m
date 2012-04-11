@@ -265,11 +265,26 @@
         if(touch.view.tag > 0)
         {
             //NSLog(@"Began - Tag: %d",touch.view.tag);
-            
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag -1) WithHalfStepAlteration:FALSE];
         }
     }
+    
+    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        // Get a single touch and it's location
+        UITouch *touch = obj;
+        CGPoint touchPoint = [touch locationInView:self.view];
+        
+        // Draw a red circle where the touch occurred
+        UIView *touchView = [[UIView alloc] init];
+        [touchView setTag:666];
+        [touchView setBackgroundColor:[UIColor colorWithRed:0.0/255 green:153.0/255 blue:255.0/255 alpha:0.6]];
+        [touchView setFrame:CGRectMake(touchPoint.x-15, touchPoint.y-15, 30, 30)];
+        [[touchView layer] setCornerRadius:15];
+        touchView.layer.borderColor = [UIColor colorWithRed:221.0/255 green:221.0/255 blue:221.0/255 alpha:0.9].CGColor;
+        [[touchView layer] setBorderWidth:2]; 
+        [staffView addSubview:touchView];     
+    }];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -279,9 +294,15 @@
         if(touch.view.tag > 0)
         {
             //NSLog(@"Ended - Tag: %d",touch.view.tag);
-            
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController stopNote];
+        }
+    }
+    
+    NSArray *subviews = [self.view subviews];
+    for (UIView *view in subviews) {
+        if(view.tag == 666){
+            [view removeFromSuperview];
         }
     }
 }

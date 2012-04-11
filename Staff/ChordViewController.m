@@ -14,6 +14,11 @@
 
 @implementation ChordViewController
 
+@synthesize bpmStepper;
+@synthesize bpmLabel;
+@synthesize metronomeOnOff;
+@synthesize metronomeTimer;
+
 #define GROW_ANIMATION_DURATION_SECONDS 0.15    // Determines how fast a piece size grows when it is moved.
 #define SHRINK_ANIMATION_DURATION_SECONDS 0.15  // Determines how fast a piece size shrinks when a piece stops moving.
 
@@ -207,6 +212,66 @@
     [self layoutChordsToBePlayed];
     [self layoutControlBar];
     [self layoutStars];
+    [self setupMetronome];
+}
+
+
+/*********************************************************
+ The functions below implements the metronome
+ *********************************************************/
+
+- (void) setupMetronome
+{
+    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(433, 332, 100, 30)];
+    [bpmStepper setMinimumValue:20.0];
+    [bpmStepper setMaximumValue:160.0];
+    [bpmStepper setValue:80.0];
+    [bpmStepper setStepValue:1];
+    [bpmStepper setContinuous:YES];
+    [bpmStepper setWraps:YES];
+    [bpmStepper setAutorepeat:YES];
+    
+    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(420, 367, 120, 40)];
+    [[bpmLabel layer] setCornerRadius:10];
+    [bpmLabel setText:@"80"];
+    [bpmLabel setTextAlignment:UITextAlignmentCenter];
+    [bpmLabel setFont:[UIFont systemFontOfSize:24]];
+     
+    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(440, 415, 79, 27)];
+    [metronomeOnOff setOn:NO animated:YES];
+    
+    [self.view addSubview:bpmLabel];
+    [self.view addSubview:bpmStepper];
+    [self.view addSubview:metronomeOnOff];
+    
+    [bpmStepper addTarget:self action:@selector(bpmStepperValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [metronomeOnOff addTarget:self action:@selector(metronomeOnOffChanged:) forControlEvents:UIControlEventValueChanged];
+    
+}
+
+- (IBAction)metronomeOnOffChanged:(id)sender
+{
+    if(metronomeOnOff.on){
+        double bpm = 60 / [[bpmLabel text] doubleValue];
+        metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
+                 target:self 
+                 selector:@selector(fireMetronomeSound:) 
+                 userInfo:nil
+                 repeats:YES];
+    } else {
+        [[self metronomeTimer] invalidate];
+        metronomeTimer = nil;
+    }
+}
+
+- (IBAction)fireMetronomeSound:(id)sender
+{
+    NSLog(@"Fired! - Need method from datacontroller.");
+}
+
+- (IBAction)bpmStepperValueChanged:(UIStepper *)sender {
+    double stepperValue = bpmStepper.value;
+    self.bpmLabel.text = [NSString stringWithFormat:@"%.f", stepperValue];
 }
 
 /*********************************************************

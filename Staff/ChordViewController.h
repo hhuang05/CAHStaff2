@@ -55,7 +55,19 @@
     NSArray *pickerArray;
     NSArray *chosenChordButtonsArray;
     NSMutableArray *chordsToBePlayed; // These are the chords that are chosen that are to be played
+    
+    // Metronome properties
+    IBOutlet UIStepper *bpmStepper;
+    IBOutlet UILabel *bpmLabel;
+    IBOutlet UISwitch *metronomeOnOff;
+    NSTimer *metronomeTimer;
 }
+
+//Metronome properties
+@property (nonatomic, retain) UIStepper *bpmStepper;
+@property (nonatomic, retain) UILabel *bpmLabel;
+@property (nonatomic, retain) UISwitch *metronomeOnOff;
+@property(nonatomic, retain) NSTimer *metronomeTimer;
 
 -(NSString *) currentKey;
 -(void) currentKey: (NSString *) newKey;
