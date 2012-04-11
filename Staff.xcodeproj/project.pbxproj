@@ -31,6 +31,8 @@
 		2AE1DE7E15154B72008C538D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AE1DE7C15154B72008C538D /* InfoPlist.strings */; };
 		2AE1DE8015154B72008C538D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE1DE7F15154B72008C538D /* main.m */; };
 		2AE1DE8415154B72008C538D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE1DE8315154B72008C538D /* AppDelegate.m */; };
+		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
+		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		2AE1DE8115154B72008C538D /* Staff-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Staff-Prefix.pch"; sourceTree = "<group>"; };
 		2AE1DE8215154B72008C538D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2AE1DE8315154B72008C538D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A717FEDE1534ED9D00515250 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A76534931527B777001885E9 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
 		A76534941527B777001885E9 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A717FEE21534EE1300515250 /* Security.framework in Frameworks */,
+				A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */,
 				A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */,
 				0826BDDA1523E876004A9B22 /* AVFoundation.framework in Frameworks */,
 				2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */,
@@ -115,6 +121,8 @@
 		2AE1DE7215154B72008C538D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A717FEE11534EE1300515250 /* Security.framework */,
+				A717FEDE1534ED9D00515250 /* CoreFoundation.framework */,
 				A765348A15276051001885E9 /* AudioToolbox.framework */,
 				0826BDD91523E876004A9B22 /* AVFoundation.framework */,
 				2AE1DE7315154B72008C538D /* UIKit.framework */,
@@ -336,7 +344,11 @@
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
+					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
+				);
 				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
@@ -362,7 +374,11 @@
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
+					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
+				);
 				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",

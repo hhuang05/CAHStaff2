@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MainController.h"
 #import "crmd.h"
+#import <CoreFoundation/CoreFoundation.h>
+#import <Security/Security.h>
 
 @class StaffController;
 
