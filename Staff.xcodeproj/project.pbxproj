@@ -25,6 +25,7 @@
 		0826BDE31523EFED004A9B22 /* ChordOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */; };
 		0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */; };
 		08ACF4BC152B9D1F00512760 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ACF4BB152B9D1F00512760 /* star.png */; };
+		2A8E8FBA15374EF80067DB3D /* Circleof5thsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */; };
 		2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7315154B72008C538D /* UIKit.framework */; };
 		2AE1DE7615154B72008C538D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7515154B72008C538D /* Foundation.framework */; };
 		2AE1DE7815154B72008C538D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7715154B72008C538D /* CoreGraphics.framework */; };
@@ -65,6 +66,8 @@
 		0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordOptionsViewController.m; sourceTree = "<group>"; };
 		0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteIcon.png; sourceTree = "<group>"; };
 		08ACF4BB152B9D1F00512760 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		2A8E8FB815374EF80067DB3D /* Circleof5thsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circleof5thsController.h; sourceTree = "<group>"; };
+		2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circleof5thsController.m; sourceTree = "<group>"; };
 		2AE1DE6F15154B72008C538D /* Staff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE1DE7315154B72008C538D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2AE1DE7515154B72008C538D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -154,6 +157,8 @@
 				0826BDB11523E5AF004A9B22 /* Chord.m */,
 				0826BDB41523E5AF004A9B22 /* ChordViewController.h */,
 				0826BDB51523E5AF004A9B22 /* ChordViewController.m */,
+				2A8E8FB815374EF80067DB3D /* Circleof5thsController.h */,
+				2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */,
 				0826BDE11523EFED004A9B22 /* ChordOptionsViewController.h */,
 				0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */,
 				08ACF4BB152B9D1F00512760 /* star.png */,
@@ -269,6 +274,7 @@
 				0826BDD71523E5C2004A9B22 /* solidLine.m in Sources */,
 				0826BDD81523E5C2004A9B22 /* StaffController.m in Sources */,
 				0826BDE31523EFED004A9B22 /* ChordOptionsViewController.m in Sources */,
+				2A8E8FBA15374EF80067DB3D /* Circleof5thsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

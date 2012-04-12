@@ -10,6 +10,7 @@
 #import "StaffController.h"
 #import "DataController.h"
 #import "ChordViewController.h"
+#import "Circleof5thsController.h"
 
 @interface MainController : UIViewController
 
@@ -17,7 +18,9 @@
 
 @property (strong, nonatomic) ChordViewController *chordController;
 
-@property (strong, nonatomic) DataController* dataController;
+@property (strong, nonatomic) DataController *dataController;
+
+@property (strong, nonatomic) Circleof5thsController *circleOf5thsController;
 
 
 @end

@@ -11,10 +11,12 @@
 #import "DataController.h"
 #import "StaffController.h"
 #import "ChordViewController.h"
+#import "Circleof5thsController.h"
 
 @implementation MainController
 
 @synthesize staffController = _staffController, dataController = _dataController, chordController = _chordController;
+@synthesize circleOf5thsController = _circleOf5thsController;
 
 - (void)viewDidLoad
 {
@@ -23,6 +25,7 @@
     _dataController = [[DataController alloc] init];
     _staffController = [[StaffController alloc] init];
     _chordController = [[ChordViewController alloc] init];
+    _circleOf5thsController = [[Circleof5thsController alloc] init];
     [_chordController loadView];
     [_dataController loadData];
     

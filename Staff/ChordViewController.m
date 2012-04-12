@@ -11,6 +11,7 @@
 #import "DraggedChord.h"
 #import "ChordOptionsViewController.h"
 #import "DataController.h"
+#import "Circleof5thsController.h"
 
 @implementation ChordViewController
 
@@ -205,6 +206,7 @@
 
 - (void) loadView
 {
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.view = [[UIView alloc] initWithFrame: CGRectMake(400, 0, 624, 768)];
     [self.view setBackgroundColor:[UIColor brownColor]]; 
     
@@ -213,6 +215,7 @@
     [self layoutControlBar];
     [self layoutStars];
     [self setupMetronome];
+    [mainDelegate.viewController.circleOf5thsController setup];
 }
 
 
@@ -266,7 +269,10 @@
 
 - (IBAction)fireMetronomeSound:(id)sender
 {
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    //[mainDelegate.viewController.dataController metronomeTick];
     NSLog(@"Fired! - Need method from datacontroller.");
+    
 }
 
 - (IBAction)bpmStepperValueChanged:(UIStepper *)sender {
