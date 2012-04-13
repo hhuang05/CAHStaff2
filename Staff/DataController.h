@@ -39,5 +39,4 @@
 -(void)fillKeySignatureAccidentals;
 -(void)fillNotesInKeySignatureDictionary;
 -(void)fillChordsDictionary;
--(void)testmethod:(NSString *)className; //to be deleted
 @end

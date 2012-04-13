@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Circleof5thsController.h"
+#import "DataController.h"
 
 @implementation Circleof5thsController
 
@@ -38,7 +39,7 @@
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     circleOf5thsPickerElements = [[NSArray alloc] 
-                                           initWithObjects:@"F#/Gb",@"B",@"E",@"A",@"D",@"G",@"C",@"F",@"Bb",@"Eb",@"Ab",@"Db",@"Gb/F#", nil];
+                                           initWithObjects:@"F#",@"B",@"E",@"A",@"D",@"G",@"C",@"F",@"Bb",@"Eb",@"Ab",@"Db",@"Gb", nil];
     circleOf5thsView = [[UIView alloc] initWithFrame:CGRectMake(577, 200, 330, 310)];
     [circleOf5thsView setBackgroundColor:[UIColor whiteColor]];
     [[circleOf5thsView layer] setCornerRadius:10];
@@ -115,8 +116,10 @@
 // Do something with the selected row.
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    
-    NSLog(@"You selected this: %@", [circleOf5thsPickerElements objectAtIndex: row]);
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [mainDelegate.viewController.dataController keySignatureWasChosen:[circleOf5thsPickerElements objectAtIndex: row]];
+   
+    //NSLog(@"You selected this: %@", [circleOf5thsPickerElements objectAtIndex: row]);
 }
 
 

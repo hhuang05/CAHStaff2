@@ -269,7 +269,7 @@
 
 - (IBAction)fireMetronomeSound:(id)sender
 {
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    //AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     //[mainDelegate.viewController.dataController metronomeTick];
     NSLog(@"Fired! - Need method from datacontroller.");
     

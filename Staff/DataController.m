@@ -26,18 +26,13 @@
     [self fillNotesInKeySignatureDictionary];
     [self fillChordsDictionary];
     
-    // Initialize key signature choice to F
-    [self setCurrentKeySignature:@"F"];
+    // Initialize key signature choice to C
+    [self setCurrentKeySignature:@"C"];
     [self keySignatureWasChosen:_currentKeySignature]; 
 
     halfStepAlteration = 0;
     
     return TRUE;
-}
-
--(void)testmethod:(NSString *)className //to be deleted
-{
-    NSLog(@"I got called from the %@",className);
 }
 
 -(void)fillKeySignatureAccidentals{
@@ -143,7 +138,7 @@
     NSArray *DMinor = [[NSArray alloc] initWithObjects:@"83", @"81", @"79", @"77", @"76", @"74", @"72", @"70", @"69", @"67", @"65", @"64", @"62", @"60", @"58", nil];
     
     _keySignatureNoteMap = [[NSDictionary alloc] initWithObjectsAndKeys:
-            CMajor, @"C", GMajor, @"G", DMajor, @"D", AMajor, @"A", EMajor, @"E", BMajor, @"B", GflatMajor, @"Gb", FsharpMajor, @"F#", DflatMajor, @"Db", AflatMajor, @"Ab", EflatMajor, @"Eb", BflatMajor, @"Bb", FMajor, @"F", AMinor, @"A Minor", EMinor, @"E Minor", BMinor, @"B Minor", FsharpMinor, @"F# Minor", CsharpMinor, @"C# Minor", GsharpMinor, @"G# minor", EflatMinor, @"Eb Minor", DsharpMinor, @"D# Minor", BflatMinor, @"Bb Minor", FMinor, @"F Minor", CMinor, @"C Minor", GMinor, @"G Minor", DMinor, @"D Minor", nil];
+            CMajor, @"C", GMajor, @"G", DMajor, @"D", AMajor, @"A", EMajor, @"E", BMajor, @"B", GflatMajor, @"Gb/F#", FsharpMajor, @"F#/Gb", DflatMajor, @"Db", AflatMajor, @"Ab", EflatMajor, @"Eb", BflatMajor, @"Bb", FMajor, @"F", AMinor, @"A Minor", EMinor, @"E Minor", BMinor, @"B Minor", FsharpMinor, @"F# Minor", CsharpMinor, @"C# Minor", GsharpMinor, @"G# minor", EflatMinor, @"Eb Minor", DsharpMinor, @"D# Minor", BflatMinor, @"Bb Minor", FMinor, @"F Minor", CMinor, @"C Minor", GMinor, @"G Minor", DMinor, @"D Minor", nil];
     
     
     /*
@@ -188,9 +183,19 @@
 
 -(void)keySignatureWasChosen:(NSString*)choice
 {
+    /*
+    NSLog(@"%@", choice);
+    if(choice == [[NSString alloc] initWithUTF8String:"Gb/F#"])
+        choice = [[NSString alloc] initWithUTF8String:"Gb"];
+    if(choice == [[NSString alloc] initWithUTF8String:"F#/Gb"])
+        choice = [[NSString alloc] initWithUTF8String:"F#"];
+     */
     
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];
-    NSArray* chordsForKey = [_chordsForKeySignatures objectForKey:choice];
+   
+    
+    // CURRENTLY HARD-CODED TO F MAJOR
+    NSArray* chordsForKey = [_chordsForKeySignatures objectForKey:@"F"];
     currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
 
     
@@ -220,6 +225,11 @@
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
 }
 
+-(void)metronomeTick{
+    
+    
+}
+
 -(void)stopNote{
     NSLog(@"Stopped playing note");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -228,26 +238,17 @@
 
 -(void)playChords:(NSArray*)progression{
     NSLog(@"received message to play chords");
-    // this is going to have to be on a different channel.  A new instance of CRMD_FUNC, or change the
-    // channel number?
     
-    // how to set the timing? NSTimer in a NSRunLoop?  Set up an array of NSTimers? This is a challenge
-    /*
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate.api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
-     */
 }
 
 
 -(void)pauseChords{
     NSLog(@"received message to pause chords");
-    //[_chordPlayer pause];
 }
 
 
 -(void)stopChords{
     NSLog(@"received message to stop chords");
-    //[_chordPlayer stop];
 }
 
 @end

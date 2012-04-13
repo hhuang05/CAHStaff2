@@ -348,24 +348,27 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
-				WARNING_LDFLAGS = "";
+				WARNING_LDFLAGS = (
+					"./crsynth/Release-iphonesimulator/libcrse.a",
+					"./crsynth/Release-iphonesimulator/libcrmpd.a",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -378,25 +381,28 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
-				WARNING_LDFLAGS = "";
+				WARNING_LDFLAGS = (
+					"./crsynth/Release-iphonesimulator/libcrse.a",
+					"./crsynth/Release-iphonesimulator/libcrmpd.a",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
