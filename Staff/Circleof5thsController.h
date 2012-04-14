@@ -13,14 +13,12 @@
     IBOutlet UIView *circleOf5thsView;
     IBOutlet UIView *circleOf5thsTab;
     IBOutlet UIPickerView *circleOf5thsPicker;
-    IBOutlet UIButton *circleOf5thsButton;
     NSArray *circleOf5thsPickerElements;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *circleOf5thsView;
 @property (nonatomic, retain) IBOutlet UIView *circleOf5thsTab;
 @property (nonatomic, retain) IBOutlet UIPickerView *circleOf5thsPicker;
-@property (nonatomic, retain) IBOutlet UIButton *circleOf5thsButton;
 @property NSArray *circleOf5thsPickerElements;
 
 - (void)setup;

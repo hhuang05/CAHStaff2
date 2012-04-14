@@ -13,7 +13,6 @@
 @implementation Circleof5thsController
 
 @synthesize circleOf5thsView;
-@synthesize circleOf5thsButton;
 @synthesize circleOf5thsPicker;
 @synthesize circleOf5thsPickerElements;
 @synthesize circleOf5thsTab;
@@ -40,7 +39,7 @@
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     circleOf5thsPickerElements = [[NSArray alloc] 
                                            initWithObjects:@"F#",@"B",@"E",@"A",@"D",@"G",@"C",@"F",@"Bb",@"Eb",@"Ab",@"Db",@"Gb", nil];
-    circleOf5thsView = [[UIView alloc] initWithFrame:CGRectMake(577, 200, 330, 310)];
+    circleOf5thsView = [[UIView alloc] initWithFrame:CGRectMake(577, 200, 317, 216)];
     [circleOf5thsView setBackgroundColor:[UIColor whiteColor]];
     [[circleOf5thsView layer] setCornerRadius:10];
     [[circleOf5thsView layer] setBorderColor:[UIColor blackColor].CGColor];
@@ -53,25 +52,17 @@
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:circleOf5thsView.bounds];
     [[circleOf5thsView layer] setShadowPath:path.CGPath];
     
-    circleOf5thsTab = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 310)];
+    circleOf5thsTab = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 216)];
     [[circleOf5thsTab layer] setCornerRadius:10];
     [circleOf5thsTab setBackgroundColor:[UIColor lightGrayColor]];
     
-    circleOf5thsPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(60, 10, 250, 216)];
+    circleOf5thsPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(60, 0, 250, 216)];
     [circleOf5thsPicker setDelegate:self];
     [circleOf5thsPicker setDataSource:self];
     [circleOf5thsPicker setShowsSelectionIndicator:YES];
     
-    circleOf5thsButton = [[UIButton alloc] initWithFrame:CGRectMake(60, 240, 250, 50)];
-    [circleOf5thsButton setTitle:@"Select" forState:UIControlStateNormal];
-    [[circleOf5thsButton layer] setBorderWidth:1];
-    [[circleOf5thsButton layer] setBorderColor:[UIColor colorWithRed:204.0/255 green:204.0/255 blue:204.0/255 alpha:1].CGColor];
-    [circleOf5thsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [[circleOf5thsButton layer] setCornerRadius:10];
-    
     [circleOf5thsView addSubview:circleOf5thsTab];
     [circleOf5thsView addSubview:circleOf5thsPicker];
-    [circleOf5thsView addSubview:circleOf5thsButton];
     
     [mainDelegate.viewController.chordController.view addSubview:circleOf5thsView];
     [circleOf5thsPicker selectRow:6 inComponent:0 animated:YES];

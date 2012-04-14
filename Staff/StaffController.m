@@ -128,9 +128,6 @@
 
 - (BOOL)changeScale:(NSArray *)notesFromDataController
 {
-    
- //   NSLog(@"changeScale");
-
     //Return false if array is not normalized properly
     if(notesFromDataController.count != NUMBER_OF_NOTES){
         return FALSE;
@@ -156,18 +153,61 @@
     //For each, display flat/sharp if value -1/1
     for(int pos = 0; pos < NUMBER_OF_NOTES; pos++)
     {
-//        NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
-        
         num = [[notesFromDataController objectAtIndex:pos] intValue];
-       // NSLog(@"INTS: %d",num);
         if(num != 0){
             //Add +1 to pos becase tag attributes of lines/spaces start at 1
             [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos+1];
+            [self findAccidentalNote:pos+1];
         }
-        
     }
-    
     return TRUE;
+}
+
+- (void)findAccidentalNote:(int)pos
+{
+    id key;
+    if((pos % 2) == 1){
+        NSEnumerator *senumerator = [spaces keyEnumerator];
+        while ((key = [senumerator nextObject])) {
+            UIView *subview = [spaces objectForKey:key];
+            if(pos == [subview tag]){
+                [self registerAccidentalNote:subview withPos:pos];
+                return;
+            }
+        }
+    } else {
+        NSEnumerator *lenumerator = [lines keyEnumerator];
+        while ((key = [lenumerator nextObject])) {
+            UIView *subview = [lines objectForKey:key];
+            if(pos == [subview tag]){
+                [self registerAccidentalNote:subview withPos:pos];
+                return;
+            }
+        }
+    }
+}
+
+- (void)registerAccidentalNote:(UIView *)view withPos:(int)pos
+{   
+    NSLog(@"%@",view);
+    UILongPressGestureRecognizer *accidentalGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingeredAccidentalNote:)];
+    [accidentalGesture setNumberOfTapsRequired:1];
+    [accidentalGesture setNumberOfTouchesRequired:2];
+    [accidentalGesture setMinimumPressDuration:0];
+    [view addGestureRecognizer:accidentalGesture];
+}
+
+- (void)twoFingeredAccidentalNote:(UILongPressGestureRecognizer *)recognizer
+{
+    NSLog(@"HERE!!!!!");
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    if(recognizer.state == UIGestureRecognizerStateEnded){
+        NSLog(@"stop accidental");
+        [mainDelegate.viewController.dataController stopNote];
+    } else {
+        NSLog(@"start accidental");
+        [mainDelegate.viewController.dataController playNoteAt:(recognizer.view.tag -1) WithHalfStepAlteration:TRUE];
+    }
 }
 
 - (void)clearAllSharpsAndFlatsFromStaff
@@ -259,6 +299,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"# of Touches: %d",[touches count]);
     NSArray *allTouches = [touches allObjects];
     for (UITouch *touch in allTouches)
     {
@@ -272,6 +313,7 @@
     
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         // Get a single touch and it's location
+        
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
         
@@ -289,18 +331,15 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSArray *allTouches = [touches allObjects];
-    for (UITouch *touch in allTouches)
-    {
-        if(touch.view.tag > 0)
-        {
-            //NSLog(@"Ended - Tag: %d",touch.view.tag);
+    for (UITouch *touch in allTouches){
+        if(touch.view.tag > 0){
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController stopNote];
         }
     }
     
     NSArray *subviews = [self.view subviews];
-    for (UIView *view in subviews) {
+    for (UIView *view in subviews){
         if(view.tag == 666){
             [view removeFromSuperview];
         }
