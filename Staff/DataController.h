@@ -34,6 +34,8 @@
 -(void)playChords:(NSArray*)progression;
 -(void)pauseChords;
 -(void)stopChords;
+-(void)metronomeTick;
+-(void)twoFingerOptionWasSelected:(NSString*)option;
 
 -(BOOL)loadData;
 -(void)fillKeySignatureAccidentals;

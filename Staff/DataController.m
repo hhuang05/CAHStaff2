@@ -227,7 +227,20 @@
 
 -(void)metronomeTick{
     
-    
+    NSLog(@"tick");
+}
+
+-(void)twoFingerOptionWasSelected:(NSString*)option{
+    NSLog(@"Half step choice made: %@", option);
+    if(option == @"Apply sharp" ){
+        halfStepAlteration = 1;
+    }
+    else if(option == @"Apply flat"){
+        halfStepAlteration = -1;
+    }
+    else
+        halfStepAlteration = 0;
+    NSLog(@"Half step alteration is now: %d", halfStepAlteration);
 }
 
 -(void)stopNote{
