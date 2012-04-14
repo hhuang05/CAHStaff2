@@ -26,8 +26,15 @@
     [self fillNotesInKeySignatureDictionary];
     [self fillChordsDictionary];
     
+    {
+		AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+		unsigned char sysex[13] = {0x41, 0x10, 0x42, 0x12, 0x40, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0xF7};
+		appDelegate._api->setSystemExclusiveMessage (appDelegate.handle, 0, 0xF0, sysex, 13);
+	}
+    
     // Initialize key signature choice to C
     [self setCurrentKeySignature:@"C"];
+    [self instrumentWasChosen:0];
     [self keySignatureWasChosen:_currentKeySignature]; 
 
     halfStepAlteration = 0;
@@ -222,12 +229,45 @@
     NSLog(@"Playing note %d", noteNumber);
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
 }
 
 -(void)metronomeTick{
+    NSLog(@"Tick");
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    // 115 is the wooden block
     
-    NSLog(@"tick");
+    /*
+     
+     What happens if I send a change instrument message and a play before the note
+     off comes for the staff instrument?  I'm hoping it will keep playing until
+     I call for the exact thing to turn off... I hope.
+     
+     */
+    
+    
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, 115, 0x00);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, 65, 0x7F);
+}
+
+-(void) instrumentWasChosen:(int)instrument{
+    
+    if(instrument > -1 && instrument < 128){
+        MIDIinstrument = instrument;
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
+        [self performSelector:@selector(changeInstrumentName) withObject:nil afterDelay:0.1f];
+    }
+}
+
+-(void)changeInstrumentName{
+ 	AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+	char name[128];
+	appDelegate._api->ctrl (appDelegate.handle, CRMD_CTRL_GET_INSTRUMENT_NAME, name, sizeof (name));
+	
+	NSString *string = [NSString stringWithFormat:@"#%03d : %@", MIDIinstrument, [NSString stringWithCString:name encoding:NSASCIIStringEncoding]];
+	NSLog(@"Changed to instrument: %@", string);   
 }
 
 -(void)twoFingerOptionWasSelected:(NSString*)option{
@@ -246,6 +286,7 @@
 -(void)stopNote{
     NSLog(@"Stopped playing note");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, 115, 0x00);
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, currentNote, 0x00);
 }
 
