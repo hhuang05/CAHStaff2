@@ -35,7 +35,7 @@
 - (void)setup
 {
     _TwoFingerOptionsElements = [[NSArray alloc] 
-                                  initWithObjects:@"Apply sharp",@"No effect",@"Apply flat", nil];
+                                  initWithObjects:@"No effect",@"Apply sharp",@"Apply flat", nil];
     _TwoFingerOptionsSelectorView = [[UIView alloc] initWithFrame:CGRectMake(577, 450, 260, 250)];
     [_TwoFingerOptionsSelectorView setBackgroundColor:[UIColor whiteColor]];
     [[_TwoFingerOptionsSelectorView layer] setCornerRadius:10];
