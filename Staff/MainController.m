@@ -16,7 +16,7 @@
 @implementation MainController
 
 @synthesize staffController = _staffController, dataController = _dataController, chordController = _chordController;
-@synthesize circleOf5thsController = _circleOf5thsController;
+@synthesize circleOf5thsController = _circleOf5thsController, twoFingerOptionSelector = _twoFingerOptionSelector;
 
 - (void)viewDidLoad
 {
@@ -26,6 +26,7 @@
     _staffController = [[StaffController alloc] init];
     _chordController = [[ChordViewController alloc] init];
     _circleOf5thsController = [[Circleof5thsController alloc] init];
+    _twoFingerOptionSelector = [[TwoFingerOptionSelector alloc] init];
     [_chordController loadView];
     [_dataController loadData];
     
