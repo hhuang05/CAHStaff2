@@ -20,5 +20,5 @@
 @property (nonatomic) int measures;
 
 -(id)initWithName:(NSString*)name Notes:(NSArray*)notes andID:(int)number;
-
+-(void)resetValues;
 @end
