@@ -12,6 +12,7 @@
 #import "ChordOptionsViewController.h"
 #import "DataController.h"
 #import "Circleof5thsController.h"
+#import "TwoFingerOptionSelector.h"
 
 @implementation ChordViewController
 
@@ -217,6 +218,7 @@
     [self layoutStars];
     [self setupMetronome];
     [mainDelegate.viewController.circleOf5thsController setup];
+    [mainDelegate.viewController.twoFingerOptionSelector setup];
 }
 
 
@@ -271,9 +273,7 @@
 - (IBAction)fireMetronomeSound:(id)sender
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    //[mainDelegate.viewController.dataController metronomeTick];
-    NSLog(@"Fired! - Need method from datacontroller.");
-    
+    [mainDelegate.viewController.dataController metronomeTick];    
 }
 
 - (IBAction)bpmStepperValueChanged:(UIStepper *)sender {

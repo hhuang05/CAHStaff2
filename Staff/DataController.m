@@ -26,18 +26,20 @@
     [self fillNotesInKeySignatureDictionary];
     [self fillChordsDictionary];
     
-    // Initialize key signature choice to F
-    [self setCurrentKeySignature:@"F"];
+    {
+		AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+		unsigned char sysex[13] = {0x41, 0x10, 0x42, 0x12, 0x40, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0xF7};
+		appDelegate._api->setSystemExclusiveMessage (appDelegate.handle, 0, 0xF0, sysex, 13);
+	}
+    
+    // Initialize key signature choice to C
+    [self setCurrentKeySignature:@"C"];
+    [self instrumentWasChosen:0];
     [self keySignatureWasChosen:_currentKeySignature]; 
 
     halfStepAlteration = 0;
     
     return TRUE;
-}
-
--(void)testmethod:(NSString *)className //to be deleted
-{
-    NSLog(@"I got called from the %@",className);
 }
 
 -(void)fillKeySignatureAccidentals{
@@ -143,7 +145,7 @@
     NSArray *DMinor = [[NSArray alloc] initWithObjects:@"83", @"81", @"79", @"77", @"76", @"74", @"72", @"70", @"69", @"67", @"65", @"64", @"62", @"60", @"58", nil];
     
     _keySignatureNoteMap = [[NSDictionary alloc] initWithObjectsAndKeys:
-            CMajor, @"C", GMajor, @"G", DMajor, @"D", AMajor, @"A", EMajor, @"E", BMajor, @"B", GflatMajor, @"Gb", FsharpMajor, @"F#", DflatMajor, @"Db", AflatMajor, @"Ab", EflatMajor, @"Eb", BflatMajor, @"Bb", FMajor, @"F", AMinor, @"A Minor", EMinor, @"E Minor", BMinor, @"B Minor", FsharpMinor, @"F# Minor", CsharpMinor, @"C# Minor", GsharpMinor, @"G# minor", EflatMinor, @"Eb Minor", DsharpMinor, @"D# Minor", BflatMinor, @"Bb Minor", FMinor, @"F Minor", CMinor, @"C Minor", GMinor, @"G Minor", DMinor, @"D Minor", nil];
+            CMajor, @"C", GMajor, @"G", DMajor, @"D", AMajor, @"A", EMajor, @"E", BMajor, @"B", GflatMajor, @"Gb/F#", FsharpMajor, @"F#/Gb", DflatMajor, @"Db", AflatMajor, @"Ab", EflatMajor, @"Eb", BflatMajor, @"Bb", FMajor, @"F", AMinor, @"A Minor", EMinor, @"E Minor", BMinor, @"B Minor", FsharpMinor, @"F# Minor", CsharpMinor, @"C# Minor", GsharpMinor, @"G# minor", EflatMinor, @"Eb Minor", DsharpMinor, @"D# Minor", BflatMinor, @"Bb Minor", FMinor, @"F Minor", CMinor, @"C Minor", GMinor, @"G Minor", DMinor, @"D Minor", nil];
     
     
     /*
@@ -188,9 +190,19 @@
 
 -(void)keySignatureWasChosen:(NSString*)choice
 {
+    /*
+    NSLog(@"%@", choice);
+    if(choice == [[NSString alloc] initWithUTF8String:"Gb/F#"])
+        choice = [[NSString alloc] initWithUTF8String:"Gb"];
+    if(choice == [[NSString alloc] initWithUTF8String:"F#/Gb"])
+        choice = [[NSString alloc] initWithUTF8String:"F#"];
+     */
     
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];
-    NSArray* chordsForKey = [_chordsForKeySignatures objectForKey:choice];
+   
+    
+    // CURRENTLY HARD-CODED TO F MAJOR
+    NSArray* chordsForKey = [_chordsForKeySignatures objectForKey:@"F"];
     currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
 
     
@@ -217,37 +229,80 @@
     NSLog(@"Playing note %d", noteNumber);
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
+}
+
+-(void)metronomeTick{
+    NSLog(@"Tick");
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    // 115 is the wooden block
+    
+    /*
+     
+     What happens if I send a change instrument message and a play before the note
+     off comes for the staff instrument?  I'm hoping it will keep playing until
+     I call for the exact thing to turn off... I hope.
+     
+     */
+    
+    
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, 115, 0x00);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, 65, 0x7F);
+}
+
+-(void) instrumentWasChosen:(int)instrument{
+    
+    if(instrument > -1 && instrument < 128){
+        MIDIinstrument = instrument;
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
+        [self performSelector:@selector(changeInstrumentName) withObject:nil afterDelay:0.1f];
+    }
+}
+
+-(void)changeInstrumentName{
+ 	AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+	char name[128];
+	appDelegate._api->ctrl (appDelegate.handle, CRMD_CTRL_GET_INSTRUMENT_NAME, name, sizeof (name));
+	
+	NSString *string = [NSString stringWithFormat:@"#%03d : %@", MIDIinstrument, [NSString stringWithCString:name encoding:NSASCIIStringEncoding]];
+	NSLog(@"Changed to instrument: %@", string);   
+}
+
+-(void)twoFingerOptionWasSelected:(NSString*)option{
+    NSLog(@"Half step choice made: %@", option);
+    if(option == @"Apply sharp" ){
+        halfStepAlteration = 1;
+    }
+    else if(option == @"Apply flat"){
+        halfStepAlteration = -1;
+    }
+    else
+        halfStepAlteration = 0;
+    NSLog(@"Half step alteration is now: %d", halfStepAlteration);
 }
 
 -(void)stopNote{
     NSLog(@"Stopped playing note");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, 115, 0x00);
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, currentNote, 0x00);
 }
 
 -(void)playChords:(NSArray*)progression{
     NSLog(@"received message to play chords");
-    // this is going to have to be on a different channel.  A new instance of CRMD_FUNC, or change the
-    // channel number?
     
-    // how to set the timing? NSTimer in a NSRunLoop?  Set up an array of NSTimers? This is a challenge
-    /*
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate.api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
-     */
 }
 
 
 -(void)pauseChords{
     NSLog(@"received message to pause chords");
-    //[_chordPlayer pause];
 }
 
 
 -(void)stopChords{
     NSLog(@"received message to stop chords");
-    //[_chordPlayer stop];
 }
 
 @end

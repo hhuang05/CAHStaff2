@@ -15,6 +15,7 @@
 @interface DataController : NSObject{
     int halfStepAlteration;
     int currentNote;
+    NSInteger MIDIinstrument;
     NSArray *currentKeySignatureNotes;
 }
 
@@ -29,15 +30,17 @@
 // called by StaffController
 -(void)playNoteAt:(int)position WithHalfStepAlteration:(BOOL) twoFingerTouch;
 -(void)stopNote;
+-(void)instrumentWasChosen:(int)MIDInumber;
 
 // called by ChordController
 -(void)playChords:(NSArray*)progression;
 -(void)pauseChords;
 -(void)stopChords;
+-(void)metronomeTick;
+-(void)twoFingerOptionWasSelected:(NSString*)option;
 
 -(BOOL)loadData;
 -(void)fillKeySignatureAccidentals;
 -(void)fillNotesInKeySignatureDictionary;
 -(void)fillChordsDictionary;
--(void)testmethod:(NSString *)className; //to be deleted
 @end
