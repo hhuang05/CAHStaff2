@@ -19,7 +19,7 @@
 @property (nonatomic, retain) IBOutlet UIView *TwoFingerOptionSelectorView;
 @property (nonatomic, retain) IBOutlet UIView *TwoFingerOptionsTab;
 @property (nonatomic, retain) IBOutlet UIPickerView *TwoFingerOptionPicker;
-@property NSArray *TwoFingerOptionsElements;
+@property (nonatomic, retain) NSArray *TwoFingerOptionsElements;
 
 - (void)setup;
 - (void)twoFingerOptionSelected:(UITapGestureRecognizer *)recognizer;
