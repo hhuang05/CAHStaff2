@@ -21,7 +21,7 @@
 @property (nonatomic, retain) IBOutlet UIView *circleOf5thsTab;
 @property (nonatomic, retain) IBOutlet UIPickerView *circleOf5thsPicker;
 @property (nonatomic, retain) IBOutlet UIButton *circleOf5thsButton;
-@property NSArray *circleOf5thsPickerElements;
+@property (retain) NSArray *circleOf5thsPickerElements;
 
 - (void)setup;
 - (void)circleOf5thsTabTapped:(UITapGestureRecognizer *)recognizer;

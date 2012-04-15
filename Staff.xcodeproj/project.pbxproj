@@ -354,7 +354,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -365,7 +365,7 @@
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
@@ -387,7 +387,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,7 +398,7 @@
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);

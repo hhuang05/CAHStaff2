@@ -24,4 +24,10 @@
     return self;
 }
 
+-(void)resetValues
+{
+    beatsPerMeasure = 1;
+    numberOfMeasures = 1;
+}
+
 @end

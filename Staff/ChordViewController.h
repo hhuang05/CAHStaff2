@@ -51,7 +51,7 @@
     
     UIPopoverController *popOverController;
     
-    NSArray *chordChoices; //The chords that can be chosen for a specific key
+    NSMutableArray *chordChoices; //The chords that can be chosen for a specific key
     NSArray *pickerArray;
     NSArray *chosenChordButtonsArray;
     NSMutableArray *chordsToBePlayed; // These are the chords that are chosen that are to be played
@@ -72,7 +72,7 @@
 -(NSString *) currentKey;
 -(void) currentKey: (NSString *) newKey;
 -(void) setUpChords:(NSArray*)theChords;
-
+-(void) setupMetronome;
 
 // Chord Pickers are the buttons at the bottom which the user can use to select the chords to be played
 -(void) layoutChordPickers;
