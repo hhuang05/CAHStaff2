@@ -462,6 +462,8 @@
 
 -(void) fillChordsDictionary{ 
         
+    Chord *rest = [[Chord alloc] initWithName:@"rest" Notes:nil andID:0];
+    
     NSArray *FMzero = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", nil];
     Chord* zero = [[Chord alloc] initWithName:@"F Maj" Notes:FMzero  andID:0];
     NSArray *FMone = [[NSArray alloc] initWithObjects:@"65", @"68", @"72", nil];
@@ -477,9 +479,8 @@
     NSArray *FMsix = [[NSArray alloc] initWithObjects:@"65", @"68", @"72", @"74", nil];
     Chord* six = [[Chord alloc] initWithName:@"F min 6" Notes:FMsix andID:6];
     NSArray *FMseven = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", @"75", nil];
-    Chord* seven = [[Chord alloc] initWithName:@"F Dom 7" Notes:FMseven andID:7];
     
-    NSArray *FMajor = [[NSArray alloc]initWithObjects:zero, one, two, three, four, five, six, seven , nil];
+    NSArray *FMajor = [[NSArray alloc]initWithObjects:zero, one, two, three, four, five, six, rest , nil];
     
     _chordsForKeySignatures = [[NSDictionary alloc] initWithObjectsAndKeys: FMajor, @"F", nil];
 }
