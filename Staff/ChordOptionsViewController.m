@@ -45,7 +45,7 @@
     [beatStepperLabel setTextAlignment:UITextAlignmentCenter];
     
     beatLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 40, 30, 25)];
-    [beatLabel setText:[NSString stringWithFormat:@"%d", _chord.beats]];
+    [beatLabel setText:[NSString stringWithFormat:@"%d", _chord.beatsPerMeasure]];
     
     beatStepper = [[UIStepper alloc] initWithFrame:CGRectMake(65, 40, 100, 40)];
     [beatStepper addTarget:self action:@selector(stepperPressed:) forControlEvents:UIControlEventValueChanged];
@@ -53,7 +53,7 @@
     // Set min and max
     [beatStepper setMinimumValue:1];
     [beatStepper setMaximumValue:16];
-    beatStepper.value = _chord.beats;
+    beatStepper.value = _chord.beatsPerMeasure;
     
     // Value wraps around from minimum to maximum
     [beatStepper setWraps:NO];
@@ -84,8 +84,8 @@
 -(void) stepperPressed:(id)sender
 {
     // Set the value of the label and increment the beats
-    _chord.beats = beatStepper.value;
-    [beatLabel setText:[NSString stringWithFormat:@"%d", _chord.beats]];
+    _chord.beatsPerMeasure = beatStepper.value;
+    [beatLabel setText:[NSString stringWithFormat:@"%d", _chord.beatsPerMeasure]];
 }
 
 -(void) delete_onTouchUpInside

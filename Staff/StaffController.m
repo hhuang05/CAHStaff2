@@ -128,14 +128,19 @@
 
 - (BOOL)changeScale:(NSArray *)notesFromDataController
 {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 5bc7e90170fb30c48fce32f36763a6209b1081b8
     //Return false if array is not normalized properly
-    if(notesFromDataController.count != NUMBER_OF_NOTES){
+    if(notesFromDataController.count != NUMBER_OF_NOTES + 1){
+        NSLog(@" Recieved this number of notes: %@", [notesFromDataController count]);
         return FALSE;
     }
     
     //Parse values for validity first
     int num = -1;
-    for(int i = 0; i < NUMBER_OF_NOTES; i++)
+    for(int i = 1; i <= NUMBER_OF_NOTES; i++)
     {
         num = [[notesFromDataController objectAtIndex:i] integerValue];
         if(num != -1 && num != 0 && num != 1){
@@ -151,13 +156,22 @@
     num = -1;
     
     //For each, display flat/sharp if value -1/1
-    for(int pos = 0; pos < NUMBER_OF_NOTES; pos++)
+    for(int pos = 1; pos <= NUMBER_OF_NOTES; pos++)
     {
+<<<<<<< HEAD
+=======
+        NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
+        
+>>>>>>> 5bc7e90170fb30c48fce32f36763a6209b1081b8
         num = [[notesFromDataController objectAtIndex:pos] intValue];
         if(num != 0){
+<<<<<<< HEAD
             //Add +1 to pos becase tag attributes of lines/spaces start at 1
             [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos+1];
             [self findAccidentalNote:pos+1];
+=======
+            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos];
+>>>>>>> 5bc7e90170fb30c48fce32f36763a6209b1081b8
         }
     }
     return TRUE;
@@ -228,10 +242,14 @@
 
 - (BOOL)setFlatOrSharpOnSpecificLineOrSpace:(int)num withNotePosition:(int)pos
 {
+    
     NSString *type = (num < 0) ? @"flat" : @"sharp";
-    //NSLog(@"NUM: %d",num);
-    //NSLog(@"TYPE: %@",type);
-    //NSLog(@"POS: %d",pos);
+   
+    /*
+    NSLog(@"NUM: %d",num);
+    NSLog(@"TYPE: %@",type);
+    NSLog(@"POS: %d",pos);
+     */
     
     if(type == @"sharp" && (pos < 3 || pos > 10)){
         NSLog(@"Error: No sharp for note position: %d",pos);
