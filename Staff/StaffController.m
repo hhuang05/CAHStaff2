@@ -271,7 +271,7 @@ const int SCREEN_HEIGHT = 748;
     {
         if(touch.view.tag > 0)
         {
-            //NSLog(@"Began - Tag: %d",touch.view.tag);
+            NSLog(@"Began - Tag: %d",touch.view.tag);
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag -1) WithHalfStepAlteration:FALSE];
         }
