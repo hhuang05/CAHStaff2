@@ -463,21 +463,21 @@
 -(void) fillChordsDictionary{ 
         
     NSArray *FMzero = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", nil];
-    Chord* zero = [[Chord alloc] initWithName:@"F Major" Notes:FMzero  andID:0];
+    Chord* zero = [[Chord alloc] initWithName:@"F Maj" Notes:FMzero  andID:0];
     NSArray *FMone = [[NSArray alloc] initWithObjects:@"65", @"68", @"72", nil];
-    Chord* one = [[Chord alloc] initWithName:@"F Minor" Notes:FMone andID:1];
+    Chord* one = [[Chord alloc] initWithName:@"F min" Notes:FMone andID:1];
     NSArray *FMtwo = [[NSArray alloc] initWithObjects:@"65", @"69", @"73", nil];
-    Chord* two = [[Chord alloc] initWithName:@"F Augmented" Notes:FMtwo andID:2];
+    Chord* two = [[Chord alloc] initWithName:@"F Aug" Notes:FMtwo andID:2];
     NSArray *FMthree = [[NSArray alloc] initWithObjects:@"65", @"68", @"71", nil];
-    Chord* three = [[Chord alloc] initWithName:@"F diminshed" Notes:FMthree andID:3];
+    Chord* three = [[Chord alloc] initWithName:@"F Dim" Notes:FMthree andID:3];
     NSArray *FMfour = [[NSArray alloc] initWithObjects:@"65", @"70", @"72", nil];
-    Chord* four = [[Chord alloc] initWithName:@"F suspended 4" Notes:FMfour andID:4];
+    Chord* four = [[Chord alloc] initWithName:@"F Sus 4" Notes:FMfour andID:4];
     NSArray *FMfive = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", @"74", nil];
-    Chord* five = [[Chord alloc] initWithName:@"F Major 6" Notes:FMfive andID:5];
+    Chord* five = [[Chord alloc] initWithName:@"F Maj 6" Notes:FMfive andID:5];
     NSArray *FMsix = [[NSArray alloc] initWithObjects:@"65", @"68", @"72", @"74", nil];
-    Chord* six = [[Chord alloc] initWithName:@"F Minor 6" Notes:FMsix andID:6];
+    Chord* six = [[Chord alloc] initWithName:@"F min 6" Notes:FMsix andID:6];
     NSArray *FMseven = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", @"75", nil];
-    Chord* seven = [[Chord alloc] initWithName:@"F Dominant 7" Notes:FMseven andID:7];
+    Chord* seven = [[Chord alloc] initWithName:@"F Dom 7" Notes:FMseven andID:7];
     
     NSArray *FMajor = [[NSArray alloc]initWithObjects:zero, one, two, three, four, five, six, seven , nil];
     
