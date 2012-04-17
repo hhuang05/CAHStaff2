@@ -24,7 +24,9 @@
         [theImage setFrame:CGRectMake(0, 0, 80, 80)];
         [self addSubview:theImage];
         
-        theChord = [[UILabel alloc] initWithFrame:CGRectMake(17, 30, 46, 15)];
+        // added adjustsFontSizetoWidth and changed 3rd arg (width) from 46-70), 1st from 17 to 5
+        theChord = [[UILabel alloc] initWithFrame:CGRectMake(5, 30, 70, 15)];
+        theChord.adjustsFontSizeToFitWidth = TRUE;
         [theChord setTextAlignment:UITextAlignmentCenter];
         [theChord setBackgroundColor:[UIColor clearColor]];
         [theImage addSubview:theChord];

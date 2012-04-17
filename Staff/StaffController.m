@@ -155,7 +155,7 @@
     //For each, display flat/sharp if value -1/1
     for(int pos = 1; pos <= NUMBER_OF_NOTES; pos++)
     {
-        NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
+        //NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
         
         num = [[notesFromDataController objectAtIndex:pos] intValue];
        // NSLog(@"INTS: %d",num);
