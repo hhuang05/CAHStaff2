@@ -497,17 +497,68 @@
 -(void) playButton_onTouchUpInside
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSArray* progression = [[NSArray alloc] init];
     
-    if (isPaused) {
-        [mainDelegate.viewController.dataController playChords:(NSArray*)progression];
-        isPaused = FALSE;
-        [play setTitle:@"Pause" forState:UIControlStateNormal];
+    // We will do some prechecks before we send over the chords to be played.
+    // Namely: 1) That we have no gaps and 2) If all the spaces are not occupied, then we fill the rest of the array with rest chords
+    // If there are gaps, refuse to play.
+    bool hasGaps = false;
+    bool isFull = TRUE;
+    
+    // Check if full
+    if ([chordsToBePlayed objectAtIndex:chordsToBePlayed.count - 1] == nil) {
+        isFull = FALSE;
     }
-    else {
-        [mainDelegate.viewController.dataController pauseChords];
-        isPaused = TRUE;
-        [play setTitle:@"Play" forState:UIControlStateNormal];
+         
+    // Check for gaps  
+    int lastChordIndex = 0;
+    for (int x=0;x<chordsToBePlayed.count; x++) {
+        // If the object is not a chord, then we check if it is larger than lastChordIndex + 1
+        // If it is, then there is a gap
+        if ([[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
+            if (x > lastChordIndex + 1) {
+                hasGaps = TRUE;
+                break;
+            }
+            else if (x == lastChordIndex + 1)    
+                lastChordIndex++;
+        }
+    }
+    
+    if (!hasGaps) 
+    {
+        // Count down visually
+        NSArray* progression = [[NSArray alloc] initWithArray:chordsToBePlayed];
+        
+        // If not full, we fill the rest of the array with rest chords and send it off
+        // We will work backwards since this means less lookups
+        if (!isFull) {
+            for (int x=chordsToBePlayed.count-1; x>-1; x--) {
+                // If the object is not a chord, then we fill that position in progression with a rest chord
+                if (![[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
+                   
+                }
+                else
+                    break;
+            }
+        }
+        
+        if (isPaused) {
+            [mainDelegate.viewController.dataController playChords:(NSArray*)progression];
+            isPaused = FALSE;
+            [play setTitle:@"Pause" forState:UIControlStateNormal];
+        }
+        else {
+            [mainDelegate.viewController.dataController pauseChords];
+            isPaused = TRUE;
+            [play setTitle:@"Play" forState:UIControlStateNormal];
+        }
+    }
+    else 
+    {
+        // We render something on the UI to tell the user that there are gaps
+        // For now, we'll just popup an alert message
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can not play chords with gaps in the middle" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
     }
 }
 

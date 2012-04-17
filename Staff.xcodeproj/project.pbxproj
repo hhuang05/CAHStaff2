@@ -318,7 +318,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -337,7 +337,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -354,18 +354,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.0]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
@@ -388,18 +388,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.0]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);

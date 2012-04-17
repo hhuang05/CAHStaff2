@@ -9,13 +9,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "356192410.758393"
+         timestampString = "356395539.179742"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "568"
-         endingLineNumber = "568"
-         landmarkName = "-popoverControllerDidDismissPopover:"
-         landmarkType = "5">
+         startingLineNumber = "607"
+         endingLineNumber = "607"
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -23,13 +23,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "356150575.394225"
+         timestampString = "356395539.179742"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "521"
-         endingLineNumber = "521"
-         landmarkName = "-chordChosen_onTouchUpInside:"
-         landmarkType = "5">
+         startingLineNumber = "560"
+         endingLineNumber = "560"
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -42,8 +42,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "382"
          endingLineNumber = "382"
-         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -56,7 +56,21 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "332"
          endingLineNumber = "332"
-         landmarkName = "-dispatchTouchEndEvent:toPosition:"
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Staff/ChordViewController.m"
+         timestampString = "356395539.179742"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "561"
+         endingLineNumber = "561"
+         landmarkName = "-chordChosen_onTouchUpInside:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,12 +79,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "356192441.813736"
+         timestampString = "356395539.179742"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "522"
-         endingLineNumber = "522"
-         landmarkName = "-chordChosen_onTouchUpInside:"
+         startingLineNumber = "548"
+         endingLineNumber = "548"
+         landmarkName = "-playButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
