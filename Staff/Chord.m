@@ -10,16 +10,18 @@
 
 @implementation Chord
 
-@synthesize name = _name, notes = _notes, beats = beatsPerMeasure, measures = numberOfMeasures;
+@synthesize name, notes, beatsPerMeasure, numberOfMeasures, idNumber;
 
--(id)initWithName:(NSString*)name Notes:(NSArray*)notes andID:(int)num{
+-(id)initWithName:(NSString*)aName Notes:(NSArray*)someNotes andID:(int)num{
     self = [super init];
 
-    self.name = name;
-    self.notes = notes;
-    number = num;
-    beatsPerMeasure = 1;
-    numberOfMeasures = 1;
+    if(self){
+        name = aName;
+        notes = someNotes;
+        idNumber = num;
+        beatsPerMeasure = 1;
+        numberOfMeasures = 1;
+    }
 
     return self;
 }
