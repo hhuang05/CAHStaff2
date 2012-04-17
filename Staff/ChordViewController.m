@@ -110,6 +110,7 @@
     // Coordinates are relative to the parent container
     chordChosen1 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen1.frame = CGRectMake(50, 20, 80, 80);
+    //chordChosen1.titleLabel.font  = [UIFont systemFontOfSize:10];
     [chordChosen1 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen2 = [UIButton buttonWithType: UIButtonTypeRoundedRect];

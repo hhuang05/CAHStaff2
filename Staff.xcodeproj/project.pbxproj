@@ -318,7 +318,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -337,7 +337,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -362,14 +362,15 @@
 					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
 				);
 				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
-					"./crsynth/Release-iphoneos/libcrse.a",
-					"./crsynth/Release-iphoneos/libcrmpd.a",
+					"./crsynth/Release-iphonesimulator/libcrse.a",
+					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_LDFLAGS = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
@@ -403,6 +404,7 @@
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 				WARNING_LDFLAGS = (

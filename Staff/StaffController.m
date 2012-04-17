@@ -16,6 +16,10 @@
 @synthesize spaces;
 @synthesize notes;
 
+const float PERCENTAGE_OF_FULL_SCREEN_HEIGHT = 0.9;
+const int SCREEN_HEIGHT = 748;
+
+
 -(id)init{
     [self viewDidLoad];
     return self;
@@ -62,14 +66,15 @@
 
 - (void)buildLines
 {
+    
     lines = [[NSMutableDictionary alloc] initWithCapacity:7];
-    [lines setObject:[[dashedLine alloc] initWithFrame:CGRectMake(0, 58, 400, 32)] forKey:@"aline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, 158, 400, 32)] forKey:@"fline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, 258, 400, 32)] forKey:@"dline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, 358, 400, 32)] forKey:@"bline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, 458, 400, 32)] forKey:@"gline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, 558, 400, 32)] forKey:@"eline"];
-    [lines setObject:[[dashedLine alloc] initWithFrame:CGRectMake(0, 658, 400, 32)] forKey:@"cline"];
+    [lines setObject:[[dashedLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (58 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT), 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"aline"];
+    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (158 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"fline"];
+    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (258 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"dline"];
+    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (358 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"bline"];
+    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT *PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (458 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"gline"];
+    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (558 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"eline"];
+    [lines setObject:[[dashedLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (658 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"cline"];
     
     [self setLineTags];
     
@@ -95,14 +100,14 @@
 - (void)buildSpaces
 {
     spaces = [[NSMutableDictionary alloc] initWithCapacity:8];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 58)] forKey:@"b2space"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 90, 400, 68)] forKey:@"gspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 190, 400, 68)] forKey:@"espace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 290, 400, 68)] forKey:@"cspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 390, 400, 68)] forKey:@"aspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 490, 400, 68)] forKey:@"fspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 590, 400, 68)] forKey:@"dspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, 690, 400, 58)] forKey:@"bspace"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (0 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(58 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"b2space"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (90 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"gspace"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (190 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"espace"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (290 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"cspace"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (390 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"aspace"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (490 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"fspace"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (590 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"dspace"];
+    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (690 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(58 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"bspace"];
     [self setSpaceTags];
   
     NSEnumerator *enumerator = [spaces keyEnumerator];
