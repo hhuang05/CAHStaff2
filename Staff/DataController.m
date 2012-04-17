@@ -48,23 +48,13 @@
     NSNumber *none = [[NSNumber alloc] initWithInt:0];
     NSNumber *sharp = [[NSNumber alloc] initWithInt:1];
     
-    enum{
-        B3 = 15,
-        C4 = 14,
-        D4 = 13,
-        E4 = 12,
-        F4 = 11,
-        G4 = 10,
-        A4 = 9,
-        B4 = 8,
-        C5 = 7,
-        D5 = 6,
-        E5 = 5,
-        F5 = 4,
-        G5 = 3,
-        A5 = 2,
-        B5 = 1,
-    };
+    NSNumber *B3 = [[NSNumber alloc] initWithInt:15];
+    NSNumber *C4 = [[NSNumber alloc] initWithInt:14];
+    NSNumber *D4 = [[NSNumber alloc] initWithInt:13];
+    NSNumber *E4 = [[NSNumber alloc] initWithInt:12];
+    NSNumber *F4 = [[NSNumber alloc] initWithInt:11];
+    NSNumber *G4 = [[NSNumber alloc] initWithInt:10];
+    NSNumber *A4 = [[NSNumber alloc] initWithInt:9];
     
     // Create arrays for all keySignatures in the Circle of 5ths, where 1 is the first b 
     // above the treble clef and 15 the first b below 0 is a none note
@@ -72,13 +62,13 @@
     
     /** all natural notes **/
     
-    NSArray *CMajor = [[NSArray alloc] initWithObjects:@"C4", 
+    NSArray *CMajor = [[NSArray alloc] initWithObjects:C4, 
                        none,none,none,none,
                        none,none,none,none,
                        none,none,none,none,
                        none,none,none,nil];
     
-    NSArray *AMinor = [[NSArray alloc] initWithObjects:@"A4",
+    NSArray *AMinor = [[NSArray alloc] initWithObjects:A4,
                        none,none,none,none,
                        none,none,none,none,
                        none,none,none,none,
@@ -87,13 +77,13 @@
     
 	/** b: B **/
     
-    NSArray *FMajor = [[NSArray alloc] initWithObjects:@"F4",
+    NSArray *FMajor = [[NSArray alloc] initWithObjects:F4,
                        none,none,none,none,
                        none,none,none,flat,
                        none,none,none,none,
                        none,none,none,nil];
     
-    NSArray *DMinor = [[NSArray alloc] initWithObjects:@"D4",
+    NSArray *DMinor = [[NSArray alloc] initWithObjects:D4,
                        none,none,none,none,
                        none,none,none,flat,
                        none,none,none,none,
@@ -102,13 +92,13 @@
     
     /** b: B, E **/
     
-    NSArray *BflatMajor = [[NSArray alloc] initWithObjects:@"B3",
+    NSArray *BflatMajor = [[NSArray alloc] initWithObjects:B3,
                            none,none,none,none,
                            flat,none,none,flat,
                            none,none,none,none,
                            none,none,none,nil];
     
-    NSArray *GMinor = [[NSArray alloc] initWithObjects:@"G4",
+    NSArray *GMinor = [[NSArray alloc] initWithObjects:G4,
                        none,none,none,none,
                        flat,none,none,flat,
                        none,none,none,none,
@@ -117,14 +107,14 @@
     
     /** b: A, B, E **/		
     
-    NSArray *EflatMajor = [[NSArray alloc] initWithObjects:@"E4",
+    NSArray *EflatMajor = [[NSArray alloc] initWithObjects:E4,
                            none,none,none,none,
                            flat,none,none,flat,
                            flat,none,none,none,
                            none,none,none,nil];
     
     
-    NSArray *CMinor = [[NSArray alloc] initWithObjects:@"C4",
+    NSArray *CMinor = [[NSArray alloc] initWithObjects:C4,
                        none,none,none,none,
                        flat,none,none,flat,
                        flat,none,none,none,
@@ -133,13 +123,13 @@
     
     /** b: A, B, D, E **/
     
-    NSArray *AflatMajor = [[NSArray alloc] initWithObjects:@"A4",
+    NSArray *AflatMajor = [[NSArray alloc] initWithObjects:A4,
                            none,none,none,none,
                            flat,flat,none,flat,
                            flat,none,none,none,
                            none,none,none,nil];
     
-    NSArray *FMinor = [[NSArray alloc] initWithObjects:@"F4",
+    NSArray *FMinor = [[NSArray alloc] initWithObjects:F4,
                        none,none,none,none,
                        flat,flat,none,flat,
                        flat,none,none,none,
@@ -148,13 +138,13 @@
     
     /** b: A, B, D, E, G **/
     
-    NSArray *DflatMajor = [[NSArray alloc] initWithObjects:@"D4",
+    NSArray *DflatMajor = [[NSArray alloc] initWithObjects:D4,
                            none,none,none,none,
                            flat,flat,none,flat,
                            flat,flat,none,none,
                            none,none,none,nil];
     
-    NSArray *BflatMinor = [[NSArray alloc] initWithObjects:@"B3",
+    NSArray *BflatMinor = [[NSArray alloc] initWithObjects:B3,
                            none,none,none,none,
                            flat,flat,none,flat,
                            flat,flat,none,none,
@@ -163,13 +153,13 @@
     
     /** b: A, B, C, D, E, G **/
     
-    NSArray *GflatMajor = [[NSArray alloc] initWithObjects:@"G4",
+    NSArray *GflatMajor = [[NSArray alloc] initWithObjects:G4,
                            none,none,none,none,
                            flat,flat,flat,flat,
                            flat,flat,none,none,
                            none,none,none,nil];
     
-    NSArray *EflatMinor = [[NSArray alloc] initWithObjects:@"E4",
+    NSArray *EflatMinor = [[NSArray alloc] initWithObjects:E4,
                            none,none,none,none,
                            flat,flat,flat,flat,
                            flat,flat,none,none,
@@ -178,13 +168,13 @@
     
     /** b: A, B, C, D, E, G, F **/
     
-	NSArray *CflatMajor = [[NSArray alloc] initWithObjects:@"C4",
+	NSArray *CflatMajor = [[NSArray alloc] initWithObjects:C4,
                            none,none,none,none,
                            flat,flat,flat,flat,
                            flat,flat,flat,none,
                            none,none,none,nil];
     
-    NSArray *AflatMinor = [[NSArray alloc] initWithObjects:@"A4",
+    NSArray *AflatMinor = [[NSArray alloc] initWithObjects:A4,
                            none,none,none,none,
                            flat,flat,flat,flat,
                            flat,flat,flat,none,
@@ -193,13 +183,13 @@
     
     /** #: F **/
     
-    NSArray *GMajor = [[NSArray alloc] initWithObjects:@"G4",
+    NSArray *GMajor = [[NSArray alloc] initWithObjects:G4,
                        none,none,none,sharp,
                        none,none,none,none,
                        none,none,none,none,
                        none,none,none,nil];
     
-    NSArray *EMinor = [[NSArray alloc] initWithObjects:@"E4",
+    NSArray *EMinor = [[NSArray alloc] initWithObjects:E4,
                        none,none,none,sharp,
                        none,none,none,none,
                        none,none,none,none,
@@ -208,13 +198,13 @@
     
     /** #: C, F **/
     
-    NSArray *DMajor = [[NSArray alloc] initWithObjects:@"D4",
+    NSArray *DMajor = [[NSArray alloc] initWithObjects:D4,
                        none,none,none,sharp,
                        none,none,sharp,none,
                        none,none,none,none,
                        none,none,none,nil];
     
-    NSArray *BMinor = [[NSArray alloc] initWithObjects:@"B3",
+    NSArray *BMinor = [[NSArray alloc] initWithObjects:B3,
                        none,none,none,sharp,
                        none,none,sharp,none,
                        none,none,none,none,
@@ -223,13 +213,13 @@
     
     /** #: C, F, G **/
     
-    NSArray *AMajor = [[NSArray alloc] initWithObjects:@"A4",
+    NSArray *AMajor = [[NSArray alloc] initWithObjects:A4,
                        none,none,sharp,sharp,
                        none,none,sharp,none,
                        none,none,none,none,
                        none,none,none,nil];
     
-    NSArray *FsharpMinor = [[NSArray alloc] initWithObjects:@"F4",
+    NSArray *FsharpMinor = [[NSArray alloc] initWithObjects:F4,
                             none,none,sharp,sharp,
                             none,none,sharp,none,
                             none,none,none,none,
@@ -238,13 +228,13 @@
     
     /** #: C, D, F, G **/
     
-	NSArray *EMajor = [[NSArray alloc] initWithObjects:@"E4",
+	NSArray *EMajor = [[NSArray alloc] initWithObjects:E4,
                        none,none,sharp,sharp,
                        none,sharp,sharp,none,
                        none,none,none,none,
                        none,none,none,nil];
     
-    NSArray *CsharpMinor = [[NSArray alloc] initWithObjects:@"C4",
+    NSArray *CsharpMinor = [[NSArray alloc] initWithObjects:C4,
                             none,none,sharp,sharp,
                             none,sharp,sharp,none,
                             none,none,none,none,
@@ -253,13 +243,13 @@
     
     /** #: A, C, D, F, G **/
     
-    NSArray *BMajor = [[NSArray alloc] initWithObjects:@"B3",
+    NSArray *BMajor = [[NSArray alloc] initWithObjects:B3,
                        none,none,sharp,sharp,
                        none,sharp,sharp,none,
                        sharp,none,none,none,
                        none,none,none,nil];
     
-	NSArray *GsharpMinor = [[NSArray alloc] initWithObjects:@"G4",
+	NSArray *GsharpMinor = [[NSArray alloc] initWithObjects:G4,
                             none,none,sharp,sharp,
                             none,sharp,sharp,none,
                             sharp,none,none,none,
@@ -268,13 +258,13 @@
     
     /** #: A, C, D, E, F, G **/   
     
-    NSArray *FsharpMajor = [[NSArray alloc] initWithObjects:@"F4",
+    NSArray *FsharpMajor = [[NSArray alloc] initWithObjects:F4,
                             none,none,sharp,sharp,
                             sharp,sharp,sharp,none,
                             sharp,none,none,none,
                             none,none,none,nil];
 	
-	NSArray *DsharpMinor = [[NSArray alloc] initWithObjects:@"D4",
+	NSArray *DsharpMinor = [[NSArray alloc] initWithObjects:D4,
                             none,none,sharp,sharp,
                             sharp,sharp,sharp,none,
                             sharp,none,none,none,
@@ -282,13 +272,13 @@
     
     /** #: A, B, C, D, E, F, G **/   
     
-	NSArray *CsharpMajor = [[NSArray alloc] initWithObjects:@"C4",
+	NSArray *CsharpMajor = [[NSArray alloc] initWithObjects:C4,
                             none,none,sharp,sharp,
                             sharp,sharp,sharp,sharp,
                             sharp,none,none,none,
                             none,none,none,nil];	
     
-    NSArray *AsharpMinor = [[NSArray alloc] initWithObjects:@"A4",
+    NSArray *AsharpMinor = [[NSArray alloc] initWithObjects:A4,
                             none,none,sharp,sharp,
                             sharp,sharp,sharp,sharp,
                             sharp,none,none,none,
