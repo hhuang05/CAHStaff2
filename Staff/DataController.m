@@ -578,8 +578,16 @@
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, currentNote, 0x00);
 }
 
--(void)playChords:(NSArray*)progression{
+/* playChords
+ 
+   Will go through the progression and play all the notes in each chord 
+ 
+ 
+ */
+-(void)playChords:(NSArray*)progression
+{
     NSLog(@"received message to play chords");
+    
     
 }
 
