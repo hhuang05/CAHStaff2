@@ -26,6 +26,8 @@
 		0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */; };
 		08ACF4BC152B9D1F00512760 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ACF4BB152B9D1F00512760 /* star.png */; };
 		2A8E8FBA15374EF80067DB3D /* Circleof5thsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */; };
+		2A94A4D61542517F00766EAF /* graybutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A94A4D51542517F00766EAF /* graybutton.png */; };
+		2A94A4E01542622000766EAF /* AccidentalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A4DF1542622000766EAF /* AccidentalsController.m */; };
 		2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7315154B72008C538D /* UIKit.framework */; };
 		2AE1DE7615154B72008C538D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7515154B72008C538D /* Foundation.framework */; };
 		2AE1DE7815154B72008C538D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7715154B72008C538D /* CoreGraphics.framework */; };
@@ -69,6 +71,9 @@
 		08ACF4BB152B9D1F00512760 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		2A8E8FB815374EF80067DB3D /* Circleof5thsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circleof5thsController.h; sourceTree = "<group>"; };
 		2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circleof5thsController.m; sourceTree = "<group>"; };
+		2A94A4D51542517F00766EAF /* graybutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graybutton.png; sourceTree = "<group>"; };
+		2A94A4DE1542622000766EAF /* AccidentalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentalsController.h; sourceTree = "<group>"; };
+		2A94A4DF1542622000766EAF /* AccidentalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentalsController.m; sourceTree = "<group>"; };
 		2AE1DE6F15154B72008C538D /* Staff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE1DE7315154B72008C538D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2AE1DE7515154B72008C538D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -154,6 +159,9 @@
 				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
 				0826BDCF1523E5C2004A9B22 /* StaffController.h */,
 				0826BDD01523E5C2004A9B22 /* StaffController.m */,
+				2A94A4DE1542622000766EAF /* AccidentalsController.h */,
+				2A94A4DF1542622000766EAF /* AccidentalsController.m */,
+				2A94A4D51542517F00766EAF /* graybutton.png */,
 				2AE1DE8215154B72008C538D /* AppDelegate.h */,
 				2AE1DE8315154B72008C538D /* AppDelegate.m */,
 				0826BDB01523E5AF004A9B22 /* Chord.h */,
@@ -257,6 +265,7 @@
 				0826BDD61523E5C2004A9B22 /* smallsharp.gif in Resources */,
 				0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */,
 				08ACF4BC152B9D1F00512760 /* star.png in Resources */,
+				2A94A4D61542517F00766EAF /* graybutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +290,7 @@
 				0826BDE31523EFED004A9B22 /* ChordOptionsViewController.m in Sources */,
 				2A8E8FBA15374EF80067DB3D /* Circleof5thsController.m in Sources */,
 				A76A7A061539CEDA00A43222 /* TwoFingerOptionSelector.m in Sources */,
+				2A94A4E01542622000766EAF /* AccidentalsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

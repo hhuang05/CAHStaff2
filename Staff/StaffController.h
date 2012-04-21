@@ -10,6 +10,7 @@
 #import "solidLine.h"
 #import "dashedLine.h"
 #import "sharpIcon.h"
+#import "AccidentalsController.h"
 
 
 #define NUMBER_OF_NOTES 15
@@ -24,6 +25,11 @@ typedef struct image_view_metadata {
 
 @interface StaffController : UIViewController {
     UIView *staffView;
+    UIView *topMenu;
+    UIButton *sharpFlatButton;
+    UIPopoverController *popoverController;
+    UIView *popoverView;
+    AccidentalsController *accidentalsController;
     
     @private
     NSMutableDictionary *lines;
@@ -35,6 +41,11 @@ typedef struct image_view_metadata {
 }
 
 @property (nonatomic, retain) IBOutlet UIView *staffView;
+@property (nonatomic, retain) IBOutlet UIView *topMenu;
+@property (nonatomic, retain) IBOutlet UIButton *sharpFlatButton;
+@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, retain) UIView *popoverView;
+
 @property (nonatomic, retain) NSMutableDictionary *lines;
 @property (nonatomic, retain) NSMutableDictionary *spaces;
 @property (nonatomic, retain) NSArray *notes;

@@ -41,7 +41,7 @@
                                            initWithObjects:@"F#",@"B",@"E",@"A",@"D",@"G",@"C",@"F",@"Bb",@"Eb",@"Ab",@"Db",@"Gb", nil];
 
     // CHANGED THE SECOND PARAMETER TO 100 FROM 200
-    circleOf5thsView = [[UIView alloc] initWithFrame:CGRectMake(577, 100, 260, 250)];
+    circleOf5thsView = [[UIView alloc] initWithFrame:CGRectMake(577, 250, 260, 250)];
     [circleOf5thsView setBackgroundColor:[UIColor whiteColor]];
     [[circleOf5thsView layer] setCornerRadius:10];
     [[circleOf5thsView layer] setBorderColor:[UIColor blackColor].CGColor];
