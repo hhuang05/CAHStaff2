@@ -133,10 +133,6 @@ const int SCREEN_HEIGHT = 748;
 
 - (BOOL)changeScale:(NSArray *)notesFromDataController
 {
-<<<<<<< HEAD
-=======
-    
->>>>>>> 5bc7e90170fb30c48fce32f36763a6209b1081b8
     //Return false if array is not normalized properly
     if(notesFromDataController.count != NUMBER_OF_NOTES + 1){
         NSLog(@" Recieved this number of notes: %@", [notesFromDataController count]);
@@ -163,24 +159,12 @@ const int SCREEN_HEIGHT = 748;
     //For each, display flat/sharp if value -1/1
     for(int pos = 1; pos <= NUMBER_OF_NOTES; pos++)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
-=======
-        //NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
->>>>>>> f5ed49c40e650bb16463ed1d9712028f24f44d5f
-        
->>>>>>> 5bc7e90170fb30c48fce32f36763a6209b1081b8
         num = [[notesFromDataController objectAtIndex:pos] intValue];
         if(num != 0){
-<<<<<<< HEAD
             //Add +1 to pos becase tag attributes of lines/spaces start at 1
             [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos+1];
             [self findAccidentalNote:pos+1];
-=======
-            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos];
->>>>>>> 5bc7e90170fb30c48fce32f36763a6209b1081b8
         }
     }
     return TRUE;
