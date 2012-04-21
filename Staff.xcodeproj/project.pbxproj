@@ -24,6 +24,7 @@
 		0826BDDA1523E876004A9B22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0826BDD91523E876004A9B22 /* AVFoundation.framework */; };
 		0826BDE31523EFED004A9B22 /* ChordOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */; };
 		0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */; };
+		08898B401540CF54001BFA61 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = 08898B3F1540CF54001BFA61 /* crsynth.dlsc */; };
 		08ACF4BC152B9D1F00512760 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ACF4BB152B9D1F00512760 /* star.png */; };
 		2A8E8FBA15374EF80067DB3D /* Circleof5thsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */; };
 		2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7315154B72008C538D /* UIKit.framework */; };
@@ -66,6 +67,8 @@
 		0826BDE11523EFED004A9B22 /* ChordOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordOptionsViewController.h; sourceTree = "<group>"; };
 		0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordOptionsViewController.m; sourceTree = "<group>"; };
 		0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteIcon.png; sourceTree = "<group>"; };
+		08898B3E1540CF54001BFA61 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
+		08898B3F1540CF54001BFA61 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
 		08ACF4BB152B9D1F00512760 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		2A8E8FB815374EF80067DB3D /* Circleof5thsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circleof5thsController.h; sourceTree = "<group>"; };
 		2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circleof5thsController.m; sourceTree = "<group>"; };
@@ -82,8 +85,6 @@
 		A717FEDE1534ED9D00515250 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		A76534931527B777001885E9 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
-		A76534941527B777001885E9 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
 		A76A7A031539CEDA00A43222 /* TwoFingerOptionSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoFingerOptionSelector.h; sourceTree = "<group>"; };
 		A76A7A041539CEDA00A43222 /* TwoFingerOptionSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoFingerOptionSelector.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,8 +194,8 @@
 		A76534921527B777001885E9 /* crsynth */ = {
 			isa = PBXGroup;
 			children = (
-				A76534931527B777001885E9 /* crmd.h */,
-				A76534941527B777001885E9 /* crsynth.dlsc */,
+				08898B3E1540CF54001BFA61 /* crmd.h */,
+				08898B3F1540CF54001BFA61 /* crsynth.dlsc */,
 			);
 			path = crsynth;
 			sourceTree = "<group>";
@@ -257,6 +258,7 @@
 				0826BDD61523E5C2004A9B22 /* smallsharp.gif in Resources */,
 				0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */,
 				08ACF4BC152B9D1F00512760 /* star.png in Resources */,
+				08898B401540CF54001BFA61 /* crsynth.dlsc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,28 +356,21 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
-					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
-				);
-				"OTHER_LDFLAGS[sdk=iphoneos5.0]" = (
+				LIBRARY_SEARCH_PATHS = "";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
-				WARNING_LDFLAGS = (
-					"./crsynth/Release-iphonesimulator/libcrse.a",
-					"./crsynth/Release-iphonesimulator/libcrmpd.a",
-				);
+				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -388,18 +383,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphoneos\"",
-					"\"$(SRCROOT)/../20110708_crsynth_sdk_ios_v2.2.2/crsynth/Release-iphonesimulator\"",
-				);
-				"OTHER_LDFLAGS[sdk=iphoneos5.0]" = (
+				LIBRARY_SEARCH_PATHS = "";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
@@ -407,10 +398,7 @@
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
-				WARNING_LDFLAGS = (
-					"./crsynth/Release-iphonesimulator/libcrse.a",
-					"./crsynth/Release-iphonesimulator/libcrmpd.a",
-				);
+				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

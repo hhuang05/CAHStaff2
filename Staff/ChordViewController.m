@@ -171,6 +171,7 @@
     stop.frame = CGRectMake(160, 340, 120, 90);
     [stop setTitle:@"Stop" forState:UIControlStateNormal];
     [stop addTarget:self action:@selector(stopButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
+    stop.adjustsImageWhenDisabled = TRUE;
     
     clearAll = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     clearAll.frame = CGRectMake(290, 340, 120, 90);
@@ -200,6 +201,8 @@
     
     star4 = [[UIImageView alloc] initWithImage:starImage];
     [star4 setFrame:CGRectMake(180, 280, 40, 40)];
+    
+    starsHaveAppeared = FALSE;
 }
 
 - (void) loadView
@@ -532,27 +535,38 @@
         // I'm assuming that there are no rests in the middle
         if (!isFull) {
             for (int x=chordsToBePlayed.count-1; x>-1; x--) {
-                // If the object is not a chord, then we fill that position in progression with a rest chord
+                // There's no need to fill the rest of the chords with rests
                 if (![[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
-                    Chord *restChord = [[Chord alloc] initWithName:@"rest" Notes:nil andID:0];
-                    [restChord resetValues];
-                    [progressionToBeSent replaceObjectAtIndex:x withObject:restChord];
+                    continue; // Just skip over it
                 }
                 else
+                {
+                    progressionEndIndx = x; // We track where the progression stops
                     break;
+                }
             }
         }
         
         if (isPaused) {
-            // We're going to call the metronome to keep track for 4 beats, then shut it off
-            [metronomeOnOff setOn:TRUE];
-            [self metronome_onSwitchOnBeforePlay:metronomeOnOff];
+            // If the UI hint has appeared already, don't do it again and just play the chords from where it left off
+            if (!starsHaveAppeared) {
+                // When we hit play, we will have to disable the stop button until the UI hint has finished
+                currentChordPlayingIndex = 0;
+                [stop setEnabled:FALSE];
+                
+                // We're going to call the metronome to keep track for 4 beats, then shut it off
+                starsHaveAppeared = TRUE;
+                [metronomeOnOff setOn:TRUE];
+                [self metronome_onSwitchOnBeforePlay:metronomeOnOff];
+            }
+            else
+                //[mainDelegate.viewController.dataController playChords:progressionToBeSent];
             
             isPaused = FALSE;
             [play setTitle:@"Pause" forState:UIControlStateNormal];
         }
         else {
-            [mainDelegate.viewController.dataController pauseChords];
+            //[mainDelegate.viewController.dataController pauseChords];
             isPaused = TRUE;
             [play setTitle:@"Play" forState:UIControlStateNormal];
         }
@@ -593,20 +607,25 @@
         return;
     }
     
-    // Once we hit 4 beats, remove the event listener and play chords
+    // Once we hit 4 beats, stop metronome timer and start the chord time
+    double bpm = 60 / [[bpmLabel text] doubleValue];
+    chordTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
+                                                  target:self 
+                                                selector:@selector(fireChord_onPlay:) 
+                                                userInfo:nil
+                                                 repeats:YES];
+    
     beforePlayCounter = 0;
     [metronomeOnOff setOn:FALSE];
     [[self metronomeTimer] invalidate];
     metronomeTimer = nil;
-    
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController playChords:progressionToBeSent];
     
     // Remove the stars
     [star1 removeFromSuperview];
     [star2 removeFromSuperview];
     [star3 removeFromSuperview];
     [star4 removeFromSuperview];
+    [stop setEnabled:TRUE];
 }
 
 // This method is not called automatically if metronome is set on programmatically, have to manually call it
@@ -623,11 +642,39 @@
     } 
 }
 
--(void) stopButton_onTouchUpInside
+-(void) fireChord_onPlay:(id)sender
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController stopChords];
+    // Play current chord and increment the index somehow
     
+    // Loop back to the beginning if progression is at an end
+    if (currentChordPlayingIndex > progressionEndIndx)
+        currentChordPlayingIndex = 0;
+    
+    Chord *chordToBeSent = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+    [mainDelegate.viewController.dataController playChord:chordToBeSent];
+    chordToBeSent.beatsPerMeasure--; // Decrease beats per measure
+    
+    // We will only increment index if the num beats = 0
+    if (chordToBeSent.beatsPerMeasure == 0)
+        currentChordPlayingIndex++;
+}
+
+-(void) stopButton_onTouchUpInside
+{
+    // Stop the chord timer
+    [chordTimer invalidate];
+    chordTimer = nil;
+    
+    // Stop the last chord
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    Chord *lastChord = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+    [mainDelegate.viewController.dataController stopChord:lastChord];
+    
+    isPaused = TRUE;
+    [play setTitle:@"Play" forState:UIControlStateNormal];
+    
+    starsHaveAppeared = FALSE;
     progressionToBeSent = nil;
 }
 

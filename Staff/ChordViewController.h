@@ -48,6 +48,7 @@
     DraggedChord *draggedChord; // The chord that is selected and is dragged
     
     BOOL isPaused;
+    BOOL starsHaveAppeared;
     
     UIPopoverController *popOverController;
     
@@ -64,6 +65,10 @@
     NSTimer *metronomeTimer;
     
     int beforePlayCounter;
+    int currentChordPlayingIndex;
+    Chord *currentChordPlaying;
+    NSTimer *chordTimer;
+    int progressionEndIndx;
 }
 
 //Metronome properties
@@ -79,6 +84,7 @@
 
 -(void) metronome_onSwitchOnBeforePlay:(id)sender;
 -(void) fireMetronome_onPlay:(id)sender;
+-(void) fireChord_onPlay:(id)sender;
 
 // Chord Pickers are the buttons at the bottom which the user can use to select the chords to be played
 -(void) layoutChordPickers;

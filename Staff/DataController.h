@@ -33,9 +33,8 @@
 -(void)instrumentWasChosen:(int)MIDInumber;
 
 // called by ChordController
--(void)playChords:(NSArray*)progression;
--(void)pauseChords;
--(void)stopChords;
+-(void)playChord:(Chord *)chord;
+-(void)stopChord:(Chord *)chord;
 -(void)metronomeTick;
 -(void)twoFingerOptionWasSelected:(NSString*)option;
 

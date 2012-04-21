@@ -578,27 +578,28 @@
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, currentNote, 0x00);
 }
 
-/* playChords
- 
-   Will go through the progression and play all the notes in each chord 
- 
- 
- */
--(void)playChords:(NSArray*)progression
+-(void)playChord:(Chord *)chord
 {
-    NSLog(@"received message to play chords");
+    NSLog(@"Playing chord:%@", chord.name);
     
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
     
+    for (int x=0; x<chord.notes.count; x++) {
+        int note = [[chord.notes objectAtIndex:x] intValue];
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, note, 0x7F);
+    }
 }
 
 
--(void)pauseChords{
-    NSLog(@"received message to pause chords");
-}
-
-
--(void)stopChords{
-    NSLog(@"received message to stop chords");
+-(void)stopChord:(Chord *)chord
+{
+    NSLog(@"Stop chord:%@", chord.name);
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    for (int x=0; x<chord.notes.count; x++) {
+        int note = [[chord.notes objectAtIndex:x] intValue];
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, note, 0x00);
+    }
 }
 
 @end
