@@ -52,6 +52,7 @@ typedef struct image_view_metadata {
 
 - (void)buildStaff;
 - (void)buildLines;
+- (void)buildTopMenu;
 - (void)setLineTags;
 - (void)buildSpaces;
 - (void)setSpaceTags;
@@ -61,7 +62,8 @@ typedef struct image_view_metadata {
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)clearAllSharpsAndFlatsFromStaff;
 - (BOOL)setFlatOrSharpOnSpecificLineOrSpace:(int)num withNotePosition:(int)pos;
-
+- (void)findAccidentalNote:(int)pos;
+- (void)registerAccidentalNote:(UIView *)view withPos:(int)pos;
 
 
 

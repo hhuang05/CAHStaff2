@@ -70,8 +70,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "582"
          endingLineNumber = "582"
-         landmarkName = "-playButton_onTouchUpInside"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
