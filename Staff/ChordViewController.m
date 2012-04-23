@@ -217,7 +217,7 @@
     [self layoutStars];
     [self setupMetronome];
     [mainDelegate.viewController.circleOf5thsController setup];
-    [mainDelegate.viewController.twoFingerOptionSelector setup];
+    //[mainDelegate.viewController.twoFingerOptionSelector setup];
 }
 
 

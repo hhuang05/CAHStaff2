@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "StaffController.h"
+#import "AccidentalsController.h"
 
 @implementation StaffController
 
@@ -15,6 +16,10 @@
 @synthesize lines;
 @synthesize spaces;
 @synthesize notes;
+@synthesize sharpFlatButton;
+@synthesize topMenu;
+@synthesize popoverView;
+@synthesize popoverController;
 
 const float PERCENTAGE_OF_FULL_SCREEN_HEIGHT = 0.9;
 const int SCREEN_HEIGHT = 748;
@@ -38,7 +43,10 @@ const int SCREEN_HEIGHT = 748;
     [self buildStaff];
     [self buildLines];
     [self buildSpaces];
+    [self buildTopMenu];
     [self setFlatsAndSharps];
+    
+    accidentalsController = [[AccidentalsController alloc] init];
     
     
     //EXAMPLE OF HOW STAFF CHANGES//
@@ -61,12 +69,13 @@ const int SCREEN_HEIGHT = 748;
 {    
     self.staffView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     [self.staffView setBackgroundColor:[UIColor whiteColor]];
+    //[self.staffView.layer setBorderWidth:1];
+    //[self.staffView.layer setBorderColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor];
     self.view = self.staffView;
 }
 
 - (void)buildLines
 {
-    
     lines = [[NSMutableDictionary alloc] initWithCapacity:7];
     [lines setObject:[[dashedLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (58 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT), 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"aline"];
     [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (158 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"fline"];
@@ -96,6 +105,53 @@ const int SCREEN_HEIGHT = 748;
     [[lines objectForKey:@"eline"] setTag:12];
     [[lines objectForKey:@"cline"] setTag:14];
 }
+
+- (void)buildTopMenu
+{
+    topMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 70)];
+    [topMenu setBackgroundColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0]];
+    
+    sharpFlatButton = [[UIButton alloc] initWithFrame:CGRectMake(340, 10, 50, 50)];
+    [sharpFlatButton setBackgroundColor:[UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0]];
+    [[sharpFlatButton layer] setBorderColor:[UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1.0].CGColor];
+    [[sharpFlatButton layer] setBorderWidth:1];
+    [[sharpFlatButton layer] setCornerRadius:10];
+    [sharpFlatButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
+    [sharpFlatButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sharpFlatButton setTitle:@"-" forState:UIControlStateNormal];
+    [[sharpFlatButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[sharpFlatButton layer] setBorderWidth:2];
+    [[sharpFlatButton layer] setShadowColor:[UIColor blackColor].CGColor];
+    [[sharpFlatButton layer] setShadowOpacity:0.7f];
+    [[sharpFlatButton layer] setShadowOffset:CGSizeMake(3.0f, 3.0f)];
+    [[sharpFlatButton layer] setShadowRadius:5.0f];
+    [[sharpFlatButton layer] setMasksToBounds:NO];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:sharpFlatButton.bounds];
+    [[sharpFlatButton layer] setShadowPath:path.CGPath];
+    
+    [topMenu addSubview:sharpFlatButton];
+    [self.staffView addSubview:topMenu];
+    
+    [sharpFlatButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openAccidentalMenu:)]];
+    
+    [sharpFlatButton addTarget:self action:@selector(openAccidentalMenu:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (IBAction)openAccidentalMenu:(id)sender
+{
+    if([popoverController isPopoverVisible]){
+        [popoverController dismissPopoverAnimated:YES];
+        return;
+    }
+    popoverController = [[UIPopoverController alloc] initWithContentViewController:accidentalsController];
+    [popoverController presentPopoverFromBarButtonItem:sender 
+                   permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [popoverController setPopoverContentSize:CGSizeMake(320, 216)];
+}
+
+
+
+
 
 - (void)buildSpaces
 {
@@ -133,7 +189,6 @@ const int SCREEN_HEIGHT = 748;
 
 - (BOOL)changeScale:(NSArray *)notesFromDataController
 {
-    
     //Return false if array is not normalized properly
     if(notesFromDataController.count != NUMBER_OF_NOTES + 1){
         NSLog(@" Recieved this number of notes: %@", [notesFromDataController count]);
@@ -160,17 +215,62 @@ const int SCREEN_HEIGHT = 748;
     //For each, display flat/sharp if value -1/1
     for(int pos = 1; pos <= NUMBER_OF_NOTES; pos++)
     {
-        //NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
-        
+        NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
         num = [[notesFromDataController objectAtIndex:pos] intValue];
-       // NSLog(@"INTS: %d",num);
         if(num != 0){
-            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos];
+            //Add +1 to pos becase tag attributes of lines/spaces start at 1
+            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos+1];
+            [self findAccidentalNote:pos+1];
         }
-        
     }
-    
     return TRUE;
+}
+
+- (void)findAccidentalNote:(int)pos
+{
+    id key;
+    if((pos % 2) == 1){
+        NSEnumerator *senumerator = [spaces keyEnumerator];
+        while ((key = [senumerator nextObject])) {
+            UIView *subview = [spaces objectForKey:key];
+            if(pos == [subview tag]){
+                [self registerAccidentalNote:subview withPos:pos];
+                return;
+            }
+        }
+    } else {
+        NSEnumerator *lenumerator = [lines keyEnumerator];
+        while ((key = [lenumerator nextObject])) {
+            UIView *subview = [lines objectForKey:key];
+            if(pos == [subview tag]){
+                [self registerAccidentalNote:subview withPos:pos];
+                return;
+            }
+        }
+    }
+}
+
+- (void)registerAccidentalNote:(UIView *)view withPos:(int)pos
+{   
+    NSLog(@"%@",view);
+    UILongPressGestureRecognizer *accidentalGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingeredAccidentalNote:)];
+    [accidentalGesture setNumberOfTapsRequired:1];
+    [accidentalGesture setNumberOfTouchesRequired:2];
+    [accidentalGesture setMinimumPressDuration:0];
+    [view addGestureRecognizer:accidentalGesture];
+}
+
+- (void)twoFingeredAccidentalNote:(UILongPressGestureRecognizer *)recognizer
+{
+    NSLog(@"HERE!!!!!");
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    if(recognizer.state == UIGestureRecognizerStateEnded){
+        NSLog(@"stop accidental");
+        [mainDelegate.viewController.dataController stopNote];
+    } else {
+        NSLog(@"start accidental");
+        [mainDelegate.viewController.dataController playNoteAt:(recognizer.view.tag -1) WithHalfStepAlteration:TRUE];
+    }
 }
 
 - (void)clearAllSharpsAndFlatsFromStaff
@@ -266,6 +366,7 @@ const int SCREEN_HEIGHT = 748;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"# of Touches: %d",[touches count]);
     NSArray *allTouches = [touches allObjects];
     for (UITouch *touch in allTouches)
     {
@@ -279,6 +380,7 @@ const int SCREEN_HEIGHT = 748;
     
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         // Get a single touch and it's location
+        
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
         
@@ -296,18 +398,15 @@ const int SCREEN_HEIGHT = 748;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSArray *allTouches = [touches allObjects];
-    for (UITouch *touch in allTouches)
-    {
-        if(touch.view.tag > 0)
-        {
-            //NSLog(@"Ended - Tag: %d",touch.view.tag);
+    for (UITouch *touch in allTouches){
+        if(touch.view.tag > 0){
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController stopNote];
         }
     }
     
     NSArray *subviews = [self.view subviews];
-    for (UIView *view in subviews) {
+    for (UIView *view in subviews){
         if(view.tag == 666){
             [view removeFromSuperview];
         }
