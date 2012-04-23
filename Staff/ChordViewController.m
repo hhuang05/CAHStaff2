@@ -653,11 +653,24 @@
     
     Chord *chordToBeSent = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
     [mainDelegate.viewController.dataController playChord:chordToBeSent];
-    chordToBeSent.beatsPerMeasure--; // Decrease beats per measure
+    
+    // We make a copy of the current chord playing because we do not want to affect the UI when we hit
+    // stop. This also allows us to play with the number of beats per measure and actually have it be responsive
+    // Though this approach is not the most memory friendly approach
+    if (currentChordPlaying == nil) {
+        currentChordPlaying = [[Chord alloc] initWithName:chordToBeSent.name Notes:chordToBeSent.notes andID:chordToBeSent.idNumber];
+        currentChordPlaying.beatsPerMeasure = chordToBeSent.beatsPerMeasure;
+        currentChordPlaying.numberOfMeasures = chordToBeSent.numberOfMeasures;
+    }
+    
+    currentChordPlaying.beatsPerMeasure--; // Decrease beats per measure
     
     // We will only increment index if the num beats = 0
-    if (chordToBeSent.beatsPerMeasure == 0)
+    if (currentChordPlaying.beatsPerMeasure == 0)
+    {
         currentChordPlayingIndex++;
+        currentChordPlaying = nil;
+    }
 }
 
 -(void) stopButton_onTouchUpInside
@@ -668,7 +681,13 @@
     
     // Stop the last chord
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    Chord *lastChord = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+    Chord *lastChord;
+    
+    if (currentChordPlayingIndex > progressionEndIndx)
+        lastChord = [progressionToBeSent objectAtIndex:progressionEndIndx];
+    else
+        lastChord = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+    
     [mainDelegate.viewController.dataController stopChord:lastChord];
     
     isPaused = TRUE;
