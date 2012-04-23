@@ -526,6 +526,7 @@
         }
     }
     
+    progressionEndIndx = -1;
     if (!hasGaps) 
     {
         progressionToBeSent = [[NSMutableArray alloc] initWithArray:chordsToBePlayed];
@@ -547,21 +548,21 @@
             }
         }
         
-        if (isPaused) {
+        if (isPaused && progressionEndIndx > -1) {
             // If the UI hint has appeared already, don't do it again and just play the chords from where it left off
             if (!starsHaveAppeared) {
                 // When we hit play, we will have to disable the stop button until the UI hint has finished
                 currentChordPlayingIndex = 0;
-                [stop setEnabled:FALSE];
                 
                 // We're going to call the metronome to keep track for 4 beats, then shut it off
                 starsHaveAppeared = TRUE;
                 [metronomeOnOff setOn:TRUE];
-                [self metronome_onSwitchOnBeforePlay:metronomeOnOff];
             }
             else
-                //[mainDelegate.viewController.dataController playChords:progressionToBeSent];
+                beforePlayCounter = 4;
             
+            [self metronome_onSwitchOnBeforePlay:metronomeOnOff];
+            [stop setEnabled:FALSE];
             isPaused = FALSE;
             [play setTitle:@"Pause" forState:UIControlStateNormal];
         }
@@ -631,15 +632,13 @@
 // This method is not called automatically if metronome is set on programmatically, have to manually call it
 -(void) metronome_onSwitchOnBeforePlay:(id)sender
 {
-    // We're going to call the other metronome function until the counter is greater than 4
-    if(metronomeOnOff.on) {
-        double bpm = 60 / [[bpmLabel text] doubleValue];
-        metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
-                                                          target:self 
-                                                        selector:@selector(fireMetronome_onPlay:) 
-                                                        userInfo:nil
-                                                         repeats:YES];
-    } 
+    // We're going to call the metronome function until the counter is greater than 4
+    double bpm = 60 / [[bpmLabel text] doubleValue];
+    metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
+                                                      target:self 
+                                                    selector:@selector(fireMetronome_onPlay:) 
+                                                    userInfo:nil
+                                                     repeats:YES];
 }
 
 -(void) fireChord_onPlay:(id)sender
@@ -650,6 +649,10 @@
     // Loop back to the beginning if progression is at an end
     if (currentChordPlayingIndex > progressionEndIndx)
         currentChordPlayingIndex = 0;
+    
+    // Update UI, change state of the chord chosen buttons to selected
+    UIButton *chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
+    [self scaleUpChordChosenButton:chosenButton];
     
     Chord *chordToBeSent = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
     [mainDelegate.viewController.dataController playChord:chordToBeSent];
@@ -668,9 +671,27 @@
     // We will only increment index if the num beats = 0
     if (currentChordPlaying.beatsPerMeasure == 0)
     {
+        [self scaleDownChordChosenButton:chosenButton];	
         currentChordPlayingIndex++;
         currentChordPlaying = nil;
     }
+}
+
+-(void) scaleUpChordChosenButton:(UIButton *)theButton
+{
+    [UIButton beginAnimations:nil context:nil];
+	[UIButton setAnimationDuration:GROW_ANIMATION_DURATION_SECONDS];
+	theButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+	[UIButton commitAnimations];
+}
+
+-(void) scaleDownChordChosenButton:(UIButton *)theButton
+{
+    [UIButton beginAnimations:nil context:NULL];
+    [UIButton setAnimationDuration:SHRINK_ANIMATION_DURATION_SECONDS];
+    // Set the transform back to the identity, thus undoing the previous scaling effect.
+    theButton.transform = CGAffineTransformIdentity;
+    [UIButton commitAnimations];	
 }
 
 -(void) stopButton_onTouchUpInside
@@ -681,14 +702,16 @@
     
     // Stop the last chord
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    Chord *lastChord;
+    [mainDelegate.viewController.dataController stopChord:currentChordPlaying];
+    
+    UIButton *chosenButton;
     
     if (currentChordPlayingIndex > progressionEndIndx)
-        lastChord = [progressionToBeSent objectAtIndex:progressionEndIndx];
+        chosenButton = [chosenChordButtonsArray objectAtIndex:progressionEndIndx];
     else
-        lastChord = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+        chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
     
-    [mainDelegate.viewController.dataController stopChord:lastChord];
+    [self scaleDownChordChosenButton:chosenButton];
     
     isPaused = TRUE;
     [play setTitle:@"Play" forState:UIControlStateNormal];

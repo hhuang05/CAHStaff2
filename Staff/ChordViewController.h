@@ -86,6 +86,8 @@
 -(void) fireMetronome_onPlay:(id)sender;
 -(void) fireChord_onPlay:(id)sender;
 
+-(void) scaleUpChordChosenButton:(UIButton *)theButton;
+-(void) scaleDownChordChosenButton:(UIButton *)theButton;
 // Chord Pickers are the buttons at the bottom which the user can use to select the chords to be played
 -(void) layoutChordPickers;
 
