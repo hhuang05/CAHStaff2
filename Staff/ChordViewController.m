@@ -27,15 +27,24 @@
 -(void) setUpChords:(NSArray*)theChords{
     
     chordChoices = [[NSMutableArray alloc] initWithArray:theChords];
+    NSLog(@"key: %@, name: %@", [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]);
 
-    [picker1  changeChordName:[[theChords objectAtIndex: 0] name]];
-    [picker2  changeChordName:[[theChords objectAtIndex: 1] name]];
-    [picker3  changeChordName:[[theChords objectAtIndex: 2] name]];
-    [picker4  changeChordName:[[theChords objectAtIndex: 3] name]];
-    [picker5  changeChordName:[[theChords objectAtIndex: 4] name]];
-    [picker6  changeChordName:[[theChords objectAtIndex: 5] name]];
-    [picker7  changeChordName:[[theChords objectAtIndex: 6] name]];
-    [picker8  changeChordName:[[theChords objectAtIndex: 7] name]];
+    [picker1  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                            [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]]];
+    [picker2  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:1] key], [[theChords objectAtIndex:1]name]]];
+    [picker3  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:2] key], [[theChords objectAtIndex:2]name]]];
+    [picker4  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:3] key], [[theChords objectAtIndex:3]name]]];
+    [picker5  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:4] key], [[theChords objectAtIndex:4]name]]];
+    [picker6  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:5] key], [[theChords objectAtIndex:5]name]]];
+    [picker7  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:6] key], [[theChords objectAtIndex:6]name]]];
+    [picker8  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@",
+                               [[theChords objectAtIndex:7] key], [[theChords objectAtIndex:7]name]]];
     
 }
 
@@ -498,7 +507,7 @@
 // Hit it once, it pauses, hit it again it plays. Basically a toggle button
 -(void) playButton_onTouchUpInside
 {
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    //AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     // We will do some prechecks before we send over the chords to be played.
     // Namely: 1) That we have no gaps and 2) If all the spaces are not occupied, then we fill the rest of the array with rest chords

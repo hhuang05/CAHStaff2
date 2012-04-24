@@ -14,7 +14,7 @@
 
 @implementation DataController
 
-@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, keySignatureNoteMap = _keySignatureNoteMap;
+@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, keySignatureNoteMap = _keySignatureNoteMap, currentKey = _currentKey, majorKeyChords = _majorKeyChords;
 
 -(id) init{    
     self = [super init];
@@ -461,28 +461,52 @@
 
 
 -(void) fillChordsDictionary{ 
-        
-    Chord *rest = [[Chord alloc] initWithName:@"rest" Notes:nil andID:0];
+
+    NSNumber *one = [[NSNumber alloc]initWithFloat:1.0];
+    NSNumber *three = [[NSNumber alloc]initWithFloat:3.0];
+    NSNumber *threeFlat = [[NSNumber alloc]initWithFloat:3.1];
+    NSNumber *five = [[NSNumber alloc]initWithFloat:5.0];
+    NSNumber *four = [[NSNumber alloc]initWithFloat:4.0];
+    NSNumber *fiveSharp = [[NSNumber alloc]initWithFloat:5.5];
+    NSNumber *fiveFlat = [[NSNumber alloc]initWithFloat:5.1];
+    NSNumber *six = [[NSNumber alloc]initWithFloat:6.0];
+    NSNumber *sevenFlat = [[NSNumber alloc]initWithFloat:7.1];
     
-    NSArray *FMzero = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", nil];
-    Chord* zero = [[Chord alloc] initWithName:@"F Maj" Notes:FMzero  andID:0];
-    NSArray *FMone = [[NSArray alloc] initWithObjects:@"65", @"68", @"72", nil];
-    Chord* one = [[Chord alloc] initWithName:@"F min" Notes:FMone andID:1];
-    NSArray *FMtwo = [[NSArray alloc] initWithObjects:@"65", @"69", @"73", nil];
-    Chord* two = [[Chord alloc] initWithName:@"F Aug" Notes:FMtwo andID:2];
-    NSArray *FMthree = [[NSArray alloc] initWithObjects:@"65", @"68", @"71", nil];
-    Chord* three = [[Chord alloc] initWithName:@"F Dim" Notes:FMthree andID:3];
-    NSArray *FMfour = [[NSArray alloc] initWithObjects:@"65", @"70", @"72", nil];
-    Chord* four = [[Chord alloc] initWithName:@"F Sus 4" Notes:FMfour andID:4];
-    NSArray *FMfive = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", @"74", nil];
-    Chord* five = [[Chord alloc] initWithName:@"F Maj 6" Notes:FMfive andID:5];
-    NSArray *FMsix = [[NSArray alloc] initWithObjects:@"65", @"68", @"72", @"74", nil];
-    Chord* six = [[Chord alloc] initWithName:@"F min 6" Notes:FMsix andID:6];
-    NSArray *FMseven = [[NSArray alloc] initWithObjects:@"65", @"69", @"72", @"75", nil];
     
-    NSArray *FMajor = [[NSArray alloc]initWithObjects:zero, one, two, three, four, five, six, rest , nil];
+    //Chord *rest = [[Chord alloc] initWithName:@"rest" Notes:nil andID:0];
     
-    _chordsForKeySignatures = [[NSDictionary alloc] initWithObjectsAndKeys: FMajor, @"F", nil];
+    NSArray *a = [[NSArray alloc] initWithObjects:one, three, five, nil];
+    Chord *Maj = [[Chord alloc] initWithName:@"Maj" Notes:a  andID:1];
+    
+    NSArray *b = [[NSArray alloc] initWithObjects:one, threeFlat, five, nil];
+    Chord *min = [[Chord alloc] initWithName:@"min" Notes:b andID:2];
+    
+    NSArray *c = [[NSArray alloc] initWithObjects: one, three, fiveSharp, nil];
+    Chord *aug  = [[Chord alloc] initWithName:@"aug" Notes:c andID:3];
+    
+    NSArray *d = [[NSArray alloc] initWithObjects:one, threeFlat, fiveFlat, nil];
+    Chord *dim = [[Chord alloc] initWithName:@"dim" Notes:d andID:4];
+    
+    NSArray *e = [[NSArray alloc] initWithObjects:one, four, five, nil];
+    Chord *sus4  = [[Chord alloc] initWithName:@"sus4" Notes:e andID:5];
+    
+    NSArray *f = [[NSArray alloc] initWithObjects:one, three, five, six, nil];
+    Chord *Maj6 = [[Chord alloc] initWithName:@"Maj6" Notes:f andID:6];
+    
+    NSArray *g = [[NSArray alloc] initWithObjects:one, threeFlat, five, six, nil];
+    Chord *min6 = [[Chord alloc] initWithName:@"min6" Notes:g andID:7];
+    
+    NSArray *h = [[NSArray alloc] initWithObjects:one, three, five, sevenFlat, nil];
+    Chord *dom7 = [[Chord alloc] initWithName:@"dom7" Notes:h andID:8];
+    
+    _majorKeyChords = [[NSArray alloc]initWithObjects:Maj, min, aug, dim, sus4, Maj6, 
+                         min6, dom7, nil];
+}
+
+-(void)addKeyToChords:(NSString*)theKey{
+    for(Chord *c in _majorKeyChords){
+        [c setKey:theKey];
+    }
 }
 
 
@@ -490,14 +514,15 @@
 {
     
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];   
-    NSArray* chordsForKey = [_chordsForKeySignatures objectForKey:choice];
     currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
+    _currentKey = choice;
+    [self addKeyToChords:choice];
 
     
     if(keySignaturetoDraw){
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];
-        [mainDelegate.viewController.chordController setUpChords:(NSArray*)chordsForKey];
+        [mainDelegate.viewController.chordController setUpChords:(NSArray*)_majorKeyChords];
     }
     else
         NSLog(@"changeScale called with unknown key signature %@", choice);
@@ -526,15 +551,6 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     // 115 is the wooden block
     
-    /*
-     
-     What happens if I send a change instrument message and a play before the note
-     off comes for the staff instrument?  I'm hoping it will keep playing until
-     I call for the exact thing to turn off... I hope.
-     
-     */
-    
-    
     appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, 115, 0x00);
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, 65, 0x7F);
 }
@@ -560,10 +576,10 @@
 
 -(void)twoFingerOptionWasSelected:(NSString*)option{
     NSLog(@"Half step choice made: %@", option);
-    if(option == @"Apply sharp" ){
+    if(option == @"Apply Sharp" ){
         halfStepAlteration = 1;
     }
-    else if(option == @"Apply flat"){
+    else if(option == @"Apply Flat"){
         halfStepAlteration = -1;
     }
     else
@@ -586,9 +602,66 @@
     appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
     
     for (int x=0; x<chord.notes.count; x++) {
-        int note = [[chord.notes objectAtIndex:x] intValue];
+        int note = [self calculateMajorNoteForChord:chord atPosition:x];
         appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, note, 0x7F);
     }
+}
+
+-(int)calculateMajorNoteForChord:(Chord*)chord atPosition:(int) pos{
+    int note = 0;
+    
+    // get the starting note for this key
+    int startingLocation = [[[_keySignatureAccidentals objectForKey:_currentKey] objectAtIndex:0] intValue] - 1;
+    NSLog(@"root note: %d", startingLocation);
+    
+    /*
+    NSNumber *one = [[NSNumber alloc]initWithFloat:1.0];
+    NSNumber *three = [[NSNumber alloc]initWithFloat:3.0];
+    NSNumber *threeFlat = [[NSNumber alloc]initWithFloat:3.1];
+    NSNumber *four = [[NSNumber alloc]initWithFloat:4.0];
+    NSNumber *five = [[NSNumber alloc]initWithFloat:5.0];
+    NSNumber *fiveFlat = [[NSNumber alloc]initWithFloat:5.1];
+    NSNumber *fiveSharp = [[NSNumber alloc]initWithFloat:5.5];
+    NSNumber *six = [[NSNumber alloc]initWithFloat:6.0];
+    NSNumber *sevenFlat = [[NSNumber alloc]initWithFloat:7.1];
+    */
+    float value = [[chord.notes objectAtIndex:pos] floatValue];
+    
+    if (value == 1.0){
+        return [[currentKeySignatureNotes objectAtIndex:startingLocation]intValue];
+    }
+    else if(value == 3.0){
+        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue];
+    }
+    else if(value == 3.1){
+        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue] -1); 
+    }
+    else if(value == 4.0){
+        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 3]intValue];        
+    }    
+    else if(value == 5.0){
+        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue];
+    }
+    else if(value == 5.1){
+        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue] -1);        
+    }
+    else if(value == 5.5){
+        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue] + 1);
+    }    
+    else if(value == 6.0){
+        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue];
+    }
+    else if(value == 7.1){
+        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 6]intValue] -1);
+    }
+    else{
+        NSLog(@"unknown chord note float value: %f", value);
+    }
+    
+
+    
+    
+    return note;
 }
 
 

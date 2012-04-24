@@ -23,6 +23,8 @@
 @property (nonatomic, retain) NSDictionary *keySignatureNoteMap;
 @property (nonatomic, retain) NSDictionary *chordsForKeySignatures;
 @property (nonatomic, retain) NSString *currentKeySignature;
+@property (nonatomic, retain) NSString *currentKey;
+@property (nonatomic, retain) NSArray *majorKeyChords;
 
 
 -(void)keySignatureWasChosen:(NSString*)choice;
