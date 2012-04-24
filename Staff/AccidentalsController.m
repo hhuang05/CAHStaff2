@@ -59,7 +59,7 @@
 // Do something with the selected row.
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController twoFingerOptionWasSelected:[elements objectAtIndex: row]];
+    //[mainDelegate.viewController.dataController twoFingerOptionWasSelected:[elements objectAtIndex: row]];
     [mainDelegate.viewController.staffController.sharpFlatButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
     [mainDelegate.viewController.staffController.sharpFlatButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     switch (row) {

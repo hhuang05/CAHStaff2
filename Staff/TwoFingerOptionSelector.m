@@ -105,8 +105,8 @@
 // Do something with the selected row.
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController twoFingerOptionWasSelected:[_TwoFingerOptionsElements objectAtIndex: row]];
+    //AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    //[mainDelegate.viewController.dataController twoFingerOptionWasSelected:[_TwoFingerOptionsElements objectAtIndex: row]];
     
     //NSLog(@"You selected this: %@", [circleOf5thsPickerElements objectAtIndex: row]);
 }
