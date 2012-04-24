@@ -561,30 +561,7 @@
         MIDIinstrument = instrument;
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
-        [self performSelector:@selector(changeInstrumentName) withObject:nil afterDelay:0.1f];
     }
-}
-
--(void)changeInstrumentName{
- 	AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	char name[128];
-	appDelegate._api->ctrl (appDelegate.handle, CRMD_CTRL_GET_INSTRUMENT_NAME, name, sizeof (name));
-	
-	NSString *string = [NSString stringWithFormat:@"#%03d : %@", MIDIinstrument, [NSString stringWithCString:name encoding:NSASCIIStringEncoding]];
-	NSLog(@"Changed to instrument: %@", string);   
-}
-
--(void)twoFingerOptionWasSelected:(NSString*)option{
-    NSLog(@"Half step choice made: %@", option);
-    if(option == @"Apply Sharp" ){
-        halfStepAlteration = 1;
-    }
-    else if(option == @"Apply Flat"){
-        halfStepAlteration = -1;
-    }
-    else
-        halfStepAlteration = 0;
-    NSLog(@"Half step alteration is now: %d", halfStepAlteration);
 }
 
 -(void)stopNote{
