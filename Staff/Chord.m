@@ -10,7 +10,7 @@
 
 @implementation Chord
 
-@synthesize name, notes, beatsPerMeasure, numberOfMeasures, idNumber;
+@synthesize name, notes, beatsPerMeasure, numberOfMeasures, idNumber, key;
 
 -(id)initWithName:(NSString*)aName Notes:(NSArray*)someNotes andID:(int)num{
     self = [super init];
@@ -24,6 +24,10 @@
     }
 
     return self;
+}
+
+-(void)setKey:(NSString*)aKey{
+    key = aKey;
 }
 
 -(void)resetValues

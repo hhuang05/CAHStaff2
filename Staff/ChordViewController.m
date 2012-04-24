@@ -27,15 +27,24 @@
 -(void) setUpChords:(NSArray*)theChords{
     
     chordChoices = [[NSMutableArray alloc] initWithArray:theChords];
+    NSLog(@"key: %@, name: %@", [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]);
 
-    [picker1  changeChordName:[[theChords objectAtIndex: 0] name]];
-    [picker2  changeChordName:[[theChords objectAtIndex: 1] name]];
-    [picker3  changeChordName:[[theChords objectAtIndex: 2] name]];
-    [picker4  changeChordName:[[theChords objectAtIndex: 3] name]];
-    [picker5  changeChordName:[[theChords objectAtIndex: 4] name]];
-    [picker6  changeChordName:[[theChords objectAtIndex: 5] name]];
-    [picker7  changeChordName:[[theChords objectAtIndex: 6] name]];
-    [picker8  changeChordName:[[theChords objectAtIndex: 7] name]];
+    [picker1  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                            [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]]];
+    [picker2  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:1] key], [[theChords objectAtIndex:1]name]]];
+    [picker3  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:2] key], [[theChords objectAtIndex:2]name]]];
+    [picker4  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:3] key], [[theChords objectAtIndex:3]name]]];
+    [picker5  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:4] key], [[theChords objectAtIndex:4]name]]];
+    [picker6  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:5] key], [[theChords objectAtIndex:5]name]]];
+    [picker7  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
+                               [[theChords objectAtIndex:6] key], [[theChords objectAtIndex:6]name]]];
+    [picker8  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@",
+                               [[theChords objectAtIndex:7] key], [[theChords objectAtIndex:7]name]]];
     
 }
 
@@ -141,7 +150,7 @@
     chordChosen8.frame = CGRectMake(440, 140, 80, 80);
     [chordChosen8 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordsToBePlayed = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", @"", nil];
+    chordsToBePlayed = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", nil];
     chosenChordButtonsArray = [[NSArray alloc] initWithObjects:chordChosen1, chordChosen2, chordChosen3, chordChosen4, chordChosen5, chordChosen6, chordChosen7, chordChosen8, nil];
     
     if (self.view)
@@ -171,6 +180,7 @@
     stop.frame = CGRectMake(160, 340, 120, 90);
     [stop setTitle:@"Stop" forState:UIControlStateNormal];
     [stop addTarget:self action:@selector(stopButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
+    stop.adjustsImageWhenDisabled = TRUE;
     
     clearAll = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     clearAll.frame = CGRectMake(290, 340, 120, 90);
@@ -201,10 +211,7 @@
     star4 = [[UIImageView alloc] initWithImage:starImage];
     [star4 setFrame:CGRectMake(180, 280, 40, 40)];
     
-    [self.view addSubview:star1];
-    [self.view addSubview:star2];
-    [self.view addSubview:star3];
-    [self.view addSubview:star4];
+    starsHaveAppeared = FALSE;
 }
 
 - (void) loadView
@@ -254,6 +261,7 @@
     [bpmStepper addTarget:self action:@selector(bpmStepperValueChanged:) forControlEvents:UIControlEventValueChanged];
     [metronomeOnOff addTarget:self action:@selector(metronomeOnOffChanged:) forControlEvents:UIControlEventValueChanged];
     
+    beforePlayCounter = 0;
 }
 
 - (IBAction)metronomeOnOffChanged:(id)sender
@@ -332,46 +340,49 @@
 // which is to return the piece to its original size, as if it is being put down by the user.
 -(void)dispatchTouchEndEvent:(UIView *)theView toPosition:(CGPoint)position
 {   
+    Chord *newChord = [[Chord alloc] initWithName:draggedChord.chordName Notes:draggedChord.chordChosen.notes andID:draggedChord.chordChosen.idNumber];
+    [newChord resetValues];
+    
 	// Check to see which view, or views,  the point is in and then animate to that position.
 	if (CGRectContainsPoint([chordChosen1 frame], position)) {
 		[chordChosen1 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:0 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:0 withObject: newChord];
 	}
     else if (CGRectContainsPoint([chordChosen2 frame], position)) {
 		[chordChosen2 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:1 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:1 withObject: newChord];
 	}
     else if (CGRectContainsPoint([chordChosen3 frame], position)) {
 		[chordChosen3 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:2 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:2 withObject: newChord];
 	}
     else if (CGRectContainsPoint([chordChosen4 frame], position)) {
 		[chordChosen4 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:3 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:3 withObject: newChord];
 	}
     else if (CGRectContainsPoint([chordChosen5 frame], position)) {
 		[chordChosen5 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:4 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:4 withObject: newChord];
 	}
     else if (CGRectContainsPoint([chordChosen6 frame], position)) {
 		[chordChosen6 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:5 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:5 withObject: newChord];
 	}
     else if (CGRectContainsPoint([chordChosen7 frame], position)) {
 		[chordChosen7 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:6 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:6 withObject: newChord];
 	}
     else if (CGRectContainsPoint([chordChosen8 frame], position)) {
 		[chordChosen8 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
-        [chordsToBePlayed replaceObjectAtIndex:7 withObject: draggedChord.chordChosen];
+        [chordsToBePlayed replaceObjectAtIndex:7 withObject: newChord];
 	}
     // Now we must remove the dragged chord
     [draggedChord removeFromSuperview]; 
@@ -496,25 +507,226 @@
 // Hit it once, it pauses, hit it again it plays. Basically a toggle button
 -(void) playButton_onTouchUpInside
 {
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSArray* progression = [[NSArray alloc] init];
+    //AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
-    if (isPaused) {
-        [mainDelegate.viewController.dataController playChords:(NSArray*)progression];
-        isPaused = FALSE;
-        [play setTitle:@"Pause" forState:UIControlStateNormal];
+    // We will do some prechecks before we send over the chords to be played.
+    // Namely: 1) That we have no gaps and 2) If all the spaces are not occupied, then we fill the rest of the array with rest chords
+    // If there are gaps, refuse to play.
+    bool hasGaps = false;
+    bool isFull = TRUE;
+    
+    // Check if full by checking if last object is a NSString
+    if ([[chordsToBePlayed objectAtIndex:chordsToBePlayed.count - 1] isKindOfClass:[NSString class]]) {
+        isFull = FALSE;
     }
-    else {
-        [mainDelegate.viewController.dataController pauseChords];
-        isPaused = TRUE;
-        [play setTitle:@"Play" forState:UIControlStateNormal];
+         
+    // Check for gaps  
+    int lastChordIndex = 0;
+    for (int x=0;x<chordsToBePlayed.count; x++) {
+        // If the object is not a chord, then we check if it is larger than lastChordIndex + 1
+        // If it is, then there is a gap
+        if ([[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
+            if (x > lastChordIndex + 1) {
+                hasGaps = TRUE;
+                break;
+            }
+            else if (x == lastChordIndex + 1)    
+                lastChordIndex++;
+        }
     }
+    
+    progressionEndIndx = -1;
+    if (!hasGaps) 
+    {
+        progressionToBeSent = [[NSMutableArray alloc] initWithArray:chordsToBePlayed];
+        
+        // If not full, we fill the rest of the array with rest chords and send it off
+        // We will work backwards since this means less lookups
+        // I'm assuming that there are no rests in the middle
+        if (!isFull) {
+            for (int x=chordsToBePlayed.count-1; x>-1; x--) {
+                // There's no need to fill the rest of the chords with rests
+                if (![[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
+                    continue; // Just skip over it
+                }
+                else
+                {
+                    progressionEndIndx = x; // We track where the progression stops
+                    break;
+                }
+            }
+        }
+        
+        if (isPaused && progressionEndIndx > -1) {
+            // If the UI hint has appeared already, don't do it again and just play the chords from where it left off
+            if (!starsHaveAppeared) {
+                // When we hit play, we will have to disable the stop button until the UI hint has finished
+                currentChordPlayingIndex = 0;
+                
+                // We're going to call the metronome to keep track for 4 beats, then shut it off
+                starsHaveAppeared = TRUE;
+                [metronomeOnOff setOn:TRUE];
+            }
+            else
+                beforePlayCounter = 4;
+            
+            [self metronome_onSwitchOnBeforePlay:metronomeOnOff];
+            [stop setEnabled:FALSE];
+            isPaused = FALSE;
+            [play setTitle:@"Pause" forState:UIControlStateNormal];
+        }
+        else {
+            //[mainDelegate.viewController.dataController pauseChords];
+            isPaused = TRUE;
+            [play setTitle:@"Play" forState:UIControlStateNormal];
+        }
+    }
+    else 
+    {
+        // We render something on the UI to tell the user that there are gaps
+        // For now, we'll just popup an alert message
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can not play chords with gaps in the middle" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+-(void) fireMetronome_onPlay:(id)sender
+{
+    if (beforePlayCounter < 4) {
+        [self fireMetronomeSound:sender];
+        
+        // UI Count down 
+        switch (beforePlayCounter) {
+            case 0:
+                [self.view addSubview:star1];
+                break;
+            case 1:
+                [self.view addSubview:star2];
+                break;
+            case 2:
+                [self.view addSubview:star3];
+                break;
+            case 3:
+                [self.view addSubview:star4];
+                break;
+            default:
+                break;
+        }
+        
+        beforePlayCounter++;
+        return;
+    }
+    
+    // Once we hit 4 beats, stop metronome timer and start the chord time
+    double bpm = 60 / [[bpmLabel text] doubleValue];
+    chordTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
+                                                  target:self 
+                                                selector:@selector(fireChord_onPlay:) 
+                                                userInfo:nil
+                                                 repeats:YES];
+    
+    beforePlayCounter = 0;
+    [metronomeOnOff setOn:FALSE];
+    [[self metronomeTimer] invalidate];
+    metronomeTimer = nil;
+    
+    // Remove the stars
+    [star1 removeFromSuperview];
+    [star2 removeFromSuperview];
+    [star3 removeFromSuperview];
+    [star4 removeFromSuperview];
+    [stop setEnabled:TRUE];
+}
+
+// This method is not called automatically if metronome is set on programmatically, have to manually call it
+-(void) metronome_onSwitchOnBeforePlay:(id)sender
+{
+    // We're going to call the metronome function until the counter is greater than 4
+    double bpm = 60 / [[bpmLabel text] doubleValue];
+    metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
+                                                      target:self 
+                                                    selector:@selector(fireMetronome_onPlay:) 
+                                                    userInfo:nil
+                                                     repeats:YES];
+}
+
+-(void) fireChord_onPlay:(id)sender
+{
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    // Play current chord and increment the index somehow
+    
+    // Loop back to the beginning if progression is at an end
+    if (currentChordPlayingIndex > progressionEndIndx)
+        currentChordPlayingIndex = 0;
+    
+    // Update UI, change state of the chord chosen buttons to selected
+    UIButton *chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
+    [self scaleUpChordChosenButton:chosenButton];
+    
+    Chord *chordToBeSent = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+    [mainDelegate.viewController.dataController playChord:chordToBeSent];
+    
+    // We make a copy of the current chord playing because we do not want to affect the UI when we hit
+    // stop. This also allows us to play with the number of beats per measure and actually have it be responsive
+    // Though this approach is not the most memory friendly approach
+    if (currentChordPlaying == nil) {
+        currentChordPlaying = [[Chord alloc] initWithName:chordToBeSent.name Notes:chordToBeSent.notes andID:chordToBeSent.idNumber];
+        currentChordPlaying.beatsPerMeasure = chordToBeSent.beatsPerMeasure;
+        currentChordPlaying.numberOfMeasures = chordToBeSent.numberOfMeasures;
+    }
+    
+    currentChordPlaying.beatsPerMeasure--; // Decrease beats per measure
+    
+    // We will only increment index if the num beats = 0
+    if (currentChordPlaying.beatsPerMeasure == 0)
+    {
+        [self scaleDownChordChosenButton:chosenButton];	
+        currentChordPlayingIndex++;
+        currentChordPlaying = nil;
+    }
+}
+
+-(void) scaleUpChordChosenButton:(UIButton *)theButton
+{
+    [UIButton beginAnimations:nil context:nil];
+	[UIButton setAnimationDuration:GROW_ANIMATION_DURATION_SECONDS];
+	theButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
+	[UIButton commitAnimations];
+}
+
+-(void) scaleDownChordChosenButton:(UIButton *)theButton
+{
+    [UIButton beginAnimations:nil context:NULL];
+    [UIButton setAnimationDuration:SHRINK_ANIMATION_DURATION_SECONDS];
+    // Set the transform back to the identity, thus undoing the previous scaling effect.
+    theButton.transform = CGAffineTransformIdentity;
+    [UIButton commitAnimations];	
 }
 
 -(void) stopButton_onTouchUpInside
 {
+    // Stop the chord timer
+    [chordTimer invalidate];
+    chordTimer = nil;
+    
+    // Stop the last chord
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController stopChords];
+    [mainDelegate.viewController.dataController stopChord:currentChordPlaying];
+    
+    UIButton *chosenButton;
+    
+    if (currentChordPlayingIndex > progressionEndIndx)
+        chosenButton = [chosenChordButtonsArray objectAtIndex:progressionEndIndx];
+    else
+        chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
+    
+    [self scaleDownChordChosenButton:chosenButton];
+    
+    isPaused = TRUE;
+    [play setTitle:@"Play" forState:UIControlStateNormal];
+    
+    starsHaveAppeared = FALSE;
+    progressionToBeSent = nil;
 }
 
 // Once the user touches a chord chosen, present the popover view

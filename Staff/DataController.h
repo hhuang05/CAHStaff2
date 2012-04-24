@@ -23,6 +23,8 @@
 @property (nonatomic, retain) NSDictionary *keySignatureNoteMap;
 @property (nonatomic, retain) NSDictionary *chordsForKeySignatures;
 @property (nonatomic, retain) NSString *currentKeySignature;
+@property (nonatomic, retain) NSString *currentKey;
+@property (nonatomic, retain) NSArray *majorKeyChords;
 
 
 -(void)keySignatureWasChosen:(NSString*)choice;
@@ -33,9 +35,8 @@
 -(void)instrumentWasChosen:(int)MIDInumber;
 
 // called by ChordController
--(void)playChords:(NSArray*)progression;
--(void)pauseChords;
--(void)stopChords;
+-(void)playChord:(Chord *)chord;
+-(void)stopChord:(Chord *)chord;
 -(void)metronomeTick;
 -(void)twoFingerOptionWasSelected:(NSString*)option;
 
