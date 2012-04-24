@@ -12,6 +12,7 @@
 
 @implementation StaffController
 
+@synthesize canvas;
 @synthesize staffView;
 @synthesize lines;
 @synthesize spaces;
@@ -66,33 +67,14 @@ const int SCREEN_HEIGHT = 748;
 }
 
 - (void)buildStaff
-{    
+{   
+    self.canvas = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     self.staffView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     [self.staffView setBackgroundColor:[UIColor whiteColor]];
     //[self.staffView.layer setBorderWidth:1];
     //[self.staffView.layer setBorderColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor];
-    self.view = self.staffView;
-}
-
-- (void)buildLines
-{
-    lines = [[NSMutableDictionary alloc] initWithCapacity:7];
-    [lines setObject:[[dashedLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (58 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT), 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"aline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (158 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"fline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (258 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"dline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (358 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"bline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT *PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (458 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"gline"];
-    [lines setObject:[[solidLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT )) + (558 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"eline"];
-    [lines setObject:[[dashedLine alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (658 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(32 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"cline"];
-    
-    [self setLineTags];
-    
-    NSEnumerator *enumerator = [lines keyEnumerator];
-    id key;
-    while ((key = [enumerator nextObject])) {
-        UIView *line = [lines objectForKey:key];
-        [staffView addSubview:line];
-    }
+    self.view = self.canvas;
+    [self.canvas addSubview:staffView];
 }
 
 -(void)setLineTags
@@ -130,7 +112,7 @@ const int SCREEN_HEIGHT = 748;
     [[sharpFlatButton layer] setShadowPath:path.CGPath];
     
     [topMenu addSubview:sharpFlatButton];
-    [self.staffView addSubview:topMenu];
+    [self.canvas addSubview:topMenu];
     
     [sharpFlatButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openAccidentalMenu:)]];
     
@@ -149,21 +131,112 @@ const int SCREEN_HEIGHT = 748;
     [popoverController setPopoverContentSize:CGSizeMake(320, 216)];
 }
 
+- (void)buildLines
+{
+    lines = [[NSMutableDictionary alloc] initWithCapacity:7];
+     
+    solidlineAccidental *solidLineAccidental = [[solidlineAccidental alloc] initWithFrame:CGRectMake(350, 0, 100, 28)];
+    dashedlineAccidental *dashedLineAccidental = [[dashedlineAccidental alloc] initWithFrame:CGRectMake(350, 0, 100, 28)];
+    
+    dashedLine *aline = [[dashedLine alloc] initWithFrame:CGRectMake(0, 123, 400, 28)];
+    [aline addSubview:[self deepCopyDashedAccidentalView:dashedLineAccidental]];
+    [lines setObject:aline forKey:@"aline"];
+    
+    solidLine *fline = [[solidLine alloc] initWithFrame:CGRectMake(0, 214, 400, 28)];
+    [fline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
+    [lines setObject:fline forKey:@"fline"];
 
+    solidLine *dline = [[solidLine alloc] initWithFrame:CGRectMake(0, 305, 400, 28)];
+    [dline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
+    [lines setObject:dline forKey:@"dline"];
 
+    solidLine *bline = [[solidLine alloc] initWithFrame:CGRectMake(0, 396, 400, 28)];
+    [bline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
+    [lines setObject:bline forKey:@"bline"];
 
+    solidLine *gline = [[solidLine alloc] initWithFrame:CGRectMake(0, 487, 400, 28)];
+    [gline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
+    [lines setObject:gline forKey:@"gline"];
+
+    solidLine *eline = [[solidLine alloc] initWithFrame:CGRectMake(0, 578, 400, 28)];
+    [eline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
+    [lines setObject:eline forKey:@"eline"];
+
+    dashedLine *cline = [[dashedLine alloc] initWithFrame:CGRectMake(0, 669, 400, 28)];
+    [cline addSubview:[self deepCopyDashedAccidentalView:dashedLineAccidental]];
+    [lines setObject:cline forKey:@"cline"];
+    
+    [self setLineTags];
+    
+    NSEnumerator *enumerator = [lines keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        UIView *line = [lines objectForKey:key];
+        [staffView addSubview:line];
+    }
+}
+
+- (UIView *)deepCopyAccidentalView:(UIView *)theView
+{
+    UIView *newView = [[UIView alloc] initWithFrame:[theView frame]];
+    [newView setBackgroundColor:[UIColor lightGrayColor]];
+    return newView;
+}
+
+- (UIView *)deepCopySolidAccidentalView:(solidlineAccidental *)theView
+{
+    solidlineAccidental *newView = [[solidlineAccidental alloc] initWithFrame:[theView frame]];
+    [newView setBackgroundColor:[UIColor lightGrayColor]];
+    return newView;
+}
+
+- (UIView *)deepCopyDashedAccidentalView:(dashedlineAccidental *)theView
+{
+    dashedlineAccidental *newView = [[dashedlineAccidental alloc] initWithFrame:[theView frame]];
+    [newView setBackgroundColor:[UIColor lightGrayColor]];
+    return newView;
+}
 
 - (void)buildSpaces
 {
     spaces = [[NSMutableDictionary alloc] initWithCapacity:8];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (0 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(58 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"b2space"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (90 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"gspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (190 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"espace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (290 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"cspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (390 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"aspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (490 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"fspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (590 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(68 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"dspace"];
-    [spaces setObject:[[UIView alloc] initWithFrame:CGRectMake(0, (int)(SCREEN_HEIGHT - (SCREEN_HEIGHT * PERCENTAGE_OF_FULL_SCREEN_HEIGHT)) + (690 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT) , 400, (int)(58 * PERCENTAGE_OF_FULL_SCREEN_HEIGHT))] forKey:@"bspace"];
+    UIView *accidentalabove = [[UIView alloc] initWithFrame:CGRectMake(350, 0, 100, 53)];
+    UIView *accidental = [[UIView alloc] initWithFrame:CGRectMake(350, 0, 100, 63)];
+    [accidentalabove setBackgroundColor:[UIColor lightGrayColor]];
+    [accidental setBackgroundColor:[UIColor lightGrayColor]];
+    
+    UIView *b2space = [[UIView alloc] initWithFrame:CGRectMake(0, 70, 400, 53)];
+    [b2space addSubview:[self deepCopyAccidentalView:accidentalabove]];
+    [spaces setObject:b2space forKey:@"b2space"];
+    
+    UIView *gspace = [[UIView alloc] initWithFrame:CGRectMake(0, 151, 400, 63)];
+    [gspace addSubview:[self deepCopyAccidentalView:accidental]];
+    [spaces setObject:gspace forKey:@"gspace"];
+    
+    UIView *espace = [[UIView alloc] initWithFrame:CGRectMake(0, 242, 400, 63)];
+    [espace addSubview:[self deepCopyAccidentalView:accidental]];
+    [spaces setObject:espace forKey:@"espace"];
+    
+    UIView *cspace = [[UIView alloc] initWithFrame:CGRectMake(0, 333, 400, 63)];
+    [cspace addSubview:[self deepCopyAccidentalView:accidental]];
+    [spaces setObject:cspace forKey:@"cspace"];
+    
+    UIView *aspace = [[UIView alloc] initWithFrame:CGRectMake(0, 424, 400, 63)];
+    [aspace addSubview:[self deepCopyAccidentalView:accidental]];
+    [spaces setObject:aspace forKey:@"aspace"];
+    
+    UIView *fspace = [[UIView alloc] initWithFrame:CGRectMake(0, 515, 400, 63)];
+    [fspace addSubview:[self deepCopyAccidentalView:accidental]];
+    [spaces setObject:fspace forKey:@"fspace"];
+    
+    UIView *dspace = [[UIView alloc] initWithFrame:CGRectMake(0, 606, 400, 63)];
+    [dspace addSubview:[self deepCopyAccidentalView:accidental]];
+    [spaces setObject:dspace forKey:@"dspace"];
+    
+    UIView *bspace = [[UIView alloc] initWithFrame:CGRectMake(0, 697, 400, 53)];
+    [bspace addSubview:[self deepCopyAccidentalView:accidentalabove]];
+    [spaces setObject:bspace forKey:@"bspace"];
+    
     [self setSpaceTags];
   
     NSEnumerator *enumerator = [spaces keyEnumerator];
@@ -405,7 +478,7 @@ const int SCREEN_HEIGHT = 748;
         }
     }
     
-    NSArray *subviews = [self.view subviews];
+    NSArray *subviews = [self.staffView subviews];
     for (UIView *view in subviews){
         if(view.tag == 666){
             [view removeFromSuperview];

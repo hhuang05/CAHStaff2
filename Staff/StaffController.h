@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "solidLine.h"
 #import "dashedLine.h"
+#import "solidlineAccidental.h"
+#import "dashedlineAccidental.h"
 #import "sharpIcon.h"
 #import "AccidentalsController.h"
 
@@ -24,6 +26,7 @@ typedef struct image_view_metadata {
 } IVM; 
 
 @interface StaffController : UIViewController {
+    UIView *canvas;
     UIView *staffView;
     UIView *topMenu;
     UIButton *sharpFlatButton;
@@ -40,6 +43,7 @@ typedef struct image_view_metadata {
     
 }
 
+@property (nonatomic, retain) IBOutlet UIView *canvas;
 @property (nonatomic, retain) IBOutlet UIView *staffView;
 @property (nonatomic, retain) IBOutlet UIView *topMenu;
 @property (nonatomic, retain) IBOutlet UIButton *sharpFlatButton;
