@@ -41,15 +41,12 @@
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
-<<<<<<< HEAD
-=======
 		A7669CB21547422900019493 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A7669CB11547422900019493 /* crsynth.dlsc */; };
 		A7669CB9154743B500019493 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB4154743B500019493 /* libcrmpd.a */; };
 		A7669CBA154743B500019493 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB5154743B500019493 /* libcrse.a */; };
 		A7669CBB154743B500019493 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB7154743B500019493 /* libcrmpd.a */; };
 		A7669CBC154743B500019493 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB8154743B500019493 /* libcrse.a */; };
 		A76A7A061539CEDA00A43222 /* TwoFingerOptionSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = A76A7A041539CEDA00A43222 /* TwoFingerOptionSelector.m */; };
->>>>>>> d779a4d4beda77488e1d9c12ef013e2b28786366
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,8 +103,6 @@
 		A717FEDE1534ED9D00515250 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-<<<<<<< HEAD
-=======
 		A7669CB01547422900019493 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
 		A7669CB11547422900019493 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
 		A7669CB4154743B500019493 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
@@ -116,7 +111,6 @@
 		A7669CB8154743B500019493 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 		A76A7A031539CEDA00A43222 /* TwoFingerOptionSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoFingerOptionSelector.h; sourceTree = "<group>"; };
 		A76A7A041539CEDA00A43222 /* TwoFingerOptionSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoFingerOptionSelector.m; sourceTree = "<group>"; };
->>>>>>> d779a4d4beda77488e1d9c12ef013e2b28786366
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
