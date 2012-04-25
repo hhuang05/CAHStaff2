@@ -24,7 +24,6 @@
 		0826BDDA1523E876004A9B22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0826BDD91523E876004A9B22 /* AVFoundation.framework */; };
 		0826BDE31523EFED004A9B22 /* ChordOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */; };
 		0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */; };
-		08898B401540CF54001BFA61 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = 08898B3F1540CF54001BFA61 /* crsynth.dlsc */; };
 		08ACF4BC152B9D1F00512760 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ACF4BB152B9D1F00512760 /* star.png */; };
 		08E618C71544E86A00A366B5 /* flat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 08E618C61544E86A00A366B5 /* flat.gif */; };
 		2A8E8FBA15374EF80067DB3D /* Circleof5thsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E8FB915374EF80067DB3D /* Circleof5thsController.m */; };
@@ -42,6 +41,15 @@
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
+<<<<<<< HEAD
+=======
+		A7669CB21547422900019493 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A7669CB11547422900019493 /* crsynth.dlsc */; };
+		A7669CB9154743B500019493 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB4154743B500019493 /* libcrmpd.a */; };
+		A7669CBA154743B500019493 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB5154743B500019493 /* libcrse.a */; };
+		A7669CBB154743B500019493 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB7154743B500019493 /* libcrmpd.a */; };
+		A7669CBC154743B500019493 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB8154743B500019493 /* libcrse.a */; };
+		A76A7A061539CEDA00A43222 /* TwoFingerOptionSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = A76A7A041539CEDA00A43222 /* TwoFingerOptionSelector.m */; };
+>>>>>>> d779a4d4beda77488e1d9c12ef013e2b28786366
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,8 +80,6 @@
 		0826BDE11523EFED004A9B22 /* ChordOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordOptionsViewController.h; sourceTree = "<group>"; };
 		0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordOptionsViewController.m; sourceTree = "<group>"; };
 		0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteIcon.png; sourceTree = "<group>"; };
-		08898B3E1540CF54001BFA61 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
-		08898B3F1540CF54001BFA61 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
 		08ACF4BB152B9D1F00512760 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		08E618C61544E86A00A366B5 /* flat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = flat.gif; sourceTree = "<group>"; };
 		2A8E8FB815374EF80067DB3D /* Circleof5thsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circleof5thsController.h; sourceTree = "<group>"; };
@@ -100,6 +106,17 @@
 		A717FEDE1534ED9D00515250 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+<<<<<<< HEAD
+=======
+		A7669CB01547422900019493 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
+		A7669CB11547422900019493 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
+		A7669CB4154743B500019493 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A7669CB5154743B500019493 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A7669CB7154743B500019493 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A7669CB8154743B500019493 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A76A7A031539CEDA00A43222 /* TwoFingerOptionSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoFingerOptionSelector.h; sourceTree = "<group>"; };
+		A76A7A041539CEDA00A43222 /* TwoFingerOptionSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoFingerOptionSelector.m; sourceTree = "<group>"; };
+>>>>>>> d779a4d4beda77488e1d9c12ef013e2b28786366
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +131,10 @@
 				2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */,
 				2AE1DE7615154B72008C538D /* Foundation.framework in Frameworks */,
 				2AE1DE7815154B72008C538D /* CoreGraphics.framework in Frameworks */,
+				A7669CB9154743B500019493 /* libcrmpd.a in Frameworks */,
+				A7669CBA154743B500019493 /* libcrse.a in Frameworks */,
+				A7669CBB154743B500019493 /* libcrmpd.a in Frameworks */,
+				A7669CBC154743B500019493 /* libcrse.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +144,8 @@
 		2AE1DE6415154B71008C538D = {
 			isa = PBXGroup;
 			children = (
+				A7669CB3154743B500019493 /* Release-iphoneos */,
+				A7669CB6154743B500019493 /* Release-iphonesimulator */,
 				A76534921527B777001885E9 /* crsynth */,
 				2AE1DE7915154B72008C538D /* Staff */,
 				2AE1DE7215154B72008C538D /* Frameworks */,
@@ -215,10 +238,30 @@
 		A76534921527B777001885E9 /* crsynth */ = {
 			isa = PBXGroup;
 			children = (
-				08898B3E1540CF54001BFA61 /* crmd.h */,
-				08898B3F1540CF54001BFA61 /* crsynth.dlsc */,
+				A7669CB01547422900019493 /* crmd.h */,
+				A7669CB11547422900019493 /* crsynth.dlsc */,
 			);
 			path = crsynth;
+			sourceTree = "<group>";
+		};
+		A7669CB3154743B500019493 /* Release-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				A7669CB4154743B500019493 /* libcrmpd.a */,
+				A7669CB5154743B500019493 /* libcrse.a */,
+			);
+			name = "Release-iphoneos";
+			path = "crsynth/Release-iphoneos";
+			sourceTree = "<group>";
+		};
+		A7669CB6154743B500019493 /* Release-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				A7669CB7154743B500019493 /* libcrmpd.a */,
+				A7669CB8154743B500019493 /* libcrse.a */,
+			);
+			name = "Release-iphonesimulator";
+			path = "crsynth/Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,9 +322,9 @@
 				0826BDD61523E5C2004A9B22 /* smallsharp.gif in Resources */,
 				0826BDEB1523F6B7004A9B22 /* DeleteIcon.png in Resources */,
 				08ACF4BC152B9D1F00512760 /* star.png in Resources */,
-				08898B401540CF54001BFA61 /* crsynth.dlsc in Resources */,
 				2A94A4D61542517F00766EAF /* graybutton.png in Resources */,
 				08E618C71544E86A00A366B5 /* flat.gif in Resources */,
+				A7669CB21547422900019493 /* crsynth.dlsc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +375,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator5.1]" = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -346,7 +390,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
+				"PROVISIONING_PROFILE[sdk=iphonesimulator5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -358,15 +404,18 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos5.1]" = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
+				"PROVISIONING_PROFILE[sdk=iphoneos5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = NO;
@@ -378,13 +427,19 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_VARIANTS = normal;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator5.1]" = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/crsynth/Release-iphoneos\"",
+					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
+				);
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
@@ -394,6 +449,8 @@
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
+				"PROVISIONING_PROFILE[sdk=iphonesimulator5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_LDFLAGS = "";
@@ -406,12 +463,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_VARIANTS = normal;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos5.1]" = "iPhone Developer: Aaron Tietz (4259ZUZ474)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/crsynth/Release-iphoneos\"",
+					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
+				);
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
@@ -421,6 +484,8 @@
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
+				"PROVISIONING_PROFILE[sdk=iphoneos5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;

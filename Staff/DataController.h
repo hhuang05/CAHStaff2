@@ -38,7 +38,6 @@
 -(void)playChord:(Chord *)chord;
 -(void)stopChord:(Chord *)chord;
 -(void)metronomeTick;
--(void)twoFingerOptionWasSelected:(NSString*)option;
 
 -(BOOL)loadData;
 -(void)fillKeySignatureAccidentals;
