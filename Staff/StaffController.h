@@ -12,6 +12,7 @@
 #import "solidlineAccidental.h"
 #import "dashedlineAccidental.h"
 #import "sharpIcon.h"
+#import "InstrumentsController.h"
 #import "AccidentalsController.h"
 
 
@@ -29,23 +30,23 @@ typedef struct image_view_metadata {
     UIView *canvas;
     UIView *staffView;
     UIView *topMenu;
+    UIButton *instrumentsButton;
     UIButton *sharpFlatButton;
     UIPopoverController *popoverController;
     UIView *popoverView;
+    InstrumentsController *instrumentsController;
     AccidentalsController *accidentalsController;
-    
-    @private
     NSMutableDictionary *lines;
     NSMutableDictionary *spaces;
     NSMutableDictionary *sharps;
     NSMutableDictionary *flats;
     NSArray *notes;
-    
 }
 
 @property (nonatomic, retain) IBOutlet UIView *canvas;
 @property (nonatomic, retain) IBOutlet UIView *staffView;
 @property (nonatomic, retain) IBOutlet UIView *topMenu;
+@property (nonatomic, retain) IBOutlet UIButton *instrumentsButton;
 @property (nonatomic, retain) IBOutlet UIButton *sharpFlatButton;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, retain) UIView *popoverView;

@@ -1,22 +1,23 @@
 //
-//  AccidentalsController.h
+//  InstrumentsController.h
 //  Staff
 //
-//  Created by Christopher Harris on 4/20/12.
+//  Created by Christopher Harris on 4/24/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface AccidentalsController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface InstrumentsController : UIViewController
 {
     NSArray *elements;
     UIView *content;
-    int state;
+    int instrument;
     IBOutlet UIPickerView *picker;
 }
 
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
-@property int state;
+@property int instrument;
 
 @end

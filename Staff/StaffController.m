@@ -17,14 +17,11 @@
 @synthesize lines;
 @synthesize spaces;
 @synthesize notes;
+@synthesize instrumentsButton;
 @synthesize sharpFlatButton;
 @synthesize topMenu;
 @synthesize popoverView;
 @synthesize popoverController;
-
-const float PERCENTAGE_OF_FULL_SCREEN_HEIGHT = 0.9;
-const int SCREEN_HEIGHT = 748;
-
 
 -(id)init{
     [self viewDidLoad];
@@ -46,10 +43,6 @@ const int SCREEN_HEIGHT = 748;
     [self buildSpaces];
     [self buildTopMenu];
     [self setFlatsAndSharps];
-    
-    accidentalsController = [[AccidentalsController alloc] init];
-    
-    
     //EXAMPLE OF HOW STAFF CHANGES//
     // NSMutableArray *thing = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"0",@"0",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"0",@"0",@"0",nil];
     // [self performSelector:@selector(changeScale:) withObject:thing afterDelay:2.0];
@@ -90,10 +83,11 @@ const int SCREEN_HEIGHT = 748;
 
 - (void)buildTopMenu
 {
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     topMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 70)];
     [topMenu setBackgroundColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0]];
     
-    sharpFlatButton = [[UIButton alloc] initWithFrame:CGRectMake(340, 10, 50, 50)];
+    sharpFlatButton = [[UIButton alloc] initWithFrame:CGRectMake(325, 10, 50, 50)];
     [sharpFlatButton setBackgroundColor:[UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0]];
     [[sharpFlatButton layer] setBorderColor:[UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1.0].CGColor];
     [[sharpFlatButton layer] setBorderWidth:1];
@@ -101,6 +95,7 @@ const int SCREEN_HEIGHT = 748;
     [sharpFlatButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
     [sharpFlatButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sharpFlatButton setTitle:@"-" forState:UIControlStateNormal];
+    [mainDelegate.viewController.accidentalsController setState:0];
     [[sharpFlatButton layer] setBorderColor:[UIColor blackColor].CGColor];
     [[sharpFlatButton layer] setBorderWidth:2];
     [[sharpFlatButton layer] setShadowColor:[UIColor blackColor].CGColor];
@@ -108,26 +103,57 @@ const int SCREEN_HEIGHT = 748;
     [[sharpFlatButton layer] setShadowOffset:CGSizeMake(3.0f, 3.0f)];
     [[sharpFlatButton layer] setShadowRadius:5.0f];
     [[sharpFlatButton layer] setMasksToBounds:NO];
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:sharpFlatButton.bounds];
-    [[sharpFlatButton layer] setShadowPath:path.CGPath];
+    [[sharpFlatButton layer] setShadowPath:[UIBezierPath bezierPathWithRect:sharpFlatButton.bounds].CGPath];
     
+    instrumentsButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 280, 50)];
+    [instrumentsButton setBackgroundColor:[UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0]];
+    [[instrumentsButton layer] setBorderColor:[UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1.0].CGColor];
+    [[instrumentsButton layer] setBorderWidth:1];
+    [[instrumentsButton layer] setCornerRadius:10];
+    [instrumentsButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
+    [instrumentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [instrumentsButton setTitle:@"Acoustic Piano" forState:UIControlStateNormal];
+    [mainDelegate.viewController.accidentalsController setState:0];
+    [[instrumentsButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[instrumentsButton layer] setBorderWidth:2];
+    [[instrumentsButton layer] setShadowColor:[UIColor blackColor].CGColor];
+    [[instrumentsButton layer] setShadowOpacity:0.7f];
+    [[instrumentsButton layer] setShadowOffset:CGSizeMake(3.0f, 3.0f)];
+    [[instrumentsButton layer] setShadowRadius:5.0f];
+    [[instrumentsButton layer] setMasksToBounds:NO];
+    [[instrumentsButton layer] setShadowPath:[UIBezierPath bezierPathWithRect:instrumentsButton.bounds].CGPath];
+    
+    [topMenu addSubview:instrumentsButton];
     [topMenu addSubview:sharpFlatButton];
     [self.canvas addSubview:topMenu];
-    
+    [instrumentsButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openInstrumentsMenu:)]];
     [sharpFlatButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openAccidentalMenu:)]];
     
-    [sharpFlatButton addTarget:self action:@selector(openAccidentalMenu:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (IBAction)openAccidentalMenu:(id)sender
 {
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if([popoverController isPopoverVisible]){
         [popoverController dismissPopoverAnimated:YES];
         return;
     }
-    popoverController = [[UIPopoverController alloc] initWithContentViewController:accidentalsController];
+    popoverController = [[UIPopoverController alloc] initWithContentViewController:mainDelegate.viewController.accidentalsController];
     [popoverController presentPopoverFromBarButtonItem:sender 
                    permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [popoverController setPopoverContentSize:CGSizeMake(320, 216)];
+}
+
+- (IBAction)openInstrumentsMenu:(id)sender
+{
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if([popoverController isPopoverVisible]){
+        [popoverController dismissPopoverAnimated:YES];
+        return;
+    }
+    popoverController = [[UIPopoverController alloc] initWithContentViewController:mainDelegate.viewController.instrumentsController];
+    [popoverController presentPopoverFromBarButtonItem:sender 
+                              permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     [popoverController setPopoverContentSize:CGSizeMake(320, 216)];
 }
 
@@ -135,8 +161,8 @@ const int SCREEN_HEIGHT = 748;
 {
     lines = [[NSMutableDictionary alloc] initWithCapacity:7];
      
-    solidlineAccidental *solidLineAccidental = [[solidlineAccidental alloc] initWithFrame:CGRectMake(350, 0, 100, 28)];
-    dashedlineAccidental *dashedLineAccidental = [[dashedlineAccidental alloc] initWithFrame:CGRectMake(350, 0, 100, 28)];
+    solidlineAccidental *solidLineAccidental = [[solidlineAccidental alloc] initWithFrame:CGRectMake(300, 0, 100, 28)];
+    dashedlineAccidental *dashedLineAccidental = [[dashedlineAccidental alloc] initWithFrame:CGRectMake(300, 0, 100, 28)];
     
     dashedLine *aline = [[dashedLine alloc] initWithFrame:CGRectMake(0, 123, 400, 28)];
     [aline addSubview:[self deepCopyDashedAccidentalView:dashedLineAccidental]];
@@ -200,8 +226,8 @@ const int SCREEN_HEIGHT = 748;
 - (void)buildSpaces
 {
     spaces = [[NSMutableDictionary alloc] initWithCapacity:8];
-    UIView *accidentalabove = [[UIView alloc] initWithFrame:CGRectMake(350, 0, 100, 53)];
-    UIView *accidental = [[UIView alloc] initWithFrame:CGRectMake(350, 0, 100, 63)];
+    UIView *accidentalabove = [[UIView alloc] initWithFrame:CGRectMake(300, 0, 100, 53)];
+    UIView *accidental = [[UIView alloc] initWithFrame:CGRectMake(300, 0, 100, 63)];
     [accidentalabove setBackgroundColor:[UIColor lightGrayColor]];
     [accidental setBackgroundColor:[UIColor lightGrayColor]];
     
@@ -323,29 +349,6 @@ const int SCREEN_HEIGHT = 748;
     }
 }
 
-- (void)registerAccidentalNote:(UIView *)view withPos:(int)pos
-{   
-    NSLog(@"%@",view);
-    UILongPressGestureRecognizer *accidentalGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingeredAccidentalNote:)];
-    [accidentalGesture setNumberOfTapsRequired:1];
-    [accidentalGesture setNumberOfTouchesRequired:2];
-    [accidentalGesture setMinimumPressDuration:0];
-    [view addGestureRecognizer:accidentalGesture];
-}
-
-- (void)twoFingeredAccidentalNote:(UILongPressGestureRecognizer *)recognizer
-{
-    NSLog(@"HERE!!!!!");
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    if(recognizer.state == UIGestureRecognizerStateEnded){
-        NSLog(@"stop accidental");
-        [mainDelegate.viewController.dataController stopNote];
-    } else {
-        NSLog(@"start accidental");
-        [mainDelegate.viewController.dataController playNoteAt:(recognizer.view.tag -1) WithHalfStepAlteration:TRUE];
-    }
-}
-
 - (void)clearAllSharpsAndFlatsFromStaff
 {   
     int sharpNum = 3;
@@ -441,13 +444,16 @@ const int SCREEN_HEIGHT = 748;
 {
     NSLog(@"# of Touches: %d",[touches count]);
     NSArray *allTouches = [touches allObjects];
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     for (UITouch *touch in allTouches)
     {
-        if(touch.view.tag > 0)
-        {
+        if(touch.view.tag > 0){
             NSLog(@"Began - Tag: %d",touch.view.tag);
-            AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-            [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag -1) WithHalfStepAlteration:FALSE];
+            [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag - 1) WithHalfStepAlteration:0];
+        } else if(touch.view.superview.tag > 0){
+            NSLog(@"Began - Tag: %d",touch.view.tag);
+            NSLog(@"state: %d",mainDelegate.viewController.accidentalsController.state);
+            [mainDelegate.viewController.dataController playNoteAt:(touch.view.superview.tag - 1) WithHalfStepAlteration:mainDelegate.viewController.accidentalsController.state];
         }
     }
     

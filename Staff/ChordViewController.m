@@ -12,7 +12,6 @@
 #import "ChordOptionsViewController.h"
 #import "DataController.h"
 #import "Circleof5thsController.h"
-#import "TwoFingerOptionSelector.h"
 
 @implementation ChordViewController
 

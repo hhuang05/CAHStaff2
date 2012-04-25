@@ -12,6 +12,7 @@
 @implementation AccidentalsController
 
 @synthesize picker;
+@synthesize state;
 
 - (id)init
 {
@@ -22,15 +23,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     elements = [[NSArray alloc] initWithObjects:@"No Effect", @"Apply Sharp", @"Apply Flat", nil];
-    
     content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
     picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
     [picker setDataSource:self];
     [picker setDelegate:self];
     [picker setShowsSelectionIndicator:YES];
-    
     [content addSubview:picker];
     [self.view addSubview:content];
 }
@@ -59,25 +57,26 @@
 // Do something with the selected row.
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController twoFingerOptionWasSelected:[elements objectAtIndex: row]];
     [mainDelegate.viewController.staffController.sharpFlatButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
     [mainDelegate.viewController.staffController.sharpFlatButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     switch (row) {
         case 0:
             [mainDelegate.viewController.staffController.sharpFlatButton setTitle:@"-" forState:UIControlStateNormal];
+            [self setState:0];
             break;
         case 1:
             [mainDelegate.viewController.staffController.sharpFlatButton setTitle:@"#" forState:UIControlStateNormal];
+            [self setState:-1];
             break;
         case 2:
             [mainDelegate.viewController.staffController.sharpFlatButton setTitle:@"b" forState:UIControlStateNormal];
+            [self setState:1];
             break;
         default:
             break;
     }
     
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

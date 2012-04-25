@@ -529,12 +529,12 @@
 }
 
 
--(void)playNoteAt:(int)position WithHalfStepAlteration:(BOOL) twoFingerTouch{
+-(void)playNoteAt:(int)position WithHalfStepAlteration:(int) accidentalState{
     
     int noteNumber = [[currentKeySignatureNotes objectAtIndex:position] intValue];
     
     // add -1 or 1 to flat or sharp the note if the user wanted
-    if(twoFingerTouch){
+    if(accidentalState){
         noteNumber += halfStepAlteration;
     }
     currentNote = noteNumber;

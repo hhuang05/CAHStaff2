@@ -11,7 +11,8 @@
 #import "DataController.h"
 #import "ChordViewController.h"
 #import "Circleof5thsController.h"
-#import "TwoFingerOptionSelector.h"
+#import "AccidentalsController.h"
+#import "InstrumentsController.h"
 
 @interface MainController : UIViewController
 
@@ -23,7 +24,9 @@
 
 @property (strong, nonatomic) Circleof5thsController *circleOf5thsController;
 
-@property (strong, nonatomic) TwoFingerOptionSelector *twoFingerOptionSelector;
+@property (strong, nonatomic) AccidentalsController *accidentalsController;
+
+@property (strong, nonatomic) InstrumentsController *instrumentsController;
 
 
 @end

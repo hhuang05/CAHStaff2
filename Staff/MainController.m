@@ -12,11 +12,14 @@
 #import "StaffController.h"
 #import "ChordViewController.h"
 #import "Circleof5thsController.h"
+#import "AccidentalsController.h"
+#import "InstrumentsController.h"
 
 @implementation MainController
 
 @synthesize staffController = _staffController, dataController = _dataController, chordController = _chordController;
-@synthesize circleOf5thsController = _circleOf5thsController, twoFingerOptionSelector = _twoFingerOptionSelector;
+@synthesize circleOf5thsController = _circleOf5thsController;
+@synthesize accidentalsController = _accidentalsController, instrumentsController = _instrumentsController;
 
 - (void)viewDidLoad
 {
@@ -26,7 +29,8 @@
     _staffController = [[StaffController alloc] init];
     _chordController = [[ChordViewController alloc] init];
     _circleOf5thsController = [[Circleof5thsController alloc] init];
-    _twoFingerOptionSelector = [[TwoFingerOptionSelector alloc] init];
+    _instrumentsController = [[InstrumentsController alloc] init];
+    _accidentalsController = [[AccidentalsController alloc] init];
     [_chordController loadView];
     [_dataController loadData];
     

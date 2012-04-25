@@ -30,7 +30,7 @@
 -(void)keySignatureWasChosen:(NSString*)choice;
 
 // called by StaffController
--(void)playNoteAt:(int)position WithHalfStepAlteration:(BOOL) twoFingerTouch;
+-(void)playNoteAt:(int)position WithHalfStepAlteration:(int) accidentalState;
 -(void)stopNote;
 -(void)instrumentWasChosen:(int)MIDInumber;
 
