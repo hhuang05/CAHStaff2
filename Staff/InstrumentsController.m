@@ -77,7 +77,7 @@
     instrument = (row+1);
     [mainDelegate.viewController.staffController.instrumentsButton setTitle:[elements objectAtIndex:row] forState:UIControlStateNormal];
     
-    //DATA CONTROLLER CALL INSTRUMENT HERE!!!!!
+    [mainDelegate.viewController.dataController instrumentWasChosen:instrument];
     
 }
 
