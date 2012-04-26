@@ -33,11 +33,13 @@
 -(void)playNoteAt:(int)position WithHalfStepAlteration:(int) accidentalState;
 -(void)stopNote;
 -(void)instrumentWasChosen:(int)MIDInumber;
+-(void)halfStepAlterationOptionWasSelected:(NSString*)choice;
 
 // called by ChordController
 -(void)playChord:(Chord *)chord;
 -(void)stopChord:(Chord *)chord;
 -(void)metronomeTick;
+-(void)stopMetronome;
 
 -(BOOL)loadData;
 -(void)fillKeySignatureAccidentals;
