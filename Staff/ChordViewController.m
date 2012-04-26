@@ -45,6 +45,21 @@
     [picker8  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@",
                                [[theChords objectAtIndex:7] key], [[theChords objectAtIndex:7]name]]];
     
+    // We will also need to change the labels of the chords chosen if there were chords chosen
+    // In order for this replacement to be fast, we will need to keep another array of the actual indexes of the objects instead of calculating it
+    for (int x=0; x<chosenChordButtonsArray.count; x++) {
+        UIButton *theChordChosenButton = [chosenChordButtonsArray objectAtIndex:x];
+        
+        // Not blank, then replace it
+        if ([[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
+            // We have to calculate the index of the chord first
+            int index = [(NSNumber *)[chordsToBePlayedIndexes objectAtIndex:x] intValue];
+            NSString *chordName = [[NSString alloc] initWithFormat:@"%@ %@", 
+                                   [[theChords objectAtIndex:index] key], [[theChords objectAtIndex:index]name]];
+            [theChordChosenButton setTitle:chordName forState:UIControlStateNormal];
+        }
+    }
+    
 }
 
 -(void) currentKey:(NSString *)newKey
@@ -150,6 +165,7 @@
     [chordChosen8 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordsToBePlayed = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", nil];
+    chordsToBePlayedIndexes = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", nil];
     chosenChordButtonsArray = [[NSArray alloc] initWithObjects:chordChosen1, chordChosen2, chordChosen3, chordChosen4, chordChosen5, chordChosen6, chordChosen7, chordChosen8, nil];
     
     if (self.view)
@@ -219,6 +235,8 @@
     self.view = [[UIView alloc] initWithFrame: CGRectMake(400, 0, 624, 768)];
     [self.view setBackgroundColor:[UIColor brownColor]]; 
     
+    previousChord = nil;
+    
     [self layoutChordPickers];
     [self layoutChordsToBePlayed];
     [self layoutControlBar];
@@ -263,25 +281,90 @@
     beforePlayCounter = 0;
 }
 
+/**
+ A few scenarios are possible with this one
+ 1. User hits play while metronome off - First 4 counts should be from metronome, then the metronome is turned off
+ 2. User hits play while metronome on - Metronome ticks away after 4 beats
+ 3. User turns on metronome during play - Metronome would sound with the chord.
+ 4. User turns off metronome during play - Metronome turns off but chords keep playing
+ 
+ **/
 - (IBAction)metronomeOnOffChanged:(id)sender
 {
-    if(metronomeOnOff.on){
-        double bpm = 60 / [[bpmLabel text] doubleValue];
-        metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
-                 target:self 
-                 selector:@selector(fireMetronomeSound:) 
-                 userInfo:nil
-                 repeats:YES];
-    } else {
+    if(metronomeOnOff.on || !isPaused) {
+        
+        // Only start the timer again if it is nil
+        if (metronomeTimer == nil) {
+            double bpm = 60 / [[bpmLabel text] doubleValue];
+            metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
+                     target:self 
+                     selector:@selector(fireMetronomeSound:) 
+                     userInfo:nil
+                     repeats:YES];
+        }
+    } 
+    else { // Can only happen if metronome is off and we have stopped playing
+        AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        [mainDelegate.viewController.dataController stopMetronome]; 
         [[self metronomeTimer] invalidate];
         metronomeTimer = nil;
     }
 }
 
+
 - (IBAction)fireMetronomeSound:(id)sender
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController metronomeTick];    
+    
+    if (!isPaused) { //If playing
+        if (beforePlayCounter < 4) {
+            
+            [mainDelegate.viewController.dataController metronomeTick]; 
+            
+            // UI Count down 
+            switch (beforePlayCounter) {
+                case 0:
+                    [self.view addSubview:star1];
+                    break;
+                case 1:
+                    [self.view addSubview:star2];
+                    break;
+                case 2:
+                    [self.view addSubview:star3];
+                    break;
+                case 3:
+                    [self.view addSubview:star4];
+                    break;
+                default:
+                    break;
+            }
+            
+            beforePlayCounter++;
+            return;
+        }
+        else {
+            if (metronomeOnOff.on)
+                [mainDelegate.viewController.dataController metronomeTick];    
+            else 
+                [mainDelegate.viewController.dataController stopMetronome];
+            
+            // Start playing chords
+            [self fireChord];
+            
+            // Remove the stars only if they are there
+            if ([star1 isDescendantOfView:self.view]) {
+                [star1 removeFromSuperview];
+                [star2 removeFromSuperview];
+                [star3 removeFromSuperview];
+                [star4 removeFromSuperview];
+                [stop setEnabled:TRUE];
+            }
+        }
+    }
+    else if (metronomeOnOff.on) {   // If not playing and the metronome is on, tick away
+        [mainDelegate.viewController.dataController metronomeTick];      
+    }
+    
 }
 
 - (IBAction)bpmStepperValueChanged:(UIStepper *)sender {
@@ -347,41 +430,49 @@
 		[chordChosen1 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:0 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:0 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen2 frame], position)) {
 		[chordChosen2 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:1 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen3 frame], position)) {
 		[chordChosen3 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:2 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:2 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen4 frame], position)) {
 		[chordChosen4 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:3 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:3 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen5 frame], position)) {
 		[chordChosen5 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:4 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:4 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen6 frame], position)) {
 		[chordChosen6 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:5 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:5 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen7 frame], position)) {
 		[chordChosen7 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:6 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:6 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen8 frame], position)) {
 		[chordChosen8 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         
         [chordsToBePlayed replaceObjectAtIndex:7 withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:7 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     // Now we must remove the dragged chord
     [draggedChord removeFromSuperview]; 
@@ -402,6 +493,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 0];
+        draggedChord.indexOfChord = 0;
 	}
     else if (CGRectContainsPoint([picker2 frame], touchPoint)) {
         [draggedChord setFrame:[picker2 frame]];
@@ -409,6 +501,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 1];
+        draggedChord.indexOfChord = 1;
 	}
     else if (CGRectContainsPoint([picker3 frame], touchPoint)) {
         [draggedChord setFrame:[picker3 frame]];
@@ -416,6 +509,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 2];
+        draggedChord.indexOfChord = 2;
 	}
     else if (CGRectContainsPoint([picker4 frame], touchPoint)) {
         [draggedChord setFrame:[picker4 frame]];
@@ -423,6 +517,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 3];
+        draggedChord.indexOfChord = 3;
 	}
     else if (CGRectContainsPoint([picker5 frame], touchPoint)) {
         [draggedChord setFrame:[picker5 frame]];
@@ -430,6 +525,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 4];
+        draggedChord.indexOfChord = 4;
 	}
     else if (CGRectContainsPoint([picker6 frame], touchPoint)) {
         [draggedChord setFrame:[picker6 frame]];
@@ -437,6 +533,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 5];
+        draggedChord.indexOfChord = 5;
 	}
     else if (CGRectContainsPoint([picker7 frame], touchPoint)) {
         [draggedChord setFrame:[picker7 frame]];
@@ -444,6 +541,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 6];
+        draggedChord.indexOfChord = 6;
 	}
     else if (CGRectContainsPoint([picker8 frame], touchPoint)) {
         [draggedChord setFrame:[picker8 frame]];
@@ -451,6 +549,7 @@
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 7];
+        draggedChord.indexOfChord = 7;
 	}
     
     if (touchIsInPicker) {
@@ -501,6 +600,7 @@
     // Clear the data structure by replacing all items with an NSString
     for (int x=0; x<chordsToBePlayed.count; x++) {
         [chordsToBePlayed replaceObjectAtIndex:x withObject:@""];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:x withObject:@""];
     }
 }
 // Hit it once, it pauses, hit it again it plays. Basically a toggle button
@@ -555,6 +655,8 @@
                 }
             }
         }
+        else
+            progressionEndIndx = 7;
         
         if (isPaused && progressionEndIndx > -1) {
             // If the UI hint has appeared already, don't do it again and just play the chords from where it left off
@@ -569,7 +671,7 @@
             else
                 beforePlayCounter = 4;
             
-            [self metronome_onSwitchOnBeforePlay:metronomeOnOff];
+            [self metronomeOnOffChanged:metronomeOnOff];
             [stop setEnabled:FALSE];
             isPaused = FALSE;
             [play setTitle:@"Pause" forState:UIControlStateNormal];
@@ -589,67 +691,7 @@
     }
 }
 
--(void) fireMetronome_onPlay:(id)sender
-{
-    if (beforePlayCounter < 4) {
-        [self fireMetronomeSound:sender];
-        
-        // UI Count down 
-        switch (beforePlayCounter) {
-            case 0:
-                [self.view addSubview:star1];
-                break;
-            case 1:
-                [self.view addSubview:star2];
-                break;
-            case 2:
-                [self.view addSubview:star3];
-                break;
-            case 3:
-                [self.view addSubview:star4];
-                break;
-            default:
-                break;
-        }
-        
-        beforePlayCounter++;
-        return;
-    }
-    
-    // Once we hit 4 beats, stop metronome timer and start the chord time
-    double bpm = 60 / [[bpmLabel text] doubleValue];
-    chordTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
-                                                  target:self 
-                                                selector:@selector(fireChord_onPlay:) 
-                                                userInfo:nil
-                                                 repeats:YES];
-    
-    beforePlayCounter = 0;
-    [metronomeOnOff setOn:FALSE];
-    [[self metronomeTimer] invalidate];
-    metronomeTimer = nil;
-    
-    // Remove the stars
-    [star1 removeFromSuperview];
-    [star2 removeFromSuperview];
-    [star3 removeFromSuperview];
-    [star4 removeFromSuperview];
-    [stop setEnabled:TRUE];
-}
-
-// This method is not called automatically if metronome is set on programmatically, have to manually call it
--(void) metronome_onSwitchOnBeforePlay:(id)sender
-{
-    // We're going to call the metronome function until the counter is greater than 4
-    double bpm = 60 / [[bpmLabel text] doubleValue];
-    metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
-                                                      target:self 
-                                                    selector:@selector(fireMetronome_onPlay:) 
-                                                    userInfo:nil
-                                                     repeats:YES];
-}
-
--(void) fireChord_onPlay:(id)sender
+-(void) fireChord
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     // Play current chord and increment the index somehow
@@ -662,8 +704,13 @@
     UIButton *chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
     [self scaleUpChordChosenButton:chosenButton];
     
+    
     Chord *chordToBeSent = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+    if(previousChord != nil){
+        [mainDelegate.viewController.dataController stopChord:previousChord];        
+    }
     [mainDelegate.viewController.dataController playChord:chordToBeSent];
+    previousChord = currentChordPlaying;
     
     // We make a copy of the current chord playing because we do not want to affect the UI when we hit
     // stop. This also allows us to play with the number of beats per measure and actually have it be responsive
@@ -714,7 +761,7 @@
     
     UIButton *chosenButton;
     
-    if (currentChordPlayingIndex > progressionEndIndx)
+    if (currentChordPlayingIndex > progressionEndIndx && progressionEndIndx > -1)
         chosenButton = [chosenChordButtonsArray objectAtIndex:progressionEndIndx];
     else
         chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
@@ -723,7 +770,7 @@
     
     isPaused = TRUE;
     [play setTitle:@"Play" forState:UIControlStateNormal];
-    
+    beforePlayCounter = 0;
     starsHaveAppeared = FALSE;
     progressionToBeSent = nil;
 }

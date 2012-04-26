@@ -455,7 +455,9 @@
         if(touch.view.tag > 0){
             NSLog(@"Began - Tag: %d",touch.view.tag);
             [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag - 1) WithHalfStepAlteration:0];
-        } else if(touch.view.superview.tag > 0){
+ 
+        }
+        else if(touch.view.superview.tag > 0){
             NSLog(@"Began - Tag: %d",touch.view.tag);
             NSLog(@"state: %d",mainDelegate.viewController.accidentalsController.state);
             [mainDelegate.viewController.dataController playNoteAt:(touch.view.superview.tag - 1) WithHalfStepAlteration:mainDelegate.viewController.accidentalsController.state];

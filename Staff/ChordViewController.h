@@ -56,6 +56,7 @@
     NSArray *pickerArray;
     NSArray *chosenChordButtonsArray;
     NSMutableArray *chordsToBePlayed; // These are the chords that are chosen that are to be played
+    NSMutableArray *chordsToBePlayedIndexes; //These are the indexes of the chords chosen within the chosen array
     NSMutableArray *progressionToBeSent;
     
     // Metronome properties
@@ -67,6 +68,7 @@
     int beforePlayCounter;
     int currentChordPlayingIndex;
     Chord *currentChordPlaying;
+    Chord *previousChord;
     NSTimer *chordTimer;
     int progressionEndIndx;
 }
@@ -81,10 +83,7 @@
 -(void) currentKey: (NSString *) newKey;
 -(void) setUpChords:(NSArray*)theChords;
 -(void) setupMetronome;
-
--(void) metronome_onSwitchOnBeforePlay:(id)sender;
--(void) fireMetronome_onPlay:(id)sender;
--(void) fireChord_onPlay:(id)sender;
+-(void) fireChord;
 
 -(void) scaleUpChordChosenButton:(UIButton *)theButton;
 -(void) scaleDownChordChosenButton:(UIButton *)theButton;
