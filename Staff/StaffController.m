@@ -406,11 +406,11 @@
     sharpData.width = d_width;
     sharpData.height = d_height;
     sharpData.x = d_x;
-    sharpData.y = 110;
+    sharpData.y = 120;
     flatData.width = d_width;
     flatData.height = d_height;
     flatData.x = d_x;
-    flatData.y = 210;
+    flatData.y = 213;
     
     int sharpNoteCount = 3;
     int flatNoteCount = 5;
@@ -436,9 +436,9 @@
         [flats setValue:flat forKey:[NSString stringWithFormat:@"%d",flatNoteCount]];
         [staffView addSubview:flat];
         
-        flatData.y += 50;
+        flatData.y += 46;
         flatNoteCount +=1;
-        sharpData.y += 50;
+        sharpData.y += 47;
         sharpNoteCount += 1;
         
     }
