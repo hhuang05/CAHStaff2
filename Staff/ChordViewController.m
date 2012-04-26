@@ -314,14 +314,12 @@
 
 - (IBAction)fireMetronomeSound:(id)sender
 {
-    // Everytime we fire metronome, we have to check if it is on
-    if (metronomeOnOff.on) {
-        AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-        [mainDelegate.viewController.dataController metronomeTick]; 
-    }
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     if (!isPaused) { //If playing
         if (beforePlayCounter < 4) {
+            
+            [mainDelegate.viewController.dataController metronomeTick]; 
             
             // UI Count down 
             switch (beforePlayCounter) {
@@ -344,17 +342,29 @@
             beforePlayCounter++;
             return;
         }
-        
-        beforePlayCounter = 0;
-        [metronomeOnOff setOn:FALSE];
-        
-        // Remove the stars
-        [star1 removeFromSuperview];
-        [star2 removeFromSuperview];
-        [star3 removeFromSuperview];
-        [star4 removeFromSuperview];
-        [stop setEnabled:TRUE];
+        else {
+            if (metronomeOnOff.on)
+                [mainDelegate.viewController.dataController metronomeTick];    
+            else 
+                [mainDelegate.viewController.dataController stopMetronome];
+            
+            // Start playing chords
+            [self fireChord];
+            
+            // Remove the stars only if they are there
+            if ([star1 isDescendantOfView:self.view]) {
+                [star1 removeFromSuperview];
+                [star2 removeFromSuperview];
+                [star3 removeFromSuperview];
+                [star4 removeFromSuperview];
+                [stop setEnabled:TRUE];
+            }
+        }
     }
+    else if (metronomeOnOff.on) {   // If not playing and the metronome is on, tick away
+        [mainDelegate.viewController.dataController metronomeTick];      
+    }
+    
 }
 
 - (IBAction)bpmStepperValueChanged:(UIStepper *)sender {
@@ -645,6 +655,8 @@
                 }
             }
         }
+        else
+            progressionEndIndx = 7;
         
         if (isPaused && progressionEndIndx > -1) {
             // If the UI hint has appeared already, don't do it again and just play the chords from where it left off
@@ -679,67 +691,7 @@
     }
 }
 
--(void) fireMetronome_onPlay:(id)sender
-{
-    if (beforePlayCounter < 4) {
-        [self fireMetronomeSound:sender];
-        
-        // UI Count down 
-        switch (beforePlayCounter) {
-            case 0:
-                [self.view addSubview:star1];
-                break;
-            case 1:
-                [self.view addSubview:star2];
-                break;
-            case 2:
-                [self.view addSubview:star3];
-                break;
-            case 3:
-                [self.view addSubview:star4];
-                break;
-            default:
-                break;
-        }
-        
-        beforePlayCounter++;
-        return;
-    }
-    
-    // Once we hit 4 beats, stop metronome timer and start the chord time
-    double bpm = 60 / [[bpmLabel text] doubleValue];
-    chordTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
-                                                  target:self 
-                                                selector:@selector(fireChord_onPlay:) 
-                                                userInfo:nil
-                                                 repeats:YES];
-    
-    beforePlayCounter = 0;
-    [metronomeOnOff setOn:FALSE];
-    [[self metronomeTimer] invalidate];
-    metronomeTimer = nil;
-    
-    // Remove the stars
-    [star1 removeFromSuperview];
-    [star2 removeFromSuperview];
-    [star3 removeFromSuperview];
-    [star4 removeFromSuperview];
-    [stop setEnabled:TRUE];
-}
-
-// This method is not called automatically if metronome is set on programmatically, have to manually call it
--(void) metronome_onSwitchOnBeforePlay:(id)sender
-{
-    // We're going to call the metronome function until the counter is greater than 4
-    double bpm = 60 / [[bpmLabel text] doubleValue];
-    metronomeTimer = [NSTimer scheduledTimerWithTimeInterval: bpm
-                                                      target:self 
-                                                    selector:@selector(fireMetronome_onPlay:) 
-                                                    userInfo:nil
-                                                     repeats:YES];
-}
-
--(void) fireChord_onPlay:(id)sender
+-(void) fireChord
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     // Play current chord and increment the index somehow
@@ -818,7 +770,7 @@
     
     isPaused = TRUE;
     [play setTitle:@"Play" forState:UIControlStateNormal];
-    
+    beforePlayCounter = 0;
     starsHaveAppeared = FALSE;
     progressionToBeSent = nil;
 }

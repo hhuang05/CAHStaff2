@@ -83,10 +83,7 @@
 -(void) currentKey: (NSString *) newKey;
 -(void) setUpChords:(NSArray*)theChords;
 -(void) setupMetronome;
-
--(void) metronome_onSwitchOnBeforePlay:(id)sender;
--(void) fireMetronome_onPlay:(id)sender;
--(void) fireChord_onPlay:(id)sender;
+-(void) fireChord;
 
 -(void) scaleUpChordChosenButton:(UIButton *)theButton;
 -(void) scaleDownChordChosenButton:(UIButton *)theButton;
