@@ -42,10 +42,10 @@
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
 		A7669CB21547422900019493 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A7669CB11547422900019493 /* crsynth.dlsc */; };
-		A7669CB9154743B500019493 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB4154743B500019493 /* libcrmpd.a */; };
-		A7669CBA154743B500019493 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB5154743B500019493 /* libcrse.a */; };
-		A7669CBB154743B500019493 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB7154743B500019493 /* libcrmpd.a */; };
-		A7669CBC154743B500019493 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7669CB8154743B500019493 /* libcrse.a */; };
+		A7C0DAA21549E07800D2059D /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DA9D1549E07800D2059D /* libcrmpd.a */; };
+		A7C0DAA31549E07800D2059D /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DA9E1549E07800D2059D /* libcrse.a */; };
+		A7C0DAA41549E07800D2059D /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DAA01549E07800D2059D /* libcrmpd.a */; };
+		A7C0DAA51549E07800D2059D /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DAA11549E07800D2059D /* libcrse.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,10 +104,10 @@
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A7669CB01547422900019493 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
 		A7669CB11547422900019493 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
-		A7669CB4154743B500019493 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
-		A7669CB5154743B500019493 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
-		A7669CB7154743B500019493 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
-		A7669CB8154743B500019493 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A7C0DA9D1549E07800D2059D /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A7C0DA9E1549E07800D2059D /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A7C0DAA01549E07800D2059D /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A7C0DAA11549E07800D2059D /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +122,10 @@
 				2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */,
 				2AE1DE7615154B72008C538D /* Foundation.framework in Frameworks */,
 				2AE1DE7815154B72008C538D /* CoreGraphics.framework in Frameworks */,
-				A7669CB9154743B500019493 /* libcrmpd.a in Frameworks */,
-				A7669CBA154743B500019493 /* libcrse.a in Frameworks */,
-				A7669CBB154743B500019493 /* libcrmpd.a in Frameworks */,
-				A7669CBC154743B500019493 /* libcrse.a in Frameworks */,
+				A7C0DAA21549E07800D2059D /* libcrmpd.a in Frameworks */,
+				A7C0DAA31549E07800D2059D /* libcrse.a in Frameworks */,
+				A7C0DAA41549E07800D2059D /* libcrmpd.a in Frameworks */,
+				A7C0DAA51549E07800D2059D /* libcrse.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +135,6 @@
 		2AE1DE6415154B71008C538D = {
 			isa = PBXGroup;
 			children = (
-				A7669CB3154743B500019493 /* Release-iphoneos */,
-				A7669CB6154743B500019493 /* Release-iphonesimulator */,
 				A76534921527B777001885E9 /* crsynth */,
 				2AE1DE7915154B72008C538D /* Staff */,
 				2AE1DE7215154B72008C538D /* Frameworks */,
@@ -229,30 +227,30 @@
 		A76534921527B777001885E9 /* crsynth */ = {
 			isa = PBXGroup;
 			children = (
+				A7C0DA9C1549E07800D2059D /* Release-iphoneos */,
+				A7C0DA9F1549E07800D2059D /* Release-iphonesimulator */,
 				A7669CB01547422900019493 /* crmd.h */,
 				A7669CB11547422900019493 /* crsynth.dlsc */,
 			);
 			path = crsynth;
 			sourceTree = "<group>";
 		};
-		A7669CB3154743B500019493 /* Release-iphoneos */ = {
+		A7C0DA9C1549E07800D2059D /* Release-iphoneos */ = {
 			isa = PBXGroup;
 			children = (
-				A7669CB4154743B500019493 /* libcrmpd.a */,
-				A7669CB5154743B500019493 /* libcrse.a */,
+				A7C0DA9D1549E07800D2059D /* libcrmpd.a */,
+				A7C0DA9E1549E07800D2059D /* libcrse.a */,
 			);
-			name = "Release-iphoneos";
-			path = "crsynth/Release-iphoneos";
+			path = "Release-iphoneos";
 			sourceTree = "<group>";
 		};
-		A7669CB6154743B500019493 /* Release-iphonesimulator */ = {
+		A7C0DA9F1549E07800D2059D /* Release-iphonesimulator */ = {
 			isa = PBXGroup;
 			children = (
-				A7669CB7154743B500019493 /* libcrmpd.a */,
-				A7669CB8154743B500019493 /* libcrse.a */,
+				A7C0DAA01549E07800D2059D /* libcrmpd.a */,
+				A7C0DAA11549E07800D2059D /* libcrse.a */,
 			);
-			name = "Release-iphonesimulator";
-			path = "crsynth/Release-iphonesimulator";
+			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,18 +422,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
@@ -459,18 +457,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphoneos/libcrse.a",
 					"./crsynth/Release-iphoneos/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);

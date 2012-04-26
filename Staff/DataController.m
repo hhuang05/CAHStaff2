@@ -39,7 +39,7 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     // set metronome to play the wooden block
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC2, 115, 0x00);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC1, 115, 0x00);
 
 
     halfStepAlteration = 0;
@@ -555,12 +555,12 @@
 -(void)metronomeTick{
     NSLog(@"Tick");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x92, 65, 0x7F);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x91, 65, 0x7F);
 }
 
 -(void)stopMetronome{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x82, 65, 0x7F);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x81, 65, 0x7F);
 }
 
 -(void) instrumentWasChosen:(int)instrument{
@@ -569,7 +569,12 @@
         MIDIinstrument = instrument;
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x7F);
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC1, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC2, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC3, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC4, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC5, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC6, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC7, MIDIinstrument, 0x7F);
     }
 }
 
@@ -587,7 +592,9 @@
     
     for (int x=0; x<chord.notes.count; x++) {
         int note = [self calculateMajorNoteForChord:chord atPosition:x];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x91, note, 0x7F);
+        if(note != 0){
+            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 146 + x, note, 0x7F);
+        }
     }
 }
 
@@ -600,13 +607,17 @@
 
     float value = [[chord.notes objectAtIndex:pos] floatValue];
     
+    /*
+     set precision for all of these values
+     */
+    
     if (value == 1.0){
         return [[currentKeySignatureNotes objectAtIndex:startingLocation]intValue];
     }
     else if(value == 3.0){
         return [[currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue];
     }
-    else if(value == 3.1){
+    else if(value > 3.0 && value < 3.15){
         return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue] -1); 
     }
     else if(value == 4.0){
@@ -641,8 +652,10 @@
     NSLog(@"Stop chord:%@", chord.name);
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     for (int x=0; x<chord.notes.count; x++) {
-        int note = [[chord.notes objectAtIndex:x] intValue];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x81, note, 0x7F);
+        int note = [self calculateMajorNoteForChord:chord atPosition:x];
+        if(note != 0){
+            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 130 + x, note, 0x7F);
+        }
     }
 }
 

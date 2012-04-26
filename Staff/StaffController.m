@@ -484,11 +484,14 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSArray *allTouches = [touches allObjects];
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     for (UITouch *touch in allTouches){
         if(touch.view.tag > 0){
-            AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController stopNote];
         }
+         else if(touch.view.superview.tag > 0){
+             [mainDelegate.viewController.dataController stopNote];   
+         }
     }
     
     NSArray *subviews = [self.staffView subviews];

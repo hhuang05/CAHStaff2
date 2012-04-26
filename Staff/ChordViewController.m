@@ -680,6 +680,8 @@
             //[mainDelegate.viewController.dataController pauseChords];
             isPaused = TRUE;
             [play setTitle:@"Play" forState:UIControlStateNormal];
+            AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+            [mainDelegate.viewController.dataController stopChord:currentChordPlaying];
         }
     }
     else 
@@ -710,7 +712,6 @@
         [mainDelegate.viewController.dataController stopChord:previousChord];        
     }
     [mainDelegate.viewController.dataController playChord:chordToBeSent];
-    previousChord = currentChordPlaying;
     
     // We make a copy of the current chord playing because we do not want to affect the UI when we hit
     // stop. This also allows us to play with the number of beats per measure and actually have it be responsive
@@ -720,7 +721,7 @@
         currentChordPlaying.beatsPerMeasure = chordToBeSent.beatsPerMeasure;
         currentChordPlaying.numberOfMeasures = chordToBeSent.numberOfMeasures;
     }
-    
+    previousChord = currentChordPlaying;
     currentChordPlaying.beatsPerMeasure--; // Decrease beats per measure
     
     // We will only increment index if the num beats = 0
@@ -751,13 +752,13 @@
 
 -(void) stopButton_onTouchUpInside
 {
+    // Stop the last chord
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [mainDelegate.viewController.dataController stopChord:previousChord];
+    
     // Stop the chord timer
     [chordTimer invalidate];
     chordTimer = nil;
-    
-    // Stop the last chord
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController stopChord:currentChordPlaying];
     
     UIButton *chosenButton;
     
@@ -773,6 +774,7 @@
     beforePlayCounter = 0;
     starsHaveAppeared = FALSE;
     progressionToBeSent = nil;
+   [metronomeOnOff setOn:FALSE];
 }
 
 // Once the user touches a chord chosen, present the popover view
