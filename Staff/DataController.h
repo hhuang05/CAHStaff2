@@ -43,4 +43,6 @@
 -(void)fillKeySignatureAccidentals;
 -(void)fillNotesInKeySignatureDictionary;
 -(void)fillChordsDictionary;
+-(int)calculateMajorNoteForChord:(Chord*)chord atPosition:(int) pos;
+
 @end

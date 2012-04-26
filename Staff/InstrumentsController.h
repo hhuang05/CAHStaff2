@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface InstrumentsController : UIViewController
+@interface InstrumentsController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
     NSArray *elements;
     UIView *content;
@@ -19,5 +19,7 @@
 
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property int instrument;
+
+- (void)setupInstrumentsElements;
 
 @end

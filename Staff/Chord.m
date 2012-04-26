@@ -26,7 +26,7 @@
     return self;
 }
 
--(void)setKey:(NSString*)aKey{
+-(void)setupKey:(NSString*)aKey{
     key = aKey;
 }
 

@@ -15,10 +15,10 @@
 @property (nonatomic) int beatsPerMeasure;
 @property (nonatomic) int numberOfMeasures;
 @property (nonatomic) int idNumber;
-@property (nonatomic) NSString* key;
+@property (nonatomic, retain) NSString* key;
 
 -(id)initWithName:(NSString*)name Notes:(NSArray*)notes andID:(int)number;
--(void)setKey:(NSString*)aKey;
+-(void)setupKey:(NSString*)aKey;
 -(void)resetValues;
 
 @end

@@ -505,7 +505,7 @@
 
 -(void)addKeyToChords:(NSString*)theKey{
     for(Chord *c in _majorKeyChords){
-        [c setKey:theKey];
+        [c setupKey:theKey];
     }
 }
 

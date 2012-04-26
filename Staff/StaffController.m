@@ -223,6 +223,11 @@
     return newView;
 }
 
+- (void)registerAccidentalNote:(UIView *)view withPos:(int)pos
+{
+    
+}
+
 - (void)buildSpaces
 {
     spaces = [[NSMutableDictionary alloc] initWithCapacity:8];

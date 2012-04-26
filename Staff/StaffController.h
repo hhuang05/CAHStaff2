@@ -70,7 +70,8 @@ typedef struct image_view_metadata {
 - (void)findAccidentalNote:(int)pos;
 - (void)registerAccidentalNote:(UIView *)view withPos:(int)pos;
 
-
+- (UIView *)deepCopySolidAccidentalView:(solidlineAccidental *)theView;
+- (UIView *)deepCopyDashedAccidentalView:(dashedlineAccidental *)theView;
 
 
 
