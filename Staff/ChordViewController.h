@@ -56,6 +56,7 @@
     NSArray *pickerArray;
     NSArray *chosenChordButtonsArray;
     NSMutableArray *chordsToBePlayed; // These are the chords that are chosen that are to be played
+    NSMutableArray *chordsToBePlayedIndexes; //These are the indexes of the chords chosen within the chosen array
     NSMutableArray *progressionToBeSent;
     
     // Metronome properties

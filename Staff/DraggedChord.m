@@ -11,7 +11,7 @@
 
 @implementation DraggedChord
 
-@synthesize chordChosen = _chordToPlay;
+@synthesize chordChosen = _chordToPlay, indexOfChord = _indexOfChord;
 
 - (id)init
 {
