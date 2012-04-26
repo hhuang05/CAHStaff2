@@ -68,6 +68,7 @@
     int beforePlayCounter;
     int currentChordPlayingIndex;
     Chord *currentChordPlaying;
+    Chord *previousChord;
     NSTimer *chordTimer;
     int progressionEndIndx;
 }

@@ -235,6 +235,8 @@
     self.view = [[UIView alloc] initWithFrame: CGRectMake(400, 0, 624, 768)];
     [self.view setBackgroundColor:[UIColor brownColor]]; 
     
+    previousChord = nil;
+    
     [self layoutChordPickers];
     [self layoutChordsToBePlayed];
     [self layoutControlBar];
@@ -302,6 +304,8 @@
         }
     } 
     else { // Can only happen if metronome is off and we have stopped playing
+        AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        [mainDelegate.viewController.dataController stopMetronome]; 
         [[self metronomeTimer] invalidate];
         metronomeTimer = nil;
     }
@@ -748,8 +752,13 @@
     UIButton *chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
     [self scaleUpChordChosenButton:chosenButton];
     
+    
     Chord *chordToBeSent = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
+    if(previousChord != nil){
+        [mainDelegate.viewController.dataController stopChord:previousChord];        
+    }
     [mainDelegate.viewController.dataController playChord:chordToBeSent];
+    previousChord = currentChordPlaying;
     
     // We make a copy of the current chord playing because we do not want to affect the UI when we hit
     // stop. This also allows us to play with the number of beats per measure and actually have it be responsive

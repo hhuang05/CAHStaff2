@@ -36,6 +36,11 @@
     [self setCurrentKeySignature:@"C"];
     [self instrumentWasChosen:0];
     [self keySignatureWasChosen:_currentKeySignature]; 
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    // set metronome to play the wooden block
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC2, 115, 0x00);
+
 
     halfStepAlteration = 0;
     
@@ -532,27 +537,30 @@
 -(void)playNoteAt:(int)position WithHalfStepAlteration:(int) accidentalState{
     
     int noteNumber = [[currentKeySignatureNotes objectAtIndex:position] intValue];
-    
+    NSLog(@"Playing note %d", noteNumber);    
     // add -1 or 1 to flat or sharp the note if the user wanted
     if(accidentalState){
-        noteNumber += halfStepAlteration;
+        noteNumber += accidentalState;
     }
     currentNote = noteNumber;
     
-    NSLog(@"Playing note %d", noteNumber);
+    NSLog(@"accidental state: %d", accidentalState);
+    NSLog(@"alteration: %d", halfStepAlteration);
+    NSLog(@"changed to note %d", noteNumber);
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
 	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
 }
 
 -(void)metronomeTick{
     NSLog(@"Tick");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    // 115 is the wooden block
-    
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, 115, 0x00);
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, 65, 0x7F);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x92, 65, 0x7F);
+}
+
+-(void)stopMetronome{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x82, 65, 0x7F);
 }
 
 -(void) instrumentWasChosen:(int)instrument{
@@ -560,15 +568,15 @@
     if(instrument > -1 && instrument < 128){
         MIDIinstrument = instrument;
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC1, MIDIinstrument, 0x7F);
     }
 }
 
 -(void)stopNote{
     NSLog(@"Stopped playing note");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, 115, 0x00);
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, currentNote, 0x00);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x80, currentNote, 0x7F);
 }
 
 -(void)playChord:(Chord *)chord
@@ -576,11 +584,10 @@
     NSLog(@"Playing chord:%@", chord.name);
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x00);
     
     for (int x=0; x<chord.notes.count; x++) {
         int note = [self calculateMajorNoteForChord:chord atPosition:x];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, note, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x91, note, 0x7F);
     }
 }
 
@@ -590,18 +597,7 @@
     // get the starting note for this key
     int startingLocation = [[[_keySignatureAccidentals objectForKey:_currentKey] objectAtIndex:0] intValue] - 1;
     NSLog(@"root note: %d", startingLocation);
-    
-    /*
-    NSNumber *one = [[NSNumber alloc]initWithFloat:1.0];
-    NSNumber *three = [[NSNumber alloc]initWithFloat:3.0];
-    NSNumber *threeFlat = [[NSNumber alloc]initWithFloat:3.1];
-    NSNumber *four = [[NSNumber alloc]initWithFloat:4.0];
-    NSNumber *five = [[NSNumber alloc]initWithFloat:5.0];
-    NSNumber *fiveFlat = [[NSNumber alloc]initWithFloat:5.1];
-    NSNumber *fiveSharp = [[NSNumber alloc]initWithFloat:5.5];
-    NSNumber *six = [[NSNumber alloc]initWithFloat:6.0];
-    NSNumber *sevenFlat = [[NSNumber alloc]initWithFloat:7.1];
-    */
+
     float value = [[chord.notes objectAtIndex:pos] floatValue];
     
     if (value == 1.0){
@@ -636,8 +632,6 @@
     }
     
 
-    
-    
     return note;
 }
 
@@ -648,7 +642,19 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     for (int x=0; x<chord.notes.count; x++) {
         int note = [[chord.notes objectAtIndex:x] intValue];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, note, 0x00);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x81, note, 0x7F);
+    }
+}
+
+-(void)halfStepAlterationOptionWasSelected:(NSString*)choice{
+    if(choice == @"Apply Sharp"){
+        halfStepAlteration = 1;
+    }
+    else if(choice == @"Apply Flat"){
+        halfStepAlteration = -1;
+    }
+    else{
+        halfStepAlteration = 0;
     }
 }
 
