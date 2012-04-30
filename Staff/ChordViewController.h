@@ -88,6 +88,8 @@
 @property (nonatomic, retain) UIPopoverController *instumentPopoverController;
 @property (nonatomic, retain) ChordInstrumentsController *instrumentsController;
 
+@property (nonatomic, retain) IBOutlet UISlider *chordVolume;
+
 -(NSString *) currentKey;
 -(void) currentKey: (NSString *) newKey;
 -(void) setUpChords:(NSArray*)theChords;
