@@ -33,24 +33,12 @@
 {
     [super viewDidLoad];
     
-    //Uncomment to run controllers talking to controllers code
-    //AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    //[mainDelegate.viewController.dataController testmethod:[NSString stringWithFormat:@"%@",self.class]];
-    
     self.notes = NULL;
     [self buildStaff];
     [self buildLines];
     [self buildSpaces];
     [self buildTopMenu];
     [self setFlatsAndSharps];
-    //EXAMPLE OF HOW STAFF CHANGES//
-    // NSMutableArray *thing = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"0",@"0",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"0",@"0",@"0",nil];
-    // [self performSelector:@selector(changeScale:) withObject:thing afterDelay:2.0];
-    // NSMutableArray *thing2 = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"0",@"0",@"0",@"0",@"0",nil];
-    // [self performSelector:@selector(changeScale:) withObject:thing2 afterDelay:4.0];
-    // [self performSelector:@selector(clearAllSharpsAndFlatsFromStaff) withObject:nil afterDelay:6.0];
-    
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidUnload

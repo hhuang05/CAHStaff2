@@ -71,6 +71,8 @@
     Chord *previousChord;
     NSTimer *chordTimer;
     int progressionEndIndx;
+    
+    InstrumentsController *instrumentsController;
 }
 
 //Metronome properties
