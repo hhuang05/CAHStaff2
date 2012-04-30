@@ -15,7 +15,7 @@
 
 @implementation DataController
 
-@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, keySignatureNoteMap = _keySignatureNoteMap, currentKey = _currentKey, majorKeyChords = _majorKeyChords, currentKeySignatureNotes = _currentKeySignatureNotes;
+@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, keySignatureNoteMap = _keySignatureNoteMap, currentKey = _currentKey, majorKeyChords = _majorKeyChords, currentKeySignatureNotes = _currentKeySignatureNotes, chordVolumeAddition = _chordVolumeAddition;
 
 -(id) init{    
     self = [super init];
@@ -48,7 +48,9 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC1, metronomeMIDIinstrument, 0x00);
 
+    // set current chord playing to nil and chord volume adjustment to 0
     currentChord = nil;
+    _chordVolumeAddition = [[NSNumber alloc] initWithFloat:0.0];
     
     return TRUE;
 }
@@ -554,6 +556,10 @@
         NSLog(@"changeScale called with unknown key signature %@", choice);
 }
 
+-(void)newChordVolumeAdjustment:(float)newValue{
+    _chordVolumeAddition = [[NSNumber alloc] initWithFloat:newValue];
+}
+
 // play a MIDI note with the current chosen instrument, and 
 // adjust for half step alteration if the user selected flat
 // or sharp option for the grey bar section of the staff
@@ -568,7 +574,7 @@
     currentNote = noteNumber;
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 60);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 100);
 }
 
 // tell MIDI channel 2 to play note 65
@@ -610,7 +616,7 @@
 -(void)stopNote{
     NSLog(@"Stopped playing note");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x80, currentNote, 0x7F);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x80, currentNote, 100);
 }
 
 -(void)playChord:(Chord *)chord
@@ -623,7 +629,7 @@
         int note = [self calculateMajorNoteForChord:currentChord atPosition:x];
         if(note != 0){
             // velocity between 0-127
-            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 146 + x, note, 60);
+            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 146 + x, note, 42 + [_chordVolumeAddition intValue]);
         }
     }
 }

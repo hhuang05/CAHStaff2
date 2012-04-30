@@ -20,7 +20,7 @@
 @synthesize bpmLabel;
 @synthesize metronomeOnOff;
 @synthesize metronomeTimer;
-@synthesize topMenu, instrumentsButton, instumentPopoverController, instrumentsController;
+@synthesize topMenu, instrumentsButton, instumentPopoverController, instrumentsController, chordVolume;
 
 #define GROW_ANIMATION_DURATION_SECONDS 0.15    // Determines how fast a piece size grows when it is moved.
 #define SHRINK_ANIMATION_DURATION_SECONDS 0.15  // Determines how fast a piece size shrinks when a piece stops moving.
@@ -311,10 +311,27 @@
     [self layoutStars];
     [self setupMetronome];
     [self buildTopMenu];
+    [self setUpVolumeSlider];
     instrumentsController = [[ChordInstrumentsController alloc] init];
     [mainDelegate.viewController.circleOf5thsController setup];
 }
 
+// Staff is set to velocity of 100
+// Chords is set to 42 + x, where x goes from 0-85, so 42-127
+-(void)setUpVolumeSlider{
+    chordVolume = [[UISlider alloc] initWithFrame:CGRectMake(50, 80, 470, 50)];
+    [chordVolume setMinimumValue:0.0];
+    [chordVolume setMaximumValue:85.0];
+    [chordVolume setMinimumTrackTintColor:[UIColor blackColor]];
+    [chordVolume addTarget:self action:@selector(chordVolumeChanged) forControlEvents:UIControlEventValueChanged];
+    [chordVolume setValue:42.5];
+    [self.view addSubview:chordVolume];
+}
+
+-(void)chordVolumeChanged{
+    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [mainDelegate.viewController.dataController newChordVolumeAdjustment:chordVolume.value];
+}
 
 /*********************************************************
  The functions below implements the metronome
