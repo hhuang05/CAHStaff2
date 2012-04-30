@@ -568,20 +568,20 @@
     currentNote = noteNumber;
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 60);
 }
 
 // tell MIDI channel 2 to play note 65
 -(void)metronomeTick{
     NSLog(@"Tick");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x91, 65, 0x7F);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x91, 65, 40);
 }
 
 // tell MIDI channel 2 to turn off note 65
 -(void)stopMetronome{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x81, 65, 0x7F);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x81, 65, 40);
 }
 
 // changes the instrument to be used for the staff player
@@ -589,7 +589,7 @@
     if(instrument > -1 && instrument < 128){
         staffMIDIinstrument = instrument;
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, staffMIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, staffMIDIinstrument, 0);
     }
 }
 
@@ -598,12 +598,12 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if(instrument > -1 && instrument < 128){
         chordMIDIinstrument = instrument;
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC2, chordMIDIinstrument, 0x7F);
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC3, chordMIDIinstrument, 0x7F);
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC4, chordMIDIinstrument, 0x7F);
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC5, chordMIDIinstrument, 0x7F);
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC6, chordMIDIinstrument, 0x7F);
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC7, chordMIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC2, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC3, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC4, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC5, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC6, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC7, chordMIDIinstrument, 0);
     }
 }
 
@@ -622,7 +622,8 @@
     for (int x=0; x<currentChord.notes.count; x++) {
         int note = [self calculateMajorNoteForChord:currentChord atPosition:x];
         if(note != 0){
-            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 146 + x, note, 0x7F);
+            // velocity between 0-127
+            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 146 + x, note, 60);
         }
     }
 }
@@ -683,7 +684,7 @@
     for (int x=0; x<chord.notes.count; x++) {
         int note = [self calculateMajorNoteForChord:chord atPosition:x];
         if(note != 0){
-            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 130 + x, note, 0x7F);
+            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 130 + x, note, 60);
         }
     }
 }
