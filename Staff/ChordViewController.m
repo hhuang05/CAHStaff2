@@ -12,6 +12,7 @@
 #import "ChordOptionsViewController.h"
 #import "DataController.h"
 #import "Circleof5thsController.h"
+#import "solidVerticalLine.h"
 
 @implementation ChordViewController
 
@@ -19,6 +20,7 @@
 @synthesize bpmLabel;
 @synthesize metronomeOnOff;
 @synthesize metronomeTimer;
+@synthesize topMenu, instrumentsButton, instumentPopoverController, instrumentsController;
 
 #define GROW_ANIMATION_DURATION_SECONDS 0.15    // Determines how fast a piece size grows when it is moved.
 #define SHRINK_ANIMATION_DURATION_SECONDS 0.15  // Determines how fast a piece size shrinks when a piece stops moving.
@@ -79,9 +81,62 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
+}
+
+- (void)buildTopMenu
+{
+    topMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 624, 70)];
+    [topMenu setBackgroundColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0]];
+    
+    instrumentsButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 280, 50)];
+    [instrumentsButton setBackgroundColor:[UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0]];
+    [[instrumentsButton layer] setBorderColor:[UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1.0].CGColor];
+    [[instrumentsButton layer] setBorderWidth:1];
+    [[instrumentsButton layer] setCornerRadius:10];
+    [instrumentsButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
+    [instrumentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [instrumentsButton setTitle:@"Acoustic Piano" forState:UIControlStateNormal];
+    [[instrumentsButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[instrumentsButton layer] setBorderWidth:2];
+    [[instrumentsButton layer] setShadowColor:[UIColor blackColor].CGColor];
+    [[instrumentsButton layer] setShadowOpacity:0.7f];
+    [[instrumentsButton layer] setShadowOffset:CGSizeMake(3.0f, 3.0f)];
+    [[instrumentsButton layer] setShadowRadius:5.0f];
+    [[instrumentsButton layer] setMasksToBounds:NO];
+    [[instrumentsButton layer] setShadowPath:[UIBezierPath bezierPathWithRect:instrumentsButton.bounds].CGPath];
+    
+    [topMenu addSubview:instrumentsButton];
+    [self.view addSubview:topMenu];
+
+    solidVerticalLine *divider = [[solidVerticalLine alloc] initWithFrame:CGRectMake(0, 0, 20, 70)];
+    [divider addSubview:[self deepCopySolidVerticalLine:[[solidVerticalLine alloc]init]]];
+    [self.view addSubview:divider];
+    
+    [instrumentsButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openInstrumentsMenu:)]];  
+
+}
+
+- (UIView *)deepCopySolidVerticalLine:(solidVerticalLine *)theView
+{
+    solidVerticalLine *newView = [[solidVerticalLine alloc] initWithFrame:[theView frame]];
+    [newView setBackgroundColor:[UIColor blackColor]];
+    return newView;
+}
+
+- (IBAction)openInstrumentsMenu:(id)sender
+{
+//    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if([instumentPopoverController isPopoverVisible]){
+        [instumentPopoverController dismissPopoverAnimated:YES];
+        return;
+    }
+    instumentPopoverController = [[UIPopoverController alloc] initWithContentViewController:instrumentsController];
+    [instumentPopoverController presentPopoverFromBarButtonItem:sender 
+                              permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [instumentPopoverController setPopoverContentSize:CGSizeMake(320, 216)];
 }
 
 
@@ -127,41 +182,46 @@
     }
 }
 
+/*
+ CHANGED TOP ROW Y VALUES FROM 20 TO 130
+ CHANGED BOTTOM ROM Y VALUES FROM 140 TO 250
+ 
+ */
 
 -(void) layoutChordsToBePlayed
 {
     // Coordinates are relative to the parent container
     chordChosen1 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen1.frame = CGRectMake(50, 20, 80, 80);
+    chordChosen1.frame = CGRectMake(50, 130, 80, 80);
     //chordChosen1.titleLabel.font  = [UIFont systemFontOfSize:10];
     [chordChosen1 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen2 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen2.frame = CGRectMake(180, 20, 80, 80);
+    chordChosen2.frame = CGRectMake(180, 130, 80, 80);
     [chordChosen2 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen3 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen3.frame = CGRectMake(310, 20, 80, 80);
+    chordChosen3.frame = CGRectMake(310, 130, 80, 80);
     [chordChosen3 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen4 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen4.frame = CGRectMake(440, 20, 80, 80);
+    chordChosen4.frame = CGRectMake(440, 130, 80, 80);
     [chordChosen4 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen5 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen5.frame = CGRectMake(50, 140, 80, 80);
+    chordChosen5.frame = CGRectMake(50, 250, 80, 80);
     [chordChosen5 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen6 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen6.frame = CGRectMake(180, 140, 80, 80);
+    chordChosen6.frame = CGRectMake(180, 250, 80, 80);
     [chordChosen6 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen7 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen7.frame = CGRectMake(310, 140, 80, 80);
+    chordChosen7.frame = CGRectMake(310, 250, 80, 80);
     [chordChosen7 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen8 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen8.frame = CGRectMake(440, 140, 80, 80);
+    chordChosen8.frame = CGRectMake(440, 250, 80, 80);
     [chordChosen8 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordsToBePlayed = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", nil];
@@ -181,24 +241,28 @@
     }    
 }
 
+
+/*
+ CHANGED THESE Y VALUES FROM 340 TO 400
+ */
 -(void) layoutControlBar
 {
     isPaused = TRUE;
     
     
     play = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    play.frame = CGRectMake(30, 340, 120, 90);
+    play.frame = CGRectMake(30, 400, 120, 90);
     [play setTitle:@"Play" forState:UIControlStateNormal];
     [play addTarget:self action:@selector(playButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     stop = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    stop.frame = CGRectMake(160, 340, 120, 90);
+    stop.frame = CGRectMake(160, 400, 120, 90);
     [stop setTitle:@"Stop" forState:UIControlStateNormal];
     [stop addTarget:self action:@selector(stopButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     stop.adjustsImageWhenDisabled = TRUE;
     
     clearAll = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    clearAll.frame = CGRectMake(290, 340, 120, 90);
+    clearAll.frame = CGRectMake(290, 400, 120, 90);
     [clearAll setTitle:@"Clear All" forState:UIControlStateNormal];
     [clearAll addTarget:self action:@selector(clearButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
@@ -210,21 +274,25 @@
     }    
 }
 
+/*
+ CHANGED THESE Y VALUES FROM 280 TO 350
+ */
+
 -(void) layoutStars
 {
     starImage = [UIImage imageNamed:@"star.png"];
     
     star1 = [[UIImageView alloc] initWithImage:starImage];
-    [star1 setFrame:CGRectMake(30, 280, 40, 40)];
+    [star1 setFrame:CGRectMake(30, 350, 40, 40)];
     
     star2 = [[UIImageView alloc] initWithImage:starImage];
-    [star2 setFrame:CGRectMake(80, 280, 40, 40)];
+    [star2 setFrame:CGRectMake(80, 350, 40, 40)];
     
     star3 = [[UIImageView alloc] initWithImage:starImage];
-    [star3 setFrame:CGRectMake(130, 280, 40, 40)];
+    [star3 setFrame:CGRectMake(130, 350, 40, 40)];
     
     star4 = [[UIImageView alloc] initWithImage:starImage];
-    [star4 setFrame:CGRectMake(180, 280, 40, 40)];
+    [star4 setFrame:CGRectMake(180, 350, 40, 40)];
     
     starsHaveAppeared = FALSE;
 }
@@ -242,8 +310,9 @@
     [self layoutControlBar];
     [self layoutStars];
     [self setupMetronome];
+    [self buildTopMenu];
+    instrumentsController = [[ChordInstrumentsController alloc] init];
     [mainDelegate.viewController.circleOf5thsController setup];
-    //[mainDelegate.viewController.twoFingerOptionSelector setup];
 }
 
 
@@ -251,9 +320,18 @@
  The functions below implements the metronome
  *********************************************************/
 
+/*
+ 
+ CHANGED Y VALUES
+ BPM STEPPER FROM 332 TO 380
+ BPM LABEL FROM 367 TO 415
+ METRONOMRE ONOFF FROM 415 TO 463
+ 
+ */
+
 - (void) setupMetronome
 {
-    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(433, 332, 100, 30)];
+    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(433, 380, 100, 30)];
     [bpmStepper setMinimumValue:20.0];
     [bpmStepper setMaximumValue:160.0];
     [bpmStepper setValue:80.0];
@@ -262,13 +340,13 @@
     [bpmStepper setWraps:YES];
     [bpmStepper setAutorepeat:YES];
     
-    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(420, 367, 120, 40)];
+    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(420, 415, 120, 40)];
     [[bpmLabel layer] setCornerRadius:10];
     [bpmLabel setText:@"80"];
     [bpmLabel setTextAlignment:UITextAlignmentCenter];
     [bpmLabel setFont:[UIFont systemFontOfSize:24]];
      
-    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(440, 415, 79, 27)];
+    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(440, 463, 79, 27)];
     [metronomeOnOff setOn:NO animated:YES];
     
     [self.view addSubview:bpmLabel];
@@ -825,21 +903,26 @@
     }
 }
 
+/*
+ 
+    I CHANGED LOCAL VAR TO thePopoverController AFTER GETTING WARNINGS THAT IT HID THE INSTANCE VAR
+ */
+
 // Implemented as part of UIPopoverControllerdelegate
--(void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+-(void) popoverControllerDidDismissPopover:(UIPopoverController *)thePopoverController
 {
     // Must check if delete was pressed since this call back is executed for non-programmatic calls
-    if ([(ChordOptionsViewController *)popoverController.contentViewController wasDeletePressed]) {
+    if ([(ChordOptionsViewController *)thePopoverController.contentViewController wasDeletePressed]) {
         // Remove the chord and reset the button
         
         // Gets the appropriate button from the chord chosen and we remove the text associated
-        UIButton *buttonChosen = (UIButton *)[chosenChordButtonsArray objectAtIndex:[chordsToBePlayed indexOfObject:[(ChordOptionsViewController *)popoverController.contentViewController theChord]]];
+        UIButton *buttonChosen = (UIButton *)[chosenChordButtonsArray objectAtIndex:[chordsToBePlayed indexOfObject:[(ChordOptionsViewController *)thePopoverController.contentViewController theChord]]];
         
         [buttonChosen setTitle:@"" forState:UIControlStateNormal];
-        [[(ChordOptionsViewController *)popoverController.contentViewController theChord] resetValues];
+        [[(ChordOptionsViewController *)thePopoverController.contentViewController theChord] resetValues];
         
         // Now we remove the chord also from the array
-        [chordsToBePlayed replaceObjectAtIndex:[chordsToBePlayed indexOfObject:[(ChordOptionsViewController *)popoverController.contentViewController theChord]] withObject:@""]; 
+        [chordsToBePlayed replaceObjectAtIndex:[chordsToBePlayed indexOfObject:[(ChordOptionsViewController *)thePopoverController.contentViewController theChord]] withObject:@""]; 
     }
 }
 

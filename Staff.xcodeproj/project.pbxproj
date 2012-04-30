@@ -42,6 +42,8 @@
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
 		A7669CB21547422900019493 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A7669CB11547422900019493 /* crsynth.dlsc */; };
+		A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C3154EF70600712D92 /* solidVerticalLine.m */; };
+		A7A180C8154EF8FA00712D92 /* ChordInstrumentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C7154EF8FA00712D92 /* ChordInstrumentsController.m */; };
 		A7C0DAA21549E07800D2059D /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DA9D1549E07800D2059D /* libcrmpd.a */; };
 		A7C0DAA31549E07800D2059D /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DA9E1549E07800D2059D /* libcrse.a */; };
 		A7C0DAA41549E07800D2059D /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DAA01549E07800D2059D /* libcrmpd.a */; };
@@ -104,6 +106,10 @@
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A7669CB01547422900019493 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
 		A7669CB11547422900019493 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
+		A7A180C2154EF70600712D92 /* solidVerticalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solidVerticalLine.h; sourceTree = "<group>"; };
+		A7A180C3154EF70600712D92 /* solidVerticalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solidVerticalLine.m; sourceTree = "<group>"; };
+		A7A180C7154EF8FA00712D92 /* ChordInstrumentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordInstrumentsController.m; sourceTree = "<group>"; };
+		A7A180C9154EF94F00712D92 /* ChordInstrumentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordInstrumentsController.h; sourceTree = "<group>"; };
 		A7C0DA9D1549E07800D2059D /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
 		A7C0DA9E1549E07800D2059D /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 		A7C0DAA01549E07800D2059D /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
@@ -178,6 +184,8 @@
 				0826BDCC1523E5C2004A9B22 /* smallsharp.gif */,
 				0826BDCD1523E5C2004A9B22 /* solidLine.h */,
 				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
+				A7A180C2154EF70600712D92 /* solidVerticalLine.h */,
+				A7A180C3154EF70600712D92 /* solidVerticalLine.m */,
 				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
 				2AF14AB51547132600C899B2 /* solidlineAccidental.m */,
 				2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */,
@@ -188,6 +196,8 @@
 				2A94A4DF1542622000766EAF /* AccidentalsController.m */,
 				2AB9BF68154795C9001E756E /* InstrumentsController.h */,
 				2AB9BF69154795C9001E756E /* InstrumentsController.m */,
+				A7A180C9154EF94F00712D92 /* ChordInstrumentsController.h */,
+				A7A180C7154EF8FA00712D92 /* ChordInstrumentsController.m */,
 				2A94A4D51542517F00766EAF /* graybutton.png */,
 				2AE1DE8215154B72008C538D /* AppDelegate.h */,
 				2AE1DE8315154B72008C538D /* AppDelegate.m */,
@@ -341,6 +351,8 @@
 				2AF14AB61547132600C899B2 /* solidlineAccidental.m in Sources */,
 				2AF14AB9154715A200C899B2 /* dashedlineAccidental.m in Sources */,
 				2AB9BF6A154795C9001E756E /* InstrumentsController.m in Sources */,
+				A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */,
+				A7A180C8154EF8FA00712D92 /* ChordInstrumentsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
