@@ -74,7 +74,7 @@
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     [mainDelegate.viewController.staffController.sharpFlatButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
     [mainDelegate.viewController.staffController.sharpFlatButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    instrument = (row+1);
+    instrument = row;
     [mainDelegate.viewController.staffController.instrumentsButton setTitle:[elements objectAtIndex:row] forState:UIControlStateNormal];
     
     [mainDelegate.viewController.dataController staffInstrumentWasChosen:instrument];
