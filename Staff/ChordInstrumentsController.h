@@ -1,4 +1,5 @@
 //
+<<<<<<< HEAD
 //  InstrumentsController.h
 //  Staff
 //
@@ -7,6 +8,15 @@
 //
 
 #import <UIKit/UIKit.h>
+=======
+//  ChordInstrumentsController.h
+//  Staff
+//
+//  Created by Aaron Tietz on 5/1/12.
+//  Copyright (c) 2012 Tufts University. All rights reserved.
+//
+
+>>>>>>> temp
 #import "AppDelegate.h"
 
 @interface ChordInstrumentsController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
@@ -21,5 +31,8 @@
 @property int instrument;
 
 - (void)setupInstrumentsElements;
+<<<<<<< HEAD
 
+=======
+>>>>>>> temp
 @end

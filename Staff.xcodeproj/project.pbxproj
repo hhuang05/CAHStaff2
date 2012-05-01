@@ -43,11 +43,19 @@
 		2AE1DE8415154B72008C538D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE1DE8315154B72008C538D /* AppDelegate.m */; };
 		2AF14AB61547132600C899B2 /* solidlineAccidental.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF14AB51547132600C899B2 /* solidlineAccidental.m */; };
 		2AF14AB9154715A200C899B2 /* dashedlineAccidental.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */; };
+		A705B21B154F9A980010D0B3 /* ChordInstrumentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705B21A154F9A980010D0B3 /* ChordInstrumentsController.m */; };
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
 		A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C3154EF70600712D92 /* solidVerticalLine.m */; };
+<<<<<<< HEAD
+=======
+		A7C0DAA21549E07800D2059D /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DA9D1549E07800D2059D /* libcrmpd.a */; };
+		A7C0DAA31549E07800D2059D /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DA9E1549E07800D2059D /* libcrse.a */; };
+		A7C0DAA41549E07800D2059D /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DAA01549E07800D2059D /* libcrmpd.a */; };
+		A7C0DAA51549E07800D2059D /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C0DAA11549E07800D2059D /* libcrse.a */; };
+>>>>>>> temp
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +115,8 @@
 		2AF14AB51547132600C899B2 /* solidlineAccidental.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solidlineAccidental.m; sourceTree = "<group>"; };
 		2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dashedlineAccidental.h; sourceTree = "<group>"; };
 		2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dashedlineAccidental.m; sourceTree = "<group>"; };
+		A705B219154F9A980010D0B3 /* ChordInstrumentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordInstrumentsController.h; sourceTree = "<group>"; };
+		A705B21A154F9A980010D0B3 /* ChordInstrumentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordInstrumentsController.m; sourceTree = "<group>"; };
 		A717FEDE1534ED9D00515250 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFifthsViewController.h; sourceTree = "<group>"; };
@@ -114,6 +124,13 @@
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A7A180C2154EF70600712D92 /* solidVerticalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solidVerticalLine.h; sourceTree = "<group>"; };
 		A7A180C3154EF70600712D92 /* solidVerticalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solidVerticalLine.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		A7C0DA9D1549E07800D2059D /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A7C0DA9E1549E07800D2059D /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A7C0DAA01549E07800D2059D /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A7C0DAA11549E07800D2059D /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+>>>>>>> temp
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +233,11 @@
 				A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */,
 				2AB9BF68154795C9001E756E /* InstrumentsController.h */,
 				2AB9BF69154795C9001E756E /* InstrumentsController.m */,
+<<<<<<< HEAD
+=======
+				A705B219154F9A980010D0B3 /* ChordInstrumentsController.h */,
+				A705B21A154F9A980010D0B3 /* ChordInstrumentsController.m */,
+>>>>>>> temp
 				2A94A4D51542517F00766EAF /* graybutton.png */,
 				2AE1DE8215154B72008C538D /* AppDelegate.h */,
 				2AE1DE8315154B72008C538D /* AppDelegate.m */,
@@ -353,10 +375,15 @@
 				2AB9BF6A154795C9001E756E /* InstrumentsController.m in Sources */,
 				A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				A7A180C8154EF8FA00712D92 /* ChordInstrumentsController.m in Sources */,
 				A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */,
 =======
 >>>>>>> b5dea483c2520d96d93010bfc686bd1f734eb65f
+=======
+				A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */,
+				A705B21B154F9A980010D0B3 /* ChordInstrumentsController.m in Sources */,
+>>>>>>> temp
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
