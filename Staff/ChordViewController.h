@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DraggedChord.h"
+#import "ChordInstrumentsController.h"
+#import "CircleOfFifthsViewController.h"
+#import "solidVerticalLine.h"
 
 @interface ChordViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate>
 {
@@ -33,6 +36,7 @@
     UIButton *chordChosen6;
     UIButton *chordChosen7;
     UIButton *chordChosen8;
+
     
     // 4 Buttons, Play, Stop, Clear All and Switch keys
     UIButton *play;
@@ -79,14 +83,31 @@
 @property (nonatomic, retain) UISwitch *metronomeOnOff;
 @property(nonatomic, retain) NSTimer *metronomeTimer;
 
+// top menu with instrument and circle of 5ths pickers
+// button to show current instrument
+@property (nonatomic, retain) UIView *topMenu;
+
+@property (nonatomic, retain) UIButton *instrumentsButton;
+@property (nonatomic, retain) UIPopoverController *instumentPopoverController;
+@property (nonatomic, retain) InstrumentsController *instrumentsController;
+
+@property (nonatomic, retain) UIButton *circleOfFifthsButton;
+@property (nonatomic, retain) UIPopoverController *circleOfFifthsPopoverController;
+@property (nonatomic, retain) CircleOfFifthsViewController *circleOfFirthsViewController;
+
+
+@property (nonatomic, retain) IBOutlet UISlider *chordVolume;
+
 -(NSString *) currentKey;
 -(void) currentKey: (NSString *) newKey;
 -(void) setUpChords:(NSArray*)theChords;
 -(void) setupMetronome;
 -(void) fireChord;
+-(void) setUpVolumeSlider;
 
 -(void) scaleUpChordChosenButton:(UIButton *)theButton;
 -(void) scaleDownChordChosenButton:(UIButton *)theButton;
+-(void) buildTopMenu;
 // Chord Pickers are the buttons at the bottom which the user can use to select the chords to be played
 -(void) layoutChordPickers;
 
@@ -108,5 +129,6 @@
 -(void) playButton_onTouchUpInside;
 -(void) stopButton_onTouchUpInside;
 -(void) chordChosen_onTouchUpInside:(id)sender;
+-(UIView *) deepCopySolidVerticalLine:(solidVerticalLine *)theView;
 
 @end

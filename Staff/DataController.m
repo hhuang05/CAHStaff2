@@ -11,16 +11,19 @@
 #import "MainController.h"
 #import "StaffController.h"
 #import "DataController.h"
+#import "Chord.h"
 
 @implementation DataController
 
-@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, keySignatureNoteMap = _keySignatureNoteMap, currentKey = _currentKey, majorKeyChords = _majorKeyChords;
+@synthesize keySignatureAccidentals = _keySignatureAccidentals, chordsForKeySignatures = _chordsForKeySignatures, currentKeySignature = _currentKeySignature, keySignatureNoteMap = _keySignatureNoteMap, currentKey = _currentKey, majorKeyChords = _majorKeyChords, currentKeySignatureNotes = _currentKeySignatureNotes, chordVolumeAddition = _chordVolumeAddition;
 
 -(id) init{    
     self = [super init];
     return self;
 }
 
+// Set up the maps of key signature note and accidentals, and the 
+// chord formula array and initialize the key to C
 -(BOOL) loadData{
     [self fillKeySignatureAccidentals];
     [self fillNotesInKeySignatureDictionary];
@@ -34,19 +37,27 @@
     
     // Initialize key signature choice to C
     [self setCurrentKeySignature:@"C"];
-    [self instrumentWasChosen:0];
     [self keySignatureWasChosen:_currentKeySignature]; 
     
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    // Initialize staff and chord instruments to piano
+    [self staffInstrumentWasChosen:0];
+    [self chordInstrumentWasChosen:0];
+
     // set metronome to play the wooden block
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC2, 115, 0x00);
+    metronomeMIDIinstrument = 115;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC1, metronomeMIDIinstrument, 0x00);
 
-
-    halfStepAlteration = 0;
+    // set current chord playing to nil and chord volume adjustment to 0
+    currentChord = nil;
+    _chordVolumeAddition = [[NSNumber alloc] initWithFloat:0.0];
     
     return TRUE;
 }
 
+
+// Create maps of starting notes and locations of accidentals to be 
+// sent to the StaffCOntroller for each of the 30 possible key signatures
 -(void)fillKeySignatureAccidentals{
     
     NSNumber *flat = [[NSNumber alloc] initWithInt:-1];
@@ -300,6 +311,9 @@
     
 }
 
+
+// Create a mapping of the notes on the Staff that are used by each
+// of the 30 possible key signatures
 -(void)fillNotesInKeySignatureDictionary{
     
     NSNumber *fiftyEightNoteNum = [[NSNumber alloc] initWithInt:58];
@@ -464,7 +478,8 @@
 
 }
 
-
+// Create a standard formula of Major chords to be sent to
+// chordController with the key name added
 -(void) fillChordsDictionary{ 
 
     NSNumber *one = [[NSNumber alloc]initWithFloat:1.0];
@@ -508,18 +523,26 @@
                          min6, dom7, nil];
 }
 
+// tell each Chord in the array what to concatenate its
+// name with, e.g. "F" + "Maj"
 -(void)addKeyToChords:(NSString*)theKey{
     for(Chord *c in _majorKeyChords){
         [c setupKey:theKey];
     }
 }
 
-
+// When the user selects a new key signature, tell the 
+// Staff where to draw what accidentals, send the chord controller
+// the appropriate chords, and set the currentKeySignatureNotes
+// for the dataController for playing notes and chords 
 -(void)keySignatureWasChosen:(NSString*)choice
 {
+    // before switching key signatures, stop the current chord
+    // so that we don't have lingering notes we can't turn off
+    [self stopChord:currentChord];
     
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];   
-    currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
+    _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
     _currentKey = choice;
     [self addKeyToChords:choice];
 
@@ -533,10 +556,16 @@
         NSLog(@"changeScale called with unknown key signature %@", choice);
 }
 
+-(void)newChordVolumeAdjustment:(float)newValue{
+    _chordVolumeAddition = [[NSNumber alloc] initWithFloat:newValue];
+}
 
+// play a MIDI note with the current chosen instrument, and 
+// adjust for half step alteration if the user selected flat
+// or sharp option for the grey bar section of the staff
 -(void)playNoteAt:(int)position WithHalfStepAlteration:(int) accidentalState{
     
-    int noteNumber = [[currentKeySignatureNotes objectAtIndex:position] intValue];
+    int noteNumber = [[_currentKeySignatureNotes objectAtIndex:position] intValue];
     NSLog(@"Playing note %d", noteNumber);    
     // add -1 or 1 to flat or sharp the note if the user wanted
     if(accidentalState){
@@ -544,50 +573,64 @@
     }
     currentNote = noteNumber;
     
-    NSLog(@"accidental state: %d", accidentalState);
-    NSLog(@"alteration: %d", halfStepAlteration);
-    NSLog(@"changed to note %d", noteNumber);
-    
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 0x7F);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x90, noteNumber, 100);
 }
 
+// tell MIDI channel 2 to play note 65
 -(void)metronomeTick{
     NSLog(@"Tick");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x92, 65, 0x7F);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x91, 65, 40);
 }
 
+// tell MIDI channel 2 to turn off note 65
 -(void)stopMetronome{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x82, 65, 0x7F);
+    appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x81, 65, 40);
 }
 
--(void) instrumentWasChosen:(int)instrument{
-    
+// changes the instrument to be used for the staff player
+-(void) staffInstrumentWasChosen:(int)instrument{    
     if(instrument > -1 && instrument < 128){
-        MIDIinstrument = instrument;
+        staffMIDIinstrument = instrument;
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, MIDIinstrument, 0x7F);
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC1, MIDIinstrument, 0x7F);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC0, staffMIDIinstrument, 0);
+    }
+}
+
+-(void) chordInstrumentWasChosen:(int)instrument{
+
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    if(instrument > -1 && instrument < 128){
+        chordMIDIinstrument = instrument;
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC2, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC3, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC4, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC5, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC6, chordMIDIinstrument, 0);
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0xC7, chordMIDIinstrument, 0);
     }
 }
 
 -(void)stopNote{
     NSLog(@"Stopped playing note");
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x80, currentNote, 0x7F);
+	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x80, currentNote, 100);
 }
 
 -(void)playChord:(Chord *)chord
 {
-    NSLog(@"Playing chord:%@", chord.name);
+    currentChord = [[Chord alloc] initWithName:[chord name] Notes:[chord notes] andID:1];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    for (int x=0; x<chord.notes.count; x++) {
-        int note = [self calculateMajorNoteForChord:chord atPosition:x];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x91, note, 0x7F);
+    for (int x=0; x<currentChord.notes.count; x++) {
+        int note = [self calculateMajorNoteForChord:currentChord atPosition:x];
+        if(note != 0){
+            // velocity between 0-127
+            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 146 + x, note, 42 + [_chordVolumeAddition intValue]);
+        }
     }
 }
 
@@ -600,32 +643,36 @@
 
     float value = [[chord.notes objectAtIndex:pos] floatValue];
     
+    /*
+     set precision for all of these values
+     */
+    
     if (value == 1.0){
-        return [[currentKeySignatureNotes objectAtIndex:startingLocation]intValue];
+        return [[_currentKeySignatureNotes objectAtIndex:startingLocation]intValue];
     }
     else if(value == 3.0){
-        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue];
+        return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue];
     }
-    else if(value == 3.1){
-        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue] -1); 
+    else if(value > 3.0 && value < 3.15){
+        return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue] -1); 
     }
     else if(value == 4.0){
-        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 3]intValue];        
+        return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 3]intValue];        
     }    
     else if(value == 5.0){
-        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue];
+        return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue];
     }
     else if(value == 5.1){
-        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue] -1);        
+        return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue] -1);        
     }
     else if(value == 5.5){
-        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue] + 1);
+        return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue] + 1);
     }    
     else if(value == 6.0){
-        return [[currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue];
+        return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue];
     }
     else if(value == 7.1){
-        return ([[currentKeySignatureNotes objectAtIndex:startingLocation - 6]intValue] -1);
+        return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 6]intValue] -1);
     }
     else{
         NSLog(@"unknown chord note float value: %f", value);
@@ -641,20 +688,10 @@
     NSLog(@"Stop chord:%@", chord.name);
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     for (int x=0; x<chord.notes.count; x++) {
-        int note = [[chord.notes objectAtIndex:x] intValue];
-        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x81, note, 0x7F);
-    }
-}
-
--(void)halfStepAlterationOptionWasSelected:(NSString*)choice{
-    if(choice == @"Apply Sharp"){
-        halfStepAlteration = 1;
-    }
-    else if(choice == @"Apply Flat"){
-        halfStepAlteration = -1;
-    }
-    else{
-        halfStepAlteration = 0;
+        int note = [self calculateMajorNoteForChord:chord atPosition:x];
+        if(note != 0){
+            appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 130 + x, note, 60);
+        }
     }
 }
 

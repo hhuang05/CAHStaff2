@@ -1,4 +1,5 @@
 //
+<<<<<<< HEAD
 //  InstrumentsController.m
 //  Staff
 //
@@ -8,8 +9,19 @@
 
 #import "AppDelegate.h"
 #import "InstrumentsController.h"
+=======
+//  ChordInstrumentsController.m
+//  Staff
+//
+//  Created by Aaron Tietz on 5/1/12.
+//  Copyright (c) 2012 Tufts University. All rights reserved.
+//
 
-@implementation InstrumentsController
+#import "AppDelegate.h"
+#import "ChordInstrumentsController.h"
+>>>>>>> temp
+
+@implementation ChordInstrumentsController
 
 @synthesize picker;
 @synthesize instrument;
@@ -72,12 +84,15 @@
 // Do something with the selected row.
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.staffController.sharpFlatButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
-    [mainDelegate.viewController.staffController.sharpFlatButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+<<<<<<< HEAD
+    [mainDelegate.viewController.chordController.instrumentsButton setTitle:[elements objectAtIndex:row] forState:UIControlStateNormal];
     instrument = row;
-    [mainDelegate.viewController.staffController.instrumentsButton setTitle:[elements objectAtIndex:row] forState:UIControlStateNormal];
+=======
+    instrument = row;
+    [mainDelegate.viewController.chordController.instrumentsButton setTitle:[elements objectAtIndex:row] forState:UIControlStateNormal];
     
-    [mainDelegate.viewController.dataController staffInstrumentWasChosen:instrument];
+>>>>>>> temp
+    [mainDelegate.viewController.dataController chordInstrumentWasChosen:instrument];
     
 }
 
