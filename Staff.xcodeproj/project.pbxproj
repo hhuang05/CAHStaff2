@@ -40,6 +40,7 @@
 		2AF14AB9154715A200C899B2 /* dashedlineAccidental.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */; };
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
+		A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
 		A7669CB21547422900019493 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A7669CB11547422900019493 /* crsynth.dlsc */; };
 		A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C3154EF70600712D92 /* solidVerticalLine.m */; };
@@ -103,6 +104,8 @@
 		2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dashedlineAccidental.m; sourceTree = "<group>"; };
 		A717FEDE1534ED9D00515250 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFifthsViewController.h; sourceTree = "<group>"; };
+		A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFifthsViewController.m; sourceTree = "<group>"; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A7669CB01547422900019493 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
 		A7669CB11547422900019493 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 				0826BDD01523E5C2004A9B22 /* StaffController.m */,
 				2A94A4DE1542622000766EAF /* AccidentalsController.h */,
 				2A94A4DF1542622000766EAF /* AccidentalsController.m */,
+				A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */,
+				A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */,
 				2AB9BF68154795C9001E756E /* InstrumentsController.h */,
 				2AB9BF69154795C9001E756E /* InstrumentsController.m */,
 				A7A180C9154EF94F00712D92 /* ChordInstrumentsController.h */,
@@ -353,6 +358,7 @@
 				2AB9BF6A154795C9001E756E /* InstrumentsController.m in Sources */,
 				A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */,
 				A7A180C8154EF8FA00712D92 /* ChordInstrumentsController.m in Sources */,
+				A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
