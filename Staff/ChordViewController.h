@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DraggedChord.h"
 #import "ChordInstrumentsController.h"
+#import "CircleOfFifthsViewController.h"
 
 @interface ChordViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate>
 {
@@ -84,9 +85,15 @@
 // top menu with instrument and circle of 5ths pickers
 // button to show current instrument
 @property (nonatomic, retain) UIView *topMenu;
+
 @property (nonatomic, retain) UIButton *instrumentsButton;
 @property (nonatomic, retain) UIPopoverController *instumentPopoverController;
 @property (nonatomic, retain) ChordInstrumentsController *instrumentsController;
+
+@property (nonatomic, retain) UIButton *circleOfFifthsButton;
+@property (nonatomic, retain) UIPopoverController *circleOfFifthsPopoverController;
+@property (nonatomic, retain) CircleOfFifthsViewController *circleOfFirthsViewController;
+
 
 @property (nonatomic, retain) IBOutlet UISlider *chordVolume;
 
