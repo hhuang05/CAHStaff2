@@ -312,7 +312,7 @@
     [self setupMetronome];
     [self buildTopMenu];
     [self setUpVolumeSlider];
-    instrumentsController = [[ChordInstrumentsController alloc] init];
+    instrumentsController = [[InstrumentsController alloc] init];
     [mainDelegate.viewController.circleOf5thsController setup];
 }
 

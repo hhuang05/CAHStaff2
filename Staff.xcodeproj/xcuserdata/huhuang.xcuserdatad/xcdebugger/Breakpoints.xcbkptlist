@@ -14,7 +14,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "743"
          endingLineNumber = "743"
-         landmarkName = "-scaleDownChordChosenButton:"
+         landmarkName = "-playButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -28,7 +28,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "624"
          endingLineNumber = "624"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -42,7 +42,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "417"
          endingLineNumber = "417"
-         landmarkName = "-dispatchTouchEvent:toPosition:"
+         landmarkName = "-fireMetronomeSound:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -56,7 +56,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "625"
          endingLineNumber = "625"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -70,7 +70,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "612"
          endingLineNumber = "612"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -84,7 +84,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "552"
          endingLineNumber = "552"
-         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
+         landmarkName = "-dispatchTouchEndEvent:toPosition:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -112,7 +112,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "629"
          endingLineNumber = "629"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -126,7 +126,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "598"
          endingLineNumber = "598"
-         landmarkName = "-clearButton_onTouchUpInside"
+         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -175,7 +175,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "689"
          endingLineNumber = "689"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-clearButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -189,7 +189,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "690"
          endingLineNumber = "690"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-clearButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -203,7 +203,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "709"
          endingLineNumber = "709"
-         landmarkName = "-fireChord"
+         landmarkName = "-playButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -245,7 +245,21 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "614"
          endingLineNumber = "614"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Staff/ChordViewController.m"
+         timestampString = "357527499.253727"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
+         landmarkName = "-buildTopMenu"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
