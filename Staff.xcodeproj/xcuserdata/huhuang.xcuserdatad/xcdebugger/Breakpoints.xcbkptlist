@@ -42,8 +42,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "417"
          endingLineNumber = "417"
-         landmarkName = "-fireMetronomeSound:"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -70,8 +70,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "612"
          endingLineNumber = "612"
-         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -126,7 +126,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "598"
          endingLineNumber = "598"
-         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
+         landmarkName = "-dispatchTouchEndEvent:toPosition:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -175,8 +175,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "689"
          endingLineNumber = "689"
-         landmarkName = "-clearButton_onTouchUpInside"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -189,8 +189,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "690"
          endingLineNumber = "690"
-         landmarkName = "-clearButton_onTouchUpInside"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -203,7 +203,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "709"
          endingLineNumber = "709"
-         landmarkName = "-playButton_onTouchUpInside"
+         landmarkName = "-animateView:toPosition:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
