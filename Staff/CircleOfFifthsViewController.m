@@ -8,20 +8,30 @@
 
 #import "CircleOfFifthsViewController.h"
 
-@interface CircleOfFifthsViewController ()
-
-@end
-
 @implementation CircleOfFifthsViewController
 
 @synthesize content = _content;
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetLineWidth(context, 2.0);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+    
+    CGRect rectangle = CGRectMake(0,0,500,500);
+    
+    CGContextAddEllipseInRect(context, rectangle);
+    
+    CGContextStrokePath(context);
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)];
-    [_content setBackgroundColor:[UIColor blackColor]];
-    
+    [_content setBackgroundColor:[UIColor whiteColor]];
+    [self drawRect:[_content frame]];
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
