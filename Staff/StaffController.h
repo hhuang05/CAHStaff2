@@ -41,6 +41,7 @@ typedef struct image_view_metadata {
     NSMutableDictionary *sharps;
     NSMutableDictionary *flats;
     NSArray *notes;
+    UIImage *wrinkledPaper;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *canvas;

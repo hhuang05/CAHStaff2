@@ -40,7 +40,7 @@
     
     [self.view addSubview: self.chordController.view];
     [self.view addSubview: self.staffController.view];
-    
+
 	// Do any additional setup after loading the view.
 }
 

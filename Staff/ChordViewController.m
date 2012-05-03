@@ -228,35 +228,42 @@
     // Coordinates are relative to the parent container
     chordChosen1 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen1.frame = CGRectMake(50, 130, 80, 80);
-    //chordChosen1.titleLabel.font  = [UIFont systemFontOfSize:10];
+    chordChosen1.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen1 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen2 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen2.frame = CGRectMake(180, 130, 80, 80);
+    chordChosen2.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen2 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen3 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen3.frame = CGRectMake(310, 130, 80, 80);
+    chordChosen3.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen3 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen4 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen4.frame = CGRectMake(440, 130, 80, 80);
+    chordChosen4.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen4 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen5 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen5.frame = CGRectMake(50, 250, 80, 80);
+    chordChosen5.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen5 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen6 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen6.frame = CGRectMake(180, 250, 80, 80);
+    chordChosen6.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen6 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen7 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen7.frame = CGRectMake(310, 250, 80, 80);
+    chordChosen7.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen7 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen8 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     chordChosen8.frame = CGRectMake(440, 250, 80, 80);
+    chordChosen8.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [chordChosen8 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordsToBePlayed = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", nil];
@@ -336,7 +343,7 @@
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.view = [[UIView alloc] initWithFrame: CGRectMake(400, 0, 624, 768)];
-    [self.view setBackgroundColor:[UIColor brownColor]]; 
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"corkBoard.png"]]];
     
     previousChord = nil;
     
