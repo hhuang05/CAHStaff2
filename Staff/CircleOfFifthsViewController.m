@@ -5,34 +5,35 @@
 //  Created by Aaron Tietz on 4/30/12.
 //  Copyright (c) 2012 Tufts University. All rights reserved.
 //
-
 #import "CircleOfFifthsViewController.h"
 
 @implementation CircleOfFifthsViewController
 
 @synthesize content = _content;
 
-- (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetLineWidth(context, 2.0);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
-    
-    CGRect rectangle = CGRectMake(0,0,500,500);
-    
-    CGContextAddEllipseInRect(context, rectangle);
-    
-    CGContextStrokePath(context);
+-(id)init{
+    self = [super init];
+    if (self){
+        _content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)];
+        [_content setBackgroundColor:[UIColor whiteColor]];
+        [_content addSubview:[self deepCopyCircleView:_content]];
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)];
-    [_content setBackgroundColor:[UIColor whiteColor]];
-    [self drawRect:[_content frame]];
 }
+
+- (UIView *)deepCopyCircleView:(UIView *)theView
+{
+    CircleView *newView = [[CircleView alloc] initWithFrame:[theView frame]];
+    [newView setBackgroundColor:[UIColor lightGrayColor]];
+    [newView setAlpha:0.5f];
+    return newView;
+}
+
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     NSArray *allTouches = [touches allObjects];

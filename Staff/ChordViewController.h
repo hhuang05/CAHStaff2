@@ -89,7 +89,7 @@
 
 @property (nonatomic, retain) UIButton *instrumentsButton;
 @property (nonatomic, retain) UIPopoverController *instumentPopoverController;
-@property (nonatomic, retain) InstrumentsController *instrumentsController;
+@property (nonatomic, retain) ChordInstrumentsController *instrumentsController;
 
 @property (nonatomic, retain) UIButton *circleOfFifthsButton;
 @property (nonatomic, retain) UIPopoverController *circleOfFifthsPopoverController;
@@ -130,5 +130,7 @@
 -(void) stopButton_onTouchUpInside;
 -(void) chordChosen_onTouchUpInside:(id)sender;
 -(UIView *) deepCopySolidVerticalLine:(solidVerticalLine *)theView;
+
+- (IBAction)openCircleOfFifthsMenu:(id)sender;
 
 @end
