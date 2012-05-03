@@ -51,11 +51,13 @@
 {   
     self.canvas = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     self.staffView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
-    [self.staffView setBackgroundColor:[UIColor whiteColor]];
+    [self.staffView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
     //[self.staffView.layer setBorderWidth:1];
     //[self.staffView.layer setBorderColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor];
     self.view = self.canvas;
     [self.canvas addSubview:staffView];
+    
+    wrinkledPaper = [UIImage imageNamed:@"CrinkledPaper.png"];
 }
 
 -(void)setLineTags
@@ -186,6 +188,7 @@
     id key;
     while ((key = [enumerator nextObject])) {
         UIView *line = [lines objectForKey:key];
+        [line setBackgroundColor:[UIColor clearColor]];
         [staffView addSubview:line];
     }
 }
@@ -194,6 +197,7 @@
 {
     UIView *newView = [[UIView alloc] initWithFrame:[theView frame]];
     [newView setBackgroundColor:[UIColor lightGrayColor]];
+    [newView setAlpha:0.5f];
     return newView;
 }
 
@@ -201,6 +205,7 @@
 {
     solidlineAccidental *newView = [[solidlineAccidental alloc] initWithFrame:[theView frame]];
     [newView setBackgroundColor:[UIColor lightGrayColor]];
+    [newView setAlpha:0.5f];
     return newView;
 }
 
@@ -208,6 +213,7 @@
 {
     dashedlineAccidental *newView = [[dashedlineAccidental alloc] initWithFrame:[theView frame]];
     [newView setBackgroundColor:[UIColor lightGrayColor]];
+    [newView setAlpha:0.5f];
     return newView;
 }
 
@@ -262,7 +268,7 @@
     id key;
     while ((key = [enumerator nextObject])) {
         UIView *space = [spaces objectForKey:key];
-        [space setBackgroundColor:[UIColor whiteColor]];
+        [space setBackgroundColor:[UIColor clearColor]];
         [staffView addSubview:space];
     }
 }

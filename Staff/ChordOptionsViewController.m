@@ -40,14 +40,17 @@
     
     deleteImage = [UIImage imageNamed:@"DeleteIcon.png"];
     
-    beatStepperLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 20)];
-    [beatStepperLabel setText: @"Beats per Measure:"];
+    beatStepperLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 30)];
+    [beatStepperLabel setText: @"Beats per Chord:"];
+    beatStepperLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
     [beatStepperLabel setTextAlignment:UITextAlignmentCenter];
     
-    beatLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 40, 30, 25)];
+    beatLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 45, 40, 25)];
+    beatLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    [beatLabel setTextAlignment:UITextAlignmentCenter];
     [beatLabel setText:[NSString stringWithFormat:@"%d", _chord.beatsPerMeasure]];
     
-    beatStepper = [[UIStepper alloc] initWithFrame:CGRectMake(65, 40, 100, 40)];
+    beatStepper = [[UIStepper alloc] initWithFrame:CGRectMake(70, 45, 100, 40)];
     [beatStepper addTarget:self action:@selector(stepperPressed:) forControlEvents:UIControlEventValueChanged];
     
     // Set min and max
@@ -63,7 +66,7 @@
     [beatStepper setContinuous:NO];
     
     deleteChord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    deleteChord.frame = CGRectMake(30, 80, 60, 60);
+    deleteChord.frame = CGRectMake(30, 85, 60, 60);
     [deleteChord setImage:deleteImage forState:UIControlStateNormal];
     [deleteChord addTarget:self action:@selector(delete_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
