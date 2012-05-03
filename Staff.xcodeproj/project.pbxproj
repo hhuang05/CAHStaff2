@@ -52,6 +52,11 @@
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */; };
+		A74531581552388200BF3E43 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A74531511552388200BF3E43 /* crsynth.dlsc */; };
+		A74531591552388200BF3E43 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531531552388200BF3E43 /* libcrmpd.a */; };
+		A745315A1552388200BF3E43 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531541552388200BF3E43 /* libcrse.a */; };
+		A745315B1552388200BF3E43 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531561552388200BF3E43 /* libcrmpd.a */; };
+		A745315C1552388200BF3E43 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531571552388200BF3E43 /* libcrse.a */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
 		A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C3154EF70600712D92 /* solidVerticalLine.m */; };
 /* End PBXBuildFile section */
@@ -125,6 +130,12 @@
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFifthsViewController.h; sourceTree = "<group>"; };
 		A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFifthsViewController.m; sourceTree = "<group>"; };
+		A74531501552388200BF3E43 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
+		A74531511552388200BF3E43 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
+		A74531531552388200BF3E43 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A74531541552388200BF3E43 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A74531561552388200BF3E43 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A74531571552388200BF3E43 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A7A180C2154EF70600712D92 /* solidVerticalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solidVerticalLine.h; sourceTree = "<group>"; };
 		A7A180C3154EF70600712D92 /* solidVerticalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solidVerticalLine.m; sourceTree = "<group>"; };
@@ -152,6 +163,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
 		2ACB96D21552EC04002F9FCE /* crsynth */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +297,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A74531521552388200BF3E43 /* Release-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				A74531531552388200BF3E43 /* libcrmpd.a */,
+				A74531541552388200BF3E43 /* libcrse.a */,
+			);
+			path = "Release-iphoneos";
+			sourceTree = "<group>";
+		};
+		A74531551552388200BF3E43 /* Release-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				A74531561552388200BF3E43 /* libcrmpd.a */,
+				A74531571552388200BF3E43 /* libcrse.a */,
+			);
+			path = "Release-iphonesimulator";
+			sourceTree = "<group>";
+		};
+		A76534921527B777001885E9 /* crsynth */ = {
+			isa = PBXGroup;
+			children = (
+				A74531501552388200BF3E43 /* crmd.h */,
+				A74531511552388200BF3E43 /* crsynth.dlsc */,
+				A74531521552388200BF3E43 /* Release-iphoneos */,
+				A74531551552388200BF3E43 /* Release-iphonesimulator */,
+			);
+			path = crsynth;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -351,6 +392,7 @@
 				0890CDAD155231FA00D0CF36 /* corkBoard.png in Resources */,
 				2ACB96DD1552EC04002F9FCE /* crsynth.dlsc in Resources */,
 				2ACB96E21552EC04002F9FCE /* sample.mid in Resources */,
+				A74531581552388200BF3E43 /* crsynth.dlsc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +512,10 @@
 					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
 				);
 				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
+					"./crsynth/Release-iphonesimulator/libcrse.a",
+					"./crsynth/Release-iphonesimulator/libcrmpd.a",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
