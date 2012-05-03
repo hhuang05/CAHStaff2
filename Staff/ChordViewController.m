@@ -560,6 +560,7 @@
 {   
     Chord *newChord = [[Chord alloc] initWithName:draggedChord.chordName Notes:draggedChord.chordChosen.notes andID:draggedChord.chordChosen.idNumber];
     [newChord resetValues];
+    [newChord setKey:draggedChord.chordChosen.key];
     
 	// Check to see which view, or views,  the point is in and then animate to that position.
 	if (CGRectContainsPoint([chordChosen1 frame], position)) {
@@ -856,6 +857,7 @@
         currentChordPlaying = [[Chord alloc] initWithName:chordToBeSent.name Notes:chordToBeSent.notes andID:chordToBeSent.idNumber];
         currentChordPlaying.beatsPerMeasure = chordToBeSent.beatsPerMeasure;
         currentChordPlaying.numberOfMeasures = chordToBeSent.numberOfMeasures;
+        currentChordPlaying.key = chordToBeSent.key;
     }
     previousChord = currentChordPlaying;
     currentChordPlaying.beatsPerMeasure--; // Decrease beats per measure
