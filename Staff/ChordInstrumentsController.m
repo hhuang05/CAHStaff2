@@ -1,15 +1,3 @@
-//
-<<<<<<< HEAD
-//  InstrumentsController.m
-//  Staff
-//
-//  Created by Christopher Harris on 4/24/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
-#import "AppDelegate.h"
-#import "InstrumentsController.h"
-=======
 //  ChordInstrumentsController.m
 //  Staff
 //
@@ -19,7 +7,6 @@
 
 #import "AppDelegate.h"
 #import "ChordInstrumentsController.h"
->>>>>>> temp
 
 @implementation ChordInstrumentsController
 
@@ -84,14 +71,9 @@
 // Do something with the selected row.
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-<<<<<<< HEAD
-    [mainDelegate.viewController.chordController.instrumentsButton setTitle:[elements objectAtIndex:row] forState:UIControlStateNormal];
-    instrument = row;
-=======
     instrument = row;
     [mainDelegate.viewController.chordController.instrumentsButton setTitle:[elements objectAtIndex:row] forState:UIControlStateNormal];
     
->>>>>>> temp
     [mainDelegate.viewController.dataController chordInstrumentWasChosen:instrument];
     
 }

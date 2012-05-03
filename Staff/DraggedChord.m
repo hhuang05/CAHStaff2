@@ -20,14 +20,14 @@
     if (self) {
         // Initialization code
         // Add the image and the text
-        theImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CyanSquare.png"]];
+        theImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chordWrinkledPaper.png"]];
         [theImage setFrame:CGRectMake(0, 0, 80, 80)];
         [self addSubview:theImage];
         
         // added adjustsFontSizetoWidth and changed 3rd arg (width) from 46-70), 1st from 17 to 5
         theChord = [[UILabel alloc] initWithFrame:CGRectMake(5, 20, 70, 40)];
         // theChord.adjustsFontSizeToFitWidth = TRUE;
-        // [theChord setFont:[UIFont systemFontOfSize:10]];
+        [theChord setFont:[UIFont fontWithName:@"Noteworthy-Light" size:20.0f]];
         [theChord setTextAlignment:UITextAlignmentCenter];
         [theChord setBackgroundColor:[UIColor clearColor]];
         [theImage addSubview:theChord];
