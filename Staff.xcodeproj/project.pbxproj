@@ -163,7 +163,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
 		2ACB96D21552EC04002F9FCE /* crsynth */ = {
 			isa = PBXGroup;
 			children = (
