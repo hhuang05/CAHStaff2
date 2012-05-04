@@ -622,8 +622,10 @@
 -(void)playChord:(Chord *)chord
 {
     currentChord = [[Chord alloc] initWithName:[chord name] Notes:[chord notes] andID:1];
+    [currentChord setKey:chord.key];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSLog(@"Chord key: %@", chord.key);
     
     for (int x=0; x<currentChord.notes.count; x++) {
         int note = [self calculateMajorNoteForChord:currentChord atPosition:x];
