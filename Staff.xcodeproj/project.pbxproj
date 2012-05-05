@@ -52,12 +52,14 @@
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */; };
-		A74531581552388200BF3E43 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A74531511552388200BF3E43 /* crsynth.dlsc */; };
-		A74531591552388200BF3E43 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531531552388200BF3E43 /* libcrmpd.a */; };
-		A745315A1552388200BF3E43 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531541552388200BF3E43 /* libcrse.a */; };
-		A745315B1552388200BF3E43 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531561552388200BF3E43 /* libcrmpd.a */; };
-		A745315C1552388200BF3E43 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74531571552388200BF3E43 /* libcrse.a */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
+		A785F7801553096400191D36 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A785F77F1553096400191D36 /* QuartzCore.framework */; };
+		A785F78715530EB400191D36 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A785F78615530EB400191D36 /* CircleView.m */; };
+		A785F78A1553244F00191D36 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A785F7891553244F00191D36 /* crsynth.dlsc */; };
+		A785F7911553245B00191D36 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A785F78C1553245B00191D36 /* libcrmpd.a */; };
+		A785F7921553245B00191D36 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A785F78D1553245B00191D36 /* libcrse.a */; };
+		A785F7931553245B00191D36 /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A785F78F1553245B00191D36 /* libcrmpd.a */; };
+		A785F7941553245B00191D36 /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A785F7901553245B00191D36 /* libcrse.a */; };
 		A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C3154EF70600712D92 /* solidVerticalLine.m */; };
 /* End PBXBuildFile section */
 
@@ -130,13 +132,16 @@
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFifthsViewController.h; sourceTree = "<group>"; };
 		A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFifthsViewController.m; sourceTree = "<group>"; };
-		A74531501552388200BF3E43 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
-		A74531511552388200BF3E43 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
-		A74531531552388200BF3E43 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
-		A74531541552388200BF3E43 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
-		A74531561552388200BF3E43 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
-		A74531571552388200BF3E43 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A785F77F1553096400191D36 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A785F78515530EB400191D36 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		A785F78615530EB400191D36 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		A785F7881553244F00191D36 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
+		A785F7891553244F00191D36 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
+		A785F78C1553245B00191D36 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A785F78D1553245B00191D36 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A785F78F1553245B00191D36 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A785F7901553245B00191D36 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 		A7A180C2154EF70600712D92 /* solidVerticalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solidVerticalLine.h; sourceTree = "<group>"; };
 		A7A180C3154EF70600712D92 /* solidVerticalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solidVerticalLine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A785F7801553096400191D36 /* QuartzCore.framework in Frameworks */,
 				A717FEE21534EE1300515250 /* Security.framework in Frameworks */,
 				A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */,
 				A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */,
@@ -216,6 +222,7 @@
 		2AE1DE7215154B72008C538D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A785F77F1553096400191D36 /* QuartzCore.framework */,
 				A717FEE11534EE1300515250 /* Security.framework */,
 				A717FEDE1534ED9D00515250 /* CoreFoundation.framework */,
 				A765348A15276051001885E9 /* AudioToolbox.framework */,
@@ -256,6 +263,8 @@
 				0826BDD01523E5C2004A9B22 /* StaffController.m */,
 				2A94A4DE1542622000766EAF /* AccidentalsController.h */,
 				2A94A4DF1542622000766EAF /* AccidentalsController.m */,
+				A785F78515530EB400191D36 /* CircleView.h */,
+				A785F78615530EB400191D36 /* CircleView.m */,
 				A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */,
 				A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */,
 				2AB9BF68154795C9001E756E /* InstrumentsController.h */,
@@ -296,33 +305,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A74531521552388200BF3E43 /* Release-iphoneos */ = {
+		A76534921527B777001885E9 /* crsynth */ = {
 			isa = PBXGroup;
 			children = (
-				A74531531552388200BF3E43 /* libcrmpd.a */,
-				A74531541552388200BF3E43 /* libcrse.a */,
+				A785F78B1553245B00191D36 /* Release-iphoneos */,
+				A785F78E1553245B00191D36 /* Release-iphonesimulator */,
+				A785F7881553244F00191D36 /* crmd.h */,
+				A785F7891553244F00191D36 /* crsynth.dlsc */,
+			);
+			path = crsynth;
+			sourceTree = "<group>";
+		};
+		A785F78B1553245B00191D36 /* Release-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				A785F78C1553245B00191D36 /* libcrmpd.a */,
+				A785F78D1553245B00191D36 /* libcrse.a */,
 			);
 			path = "Release-iphoneos";
 			sourceTree = "<group>";
 		};
-		A74531551552388200BF3E43 /* Release-iphonesimulator */ = {
+		A785F78E1553245B00191D36 /* Release-iphonesimulator */ = {
 			isa = PBXGroup;
 			children = (
-				A74531561552388200BF3E43 /* libcrmpd.a */,
-				A74531571552388200BF3E43 /* libcrse.a */,
+				A785F78F1553245B00191D36 /* libcrmpd.a */,
+				A785F7901553245B00191D36 /* libcrse.a */,
 			);
 			path = "Release-iphonesimulator";
-			sourceTree = "<group>";
-		};
-		A76534921527B777001885E9 /* crsynth */ = {
-			isa = PBXGroup;
-			children = (
-				A74531501552388200BF3E43 /* crmd.h */,
-				A74531511552388200BF3E43 /* crsynth.dlsc */,
-				A74531521552388200BF3E43 /* Release-iphoneos */,
-				A74531551552388200BF3E43 /* Release-iphonesimulator */,
-			);
-			path = crsynth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +431,7 @@
 				A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */,
 				A705B21B154F9A980010D0B3 /* ChordInstrumentsController.m in Sources */,
 				08C9512A1550CB0A00D44C3E /* Circleof5thsController.m in Sources */,
+				A785F78715530EB400191D36 /* CircleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
