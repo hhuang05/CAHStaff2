@@ -25,9 +25,11 @@
 @property (nonatomic, retain) NSDictionary *chordsForKeySignatures;
 @property (nonatomic, retain) NSString *currentKeySignature;
 @property (nonatomic, retain) NSString *currentKey;
-@property (nonatomic, retain) NSArray *majorKeyChords;
 @property (nonatomic, retain) NSArray *currentKeySignatureNotes;
 @property (nonatomic, retain) NSNumber *chordVolumeAddition;
+@property (nonatomic, retain) NSArray *majorKeyChordFormulas;
+@property (nonatomic, retain) NSArray *minorKeyChordFormulas;
+@property (nonatomic, retain) NSArray *currentChords;
 
 
 
@@ -43,7 +45,7 @@
 -(void)stopChord:(Chord *)chord;
 -(void)metronomeTick;
 -(void)stopMetronome;
--(void) chordInstrumentWasChosen:(int)instrument;
+-(void)chordInstrumentWasChosen:(int)instrument;
 -(void)newChordVolumeAdjustment:(float)newValue;
 
 -(BOOL)loadData;

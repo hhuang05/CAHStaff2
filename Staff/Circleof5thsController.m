@@ -37,10 +37,13 @@
 - (void)setup
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    circleOf5thsPickerElements = [[NSArray alloc] 
-                                  initWithObjects:@"Gb/eb", @"Db/bb", @"Ab/f", @"Eb/c", @"Bb/g", @"F/d", @"C/a", @"G/e", 
-                                  @"D/b", @"A/f#", @"E/c#", @"B/g#", @"F#/d#", nil];
+    circleOf5thsPickerElements = [[NSArray alloc] initWithObjects:
+                                @"Gb", @"Db", @"Ab", @"Eb", @"Bb", @"F", @"C", 
+                                @"G", @"D", @"A", @"E", @"B", @"F#",
+                                @"eb", @"bb", @"f", @"c", @"g", @"d", @"a", 
+                                @"e", @"b", @"f#", @"c#", @"g#", @"d#", nil];
 
+    
     // CHANGED THE SECOND PARAMETER TO 100 FROM 200
     circleOf5thsView = [[UIView alloc] initWithFrame:CGRectMake(577, 250, 260, 250)];
     [circleOf5thsView setBackgroundColor:[UIColor whiteColor]];
