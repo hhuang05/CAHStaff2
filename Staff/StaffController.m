@@ -288,14 +288,14 @@
 - (BOOL)changeScale:(NSArray *)notesFromDataController
 {
     //Return false if array is not normalized properly
-    if(notesFromDataController.count != NUMBER_OF_NOTES + 1){
+    if(notesFromDataController.count != NUMBER_OF_NOTES){
         NSLog(@" Recieved this number of notes: %@", [notesFromDataController count]);
         return FALSE;
     }
     
     //Parse values for validity first
     int num = -1;
-    for(int i = 1; i <= NUMBER_OF_NOTES; i++)
+    for(int i = 0; i < NUMBER_OF_NOTES; i++)
     {
         num = [[notesFromDataController objectAtIndex:i] integerValue];
         if(num != -1 && num != 0 && num != 1){
@@ -311,14 +311,13 @@
     num = -1;
     
     //For each, display flat/sharp if value -1/1
-    for(int pos = 1; pos <= NUMBER_OF_NOTES; pos++)
+    for(int pos = 0; pos < NUMBER_OF_NOTES; pos++)
     {
-        NSLog(@"note value: %d",[[notesFromDataController objectAtIndex:pos] intValue]);
         num = [[notesFromDataController objectAtIndex:pos] intValue];
         if(num != 0){
-            //Add +1 to pos becase tag attributes of lines/spaces start at 1
-            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos+1];
-            [self findAccidentalNote:pos+1];
+            NSLog(@"value: %d pos: %d",[[notesFromDataController objectAtIndex:pos] intValue], pos);            
+            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos + 2];
+            [self findAccidentalNote:pos + 2];
         }
     }
     return TRUE;
@@ -441,19 +440,19 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"# of Touches: %d",[touches count]);
+    //NSLog(@"# of Touches: %d",[touches count]);
     NSArray *allTouches = [touches allObjects];
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     for (UITouch *touch in allTouches)
     {
         if(touch.view.tag > 0){
-            NSLog(@"Began - Tag: %d",touch.view.tag);
+           // NSLog(@"Began - Tag: %d",touch.view.tag);
             [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag - 1) WithHalfStepAlteration:0];
  
         }
         else if(touch.view.superview.tag > 0){
-            NSLog(@"Began - Tag: %d",touch.view.tag);
-            NSLog(@"state: %d",mainDelegate.viewController.accidentalsController.state);
+          //  NSLog(@"Began - Tag: %d",touch.view.tag);
+           // NSLog(@"state: %d",mainDelegate.viewController.accidentalsController.state);
             [mainDelegate.viewController.dataController playNoteAt:(touch.view.superview.tag - 1) WithHalfStepAlteration:mainDelegate.viewController.accidentalsController.state];
         }
     }

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CircleView.h"
+
 
 @interface CircleOfFifthsViewController : UIViewController
 

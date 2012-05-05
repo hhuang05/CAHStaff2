@@ -152,7 +152,6 @@
 
 - (IBAction)openInstrumentsMenu:(id)sender
 {
-//    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if([instumentPopoverController isPopoverVisible]){
         [instumentPopoverController dismissPopoverAnimated:YES];
         return;
@@ -164,6 +163,7 @@
 }
 
 -(IBAction)openCircleOfFifthsMenu:(id)sender{
+
     if([circleOfFifthsPopoverController isPopoverVisible]){
         [circleOfFifthsPopoverController dismissPopoverAnimated:YES];
         return;
@@ -173,7 +173,6 @@
                                        permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     [circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(510, 510)];
 }
-
 
 -(void) layoutChordPickers
 {    

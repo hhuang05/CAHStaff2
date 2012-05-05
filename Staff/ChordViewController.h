@@ -131,4 +131,6 @@
 -(void) chordChosen_onTouchUpInside:(id)sender;
 -(UIView *) deepCopySolidVerticalLine:(solidVerticalLine *)theView;
 
+- (IBAction)openCircleOfFifthsMenu:(id)sender;
+
 @end

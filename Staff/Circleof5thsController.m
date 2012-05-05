@@ -38,7 +38,8 @@
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     circleOf5thsPickerElements = [[NSArray alloc] 
-                                           initWithObjects:@"F#",@"B",@"E",@"A",@"D",@"G",@"C",@"F",@"Bb",@"Eb",@"Ab",@"Db",@"Gb", nil];
+                                  initWithObjects:@"Gb/eb", @"Db/bb", @"Ab/f", @"Eb/c", @"Bb/g", @"F/d", @"C/a", @"G/e", 
+                                  @"D/b", @"A/f#", @"E/c#", @"B/g#", @"F#/d#", nil];
 
     // CHANGED THE SECOND PARAMETER TO 100 FROM 200
     circleOf5thsView = [[UIView alloc] initWithFrame:CGRectMake(577, 250, 260, 250)];
