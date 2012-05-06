@@ -33,6 +33,9 @@
     UIImage *_greenNote;
     UIImage *_yellowNote;
     UIImage *_redNote;
+    UIImage *_tealNote;
+    UIImage *_navyNote;
+    UIImage *_purpleNote;
     
     // 8 Buttons for the chords chosen
     UIButton *chordChosen1;

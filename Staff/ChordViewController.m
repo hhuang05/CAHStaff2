@@ -183,7 +183,10 @@
     _greenNote = [UIImage imageNamed:@"postit_green.png"]; 
     _yellowNote = [UIImage imageNamed:@"postit_yellow.png"]; 
     _redNote = [UIImage imageNamed:@"postit_red.png"]; 
-    
+    _tealNote = [UIImage imageNamed:@"postit_teal.png"]; 
+    _navyNote = [UIImage imageNamed:@"postit_navy.png"]; 
+    _purpleNote = [UIImage imageNamed:@"postit_purple.png"]; 
+
     // Coordinates are relative to the parent container
     picker1 = [[DraggedChord alloc] init ];
     picker1.frame = CGRectMake(50, 100, 80, 80);
@@ -207,12 +210,15 @@
     
     picker6 = [[DraggedChord alloc] init];
     picker6.frame = CGRectMake(180, 220, 80, 80);
+    [picker6 changeImageToNewImage:_tealNote];
     
     picker7 = [[DraggedChord alloc] init];
     picker7.frame = CGRectMake(310, 220, 80, 80);
+    [picker7 changeImageToNewImage:_navyNote];
     
     picker8 = [[DraggedChord alloc] init];
     picker8.frame = CGRectMake(440, 220, 80, 80);
+    [picker8 changeImageToNewImage:_purpleNote];
     
     pickerArray = [[NSArray alloc] initWithObjects:picker1, picker2, picker3, picker4, picker5, picker6, picker7, picker8, nil];
     

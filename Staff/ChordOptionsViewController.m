@@ -66,7 +66,7 @@
     [beatStepper setContinuous:NO];
     
     deleteChord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    deleteChord.frame = CGRectMake(30, 85, 60, 60);
+    deleteChord.frame = CGRectMake(50, 85, 60, 60);
     [deleteChord setImage:deleteImage forState:UIControlStateNormal];
     [deleteChord addTarget:self action:@selector(delete_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
