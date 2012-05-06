@@ -38,7 +38,7 @@
 {
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 180)];
     
-    deleteImage = [UIImage imageNamed:@"DeleteIcon.png"];
+    deleteImage = [UIImage imageNamed:@"trashCan_small.png"];
     
     beatStepperLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 30)];
     [beatStepperLabel setText: @"Beats per Chord:"];

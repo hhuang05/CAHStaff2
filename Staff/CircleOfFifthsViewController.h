@@ -14,4 +14,6 @@
 
 @property (nonatomic, retain) UIView *content;
 
+- (UIView *)deepCopyCircleView:(UIView *)theView;
+
 @end

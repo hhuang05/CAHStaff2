@@ -13,14 +13,14 @@
 
 @synthesize chordChosen = _chordToPlay, indexOfChord = _indexOfChord;
 
-- (id)init
+-(id) init
 {
     self = [super init];
     
     if (self) {
         // Initialization code
         // Add the image and the text
-        theImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chordWrinkledPaper.png"]];
+        theImage = [[UIImageView alloc] init];
         [theImage setFrame:CGRectMake(0, 0, 80, 80)];
         [self addSubview:theImage];
         
@@ -51,10 +51,21 @@
     }
 }
 
+-(void) changeImageToNewImage:(UIImage *)newImage
+{
+    [theImage performSelectorOnMainThread:@selector(setImage:) withObject:newImage waitUntilDone:TRUE];
+}
+
 -(NSString *) chordName
 {
     return theChord.text;
 }
+
+-(UIImage *) getCurrentImage
+{
+    return [theImage image];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
