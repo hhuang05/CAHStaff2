@@ -21,11 +21,11 @@
         // Initialization code
         // Add the image and the text
         theImage = [[UIImageView alloc] init];
-        [theImage setFrame:CGRectMake(0, 0, 80, 80)];
+        [theImage setFrame:CGRectMake(0, 0, 110, 110)];
         [self addSubview:theImage];
         
         // added adjustsFontSizetoWidth and changed 3rd arg (width) from 46-70), 1st from 17 to 5
-        theChord = [[UILabel alloc] initWithFrame:CGRectMake(5, 20, 70, 40)];
+        theChord = [[UILabel alloc] initWithFrame:CGRectMake(18, 30, 70, 40)];
         // theChord.adjustsFontSizeToFitWidth = TRUE;
         [theChord setFont:[UIFont fontWithName:@"Noteworthy-Light" size:20.0f]];
         [theChord setTextAlignment:UITextAlignmentCenter];
