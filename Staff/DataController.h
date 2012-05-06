@@ -30,6 +30,7 @@
 @property (nonatomic, retain) NSArray *majorKeyChordFormulas;
 @property (nonatomic, retain) NSArray *minorKeyChordFormulas;
 @property (nonatomic, retain) NSArray *currentChords;
+@property (nonatomic, retain) NSDictionary *friendChords;
 
 
 
