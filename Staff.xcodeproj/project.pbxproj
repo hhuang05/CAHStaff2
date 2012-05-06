@@ -23,7 +23,6 @@
 		0826BDD81523E5C2004A9B22 /* StaffController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDD01523E5C2004A9B22 /* StaffController.m */; };
 		0826BDDA1523E876004A9B22 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0826BDD91523E876004A9B22 /* AVFoundation.framework */; };
 		0826BDE31523EFED004A9B22 /* ChordOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */; };
-		083C4ED31555B30400713361 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = 083C4ED21555B30400713361 /* crsynth.dlsc */; };
 		083C4EE31555F51B00713361 /* postit_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 083C4EE21555F51B00713361 /* postit_orange.png */; };
 		083C4EE51555F9D600713361 /* postit_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 083C4EE41555F9D600713361 /* postit_blue.png */; };
 		083C4EE91556043E00713361 /* postit_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 083C4EE81556043E00713361 /* postit_yellow.png */; };
@@ -58,6 +57,7 @@
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
 		A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */; };
+		A73B106F1556CEA100B268D0 /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = A73B10681556CEA100B268D0 /* crsynth.dlsc */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
 		A785F78715530EB400191D36 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A785F78615530EB400191D36 /* CircleView.m */; };
 		A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C3154EF70600712D92 /* solidVerticalLine.m */; };
@@ -90,12 +90,6 @@
 		0826BDD91523E876004A9B22 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0826BDE11523EFED004A9B22 /* ChordOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordOptionsViewController.h; sourceTree = "<group>"; };
 		0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordOptionsViewController.m; sourceTree = "<group>"; };
-		083C4ED11555B30400713361 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
-		083C4ED21555B30400713361 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
-		083C4ED51555B35900713361 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
-		083C4ED61555B35900713361 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
-		083C4ED81555B35900713361 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
-		083C4ED91555B35900713361 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 		083C4EE21555F51B00713361 /* postit_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postit_orange.png; sourceTree = "<group>"; };
 		083C4EE41555F9D600713361 /* postit_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postit_blue.png; sourceTree = "<group>"; };
 		083C4EE81556043E00713361 /* postit_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postit_yellow.png; sourceTree = "<group>"; };
@@ -141,6 +135,12 @@
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFifthsViewController.h; sourceTree = "<group>"; };
 		A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFifthsViewController.m; sourceTree = "<group>"; };
+		A73B10671556CEA100B268D0 /* crmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crmd.h; sourceTree = "<group>"; };
+		A73B10681556CEA100B268D0 /* crsynth.dlsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = crsynth.dlsc; sourceTree = "<group>"; };
+		A73B106A1556CEA100B268D0 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A73B106B1556CEA100B268D0 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
+		A73B106D1556CEA100B268D0 /* libcrmpd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrmpd.a; sourceTree = "<group>"; };
+		A73B106E1556CEA100B268D0 /* libcrse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrse.a; sourceTree = "<group>"; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A785F78515530EB400191D36 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
 		A785F78615530EB400191D36 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
@@ -166,24 +166,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		083C4ED41555B35900713361 /* Release-iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				083C4ED51555B35900713361 /* libcrmpd.a */,
-				083C4ED61555B35900713361 /* libcrse.a */,
-			);
-			path = "Release-iphoneos";
-			sourceTree = "<group>";
-		};
-		083C4ED71555B35900713361 /* Release-iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				083C4ED81555B35900713361 /* libcrmpd.a */,
-				083C4ED91555B35900713361 /* libcrse.a */,
-			);
-			path = "Release-iphonesimulator";
-			sourceTree = "<group>";
-		};
 		2AE1DE6415154B71008C538D = {
 			isa = PBXGroup;
 			children = (
@@ -299,13 +281,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A73B10691556CEA100B268D0 /* Release-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				A73B106A1556CEA100B268D0 /* libcrmpd.a */,
+				A73B106B1556CEA100B268D0 /* libcrse.a */,
+			);
+			path = "Release-iphoneos";
+			sourceTree = "<group>";
+		};
+		A73B106C1556CEA100B268D0 /* Release-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				A73B106D1556CEA100B268D0 /* libcrmpd.a */,
+				A73B106E1556CEA100B268D0 /* libcrse.a */,
+			);
+			path = "Release-iphonesimulator";
+			sourceTree = "<group>";
+		};
 		A76534921527B777001885E9 /* crsynth */ = {
 			isa = PBXGroup;
 			children = (
-				083C4ED41555B35900713361 /* Release-iphoneos */,
-				083C4ED71555B35900713361 /* Release-iphonesimulator */,
-				083C4ED11555B30400713361 /* crmd.h */,
-				083C4ED21555B30400713361 /* crsynth.dlsc */,
+				A73B10671556CEA100B268D0 /* crmd.h */,
+				A73B10681556CEA100B268D0 /* crsynth.dlsc */,
+				A73B10691556CEA100B268D0 /* Release-iphoneos */,
+				A73B106C1556CEA100B268D0 /* Release-iphonesimulator */,
 			);
 			path = crsynth;
 			sourceTree = "<group>";
@@ -372,7 +372,6 @@
 				08C9512C1550DCF500D44C3E /* Icon.png in Resources */,
 				0890CDAB15522B3C00D0CF36 /* wrinkledPaper.png in Resources */,
 				0890CDAD155231FA00D0CF36 /* corkBoard.png in Resources */,
-				083C4ED31555B30400713361 /* crsynth.dlsc in Resources */,
 				083C4EE31555F51B00713361 /* postit_orange.png in Resources */,
 				083C4EE51555F9D600713361 /* postit_blue.png in Resources */,
 				083C4EE91556043E00713361 /* postit_yellow.png in Resources */,
@@ -386,6 +385,7 @@
 				08AACA6C15562AB100738394 /* stop.png in Resources */,
 				08AACA6E15562BD300738394 /* bin_small.png in Resources */,
 				08AACA7215562FC700738394 /* postit_green.png in Resources */,
+				A73B106F1556CEA100B268D0 /* crsynth.dlsc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +455,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				"PROVISIONING_PROFILE[sdk=iphonesimulator5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
@@ -477,7 +477,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				"PROVISIONING_PROFILE[sdk=iphoneos5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
@@ -498,18 +498,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
@@ -517,6 +517,7 @@
 				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				"PROVISIONING_PROFILE[sdk=iphonesimulator5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
@@ -533,7 +534,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -552,6 +553,7 @@
 				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				"PROVISIONING_PROFILE[sdk=iphoneos5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 				WARNING_LDFLAGS = "";
