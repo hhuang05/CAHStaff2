@@ -7,6 +7,7 @@
 //
 
 #import <AudioToolBox/AudioServices.h>
+#import "crmd.h"
 #import "AppDelegate.h"
 #import "MainController.h"
 

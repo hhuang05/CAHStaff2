@@ -38,7 +38,7 @@
 {
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 180)];
     
-    deleteImage = [UIImage imageNamed:@"DeleteIcon.png"];
+    deleteImage = [UIImage imageNamed:@"bin_small.png"];
     
     beatStepperLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 30)];
     [beatStepperLabel setText: @"Beats per Chord:"];
@@ -66,7 +66,7 @@
     [beatStepper setContinuous:NO];
     
     deleteChord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    deleteChord.frame = CGRectMake(30, 85, 60, 60);
+    deleteChord.frame = CGRectMake(50, 85, 52, 68);
     [deleteChord setImage:deleteImage forState:UIControlStateNormal];
     [deleteChord addTarget:self action:@selector(delete_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     

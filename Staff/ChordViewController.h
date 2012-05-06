@@ -27,6 +27,16 @@
     DraggedChord *picker7;
     DraggedChord *picker8;
     
+    // Images for the pickers
+    UIImage *_orangeNote;
+    UIImage *_blueNote;
+    UIImage *_greenNote;
+    UIImage *_yellowNote;
+    UIImage *_redNote;
+    UIImage *_tealNote;
+    UIImage *_navyNote;
+    UIImage *_purpleNote;
+    
     // 8 Buttons for the chords chosen
     UIButton *chordChosen1;
     UIButton *chordChosen2;
@@ -37,6 +47,11 @@
     UIButton *chordChosen7;
     UIButton *chordChosen8;
 
+    //Images for control bar
+    UIImage *_playImg;
+    UIImage *_stopImg;
+    UIImage *_pauseImg;
+    UIImage *_clearAllImg;
     
     // 4 Buttons, Play, Stop, Clear All and Switch keys
     UIButton *play;

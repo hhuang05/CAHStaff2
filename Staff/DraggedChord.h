@@ -20,6 +20,8 @@
 @property int indexOfChord;
 
 -(void) changeChordName:(NSString *)chord;
+-(void) changeImageToNewImage:(UIImage *)newImage;
 -(NSString *) chordName;
+-(UIImage *) getCurrentImage;
 
 @end
