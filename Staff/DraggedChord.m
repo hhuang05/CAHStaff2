@@ -13,19 +13,19 @@
 
 @synthesize chordChosen = _chordToPlay, indexOfChord = _indexOfChord;
 
-- (id)init
+-(id) init
 {
     self = [super init];
     
     if (self) {
         // Initialization code
         // Add the image and the text
-        theImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chordWrinkledPaper.png"]];
-        [theImage setFrame:CGRectMake(0, 0, 80, 80)];
+        theImage = [[UIImageView alloc] init];
+        [theImage setFrame:CGRectMake(0, 0, 110, 110)];
         [self addSubview:theImage];
         
         // added adjustsFontSizetoWidth and changed 3rd arg (width) from 46-70), 1st from 17 to 5
-        theChord = [[UILabel alloc] initWithFrame:CGRectMake(5, 20, 70, 40)];
+        theChord = [[UILabel alloc] initWithFrame:CGRectMake(18, 30, 70, 40)];
         // theChord.adjustsFontSizeToFitWidth = TRUE;
         [theChord setFont:[UIFont fontWithName:@"Noteworthy-Light" size:20.0f]];
         [theChord setTextAlignment:UITextAlignmentCenter];
@@ -51,10 +51,21 @@
     }
 }
 
+-(void) changeImageToNewImage:(UIImage *)newImage
+{
+    [theImage performSelectorOnMainThread:@selector(setImage:) withObject:newImage waitUntilDone:TRUE];
+}
+
 -(NSString *) chordName
 {
     return theChord.text;
 }
+
+-(UIImage *) getCurrentImage
+{
+    return [theImage image];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

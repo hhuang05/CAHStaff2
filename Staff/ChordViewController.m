@@ -24,6 +24,7 @@
 
 #define GROW_ANIMATION_DURATION_SECONDS 0.15    // Determines how fast a piece size grows when it is moved.
 #define SHRINK_ANIMATION_DURATION_SECONDS 0.15  // Determines how fast a piece size shrinks when a piece stops moving.
+#define FONT @"Noteworthy-Light"
 
 -(void) setUpChords:(NSArray*)theChords{
     
@@ -176,30 +177,48 @@
 
 -(void) layoutChordPickers
 {    
+    // Load images 
+    _orangeNote = [UIImage imageNamed:@"postit_orange.png"];
+    _blueNote = [UIImage imageNamed:@"postit_blue.png"];
+    _greenNote = [UIImage imageNamed:@"postit_green.png"]; 
+    _yellowNote = [UIImage imageNamed:@"postit_yellow.png"]; 
+    _redNote = [UIImage imageNamed:@"postit_red.png"]; 
+    _tealNote = [UIImage imageNamed:@"postit_teal.png"]; 
+    _navyNote = [UIImage imageNamed:@"postit_navy.png"]; 
+    _purpleNote = [UIImage imageNamed:@"postit_purple.png"]; 
+
     // Coordinates are relative to the parent container
-    picker1 = [[DraggedChord alloc] init];
-    picker1.frame = CGRectMake(50, 550, 80, 80);
+    picker1 = [[DraggedChord alloc] init ];
+    picker1.frame = CGRectMake(50, 100, 80, 80);
+    [picker1 changeImageToNewImage:_orangeNote];
     
     picker2 = [[DraggedChord alloc] init];
-    picker2.frame = CGRectMake(180, 550, 80, 80);
+    picker2.frame = CGRectMake(180, 100, 80, 80);
+    [picker2 changeImageToNewImage:_blueNote];
     
     picker3 = [[DraggedChord alloc] init];
-    picker3.frame = CGRectMake(310, 550, 80, 80);
+    picker3.frame = CGRectMake(310, 100, 120, 120);
+    [picker3 changeImageToNewImage:_greenNote];
     
     picker4 = [[DraggedChord alloc] init];
-    picker4.frame = CGRectMake(440, 550, 80, 80);
+    picker4.frame = CGRectMake(440, 100, 80, 80);
+    [picker4 changeImageToNewImage:_yellowNote];
     
     picker5 = [[DraggedChord alloc] init];
-    picker5.frame = CGRectMake(50, 650, 80, 80);
+    picker5.frame = CGRectMake(50, 220, 80, 80);
+    [picker5 changeImageToNewImage:_redNote];
     
     picker6 = [[DraggedChord alloc] init];
-    picker6.frame = CGRectMake(180, 650, 80, 80);
+    picker6.frame = CGRectMake(180, 220, 80, 80);
+    [picker6 changeImageToNewImage:_tealNote];
     
     picker7 = [[DraggedChord alloc] init];
-    picker7.frame = CGRectMake(310, 650, 80, 80);
+    picker7.frame = CGRectMake(310, 220, 80, 80);
+    [picker7 changeImageToNewImage:_navyNote];
     
     picker8 = [[DraggedChord alloc] init];
-    picker8.frame = CGRectMake(440, 650, 80, 80);
+    picker8.frame = CGRectMake(440, 220, 80, 80);
+    [picker8 changeImageToNewImage:_purpleNote];
     
     pickerArray = [[NSArray alloc] initWithObjects:picker1, picker2, picker3, picker4, picker5, picker6, picker7, picker8, nil];
     
@@ -226,43 +245,43 @@
 {
     // Coordinates are relative to the parent container
     chordChosen1 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen1.frame = CGRectMake(50, 130, 80, 80);
-    chordChosen1.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen1.frame = CGRectMake(50, 400, 80, 80);
+    chordChosen1.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen1 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen2 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen2.frame = CGRectMake(180, 130, 80, 80);
-    chordChosen2.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen2.frame = CGRectMake(180, 400, 80, 80);
+    chordChosen2.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen2 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen3 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen3.frame = CGRectMake(310, 130, 80, 80);
-    chordChosen3.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen3.frame = CGRectMake(310, 400, 80, 80);
+    chordChosen3.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen3 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen4 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen4.frame = CGRectMake(440, 130, 80, 80);
-    chordChosen4.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen4.frame = CGRectMake(440, 400, 80, 80);
+    chordChosen4.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen4 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen5 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen5.frame = CGRectMake(50, 250, 80, 80);
-    chordChosen5.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen5.frame = CGRectMake(50, 520, 80, 80);
+    chordChosen5.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen5 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen6 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen6.frame = CGRectMake(180, 250, 80, 80);
-    chordChosen6.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen6.frame = CGRectMake(180, 520, 80, 80);
+    chordChosen6.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen6 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen7 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen7.frame = CGRectMake(310, 250, 80, 80);
-    chordChosen7.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen7.frame = CGRectMake(310, 520, 80, 80);
+    chordChosen7.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen7 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordChosen8 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen8.frame = CGRectMake(440, 250, 80, 80);
-    chordChosen8.titleLabel.font = [UIFont fontWithName:@"Noteworthy-Light" size:20.0f];
+    chordChosen8.frame = CGRectMake(440, 520, 80, 80);
+    chordChosen8.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen8 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
     chordsToBePlayed = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", nil];
@@ -290,21 +309,25 @@
 {
     isPaused = TRUE;
     
+    _pauseImg = [UIImage imageNamed:@"pause.png"];
+    _playImg = [UIImage imageNamed:@"play.png"];
+    _stopImg = [UIImage imageNamed:@"stop.png"];
+    _clearAllImg = [UIImage imageNamed:@"bin.png"];
     
-    play = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    play.frame = CGRectMake(30, 400, 120, 90);
-    [play setTitle:@"Play" forState:UIControlStateNormal];
+    play = [UIButton buttonWithType:UIButtonTypeCustom];
+    play.frame = CGRectMake(30, 640, 100, 100);
+    [play setImage:_playImg forState:UIControlStateNormal];
     [play addTarget:self action:@selector(playButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
-    stop = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    stop.frame = CGRectMake(160, 400, 120, 90);
-    [stop setTitle:@"Stop" forState:UIControlStateNormal];
+    stop = [UIButton buttonWithType:UIButtonTypeCustom];
+    stop.frame = CGRectMake(160, 640, 100, 100);
+    [stop setImage:_stopImg forState:UIControlStateNormal];
     [stop addTarget:self action:@selector(stopButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     stop.adjustsImageWhenDisabled = TRUE;
     
-    clearAll = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    clearAll.frame = CGRectMake(290, 400, 120, 90);
-    [clearAll setTitle:@"Clear All" forState:UIControlStateNormal];
+    clearAll = [UIButton buttonWithType:UIButtonTypeCustom];
+    clearAll.frame = CGRectMake(290, 640, 100, 100);
+    [clearAll setImage:_clearAllImg forState:UIControlStateNormal];
     [clearAll addTarget:self action:@selector(clearButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     if (self.view)
@@ -324,16 +347,16 @@
     starImage = [UIImage imageNamed:@"star.png"];
     
     star1 = [[UIImageView alloc] initWithImage:starImage];
-    [star1 setFrame:CGRectMake(30, 350, 40, 40)];
+    [star1 setFrame:CGRectMake(30, 600, 40, 40)];
     
     star2 = [[UIImageView alloc] initWithImage:starImage];
-    [star2 setFrame:CGRectMake(80, 350, 40, 40)];
+    [star2 setFrame:CGRectMake(80, 600, 40, 40)];
     
     star3 = [[UIImageView alloc] initWithImage:starImage];
-    [star3 setFrame:CGRectMake(130, 350, 40, 40)];
+    [star3 setFrame:CGRectMake(130, 600, 40, 40)];
     
     star4 = [[UIImageView alloc] initWithImage:starImage];
-    [star4 setFrame:CGRectMake(180, 350, 40, 40)];
+    [star4 setFrame:CGRectMake(180, 600, 40, 40)];
     
     starsHaveAppeared = FALSE;
 }
@@ -342,7 +365,7 @@
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.view = [[UIView alloc] initWithFrame: CGRectMake(400, 0, 624, 768)];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"corkBoard.png"]]];
     
     previousChord = nil;
     
@@ -352,7 +375,7 @@
     [self layoutStars];
     [self setupMetronome];
     [self buildTopMenu];
-    [self setUpVolumeSlider];
+//    [self setUpVolumeSlider];
     [mainDelegate.viewController.circleOf5thsController setup];
 }
 
@@ -388,7 +411,7 @@
 
 - (void) setupMetronome
 {
-    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(433, 380, 100, 30)];
+    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(433, 620, 100, 30)];
     [bpmStepper setMinimumValue:20.0];
     [bpmStepper setMaximumValue:160.0];
     [bpmStepper setValue:80.0];
@@ -397,13 +420,13 @@
     [bpmStepper setWraps:YES];
     [bpmStepper setAutorepeat:YES];
     
-    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(420, 415, 120, 40)];
+    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(420, 655, 120, 40)];
     [[bpmLabel layer] setCornerRadius:10];
     [bpmLabel setText:@"80"];
     [bpmLabel setTextAlignment:UITextAlignmentCenter];
     [bpmLabel setFont:[UIFont systemFontOfSize:24]];
      
-    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(440, 463, 79, 27)];
+    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(440, 703, 79, 27)];
     [metronomeOnOff setOn:NO animated:YES];
     
     [self.view addSubview:bpmLabel];
@@ -518,6 +541,7 @@
 	for (UITouch *touch in touches) {
 		// Send to the dispatch method, which will make sure the appropriate subview is acted upon
 		[self dispatchFirstTouchAtPoint:[touch locationInView:self.view] forEvent:nil];
+        break; // Do only 1 loop
 	}	 
 }
 
@@ -527,6 +551,7 @@
 	for (UITouch *touch in touches) {
 		// Sends to the dispatch method, which will make sure the appropriate subview is acted upon
 		[self dispatchTouchEndEvent:[touch view] toPosition:[touch locationInView:self.view]];
+        break;
 	}
 }
 
@@ -536,6 +561,7 @@
 	for (UITouch *touch in touches) {
 		// Sends to the dispatch method, which will make sure the appropriate subview is acted upon
 		[self dispatchTouchEndEvent:[touch view] toPosition:[touch locationInView:self.view]];
+        break;
 	}   
 }
 
@@ -544,6 +570,7 @@
     for (UITouch *touch in touches) {
 		// Send to the dispatch method, which will make sure the appropriate subview is acted upon
 		[self dispatchTouchEvent:[touch view] toPosition:[touch locationInView:self.view]];
+        break;
 	}  
 }
 
@@ -620,12 +647,12 @@
 -(void)dispatchFirstTouchAtPoint:(CGPoint)touchPoint forEvent:(UIEvent *)event
 {
     draggedChord = [[DraggedChord alloc] init];
-    
     BOOL touchIsInPicker = false;
     
 	if (CGRectContainsPoint([picker1 frame], touchPoint)) {
         [draggedChord setFrame:[picker1 frame]];
         [draggedChord changeChordName:picker1.chordName];
+        [draggedChord changeImageToNewImage:[picker1 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 0];
@@ -634,6 +661,7 @@
     else if (CGRectContainsPoint([picker2 frame], touchPoint)) {
         [draggedChord setFrame:[picker2 frame]];
         [draggedChord changeChordName:picker2.chordName];
+        [draggedChord changeImageToNewImage:[picker2 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 1];
@@ -642,6 +670,7 @@
     else if (CGRectContainsPoint([picker3 frame], touchPoint)) {
         [draggedChord setFrame:[picker3 frame]];
         [draggedChord changeChordName:picker3.chordName];
+        [draggedChord changeImageToNewImage:[picker3 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 2];
@@ -650,6 +679,7 @@
     else if (CGRectContainsPoint([picker4 frame], touchPoint)) {
         [draggedChord setFrame:[picker4 frame]];
         [draggedChord changeChordName:picker4.chordName];
+        [draggedChord changeImageToNewImage:[picker4 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 3];
@@ -658,6 +688,7 @@
     else if (CGRectContainsPoint([picker5 frame], touchPoint)) {
         [draggedChord setFrame:[picker5 frame]];
         [draggedChord changeChordName:picker5.chordName];
+        [draggedChord changeImageToNewImage:[picker5 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 4];
@@ -666,6 +697,7 @@
     else if (CGRectContainsPoint([picker6 frame], touchPoint)) {
         [draggedChord setFrame:[picker6 frame]];
         [draggedChord changeChordName:picker6.chordName];
+        [draggedChord changeImageToNewImage:[picker6 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 5];
@@ -674,6 +706,7 @@
     else if (CGRectContainsPoint([picker7 frame], touchPoint)) {
         [draggedChord setFrame:[picker7 frame]];
         [draggedChord changeChordName:picker7.chordName];
+        [draggedChord changeImageToNewImage:[picker7 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 6];
@@ -682,6 +715,7 @@
     else if (CGRectContainsPoint([picker8 frame], touchPoint)) {
         [draggedChord setFrame:[picker8 frame]];
         [draggedChord changeChordName:picker8.chordName];
+        [draggedChord changeImageToNewImage:[picker8 getCurrentImage]];
         touchIsInPicker = true;
         
         draggedChord.chordChosen = [chordChoices objectAtIndex: 7];
@@ -803,19 +837,18 @@
                 // We're going to call the metronome to keep track for 4 beats, then shut it off
                 starsHaveAppeared = TRUE;
                 [metronomeOnOff setOn:TRUE];
+                [stop setEnabled:FALSE];
             }
             else
                 beforePlayCounter = 4;
             
             [self metronomeOnOffChanged:metronomeOnOff];
-            [stop setEnabled:FALSE];
             isPaused = FALSE;
-            [play setTitle:@"Pause" forState:UIControlStateNormal];
+            [play setImage:_pauseImg forState:UIControlStateNormal];
         }
         else {
-            //[mainDelegate.viewController.dataController pauseChords];
             isPaused = TRUE;
-            [play setTitle:@"Play" forState:UIControlStateNormal];
+            [play setImage:_playImg forState:UIControlStateNormal];
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController stopChord:currentChordPlaying];
         }
@@ -907,7 +940,7 @@
     [self scaleDownChordChosenButton:chosenButton];
     
     isPaused = TRUE;
-    [play setTitle:@"Play" forState:UIControlStateNormal];
+    [play setImage:_playImg forState:UIControlStateNormal];
     beforePlayCounter = 0;
     starsHaveAppeared = FALSE;
     progressionToBeSent = nil;
@@ -1000,6 +1033,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)viewDidUnload

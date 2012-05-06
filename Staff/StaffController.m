@@ -53,6 +53,7 @@
     self.staffView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     [self.staffView setBackgroundColor:[UIColor clearColor]];
     [[staffView layer] setZPosition:1];
+    //[self.staffView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
     //[self.staffView.layer setBorderWidth:1];
     //[self.staffView.layer setBorderColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor];
     self.view = self.canvas;
@@ -60,7 +61,7 @@
     [self.canvas setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"papyrus.jpg"]]];
     [self.canvas addSubview:staffView];
     
-    wrinkledPaper = [UIImage imageNamed:@"CrinkledPaper.png"];
+    //wrinkledPaper = [UIImage imageNamed:@"CrinkledPaper.png"];
 }
 
 -(void)setLineTags
@@ -291,14 +292,14 @@
 - (BOOL)changeScale:(NSArray *)notesFromDataController
 {
     //Return false if array is not normalized properly
-    if(notesFromDataController.count != NUMBER_OF_NOTES){
+    if(notesFromDataController.count != NUMBER_OF_NOTES + 1){
         NSLog(@" Recieved this number of notes: %@", [notesFromDataController count]);
         return FALSE;
     }
     
     //Parse values for validity first
     int num = -1;
-    for(int i = 0; i < NUMBER_OF_NOTES; i++)
+    for(int i = 1; i < NUMBER_OF_NOTES + 1; i++)
     {
         num = [[notesFromDataController objectAtIndex:i] integerValue];
         if(num != -1 && num != 0 && num != 1){
@@ -314,13 +315,13 @@
     num = -1;
     
     //For each, display flat/sharp if value -1/1
-    for(int pos = 0; pos < NUMBER_OF_NOTES; pos++)
+    for(int pos = 1; pos < NUMBER_OF_NOTES + 1; pos++)
     {
         num = [[notesFromDataController objectAtIndex:pos] intValue];
         if(num != 0){
             NSLog(@"value: %d pos: %d",[[notesFromDataController objectAtIndex:pos] intValue], pos);            
-            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos + 2];
-            [self findAccidentalNote:pos + 2];
+            [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos + 1];
+            [self findAccidentalNote:pos + 1];
         }
     }
     
