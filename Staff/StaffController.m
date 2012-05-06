@@ -51,10 +51,13 @@
 {   
     self.canvas = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     self.staffView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
-    [self.staffView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
+    [self.staffView setBackgroundColor:[UIColor clearColor]];
+    [[staffView layer] setZPosition:1];
     //[self.staffView.layer setBorderWidth:1];
     //[self.staffView.layer setBorderColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor];
     self.view = self.canvas;
+    
+    [self.canvas setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"papyrus.jpg"]]];
     [self.canvas addSubview:staffView];
     
     wrinkledPaper = [UIImage imageNamed:@"CrinkledPaper.png"];
@@ -189,7 +192,7 @@
     while ((key = [enumerator nextObject])) {
         UIView *line = [lines objectForKey:key];
         [line setBackgroundColor:[UIColor clearColor]];
-        [staffView addSubview:line];
+        [canvas addSubview:line];
     }
 }
 
@@ -269,7 +272,7 @@
     while ((key = [enumerator nextObject])) {
         UIView *space = [spaces objectForKey:key];
         [space setBackgroundColor:[UIColor clearColor]];
-        [staffView addSubview:space];
+        [canvas addSubview:space];
     }
 }
 
@@ -320,6 +323,7 @@
             [self findAccidentalNote:pos + 2];
         }
     }
+    
     return TRUE;
 }
 
@@ -391,22 +395,28 @@
 
 - (void)setFlatsAndSharps
 {
-    IVM sharpData, flatData;
-    int d_width = 30;
-    int d_height = 30;
-    int d_x = 10;
+    IVM sharpData, flatData, dotData;
+    int d_width = 40;
+    int d_height = 40;
+    int d_x = 5;
 
     sharpData.width = d_width;
     sharpData.height = d_height;
     sharpData.x = d_x;
-    sharpData.y = 120;
+    sharpData.y = 117;
     flatData.width = d_width;
     flatData.height = d_height;
     flatData.x = d_x;
-    flatData.y = 213;
+    flatData.y = 201;
+    
+    dotData.width = d_width;
+    dotData.height = d_height;
+    dotData.x = 380;
+    dotData.y = 164;
     
     int sharpNoteCount = 3;
     int flatNoteCount = 5;
+    int dotCount = 3;
     
     sharps = [[NSMutableDictionary alloc] initWithCapacity:ICON_COUNT];
     flats = [[NSMutableDictionary alloc] initWithCapacity:ICON_COUNT];
@@ -414,26 +424,47 @@
     for (int i = 0; i < ICON_COUNT; i++) {
         
         //Add sharp icons to staffView, hide all
-        UIImageView *sharp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smallsharp.gif"]];
+        UIImageView *sharp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notassmallsharp.png"]];
         [sharp setFrame:CGRectMake(sharpData.x, sharpData.y, sharpData.width, sharpData.height)];
         [sharp setHidden:TRUE];
+        [[sharp layer] setZPosition:0];
         //[self fadeOut : sharp withDuration: 3 andWait : 1 ];
         [sharps setValue:sharp forKey:[NSString stringWithFormat:@"%d",sharpNoteCount]];
-        [staffView addSubview:sharp];
+        [canvas addSubview:sharp];
         
         //Add flat icons to staffView, hide all
-        UIImageView *flat = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smallflat.gif"]];
+        UIImageView *flat = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notassmallflat.png"]];
         [flat setFrame:CGRectMake(flatData.x, flatData.y, flatData.width, flatData.height)];
         [flat setHidden:TRUE];
+        [[flat layer] setZPosition:0];
         //[self fadeOut : flat withDuration: 3 andWait : 1 ];
         [flats setValue:flat forKey:[NSString stringWithFormat:@"%d",flatNoteCount]];
-        [staffView addSubview:flat];
+        [canvas addSubview:flat];
         
         flatData.y += 46;
         flatNoteCount +=1;
-        sharpData.y += 47;
+        sharpData.y += 46;
         sharpNoteCount += 1;
         
+    }
+    
+    
+    //Aaron, configure dots here
+    for(int i = 0; i < ICON_COUNT+2; i++){
+        //Add dot icons to staffView, hide all
+        UIImageView *dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scaledot.png"]];
+        [dot setFrame:CGRectMake(dotData.x, dotData.y, dotData.width, dotData.height)];
+        [dot setHidden:TRUE];
+        [[dot layer] setZPosition:0];
+        //[self fadeOut : flat withDuration: 3 andWait : 1 ];
+        [dots setValue:dot forKey:[NSString stringWithFormat:@"%d",dotCount]];
+        [canvas addSubview:dot];
+        
+        dotData.y += 46;
+        if(i == 2 || i == 4 || i == 6){
+            dotData.y -= 1;
+        }
+        dotCount += 1;
     }
     
 }

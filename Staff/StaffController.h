@@ -40,6 +40,7 @@ typedef struct image_view_metadata {
     NSMutableDictionary *spaces;
     NSMutableDictionary *sharps;
     NSMutableDictionary *flats;
+    NSMutableDictionary *dots;
     NSArray *notes;
     UIImage *wrinkledPaper;
 }
