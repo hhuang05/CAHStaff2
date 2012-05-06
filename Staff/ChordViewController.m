@@ -365,7 +365,7 @@
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.view = [[UIView alloc] initWithFrame: CGRectMake(400, 0, 624, 768)];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"corkBoard.png"]]];
     
     previousChord = nil;
     

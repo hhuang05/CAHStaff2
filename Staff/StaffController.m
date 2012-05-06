@@ -51,13 +51,13 @@
 {   
     self.canvas = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     self.staffView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
-    [self.staffView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
+    //[self.staffView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
     //[self.staffView.layer setBorderWidth:1];
     //[self.staffView.layer setBorderColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor];
     self.view = self.canvas;
     [self.canvas addSubview:staffView];
     
-    wrinkledPaper = [UIImage imageNamed:@"CrinkledPaper.png"];
+    //wrinkledPaper = [UIImage imageNamed:@"CrinkledPaper.png"];
 }
 
 -(void)setLineTags
