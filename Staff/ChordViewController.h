@@ -47,6 +47,11 @@
     UIButton *chordChosen7;
     UIButton *chordChosen8;
 
+    //Images for control bar
+    UIImage *_playImg;
+    UIImage *_stopImg;
+    UIImage *_pauseImg;
+    UIImage *_clearAllImg;
     
     // 4 Buttons, Play, Stop, Clear All and Switch keys
     UIButton *play;

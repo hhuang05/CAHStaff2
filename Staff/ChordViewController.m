@@ -309,21 +309,25 @@
 {
     isPaused = TRUE;
     
+    _pauseImg = [UIImage imageNamed:@"pause.png"];
+    _playImg = [UIImage imageNamed:@"play.png"];
+    _stopImg = [UIImage imageNamed:@"stop.png"];
+    _clearAllImg = [UIImage imageNamed:@"bin.png"];
     
     play = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    play.frame = CGRectMake(30, 640, 120, 90);
-    [play setTitle:@"Play" forState:UIControlStateNormal];
+    play.frame = CGRectMake(30, 640, 100, 100);
+    [play setBackgroundImage:_playImg forState:UIControlStateNormal];
     [play addTarget:self action:@selector(playButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     stop = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    stop.frame = CGRectMake(160, 640, 120, 90);
-    [stop setTitle:@"Stop" forState:UIControlStateNormal];
+    stop.frame = CGRectMake(160, 640, 100, 100);
+    [stop setImage:_stopImg forState:UIControlStateNormal];
     [stop addTarget:self action:@selector(stopButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     stop.adjustsImageWhenDisabled = TRUE;
     
     clearAll = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    clearAll.frame = CGRectMake(290, 640, 120, 90);
-    [clearAll setTitle:@"Clear All" forState:UIControlStateNormal];
+    clearAll.frame = CGRectMake(290, 640, 100, 100);
+    [clearAll setBackgroundImage:_clearAllImg forState:UIControlStateNormal];
     [clearAll addTarget:self action:@selector(clearButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     if (self.view)
@@ -841,11 +845,13 @@
             [stop setEnabled:FALSE];
             isPaused = FALSE;
             [play setTitle:@"Pause" forState:UIControlStateNormal];
+            [play setImage:_pauseImg forState:UIControlStateNormal];
         }
         else {
             //[mainDelegate.viewController.dataController pauseChords];
             isPaused = TRUE;
             [play setTitle:@"Play" forState:UIControlStateNormal];
+            [play setImage:_playImg forState:UIControlStateNormal];
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController stopChord:currentChordPlaying];
         }
