@@ -628,13 +628,24 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
 
 // tell each Chord in the array what to concatenate its
 // name with, e.g. "F" + "Maj"
--(void)setUpChordsToSendWithRotoKey:(NSString*)root{
+-(NSArray*)setUpChordsToSendWithRootKey:(NSString*)root{
     NSArray *friends = [_friendChords objectForKey:root];
+ 
+    if(isupper([root characterAtIndex:0])) {
+        _currentChords = [_majorKeyChordFormulas mutableCopy];
+    }
+    else{
+        _currentChords = [_minorKeyChordFormulas mutableCopy];
+    }
+    
     int pos = 0;
+    NSLog(@"Creating chords to send:");
     for(Chord *c in _currentChords){
         [c setupKey:[friends objectAtIndex:pos++]];
-       // NSLog(@"assigned key: %@", [c key]);
+        NSLog(@"%@ %@", [c key], [c name]);
     }
+    NSArray* toSend = [_currentChords mutableCopy];
+    return toSend;
 }
 
 // When the user selects a new key signature, tell the 
@@ -646,28 +657,14 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     // before switching key signatures, stop the current chord
     // so that we don't have lingering notes we can't turn off
     [self stopChord:currentChord];
-    
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];   
-    _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
-    _currentKey = choice;
-    
-    _currentChords = nil;
-    if(isupper([choice characterAtIndex:0])){
-        _currentChords = [[NSArray alloc] initWithArray:_majorKeyChordFormulas];
-    }
-    else{
-        _currentChords = [[NSArray alloc] initWithArray:_minorKeyChordFormulas];
-    }
-
-    [self setUpChordsToSendWithRotoKey:choice];
     
     if(keySignaturetoDraw){
+        _currentKey = choice;
+        _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];
-        for(Chord* c in _currentChords){
-            //NSLog(@"sending: %@", [c key]);
-        }
-        [mainDelegate.viewController.chordController setUpChords:_currentChords];
+        [mainDelegate.viewController.chordController setUpChords:[self setUpChordsToSendWithRootKey:choice]];
     }
     else
         NSLog(@"changeScale called with unknown key signature %@", choice);
@@ -762,31 +759,31 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
      set precision for all of these values
      */
     
-    if (value == 1.0){
+    if (value > .9 && value < 1.1){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation]intValue];
     }
-    else if(value == 3.0){
+    else if(value > 2.9 && value < 3.05){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue];
     }
-    else if(value > 3.0 && value < 3.15){
+    else if(value > 3.05 && value < 3.15){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue] -1); 
     }
-    else if(value == 4.0){
+    else if(value > 3.9 && value < 4.1){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 3]intValue];        
     }    
-    else if(value == 5.0){
+    else if(value > 4.9 && value < 5.05){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue];
     }
-    else if(value == 5.1){
+    else if(value > 5.05 && value < 5.2){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue] -1);        
     }
-    else if(value == 5.5){
+    else if(value > 5.4 && value < 5.6){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue] + 1);
     }    
-    else if(value == 6.0){
+    else if(value > 5.9 && value < 6.1){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue];
     }
-    else if(value == 7.1){
+    else if(value > 7.0 && value < 7.2){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 6]intValue] -1);
     }
     else{

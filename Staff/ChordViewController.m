@@ -135,7 +135,10 @@
     [topMenu addSubview:circleOfFifthsButton];
     [self.view addSubview:topMenu];
 
-    solidVerticalLine *divider = [[solidVerticalLine alloc] initWithFrame:CGRectMake(0, 0, 20, 70)];
+    //[self.view addSubview:instrumentsButton];
+    //[self.view addSubview:circleOfFifthsButton];
+    
+    solidVerticalLine *divider = [[solidVerticalLine alloc] initWithFrame:CGRectMake(0, 0, 2, 70)];
     [divider addSubview:[self deepCopySolidVerticalLine:[[solidVerticalLine alloc]init]]];
     [self.view addSubview:divider];
     

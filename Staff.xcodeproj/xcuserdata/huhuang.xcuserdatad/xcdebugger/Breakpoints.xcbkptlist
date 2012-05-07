@@ -42,8 +42,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "475"
          endingLineNumber = "475"
-         landmarkName = "-metronomeOnOffChanged:"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -70,8 +70,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "692"
          endingLineNumber = "692"
-         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
-         landmarkType = "5">
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
