@@ -86,6 +86,7 @@
     IBOutlet UILabel *bpmLabel;
     IBOutlet UISwitch *metronomeOnOff;
     NSTimer *metronomeTimer;
+    UIImageView *_metronomeFrame;
     
     int beforePlayCounter;
     int currentChordPlayingIndex;

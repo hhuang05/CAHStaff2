@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08135BE41557572700C50875 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08135BE31557572700C50875 /* QuartzCore.framework */; };
 		0826BDBD1523E5AF004A9B22 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDB11523E5AF004A9B22 /* Chord.m */; };
 		0826BDBF1523E5AF004A9B22 /* ChordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0826BDB51523E5AF004A9B22 /* ChordViewController.m */; };
 		0826BDC01523E5AF004A9B22 /* CyanSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 0826BDB61523E5AF004A9B22 /* CyanSquare.png */; };
@@ -39,6 +40,7 @@
 		08AACA6E15562BD300738394 /* bin_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 08AACA6D15562BD300738394 /* bin_small.png */; };
 		08AACA7215562FC700738394 /* postit_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 08AACA7115562FC700738394 /* postit_green.png */; };
 		08ACF4BC152B9D1F00512760 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ACF4BB152B9D1F00512760 /* star.png */; };
+		08ADDEFD1557697D000C5DD2 /* strippedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ADDEFC1557697D000C5DD2 /* strippedBackground.png */; };
 		08C9512A1550CB0A00D44C3E /* Circleof5thsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C951291550CB0A00D44C3E /* Circleof5thsController.m */; };
 		08C9512C1550DCF500D44C3E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08C9512B1550DCF500D44C3E /* Icon.png */; };
 		08E618C71544E86A00A366B5 /* flat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 08E618C61544E86A00A366B5 /* flat.gif */; };
@@ -70,6 +72,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08135BE31557572700C50875 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0826BDB01523E5AF004A9B22 /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
 		0826BDB11523E5AF004A9B22 /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
 		0826BDB41523E5AF004A9B22 /* ChordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordViewController.h; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		08AACA6D15562BD300738394 /* bin_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bin_small.png; sourceTree = "<group>"; };
 		08AACA7115562FC700738394 /* postit_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postit_green.png; sourceTree = "<group>"; };
 		08ACF4BB152B9D1F00512760 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		08ADDEFC1557697D000C5DD2 /* strippedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strippedBackground.png; sourceTree = "<group>"; };
 		08C951281550CB0A00D44C3E /* Circleof5thsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circleof5thsController.h; sourceTree = "<group>"; };
 		08C951291550CB0A00D44C3E /* Circleof5thsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circleof5thsController.m; sourceTree = "<group>"; };
 		08C9512B1550DCF500D44C3E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08135BE41557572700C50875 /* QuartzCore.framework in Frameworks */,
 				A717FEE21534EE1300515250 /* Security.framework in Frameworks */,
 				A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */,
 				A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */,
@@ -240,6 +245,7 @@
 		2AE1DE7215154B72008C538D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08135BE31557572700C50875 /* QuartzCore.framework */,
 				A717FEE11534EE1300515250 /* Security.framework */,
 				A717FEDE1534ED9D00515250 /* CoreFoundation.framework */,
 				A765348A15276051001885E9 /* AudioToolbox.framework */,
@@ -254,32 +260,6 @@
 		2AE1DE7915154B72008C538D /* Staff */ = {
 			isa = PBXGroup;
 			children = (
-				0826BDC51523E5C2004A9B22 /* MainController.h */,
-				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
-				0826BDC61523E5C2004A9B22 /* MainController.m */,
-				0890CDAA15522B3C00D0CF36 /* wrinkledPaper.png */,
-				0826BDC71523E5C2004A9B22 /* MainController.xib */,
-				0826BDC81523E5C2004A9B22 /* sharp.gif */,
-				0826BDC91523E5C2004A9B22 /* sharpIcon.h */,
-				0826BDCA1523E5C2004A9B22 /* sharpIcon.m */,
-				0826BDCB1523E5C2004A9B22 /* smallflat.gif */,
-				0826BDCC1523E5C2004A9B22 /* smallsharp.gif */,
-				0826BDCD1523E5C2004A9B22 /* solidLine.h */,
-				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
-				A7A180C2154EF70600712D92 /* solidVerticalLine.h */,
-				A7A180C3154EF70600712D92 /* solidVerticalLine.m */,
-				08C951281550CB0A00D44C3E /* Circleof5thsController.h */,
-				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
-				2AAF8E831555B6B200F31082 /* papyrus.jpg */,
-				2AAF8E7F1555B39C00F31082 /* notassmallflat.png */,
-				2AAF8E801555B39C00F31082 /* notassmallsharp.png */,
-				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
-				2AF14AB51547132600C899B2 /* solidlineAccidental.m */,
-				2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */,
-				2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */,
-				2AAF8E851555B9F900F31082 /* scaledot.png */,
-				0826BDCF1523E5C2004A9B22 /* StaffController.h */,
-				0826BDD01523E5C2004A9B22 /* StaffController.m */,
 				2A94A4DE1542622000766EAF /* AccidentalsController.h */,
 				2A94A4DF1542622000766EAF /* AccidentalsController.m */,
 				2AE1DE8215154B72008C538D /* AppDelegate.h */,
@@ -299,6 +279,7 @@
 				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
 				A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */,
 				A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */,
+				08ADDEFC1557697D000C5DD2 /* strippedBackground.png */,
 				A785F78515530EB400191D36 /* CircleView.h */,
 				A785F78615530EB400191D36 /* CircleView.m */,
 				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
@@ -338,6 +319,34 @@
 				0826BDCC1523E5C2004A9B22 /* smallsharp.gif */,
 				0826BDCD1523E5C2004A9B22 /* solidLine.h */,
 				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
+				08C951281550CB0A00D44C3E /* Circleof5thsController.h */,
+				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
+				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
+				2AF14AB51547132600C899B2 /* solidlineAccidental.m */,
+				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
+				A7A180C2154EF70600712D92 /* solidVerticalLine.h */,
+				2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */,
+				A7A180C3154EF70600712D92 /* solidVerticalLine.m */,
+				2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */,
+				0826BDCF1523E5C2004A9B22 /* StaffController.h */,
+				0826BDC51523E5C2004A9B22 /* MainController.h */,
+				0826BDD01523E5C2004A9B22 /* StaffController.m */,
+				08ACF4BB152B9D1F00512760 /* star.png */,
+				08AACA6815562AB100738394 /* stop.png */,
+				2AE1DE7A15154B72008C538D /* Supporting Files */,
+				0826BDC61523E5C2004A9B22 /* MainController.m */,
+				0890CDAA15522B3C00D0CF36 /* wrinkledPaper.png */,
+				0826BDC71523E5C2004A9B22 /* MainController.xib */,
+				2AAF8E7F1555B39C00F31082 /* notassmallflat.png */,
+				2AAF8E801555B39C00F31082 /* notassmallsharp.png */,
+				2AAF8E851555B9F900F31082 /* scaledot.png */,
+				0826BDC81523E5C2004A9B22 /* sharp.gif */,
+				0826BDC91523E5C2004A9B22 /* sharpIcon.h */,
+				0826BDCA1523E5C2004A9B22 /* sharpIcon.m */,
+				0826BDCB1523E5C2004A9B22 /* smallflat.gif */,
+				0826BDCC1523E5C2004A9B22 /* smallsharp.gif */,
+				0826BDCD1523E5C2004A9B22 /* solidLine.h */,
+				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
 				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
 				2AF14AB51547132600C899B2 /* solidlineAccidental.m */,
 				A7A180C2154EF70600712D92 /* solidVerticalLine.h */,
@@ -347,9 +356,6 @@
 				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
 				0826BDD01523E5C2004A9B22 /* StaffController.m */,
 				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
-				08ACF4BB152B9D1F00512760 /* star.png */,
-				08AACA6815562AB100738394 /* stop.png */,
-				2AE1DE7A15154B72008C538D /* Supporting Files */,
 				0890CDAA15522B3C00D0CF36 /* wrinkledPaper.png */,
 				2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */,
 				2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */,
@@ -496,6 +502,7 @@
 				08AACA7215562FC700738394 /* postit_green.png in Resources */,
 				A73B106F1556CEA100B268D0 /* crsynth.dlsc in Resources */,
 				08E8DF0B155738600051F1E8 /* blackFrame_140pixels.png in Resources */,
+				08ADDEFD1557697D000C5DD2 /* strippedBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

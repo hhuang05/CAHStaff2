@@ -243,7 +243,16 @@
 
 -(void) layoutChordsToBePlayed
 {
-    postitNotesinBoxes = [[NSMutableArray alloc] init];
+    postitNotesinBoxes = [[NSMutableArray alloc] initWithCapacity:8]; // Holds enough for the pickers
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:0];
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:1];
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:2];
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:3];
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:4];
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:5];
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:6];
+    [postitNotesinBoxes insertObject:[[NSMutableArray alloc] init] atIndex:7];
+    
     _chordFrame = [UIImage imageNamed:@"blackFrame_140pixels.png"];
     
     // Coordinates are relative to the parent container
@@ -326,18 +335,18 @@
     _clearAllImg = [UIImage imageNamed:@"bin.png"];
     
     play = [UIButton buttonWithType:UIButtonTypeCustom];
-    play.frame = CGRectMake(30, 640, 100, 100);
+    play.frame = CGRectMake(30, 610, 100, 100);
     [play setImage:_playImg forState:UIControlStateNormal];
     [play addTarget:self action:@selector(playButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     stop = [UIButton buttonWithType:UIButtonTypeCustom];
-    stop.frame = CGRectMake(160, 640, 100, 100);
+    stop.frame = CGRectMake(160, 610, 100, 100);
     [stop setImage:_stopImg forState:UIControlStateNormal];
     [stop addTarget:self action:@selector(stopButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     stop.adjustsImageWhenDisabled = TRUE;
     
     clearAll = [UIButton buttonWithType:UIButtonTypeCustom];
-    clearAll.frame = CGRectMake(290, 640, 100, 100);
+    clearAll.frame = CGRectMake(290, 610, 100, 100);
     [clearAll setImage:_clearAllImg forState:UIControlStateNormal];
     [clearAll addTarget:self action:@selector(clearButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
@@ -386,14 +395,14 @@
     [self layoutStars];
     [self setupMetronome];
     [self buildTopMenu];
-//    [self setUpVolumeSlider];
+    [self setUpVolumeSlider];
     [mainDelegate.viewController.circleOf5thsController setup];
 }
 
 // Staff is set to velocity of 100
 // Chords is set to 42 + x, where x goes from 0-85, so 42-127
 -(void)setUpVolumeSlider{
-    chordVolume = [[UISlider alloc] initWithFrame:CGRectMake(50, 80, 470, 50)];
+    chordVolume = [[UISlider alloc] initWithFrame:CGRectMake(50, 700, 470, 50)];
     [chordVolume setMinimumValue:0.0];
     [chordVolume setMaximumValue:85.0];
     [chordVolume setMinimumTrackTintColor:[UIColor blackColor]];
@@ -422,7 +431,11 @@
 
 - (void) setupMetronome
 {
-    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(433, 620, 100, 30)];
+    _metronomeFrame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"strippedBackground"]];
+    _metronomeFrame.frame = CGRectMake(420, 610, 200, 100);
+    _metronomeFrame.userInteractionEnabled = true;
+    
+    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(8, 55, 100, 30)];
     [bpmStepper setMinimumValue:20.0];
     [bpmStepper setMaximumValue:160.0];
     [bpmStepper setValue:80.0];
@@ -431,19 +444,20 @@
     [bpmStepper setWraps:YES];
     [bpmStepper setAutorepeat:YES];
     
-    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(420, 655, 120, 40)];
+    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 185, 40)];
     [[bpmLabel layer] setCornerRadius:10];
-    [bpmLabel setText:@"80"];
+    [bpmLabel setText:@"80 bpm"];
     [bpmLabel setTextAlignment:UITextAlignmentCenter];
     [bpmLabel setFont:[UIFont systemFontOfSize:24]];
      
-    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(440, 703, 79, 27)];
+    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(118, 55, 79, 27)];
     [metronomeOnOff setOn:NO animated:YES];
     
-    [self.view addSubview:bpmLabel];
-    [self.view addSubview:bpmStepper];
-    [self.view addSubview:metronomeOnOff];
-    
+    [_metronomeFrame addSubview:bpmLabel];
+    [_metronomeFrame addSubview:bpmStepper];
+    [_metronomeFrame addSubview:metronomeOnOff];
+
+    [self.view addSubview:_metronomeFrame];
     [bpmStepper addTarget:self action:@selector(bpmStepperValueChanged:) forControlEvents:UIControlEventValueChanged];
     [metronomeOnOff addTarget:self action:@selector(metronomeOnOffChanged:) forControlEvents:UIControlEventValueChanged];
     
@@ -538,7 +552,7 @@
 
 - (IBAction)bpmStepperValueChanged:(UIStepper *)sender {
     double stepperValue = bpmStepper.value;
-    self.bpmLabel.text = [NSString stringWithFormat:@"%.f", stepperValue];
+    self.bpmLabel.text = [NSString stringWithFormat:@"%.f bpm", stepperValue];
 }
 
 /*********************************************************
@@ -601,59 +615,69 @@
     
     UIImageView *_newImageview = [[UIImageView alloc] initWithImage:draggedChord.getCurrentImage];
     [_newImageview addSubview:draggedChord.getCurrentLabel];
+    int index;
     
 	// Check to see which view, or views,  the point is in and then animate to that position.
 	if (CGRectContainsPoint([chordChosen1 frame], position)) {
+        index = 0;
 		[chordChosen1 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen1 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:0 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:0 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen2 frame], position)) {
+        index = 1;
 		[chordChosen2 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen2 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:1 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen3 frame], position)) {
+        index = 2;
 		[chordChosen3 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen3 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:2 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:2 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen4 frame], position)) {
+        index = 3;
 		[chordChosen4 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen4 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:3 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:3 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen5 frame], position)) {
+        index = 4;
 		[chordChosen5 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen5 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:4 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:4 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen6 frame], position)) {
+        index = 5;
 		[chordChosen6 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen6 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:5 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:5 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen7 frame], position)) {
+        index = 6;
 		[chordChosen7 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen7 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:6 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:6 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen8 frame], position)) {
+        index = 7;
 		[chordChosen8 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
         [chordChosen8 addSubview:_newImageview];
-        [chordsToBePlayed replaceObjectAtIndex:7 withObject: newChord];
-        [chordsToBePlayedIndexes replaceObjectAtIndex:7 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
+        [chordsToBePlayed replaceObjectAtIndex:index withObject: newChord];
+        [chordsToBePlayedIndexes replaceObjectAtIndex:index withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     
     if (_newImageview.superview != nil) {
-        [postitNotesinBoxes addObject:_newImageview];
+        NSMutableArray *dict = (NSMutableArray *)[postitNotesinBoxes objectAtIndex:index];
+        [dict addObject:_newImageview];
     }
     
     // Now we must remove the dragged chord
@@ -777,8 +801,10 @@
 -(void) clearButton_onTouchUpInside
 {
     // Clear UI
-    for (UIView *view in postitNotesinBoxes) {
-        [view removeFromSuperview];
+    for (NSMutableArray *dict in postitNotesinBoxes) {
+        for (UIView *view in dict) {
+            [view removeFromSuperview];
+        }
     }
         
     // Clear the data structure by replacing all items with an NSString
@@ -961,7 +987,6 @@
 }
 
 // Once the user touches a chord chosen, present the popover view
-// Todo need to send chords
 -(void) chordChosen_onTouchUpInside:(id)sender
 {
     // We check if the chord to be played is of a type of chord class, this is only true if
@@ -1019,11 +1044,14 @@
     // Must check if delete was pressed since this call back is executed for non-programmatic calls
     if ([(ChordOptionsViewController *)thePopoverController.contentViewController wasDeletePressed]) {
         // Remove the chord and reset the button
+        int index = [chordsToBePlayed indexOfObject:[(ChordOptionsViewController *)thePopoverController.contentViewController theChord]];
         
-        // Gets the appropriate button from the chord chosen and we remove the text associated
-        UIButton *buttonChosen = (UIButton *)[chosenChordButtonsArray objectAtIndex:[chordsToBePlayed indexOfObject:[(ChordOptionsViewController *)thePopoverController.contentViewController theChord]]];
+        // Have to remove all post it notes 
+        NSMutableArray *dict = (NSMutableArray *)[postitNotesinBoxes objectAtIndex:index];
+        for (UIView *view in dict) {
+            [view removeFromSuperview];
+        }
         
-        [buttonChosen setTitle:@"" forState:UIControlStateNormal];
         [[(ChordOptionsViewController *)thePopoverController.contentViewController theChord] resetValues];
         
         // Now we remove the chord also from the array
