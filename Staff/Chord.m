@@ -26,6 +26,20 @@
     return self;
 }
 
+-(id)initWithName:(NSString*)aName Notes:(NSArray*)someNotes andKey:(NSString*)aKey{
+    self = [super init];
+    
+    if(self){
+        name = aName;
+        notes = someNotes;
+        key = aKey;
+        beatsPerMeasure = 1;
+        numberOfMeasures = 1;
+    }
+    
+    return self;
+}
+
 -(void)setupKey:(NSString*)aKey{
     key = aKey;
 }

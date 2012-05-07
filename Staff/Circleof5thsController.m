@@ -70,18 +70,8 @@
     [circleOf5thsPicker setDataSource:self];
     [circleOf5thsPicker setShowsSelectionIndicator:YES];
     
-    /*
-    circleOf5thsButton = [[UIButton alloc] initWithFrame:CGRectMake(60, 240, 250, 50)];
-    [circleOf5thsButton setTitle:@"Select" forState:UIControlStateNormal];
-    [[circleOf5thsButton layer] setBorderWidth:1];
-    [[circleOf5thsButton layer] setBorderColor:[UIColor colorWithRed:204.0/255 green:204.0/255 blue:204.0/255 alpha:1].CGColor];
-    [circleOf5thsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [[circleOf5thsButton layer] setCornerRadius:10];
-     */
-    
     [circleOf5thsView addSubview:circleOf5thsTab];
     [circleOf5thsView addSubview:circleOf5thsPicker];
-    //[circleOf5thsView addSubview:circleOf5thsButton];
     
     [mainDelegate.viewController.chordController.view addSubview:circleOf5thsView];
     [circleOf5thsPicker selectRow:6 inComponent:0 animated:YES];

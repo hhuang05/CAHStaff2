@@ -340,13 +340,13 @@
 {
     // hide old dot
     
-    [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", currentDotLocation]] setHidden:TRUE];  
+    [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", currentDotLocation+4]] setHidden:TRUE];  
     
     // show new dot
     NSLog(@"Dot LOC: %d",location);
     NSLog(@"Dot STR: %@", [[NSString alloc] initWithFormat:@"%d", location]);
     NSLog(@"Dot OBJ: %@",[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location]]);
-    [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location]] setHidden:FALSE];
+    [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location+4]] setHidden:FALSE];
 }
 
 - (void)findAccidentalNote:(int)pos
