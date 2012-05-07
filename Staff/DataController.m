@@ -630,13 +630,21 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
 // name with, e.g. "F" + "Maj"
 -(NSArray*)setUpChordsToSendWithRootKey:(NSString*)root{
     NSArray *friends = [_friendChords objectForKey:root];
+ 
+    if(isupper([root characterAtIndex:0])) {
+        _currentChords = [_majorKeyChordFormulas mutableCopy];
+    }
+    else{
+        _currentChords = [_minorKeyChordFormulas mutableCopy];
+    }
+    
     int pos = 0;
-    NSArray* toSend = [_currentChords mutableCopy];
     NSLog(@"Creating chords to send:");
-    for(Chord *c in toSend){
+    for(Chord *c in _currentChords){
         [c setupKey:[friends objectAtIndex:pos++]];
         NSLog(@"%@ %@", [c key], [c name]);
     }
+    NSArray* toSend = [_currentChords mutableCopy];
     return toSend;
 }
 
@@ -652,16 +660,8 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];   
     
     if(keySignaturetoDraw){
-        _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
         _currentKey = choice;
-        
-        if(isupper([choice characterAtIndex:0])) {
-            _currentChords = [_majorKeyChordFormulas mutableCopy];
-        }
-        else{
-            _currentChords = [_minorKeyChordFormulas mutableCopy];
-        }
-        
+        _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];
         [mainDelegate.viewController.chordController setUpChords:[self setUpChordsToSendWithRootKey:choice]];
