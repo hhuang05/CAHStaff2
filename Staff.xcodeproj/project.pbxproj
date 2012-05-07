@@ -270,7 +270,6 @@
 				A7A180C3154EF70600712D92 /* solidVerticalLine.m */,
 				08C951281550CB0A00D44C3E /* Circleof5thsController.h */,
 				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
-				2AAF8E831555B6B200F31082 /* papyrus.jpg */,
 				2AAF8E7F1555B39C00F31082 /* notassmallflat.png */,
 				2AAF8E801555B39C00F31082 /* notassmallsharp.png */,
 				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
@@ -565,7 +564,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				"PROVISIONING_PROFILE[sdk=iphonesimulator5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				SDKROOT = iphoneos;
@@ -587,7 +586,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
 				"PROVISIONING_PROFILE[sdk=iphoneos5.1]" = "B5763145-FFC4-4202-A622-1A0802D7AC3F";
@@ -608,18 +607,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
@@ -644,7 +643,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Staff/Staff-Prefix.pch";
 				INFOPLIST_FILE = "Staff/Staff-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
