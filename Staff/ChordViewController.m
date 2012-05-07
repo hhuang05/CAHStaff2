@@ -438,7 +438,7 @@
     _metronomeFrame.frame = CGRectMake(420, 610, 200, 100);
     _metronomeFrame.userInteractionEnabled = true;
     
-    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(8, 55, 100, 30)];
+    bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(8, 60, 100, 30)];
     [bpmStepper setMinimumValue:20.0];
     [bpmStepper setMaximumValue:160.0];
     [bpmStepper setValue:80.0];
@@ -447,13 +447,13 @@
     [bpmStepper setWraps:YES];
     [bpmStepper setAutorepeat:YES];
     
-    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 185, 40)];
+    bpmLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 13, 185, 40)];
     [[bpmLabel layer] setCornerRadius:10];
     [bpmLabel setText:@"80 bpm"];
     [bpmLabel setTextAlignment:UITextAlignmentCenter];
     [bpmLabel setFont:[UIFont systemFontOfSize:24]];
      
-    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(118, 55, 79, 27)];
+    metronomeOnOff = [[UISwitch alloc] initWithFrame:CGRectMake(118, 60, 79, 27)];
     [metronomeOnOff setOn:NO animated:YES];
     
     [_metronomeFrame addSubview:bpmLabel];
