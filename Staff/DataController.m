@@ -631,9 +631,10 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
 -(void)setUpChordsToSendWithRotoKey:(NSString*)root{
     NSArray *friends = [_friendChords objectForKey:root];
     int pos = 0;
+    NSLog(@"Creating chords to send:");
     for(Chord *c in _currentChords){
         [c setupKey:[friends objectAtIndex:pos++]];
-       // NSLog(@"assigned key: %@", [c key]);
+        NSLog(@"%@ %@", [c key], [c name]);
     }
 }
 
@@ -664,10 +665,11 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     if(keySignaturetoDraw){
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];
+        NSLog(@"Sending chords:");
         for(Chord* c in _currentChords){
-            //NSLog(@"sending: %@", [c key]);
+            NSLog(@"%@ %@", [c key], [c name]);
         }
-        [mainDelegate.viewController.chordController setUpChords:_currentChords];
+        [mainDelegate.viewController.chordController setUpChords:[_currentChords mutableCopy]];
     }
     else
         NSLog(@"changeScale called with unknown key signature %@", choice);
@@ -762,31 +764,31 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
      set precision for all of these values
      */
     
-    if (value == 1.0){
+    if (value > .9 && value < 1.1){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation]intValue];
     }
-    else if(value == 3.0){
+    else if(value > 2.9 && value < 3.05){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue];
     }
-    else if(value > 3.0 && value < 3.15){
+    else if(value > 3.05 && value < 3.15){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 2]intValue] -1); 
     }
-    else if(value == 4.0){
+    else if(value > 3.9 && value < 4.1){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 3]intValue];        
     }    
-    else if(value == 5.0){
+    else if(value > 4.9 && value < 5.05){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue];
     }
-    else if(value == 5.1){
+    else if(value > 5.05 && value < 5.2){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 4]intValue] -1);        
     }
-    else if(value == 5.5){
+    else if(value > 5.4 && value < 5.6){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue] + 1);
     }    
-    else if(value == 6.0){
+    else if(value > 5.9 && value < 6.1){
         return [[_currentKeySignatureNotes objectAtIndex:startingLocation - 5]intValue];
     }
-    else if(value == 7.1){
+    else if(value > 7.0 && value < 7.2){
         return ([[_currentKeySignatureNotes objectAtIndex:startingLocation - 6]intValue] -1);
     }
     else{
