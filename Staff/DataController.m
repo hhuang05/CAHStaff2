@@ -649,19 +649,19 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     // before switching key signatures, stop the current chord
     // so that we don't have lingering notes we can't turn off
     [self stopChord:currentChord];
-    
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];   
-    _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
-    _currentKey = choice;
-    
-    if(isupper([choice characterAtIndex:0])){
-        _currentChords = [_majorKeyChordFormulas mutableCopy];
-    }
-    else{
-        _currentChords = [_minorKeyChordFormulas mutableCopy];
-    }
     
     if(keySignaturetoDraw){
+        _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
+        _currentKey = choice;
+        
+        if(isupper([choice characterAtIndex:0])) {
+            _currentChords = [_majorKeyChordFormulas mutableCopy];
+        }
+        else{
+            _currentChords = [_minorKeyChordFormulas mutableCopy];
+        }
+        
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];
         [mainDelegate.viewController.chordController setUpChords:[self setUpChordsToSendWithRootKey:choice]];
