@@ -44,6 +44,7 @@ typedef struct image_view_metadata {
     NSArray *notes;
     UIImage *wrinkledPaper;
     int currentDotLocation;
+    int numtouches;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *canvas;

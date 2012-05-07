@@ -509,47 +509,54 @@
     //NSLog(@"# of Touches: %d",[touches count]);
     NSArray *allTouches = [touches allObjects];
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    for (UITouch *touch in allTouches)
-    {
-        if(touch.view.tag > 0){
-           // NSLog(@"Began - Tag: %d",touch.view.tag);
-            [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag - 1) WithHalfStepAlteration:0];
- 
+    if(numtouches < 5){
+        for (UITouch *touch in allTouches)
+        {
+            if(touch.view.tag > 0){
+               // NSLog(@"Began - Tag: %d",touch.view.tag);
+                numtouches++;
+                [mainDelegate.viewController.dataController playNoteAt:(touch.view.tag - 1) WithHalfStepAlteration:0];
+     
+            }
+            else if(touch.view.superview.tag > 0){
+                numtouches++;
+              //  NSLog(@"Began - Tag: %d",touch.view.tag);
+               // NSLog(@"state: %d",mainDelegate.viewController.accidentalsController.state);
+                [mainDelegate.viewController.dataController playNoteAt:(touch.view.superview.tag - 1) WithHalfStepAlteration:mainDelegate.viewController.accidentalsController.state];
+            }
         }
-        else if(touch.view.superview.tag > 0){
-          //  NSLog(@"Began - Tag: %d",touch.view.tag);
-           // NSLog(@"state: %d",mainDelegate.viewController.accidentalsController.state);
-            [mainDelegate.viewController.dataController playNoteAt:(touch.view.superview.tag - 1) WithHalfStepAlteration:mainDelegate.viewController.accidentalsController.state];
-        }
+        
+        [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+            // Get a single touch and it's location
+            
+            UITouch *touch = obj;
+            CGPoint touchPoint = [touch locationInView:self.view];
+            
+            // Draw a red circle where the touch occurred
+            UIView *touchView = [[UIView alloc] init];
+            [touchView setTag:666];
+            [touchView setBackgroundColor:[UIColor colorWithRed:0.0/255 green:153.0/255 blue:255.0/255 alpha:0.6]];
+            [touchView setFrame:CGRectMake(touchPoint.x-15, touchPoint.y-15, 30, 30)];
+            [[touchView layer] setCornerRadius:15];
+            touchView.layer.borderColor = [UIColor colorWithRed:221.0/255 green:221.0/255 blue:221.0/255 alpha:0.9].CGColor;
+            [[touchView layer] setBorderWidth:2]; 
+            [staffView addSubview:touchView];     
+        }];
     }
-    
-    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        // Get a single touch and it's location
-        
-        UITouch *touch = obj;
-        CGPoint touchPoint = [touch locationInView:self.view];
-        
-        // Draw a red circle where the touch occurred
-        UIView *touchView = [[UIView alloc] init];
-        [touchView setTag:666];
-        [touchView setBackgroundColor:[UIColor colorWithRed:0.0/255 green:153.0/255 blue:255.0/255 alpha:0.6]];
-        [touchView setFrame:CGRectMake(touchPoint.x-15, touchPoint.y-15, 30, 30)];
-        [[touchView layer] setCornerRadius:15];
-        touchView.layer.borderColor = [UIColor colorWithRed:221.0/255 green:221.0/255 blue:221.0/255 alpha:0.9].CGColor;
-        [[touchView layer] setBorderWidth:2]; 
-        [staffView addSubview:touchView];     
-    }];
+    NSLog(@"num touch: %d",numtouches);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSArray *allTouches = [touches allObjects];
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     for (UITouch *touch in allTouches){
-        if(touch.view.tag > 0){
+        if(touch.view.tag > 0 && numtouches){
             [mainDelegate.viewController.dataController stopNote];
+            numtouches--;
         }
          else if(touch.view.superview.tag > 0){
-             [mainDelegate.viewController.dataController stopNote];   
+             [mainDelegate.viewController.dataController stopNote]; 
+             numtouches--;
          }
     }
     
@@ -559,6 +566,7 @@
             [view removeFromSuperview];
         }
     }
+    NSLog(@"num touch: %d",numtouches);
 }
 
 
