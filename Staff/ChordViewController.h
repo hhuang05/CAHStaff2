@@ -11,6 +11,7 @@
 #import "ChordInstrumentsController.h"
 #import "CircleOfFifthsViewController.h"
 #import "solidVerticalLine.h"
+#import "Circleof5thsController.h"
 
 @interface ChordViewController : UIViewController <UITextFieldDelegate, UIPopoverControllerDelegate>
 {
@@ -112,7 +113,7 @@
 
 @property (nonatomic, retain) UIButton *circleOfFifthsButton;
 @property (nonatomic, retain) UIPopoverController *circleOfFifthsPopoverController;
-@property (nonatomic, retain) CircleOfFifthsViewController *circleOfFirthsViewController;
+@property (nonatomic, retain) Circleof5thsController *circleOfFifthsViewController;
 
 
 @property (nonatomic, retain) IBOutlet UISlider *chordVolume;

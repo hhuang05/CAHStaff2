@@ -20,7 +20,7 @@
 @synthesize bpmLabel;
 @synthesize metronomeOnOff;
 @synthesize metronomeTimer;
-@synthesize topMenu, instrumentsButton, instumentPopoverController, instrumentsController, chordVolume, circleOfFirthsViewController, circleOfFifthsButton, circleOfFifthsPopoverController;
+@synthesize topMenu, instrumentsButton, instumentPopoverController, instrumentsController, chordVolume, circleOfFifthsViewController, circleOfFifthsButton, circleOfFifthsPopoverController;
 
 #define GROW_ANIMATION_DURATION_SECONDS 0.15    // Determines how fast a piece size grows when it is moved.
 #define SHRINK_ANIMATION_DURATION_SECONDS 0.15  // Determines how fast a piece size shrinks when a piece stops moving.
@@ -92,7 +92,7 @@
     topMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 624, 70)];
     [topMenu setBackgroundColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0]];
 
-    circleOfFirthsViewController = [[CircleOfFifthsViewController alloc]init];
+    circleOfFifthsViewController = [[Circleof5thsController alloc]init];
     
     circleOfFifthsButton = [[UIButton alloc] initWithFrame:CGRectMake(450, 10, 150, 50)];
     [circleOfFifthsButton setBackgroundColor:[UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0]];
@@ -134,9 +134,6 @@
     [topMenu addSubview:instrumentsButton];
     [topMenu addSubview:circleOfFifthsButton];
     [self.view addSubview:topMenu];
-
-    //[self.view addSubview:instrumentsButton];
-    //[self.view addSubview:circleOfFifthsButton];
     
     solidVerticalLine *divider = [[solidVerticalLine alloc] initWithFrame:CGRectMake(0, 0, 2, 70)];
     [divider addSubview:[self deepCopySolidVerticalLine:[[solidVerticalLine alloc]init]]];
@@ -172,10 +169,12 @@
         [circleOfFifthsPopoverController dismissPopoverAnimated:YES];
         return;
     }
-    circleOfFifthsPopoverController = [[UIPopoverController alloc] initWithContentViewController:circleOfFirthsViewController];
+    circleOfFifthsPopoverController = [[UIPopoverController alloc] initWithContentViewController:circleOfFifthsViewController];
     [circleOfFifthsPopoverController presentPopoverFromBarButtonItem:sender 
                                        permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    [circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(510, 510)];
+    //[circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(550, 550)];
+    [circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(260, 250)];
+
 }
 
 -(void) layoutChordPickers
