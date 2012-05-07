@@ -43,6 +43,7 @@ typedef struct image_view_metadata {
     NSMutableDictionary *dots;
     NSArray *notes;
     UIImage *wrinkledPaper;
+    int currentDotLocation;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *canvas;
@@ -71,6 +72,7 @@ typedef struct image_view_metadata {
 - (BOOL)setFlatOrSharpOnSpecificLineOrSpace:(int)num withNotePosition:(int)pos;
 - (void)findAccidentalNote:(int)pos;
 - (void)registerAccidentalNote:(UIView *)view withPos:(int)pos;
+- (void)setDotAt:(int)location;
 
 - (UIView *)deepCopySolidAccidentalView:(solidlineAccidental *)theView;
 - (UIView *)deepCopyDashedAccidentalView:(dashedlineAccidental *)theView;

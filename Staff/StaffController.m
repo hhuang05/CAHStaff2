@@ -34,6 +34,7 @@
     [super viewDidLoad];
     
     self.notes = NULL;
+    currentDotLocation = 0;
     [self buildStaff];
     [self buildLines];
     [self buildSpaces];
@@ -325,7 +326,20 @@
         }
     }
     
+    int newDotLocation = [[notesFromDataController objectAtIndex:0] intValue];
+    [self setDotAt: newDotLocation];
+    currentDotLocation = newDotLocation;
+    NSLog(@"root note %d", currentDotLocation);
+    
     return TRUE;
+}
+
+-(void)setDotAt:(int)location{
+    // hide old dot
+    [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", currentDotLocation]] setHidden:TRUE];  
+    
+    // show new dot
+    [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location]] setHidden:FALSE];
 }
 
 - (void)findAccidentalNote:(int)pos
