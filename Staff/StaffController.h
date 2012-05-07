@@ -56,6 +56,7 @@ typedef struct image_view_metadata {
 
 @property (nonatomic, retain) NSMutableDictionary *lines;
 @property (nonatomic, retain) NSMutableDictionary *spaces;
+@property (nonatomic, retain) NSMutableDictionary *dots;
 @property (nonatomic, retain) NSArray *notes;
 
 - (void)buildStaff;
