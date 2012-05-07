@@ -50,10 +50,6 @@
 		2AAF8E861555B9F900F31082 /* scaledot.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AAF8E851555B9F900F31082 /* scaledot.png */; };
 		2AB9BF6A154795C9001E756E /* InstrumentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9BF69154795C9001E756E /* InstrumentsController.m */; };
 		2ACB96DD1552EC04002F9FCE /* crsynth.dlsc in Resources */ = {isa = PBXBuildFile; fileRef = 2ACB96D51552EC04002F9FCE /* crsynth.dlsc */; };
-		2ACB96DE1552EC04002F9FCE /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACB96D71552EC04002F9FCE /* libcrmpd.a */; };
-		2ACB96DF1552EC04002F9FCE /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACB96D81552EC04002F9FCE /* libcrse.a */; };
-		2ACB96E01552EC04002F9FCE /* libcrmpd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACB96DA1552EC04002F9FCE /* libcrmpd.a */; };
-		2ACB96E11552EC04002F9FCE /* libcrse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACB96DB1552EC04002F9FCE /* libcrse.a */; };
 		2ACB96E21552EC04002F9FCE /* sample.mid in Resources */ = {isa = PBXBuildFile; fileRef = 2ACB96DC1552EC04002F9FCE /* sample.mid */; };
 		2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7315154B72008C538D /* UIKit.framework */; };
 		2AE1DE7615154B72008C538D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE1DE7515154B72008C538D /* Foundation.framework */; };
@@ -182,10 +178,6 @@
 				2AE1DE7415154B72008C538D /* UIKit.framework in Frameworks */,
 				2AE1DE7615154B72008C538D /* Foundation.framework in Frameworks */,
 				2AE1DE7815154B72008C538D /* CoreGraphics.framework in Frameworks */,
-				2ACB96DE1552EC04002F9FCE /* libcrmpd.a in Frameworks */,
-				2ACB96DF1552EC04002F9FCE /* libcrse.a in Frameworks */,
-				2ACB96E01552EC04002F9FCE /* libcrmpd.a in Frameworks */,
-				2ACB96E11552EC04002F9FCE /* libcrse.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,14 +254,12 @@
 		2AE1DE7915154B72008C538D /* Staff */ = {
 			isa = PBXGroup;
 			children = (
-				0826BDEA1523F6B7004A9B22 /* DeleteIcon.png */,
 				0826BDC51523E5C2004A9B22 /* MainController.h */,
 				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
 				0826BDC61523E5C2004A9B22 /* MainController.m */,
 				0890CDAA15522B3C00D0CF36 /* wrinkledPaper.png */,
 				0826BDC71523E5C2004A9B22 /* MainController.xib */,
 				0826BDC81523E5C2004A9B22 /* sharp.gif */,
-				0890CDA61552295F00D0CF36 /* chordWrinkledPaper.png */,
 				0826BDC91523E5C2004A9B22 /* sharpIcon.h */,
 				0826BDCA1523E5C2004A9B22 /* sharpIcon.m */,
 				0826BDCB1523E5C2004A9B22 /* smallflat.gif */,

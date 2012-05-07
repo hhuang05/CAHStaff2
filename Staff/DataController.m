@@ -633,7 +633,7 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     int pos = 0;
     for(Chord *c in _currentChords){
         [c setupKey:[friends objectAtIndex:pos++]];
-        NSLog(@"assigned key: %@", [c key]);
+       // NSLog(@"assigned key: %@", [c key]);
     }
 }
 
@@ -665,7 +665,7 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];
         for(Chord* c in _currentChords){
-            NSLog(@"sending: %@", [c key]);
+            //NSLog(@"sending: %@", [c key]);
         }
         [mainDelegate.viewController.chordController setUpChords:_currentChords];
     }

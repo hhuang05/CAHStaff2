@@ -39,9 +39,12 @@
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     circleOf5thsPickerElements = [[NSArray alloc] initWithObjects:
                                 @"Gb", @"Db", @"Ab", @"Eb", @"Bb", @"F", @"C", 
-                                @"G", @"D", @"A", @"E", @"B", @"F#",
+                                  @"G", @"D", @"A", @"E", @"B", @"F#", nil ];
+    
+    /*
                                 @"eb", @"bb", @"f", @"c", @"g", @"d", @"a", 
-                                @"e", @"b", @"f#", @"c#", @"g#", @"d#", nil];
+                                @"e", @"b", @"f#", @"c#", @"g#", nil];
+     */
 
     
     // CHANGED THE SECOND PARAMETER TO 100 FROM 200
@@ -126,7 +129,7 @@
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     [mainDelegate.viewController.dataController keySignatureWasChosen:[circleOf5thsPickerElements objectAtIndex: row]];
    
-    //NSLog(@"You selected this: %@", [circleOf5thsPickerElements objectAtIndex: row]);
+    NSLog(@"You selected this: %@", [circleOf5thsPickerElements objectAtIndex: row]);
 }
 
 
