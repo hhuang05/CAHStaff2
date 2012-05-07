@@ -14,15 +14,16 @@
 
 @synthesize canvas;
 @synthesize staffView;
+@synthesize topMenu;
 @synthesize lines;
 @synthesize spaces;
 @synthesize dots;
 @synthesize notes;
 @synthesize instrumentsButton;
 @synthesize sharpFlatButton;
-@synthesize topMenu;
 @synthesize popoverView;
 @synthesize popoverController;
+
 
 -(id)init{
     [self viewDidLoad];
@@ -509,7 +510,7 @@
     //NSLog(@"# of Touches: %d",[touches count]);
     NSArray *allTouches = [touches allObjects];
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    if(numtouches < 5){
+    if(numtouches < MAXTOUCHES){
         for (UITouch *touch in allTouches)
         {
             if(touch.view.tag > 0){

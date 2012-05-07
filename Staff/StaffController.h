@@ -18,6 +18,7 @@
 
 #define NUMBER_OF_NOTES 15
 #define ICON_COUNT 7
+#define MAXTOUCHES 4
 
 typedef struct image_view_metadata {
     int height;
