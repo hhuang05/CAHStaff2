@@ -618,11 +618,11 @@
 					"\"$(SRCROOT)/crsynth/Release-iphoneos\"",
 					"\"$(SRCROOT)/crsynth/Release-iphonesimulator\"",
 				);
-				"OTHER_LDFLAGS[sdk=iphoneos5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphoneos5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator5.0]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator5.1]" = (
 					"./crsynth/Release-iphonesimulator/libcrse.a",
 					"./crsynth/Release-iphonesimulator/libcrmpd.a",
 				);
