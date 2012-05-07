@@ -16,6 +16,7 @@
 @synthesize staffView;
 @synthesize lines;
 @synthesize spaces;
+@synthesize dots;
 @synthesize notes;
 @synthesize instrumentsButton;
 @synthesize sharpFlatButton;
@@ -28,7 +29,6 @@
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,7 +39,7 @@
     [self buildLines];
     [self buildSpaces];
     [self buildTopMenu];
-    [self setFlatsAndSharps];
+    [self setFlatsAndSharpsAndDots];
 }
 
 - (void)viewDidUnload
@@ -327,6 +327,7 @@
     }
     
     int newDotLocation = [[notesFromDataController objectAtIndex:0] intValue];
+    NSLog(@"DOT IS: %d",newDotLocation);
     [self setDotAt: newDotLocation];
     currentDotLocation = newDotLocation;
     NSLog(@"root note %d", currentDotLocation);
@@ -334,11 +335,16 @@
     return TRUE;
 }
 
--(void)setDotAt:(int)location{
+-(void)setDotAt:(int)location
+{
     // hide old dot
+    
     [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", currentDotLocation]] setHidden:TRUE];  
     
     // show new dot
+    NSLog(@"Dot LOC: %d",location);
+    NSLog(@"Dot STR: %@", [[NSString alloc] initWithFormat:@"%d", location]);
+    NSLog(@"Dot OBJ: %@",[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location]]);
     [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location]] setHidden:FALSE];
 }
 
@@ -372,12 +378,16 @@
     int flatNum = 5;
     UIImageView *icon = NULL;
     
-    for(int pos = 0; pos < ICON_COUNT; pos++)
+    for(int pos = 0; pos < ICON_COUNT+1; pos++)
     {
         icon = [sharps objectForKey:[NSString stringWithFormat:@"%d",pos+sharpNum]];
-        [icon setHidden:TRUE];
+        if(icon){
+            [icon setHidden:TRUE];
+        }
         icon = [flats objectForKey:[NSString stringWithFormat:@"%d",pos+flatNum]];
-        [icon setHidden:TRUE];
+        if(icon){
+            [icon setHidden:TRUE];
+        }
         
     }
 }
@@ -391,7 +401,7 @@
     NSLog(@"NUM: %d",num);
     NSLog(@"TYPE: %@",type);
     NSLog(@"POS: %d",pos);
-     */
+    */
     
     if(type == @"sharp" && (pos < 3 || pos > 10)){
         NSLog(@"Error: No sharp for note position: %d",pos);
@@ -408,7 +418,7 @@
     return TRUE;
 }
 
-- (void)setFlatsAndSharps
+- (void)setFlatsAndSharpsAndDots
 {
     IVM sharpData, flatData, dotData;
     int d_width = 40;
@@ -427,7 +437,7 @@
     dotData.width = d_width;
     dotData.height = d_height;
     dotData.x = 380;
-    dotData.y = 164;
+    dotData.y = 74;
     
     int sharpNoteCount = 3;
     int flatNoteCount = 5;
@@ -435,9 +445,9 @@
     
     sharps = [[NSMutableDictionary alloc] initWithCapacity:ICON_COUNT];
     flats = [[NSMutableDictionary alloc] initWithCapacity:ICON_COUNT];
+    dots = [[NSMutableDictionary alloc] initWithCapacity:NUMBER_OF_NOTES];
     
     for (int i = 0; i < ICON_COUNT; i++) {
-        
         //Add sharp icons to staffView, hide all
         UIImageView *sharp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notassmallsharp.png"]];
         [sharp setFrame:CGRectMake(sharpData.x, sharpData.y, sharpData.width, sharpData.height)];
@@ -447,6 +457,18 @@
         [sharps setValue:sharp forKey:[NSString stringWithFormat:@"%d",sharpNoteCount]];
         [canvas addSubview:sharp];
         
+        if(i == 5){
+            NSLog(@"I IS 6!!!!!!!!!");
+            sharpData.y += 92;
+            sharpNoteCount += 2;
+        } else {
+            sharpData.y += 46;
+            sharpNoteCount += 1;
+        }
+        
+    }
+    
+    for (int i = 0; i < ICON_COUNT; i++) {
         //Add flat icons to staffView, hide all
         UIImageView *flat = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notassmallflat.png"]];
         [flat setFrame:CGRectMake(flatData.x, flatData.y, flatData.width, flatData.height)];
@@ -458,25 +480,23 @@
         
         flatData.y += 46;
         flatNoteCount +=1;
-        sharpData.y += 46;
-        sharpNoteCount += 1;
         
     }
     
     
     //Aaron, configure dots here
-    for(int i = 0; i < ICON_COUNT+2; i++){
+    for(int i = 0; i < NUMBER_OF_NOTES; i++){
         //Add dot icons to staffView, hide all
         UIImageView *dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scaledot.png"]];
         [dot setFrame:CGRectMake(dotData.x, dotData.y, dotData.width, dotData.height)];
         [dot setHidden:TRUE];
         [[dot layer] setZPosition:0];
         //[self fadeOut : flat withDuration: 3 andWait : 1 ];
-        [dots setValue:dot forKey:[NSString stringWithFormat:@"%d",dotCount]];
+        [dots setValue:dot forKey:[NSString stringWithFormat:@"%d",dotCount+2]];
         [canvas addSubview:dot];
         
         dotData.y += 46;
-        if(i == 2 || i == 4 || i == 6){
+        if(fmod(i,2) == 0){
             dotData.y -= 1;
         }
         dotCount += 1;
