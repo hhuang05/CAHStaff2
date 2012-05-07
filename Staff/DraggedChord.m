@@ -66,6 +66,11 @@
     return [theImage image];
 }
 
+-(UILabel *) getCurrentLabel
+{
+    return theChord;
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

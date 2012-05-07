@@ -243,44 +243,55 @@
 
 -(void) layoutChordsToBePlayed
 {
+    postitNotesinBoxes = [[NSMutableArray alloc] init];
+    _chordFrame = [UIImage imageNamed:@"blackFrame_140pixels.png"];
+    
     // Coordinates are relative to the parent container
-    chordChosen1 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen1.frame = CGRectMake(50, 400, 80, 80);
+    chordChosen1 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen1.frame = CGRectMake(40, 350, 120, 120);
+    [chordChosen1 setImage:_chordFrame forState:UIControlStateNormal];
     chordChosen1.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen1 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordChosen2 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen2.frame = CGRectMake(180, 400, 80, 80);
+    chordChosen2 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen2.frame = CGRectMake(170, 350, 120, 120);
+    [chordChosen2 setImage:_chordFrame forState:UIControlStateNormal];
     chordChosen2.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen2 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordChosen3 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen3.frame = CGRectMake(310, 400, 80, 80);
+    chordChosen3 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen3.frame = CGRectMake(300, 350, 120, 120);
+    [chordChosen3 setImage:_chordFrame forState:UIControlStateNormal];
     chordChosen3.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen3 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordChosen4 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen4.frame = CGRectMake(440, 400, 80, 80);
+    chordChosen4 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen4.frame = CGRectMake(430, 350, 120, 120);
+    [chordChosen4 setImage:_chordFrame forState:UIControlStateNormal];
     chordChosen4.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen4 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordChosen5 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen5.frame = CGRectMake(50, 520, 80, 80);
+    chordChosen5 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen5.frame = CGRectMake(40, 470, 120, 120);
+    [chordChosen5 setImage:_chordFrame forState:UIControlStateNormal];
     chordChosen5.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen5 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordChosen6 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen6.frame = CGRectMake(180, 520, 80, 80);
+    chordChosen6 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen6.frame = CGRectMake(170, 470, 120, 120);
+    [chordChosen6 setImage:_chordFrame forState:UIControlStateNormal]; 
     chordChosen6.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen6 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordChosen7 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen7.frame = CGRectMake(310, 520, 80, 80);
+    chordChosen7 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen7.frame = CGRectMake(300, 470, 120, 120);
+    [chordChosen7 setImage:_chordFrame forState:UIControlStateNormal];
     chordChosen7.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen7 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
-    chordChosen8 = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    chordChosen8.frame = CGRectMake(440, 520, 80, 80);
+    chordChosen8 = [UIButton buttonWithType: UIButtonTypeCustom];
+    chordChosen8.frame = CGRectMake(430, 470, 120, 120);
+    [chordChosen8 setImage:_chordFrame forState:UIControlStateNormal];
     chordChosen8.titleLabel.font = [UIFont fontWithName:FONT size:20.0f];
     [chordChosen8 addTarget:self action:@selector(chordChosen_onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -588,55 +599,63 @@
     [newChord resetValues];
     [newChord setKey:draggedChord.chordChosen.key];
     
+    UIImageView *_newImageview = [[UIImageView alloc] initWithImage:draggedChord.getCurrentImage];
+    [_newImageview addSubview:draggedChord.getCurrentLabel];
+    
 	// Check to see which view, or views,  the point is in and then animate to that position.
 	if (CGRectContainsPoint([chordChosen1 frame], position)) {
 		[chordChosen1 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen1 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:0 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:0 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen2 frame], position)) {
 		[chordChosen2 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen2 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:1 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:1 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen3 frame], position)) {
 		[chordChosen3 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen3 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:2 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:2 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen4 frame], position)) {
 		[chordChosen4 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen4 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:3 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:3 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen5 frame], position)) {
 		[chordChosen5 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen5 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:4 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:4 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen6 frame], position)) {
 		[chordChosen6 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen6 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:5 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:5 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen7 frame], position)) {
 		[chordChosen7 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen7 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:6 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:6 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
     else if (CGRectContainsPoint([chordChosen8 frame], position)) {
 		[chordChosen8 setTitle:draggedChord.chordName forState:UIControlStateNormal] ;
-        
+        [chordChosen8 addSubview:_newImageview];
         [chordsToBePlayed replaceObjectAtIndex:7 withObject: newChord];
         [chordsToBePlayedIndexes replaceObjectAtIndex:7 withObject:[[NSNumber alloc] initWithInt:draggedChord.indexOfChord]];
 	}
+    
+    if (_newImageview.superview != nil) {
+        [postitNotesinBoxes addObject:_newImageview];
+    }
+    
     // Now we must remove the dragged chord
     [draggedChord removeFromSuperview]; 
 }
@@ -758,15 +777,10 @@
 -(void) clearButton_onTouchUpInside
 {
     // Clear UI
-    [chordChosen1 setTitle:@"" forState:UIControlStateNormal] ;
-    [chordChosen2 setTitle:@"" forState:UIControlStateNormal] ;
-    [chordChosen3 setTitle:@"" forState:UIControlStateNormal] ;
-    [chordChosen4 setTitle:@"" forState:UIControlStateNormal] ;
-    [chordChosen5 setTitle:@"" forState:UIControlStateNormal] ;
-    [chordChosen6 setTitle:@"" forState:UIControlStateNormal] ;
-    [chordChosen7 setTitle:@"" forState:UIControlStateNormal] ;
-    [chordChosen8 setTitle:@"" forState:UIControlStateNormal] ;
-    
+    for (UIView *view in postitNotesinBoxes) {
+        [view removeFromSuperview];
+    }
+        
     // Clear the data structure by replacing all items with an NSString
     for (int x=0; x<chordsToBePlayed.count; x++) {
         [chordsToBePlayed replaceObjectAtIndex:x withObject:@""];
@@ -874,7 +888,6 @@
     // Update UI, change state of the chord chosen buttons to selected
     UIButton *chosenButton = [chosenChordButtonsArray objectAtIndex:currentChordPlayingIndex];
     [self scaleUpChordChosenButton:chosenButton];
-    
     
     Chord *chordToBeSent = [progressionToBeSent objectAtIndex:currentChordPlayingIndex];
     if(previousChord != nil){

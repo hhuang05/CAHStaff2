@@ -54,5 +54,6 @@
 -(void)fillNotesInKeySignatureDictionary;
 -(void)fillChordsDictionary;
 -(int)calculateMajorNoteForChord:(Chord*)chord atPosition:(int) pos;
+-(void)setUpFriendChords;
 
 @end

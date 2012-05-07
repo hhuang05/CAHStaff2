@@ -37,6 +37,8 @@
     UIImage *_navyNote;
     UIImage *_purpleNote;
     
+    UIImage *_chordFrame;
+    
     // 8 Buttons for the chords chosen
     UIButton *chordChosen1;
     UIButton *chordChosen2;
@@ -77,6 +79,7 @@
     NSMutableArray *chordsToBePlayed; // These are the chords that are chosen that are to be played
     NSMutableArray *chordsToBePlayedIndexes; //These are the indexes of the chords chosen within the chosen array
     NSMutableArray *progressionToBeSent;
+    NSMutableArray *postitNotesinBoxes;
     
     // Metronome properties
     IBOutlet UIStepper *bpmStepper;

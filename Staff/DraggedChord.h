@@ -23,5 +23,5 @@
 -(void) changeImageToNewImage:(UIImage *)newImage;
 -(NSString *) chordName;
 -(UIImage *) getCurrentImage;
-
+-(UILabel *) getCurrentLabel;
 @end
