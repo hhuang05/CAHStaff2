@@ -506,15 +506,14 @@
                     Maj: I, ii, iii, IV, V, V7, vi
                     min: i, ii°, III, iv, V, V7, VI
     */
+
+    [self setUpFriendChords];
     
     _majorKeyChordFormulas = [[NSArray alloc]initWithObjects:
                         Maj, min, min, Maj, Maj, dom7, min, rest, nil];
     
     _minorKeyChordFormulas = [[NSArray alloc]initWithObjects: 
                         min, dim, Maj, min, Maj, dom7, Maj, rest, nil];
-    
-    [self setUpFriendChords];
-
 }
 
 -(void)setUpFriendChords{
@@ -630,7 +629,34 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
 // name with, e.g. "F" + "Maj"
 -(NSArray*)setUpChordsToSendWithRootKey:(NSString*)root{
     NSArray *friends = [_friendChords objectForKey:root];
+    if(isupper([_currentKey characterAtIndex:0])) {
+        _currentChords = [_majorKeyChordFormulas mutableCopy];
+    }
+    else{
+        _currentChords = [_minorKeyChordFormulas mutableCopy];
+    }
+    
     int pos = 0;
+
+    Chord *one = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:0] name] Notes:[[_currentChords objectAtIndex:0] notes] 
+                                      andKey:[friends objectAtIndex:0]];
+    Chord *two = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:1] name] Notes:[[_currentChords objectAtIndex:1] notes] 
+                                      andKey:[friends objectAtIndex:1]];
+    Chord *three = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:2] name] Notes:[[_currentChords objectAtIndex:2] notes] 
+                                      andKey:[friends objectAtIndex:2]];
+    Chord *four = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:3] name] Notes:[[_currentChords objectAtIndex:3] notes] 
+                                      andKey:[friends objectAtIndex:3]];
+    Chord *five = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:4] name] Notes:[[_currentChords objectAtIndex:4] notes] 
+                                      andKey:[friends objectAtIndex:4]];
+    Chord *six = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:5] name] Notes:[[_currentChords objectAtIndex:5] notes] 
+                                      andKey:[friends objectAtIndex:5]];
+    Chord *seven = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:6] name] Notes:[[_currentChords objectAtIndex:6] notes] 
+                                      andKey:[friends objectAtIndex:6]];
+    Chord *eight = [[Chord alloc] initWithName:[[_currentChords objectAtIndex:7] name] Notes:[[_currentChords objectAtIndex:7] notes] 
+                                      andKey:[friends objectAtIndex:7]];
+    
+    _currentChords =[[NSArray alloc] initWithObjects:one, two, three, four, five, six, seven, eight, nil];
+    
     NSArray* toSend = [_currentChords mutableCopy];
     NSLog(@"Creating chords to send:");
     for(Chord *c in toSend){
@@ -654,13 +680,6 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     if(keySignaturetoDraw){
         _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
         _currentKey = choice;
-        
-        if(isupper([choice characterAtIndex:0])) {
-            _currentChords = [_majorKeyChordFormulas mutableCopy];
-        }
-        else{
-            _currentChords = [_minorKeyChordFormulas mutableCopy];
-        }
         
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];

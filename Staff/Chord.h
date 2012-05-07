@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString* key;
 
 -(id)initWithName:(NSString*)name Notes:(NSArray*)notes andID:(int)number;
+-(id)initWithName:(NSString*)aName Notes:(NSArray*)someNotes andKey:(NSString*)aKey;
 -(void)setupKey:(NSString*)aKey;
 -(void)resetValues;
 
