@@ -628,14 +628,16 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
 
 // tell each Chord in the array what to concatenate its
 // name with, e.g. "F" + "Maj"
--(void)setUpChordsToSendWithRootKey:(NSString*)root{
+-(NSArray*)setUpChordsToSendWithRootKey:(NSString*)root{
     NSArray *friends = [_friendChords objectForKey:root];
     int pos = 0;
+    NSArray* toSend = [_currentChords mutableCopy];
     NSLog(@"Creating chords to send:");
-    for(Chord *c in _currentChords){
+    for(Chord *c in toSend){
         [c setupKey:[friends objectAtIndex:pos++]];
         NSLog(@"%@ %@", [c key], [c name]);
     }
+    return toSend;
 }
 
 // When the user selects a new key signature, tell the 
@@ -652,24 +654,17 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     _currentKeySignatureNotes = [_keySignatureNoteMap objectForKey:choice];
     _currentKey = choice;
     
-    _currentChords = nil;
     if(isupper([choice characterAtIndex:0])){
         _currentChords = [_majorKeyChordFormulas mutableCopy];
     }
     else{
         _currentChords = [_minorKeyChordFormulas mutableCopy];
     }
-
-    [self setUpChordsToSendWithRootKey:choice];
     
     if(keySignaturetoDraw){
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [mainDelegate.viewController.staffController changeScale:keySignaturetoDraw];
-        NSLog(@"Sending chords:");
-        for(Chord* c in _currentChords){
-            NSLog(@"%@ %@", [c key], [c name]);
-        }
-        [mainDelegate.viewController.chordController setUpChords:[_currentChords mutableCopy]];
+        [mainDelegate.viewController.chordController setUpChords:[self setUpChordsToSendWithRootKey:choice]];
     }
     else
         NSLog(@"changeScale called with unknown key signature %@", choice);
