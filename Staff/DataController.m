@@ -628,7 +628,7 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
 
 // tell each Chord in the array what to concatenate its
 // name with, e.g. "F" + "Maj"
--(void)setUpChordsToSendWithRotoKey:(NSString*)root{
+-(void)setUpChordsToSendWithRootKey:(NSString*)root{
     NSArray *friends = [_friendChords objectForKey:root];
     int pos = 0;
     NSLog(@"Creating chords to send:");
@@ -654,13 +654,13 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
     
     _currentChords = nil;
     if(isupper([choice characterAtIndex:0])){
-        _currentChords = [[NSArray alloc] initWithArray:_majorKeyChordFormulas];
+        _currentChords = [_majorKeyChordFormulas mutableCopy];
     }
     else{
-        _currentChords = [[NSArray alloc] initWithArray:_minorKeyChordFormulas];
+        _currentChords = [_minorKeyChordFormulas mutableCopy];
     }
 
-    [self setUpChordsToSendWithRotoKey:choice];
+    [self setUpChordsToSendWithRootKey:choice];
     
     if(keySignaturetoDraw){
         AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
