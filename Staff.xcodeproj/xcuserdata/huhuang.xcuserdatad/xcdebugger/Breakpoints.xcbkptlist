@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "801"
-         endingLineNumber = "801"
+         startingLineNumber = "827"
+         endingLineNumber = "827"
          landmarkName = "-playButton_onTouchUpInside"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "680"
-         endingLineNumber = "680"
+         startingLineNumber = "704"
+         endingLineNumber = "704"
          landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,13 +37,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "461"
-         endingLineNumber = "461"
-         landmarkName = "-metronomeOnOffChanged:"
-         landmarkType = "5">
+         startingLineNumber = "475"
+         endingLineNumber = "475"
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "681"
-         endingLineNumber = "681"
+         startingLineNumber = "705"
+         endingLineNumber = "705"
          landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,13 +65,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "668"
-         endingLineNumber = "668"
-         landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
-         landmarkType = "5">
+         startingLineNumber = "692"
+         endingLineNumber = "692"
+         landmarkName = "@implementation ChordViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -79,11 +79,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "600"
-         endingLineNumber = "600"
+         startingLineNumber = "614"
+         endingLineNumber = "614"
          landmarkName = "-dispatchTouchEndEvent:toPosition:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -107,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "685"
-         endingLineNumber = "685"
+         startingLineNumber = "709"
+         endingLineNumber = "709"
          landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -121,11 +121,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "649"
-         endingLineNumber = "649"
+         startingLineNumber = "672"
+         endingLineNumber = "672"
          landmarkName = "-dispatchTouchEndEvent:toPosition:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -170,11 +170,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "752"
-         endingLineNumber = "752"
+         startingLineNumber = "776"
+         endingLineNumber = "776"
          landmarkName = "@implementation ChordViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -184,11 +184,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "753"
-         endingLineNumber = "753"
+         startingLineNumber = "777"
+         endingLineNumber = "777"
          landmarkName = "@implementation ChordViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -198,11 +198,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "772"
-         endingLineNumber = "772"
+         startingLineNumber = "796"
+         endingLineNumber = "796"
          landmarkName = "-animateView:toPosition:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -240,11 +240,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "670"
-         endingLineNumber = "670"
+         startingLineNumber = "694"
+         endingLineNumber = "694"
          landmarkName = "-dispatchFirstTouchAtPoint:forEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -268,11 +268,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Staff/ChordViewController.m"
-         timestampString = "358043870.787905"
+         timestampString = "358050954.482201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "487"
-         endingLineNumber = "487"
+         startingLineNumber = "501"
+         endingLineNumber = "501"
          landmarkName = "-fireMetronomeSound:"
          landmarkType = "5">
       </FileBreakpoint>
