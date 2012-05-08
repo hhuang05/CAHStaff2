@@ -509,7 +509,7 @@
     Chord *min = [[Chord alloc] initWithName:@"min" Notes:b andID:2];
 
     NSArray *f = [[NSArray alloc] initWithObjects:one, three, five, sevenFlat, nil];
-    Chord *dom7 = [[Chord alloc] initWithName:@"dom7" Notes:f andID:6];
+    Chord *dom7 = [[Chord alloc] initWithName:@"7" Notes:f andID:6];
 
     NSArray *h = [[NSArray alloc] initWithObjects:one, threeFlat, fiveFlat, nil];
     Chord *dim = [[Chord alloc] initWithName:@"dim" Notes:h andID:8];
