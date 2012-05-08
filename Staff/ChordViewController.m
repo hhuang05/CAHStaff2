@@ -337,18 +337,18 @@
     _clearAllImg = [UIImage imageNamed:@"bin.png"];
     
     play = [UIButton buttonWithType:UIButtonTypeCustom];
-    play.frame = CGRectMake(30, 610, 100, 100);
+    play.frame = CGRectMake(30, 610, 90, 90);
     [play setImage:_playImg forState:UIControlStateNormal];
     [play addTarget:self action:@selector(playButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
     stop = [UIButton buttonWithType:UIButtonTypeCustom];
-    stop.frame = CGRectMake(160, 610, 100, 100);
+    stop.frame = CGRectMake(160, 610, 90, 90);
     [stop setImage:_stopImg forState:UIControlStateNormal];
     [stop addTarget:self action:@selector(stopButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     stop.adjustsImageWhenDisabled = TRUE;
     
     clearAll = [UIButton buttonWithType:UIButtonTypeCustom];
-    clearAll.frame = CGRectMake(290, 610, 100, 100);
+    clearAll.frame = CGRectMake(290, 610, 90, 90);
     [clearAll setImage:_clearAllImg forState:UIControlStateNormal];
     [clearAll addTarget:self action:@selector(clearButton_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     
@@ -411,6 +411,13 @@
     [chordVolume addTarget:self action:@selector(chordVolumeChanged) forControlEvents:UIControlEventValueChanged];
     [chordVolume setValue:42.5];
     [self.view addSubview:chordVolume];
+    
+    UIButton *volButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [volButton setImage:[UIImage imageNamed:@"volumeIcon_40pixels.png"] forState:UIControlStateNormal];
+    volButton.frame = CGRectMake(540, 705, 40, 40);
+    [self.view addSubview:volButton];
+    
+    //[volButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
 }
 
 -(void)chordVolumeChanged{
@@ -434,7 +441,7 @@
 - (void) setupMetronome
 {
     _metronomeFrame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"strippedBackground"]];
-    _metronomeFrame.frame = CGRectMake(420, 610, 200, 100);
+    _metronomeFrame.frame = CGRectMake(420, 610, 200, 90);
     _metronomeFrame.userInteractionEnabled = true;
     
     bpmStepper = [[UIStepper alloc] initWithFrame:CGRectMake(8, 55, 100, 30)];

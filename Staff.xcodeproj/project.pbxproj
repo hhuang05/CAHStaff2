@@ -41,6 +41,7 @@
 		08AACA7215562FC700738394 /* postit_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 08AACA7115562FC700738394 /* postit_green.png */; };
 		08ACF4BC152B9D1F00512760 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ACF4BB152B9D1F00512760 /* star.png */; };
 		08ADDEFD1557697D000C5DD2 /* strippedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 08ADDEFC1557697D000C5DD2 /* strippedBackground.png */; };
+		08C020331558B41D001CF0B8 /* volumeIcon_40pixels.png in Resources */ = {isa = PBXBuildFile; fileRef = 08C020321558B41D001CF0B8 /* volumeIcon_40pixels.png */; };
 		08C9512A1550CB0A00D44C3E /* Circleof5thsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C951291550CB0A00D44C3E /* Circleof5thsController.m */; };
 		08C9512C1550DCF500D44C3E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08C9512B1550DCF500D44C3E /* Icon.png */; };
 		08E618C71544E86A00A366B5 /* flat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 08E618C61544E86A00A366B5 /* flat.gif */; };
@@ -120,6 +121,7 @@
 		08AACA7115562FC700738394 /* postit_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postit_green.png; sourceTree = "<group>"; };
 		08ACF4BB152B9D1F00512760 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		08ADDEFC1557697D000C5DD2 /* strippedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strippedBackground.png; sourceTree = "<group>"; };
+		08C020321558B41D001CF0B8 /* volumeIcon_40pixels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumeIcon_40pixels.png; sourceTree = "<group>"; };
 		08C951281550CB0A00D44C3E /* Circleof5thsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circleof5thsController.h; sourceTree = "<group>"; };
 		08C951291550CB0A00D44C3E /* Circleof5thsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circleof5thsController.m; sourceTree = "<group>"; };
 		08C9512B1550DCF500D44C3E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				A705B21A154F9A980010D0B3 /* ChordInstrumentsController.m */,
 				0826BDE11523EFED004A9B22 /* ChordOptionsViewController.h */,
 				0826BDE21523EFED004A9B22 /* ChordOptionsViewController.m */,
+				08C020321558B41D001CF0B8 /* volumeIcon_40pixels.png */,
 				0826BDB41523E5AF004A9B22 /* ChordViewController.h */,
 				0826BDB51523E5AF004A9B22 /* ChordViewController.m */,
 				08C951281550CB0A00D44C3E /* Circleof5thsController.h */,
@@ -302,7 +305,6 @@
 				0826BDC61523E5C2004A9B22 /* MainController.m */,
 				0826BDC71523E5C2004A9B22 /* MainController.xib */,
 				2AAF8E7F1555B39C00F31082 /* notassmallflat.png */,
-				2AA9E3591558AABB007A271A /* trebleclef.png */,
 				2AAF8E801555B39C00F31082 /* notassmallsharp.png */,
 				08AACA6615562AB100738394 /* pause.png */,
 				08AACA6715562AB100738394 /* play.png */,
@@ -319,48 +321,49 @@
 				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
 				0826BDC81523E5C2004A9B22 /* sharp.gif */,
 				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
-				0826BDC91523E5C2004A9B22 /* sharpIcon.h */,
 				2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */,
+				0826BDC91523E5C2004A9B22 /* sharpIcon.h */,
 				2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */,
-				0826BDCA1523E5C2004A9B22 /* sharpIcon.m */,
 				0826BDC51523E5C2004A9B22 /* MainController.h */,
-				0826BDC61523E5C2004A9B22 /* MainController.m */,
-				0826BDCB1523E5C2004A9B22 /* smallflat.gif */,
-				0826BDC71523E5C2004A9B22 /* MainController.xib */,
-				2AAF8E7F1555B39C00F31082 /* notassmallflat.png */,
-				0826BDCC1523E5C2004A9B22 /* smallsharp.gif */,
-				2AAF8E801555B39C00F31082 /* notassmallsharp.png */,
-				2AAF8E851555B9F900F31082 /* scaledot.png */,
-				0826BDCD1523E5C2004A9B22 /* solidLine.h */,
-				0826BDC81523E5C2004A9B22 /* sharp.gif */,
-				0826BDC91523E5C2004A9B22 /* sharpIcon.h */,
-				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
 				0826BDCA1523E5C2004A9B22 /* sharpIcon.m */,
+				0826BDC61523E5C2004A9B22 /* MainController.m */,
+				0826BDC71523E5C2004A9B22 /* MainController.xib */,
 				0826BDCB1523E5C2004A9B22 /* smallflat.gif */,
-				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
+				2AAF8E7F1555B39C00F31082 /* notassmallflat.png */,
+				2AAF8E801555B39C00F31082 /* notassmallsharp.png */,
 				0826BDCC1523E5C2004A9B22 /* smallsharp.gif */,
+				2AAF8E851555B9F900F31082 /* scaledot.png */,
+				0826BDC81523E5C2004A9B22 /* sharp.gif */,
 				0826BDCD1523E5C2004A9B22 /* solidLine.h */,
-				2AF14AB51547132600C899B2 /* solidlineAccidental.m */,
+				0826BDC91523E5C2004A9B22 /* sharpIcon.h */,
+				0826BDCA1523E5C2004A9B22 /* sharpIcon.m */,
 				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
-				08C951281550CB0A00D44C3E /* Circleof5thsController.h */,
-				A7A180C2154EF70600712D92 /* solidVerticalLine.h */,
+				0826BDCB1523E5C2004A9B22 /* smallflat.gif */,
+				0826BDCC1523E5C2004A9B22 /* smallsharp.gif */,
 				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
-				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
-				A7A180C3154EF70600712D92 /* solidVerticalLine.m */,
+				0826BDCD1523E5C2004A9B22 /* solidLine.h */,
+				0826BDCE1523E5C2004A9B22 /* solidLine.m */,
 				2AF14AB51547132600C899B2 /* solidlineAccidental.m */,
-				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
-				0826BDCF1523E5C2004A9B22 /* StaffController.h */,
+				08C951281550CB0A00D44C3E /* Circleof5thsController.h */,
+				2AF14AB41547132600C899B2 /* solidlineAccidental.h */,
 				A7A180C2154EF70600712D92 /* solidVerticalLine.h */,
-				2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */,
-				0826BDD01523E5C2004A9B22 /* StaffController.m */,
+				08C951291550CB0A00D44C3E /* Circleof5thsController.m */,
+				2AF14AB51547132600C899B2 /* solidlineAccidental.m */,
 				A7A180C3154EF70600712D92 /* solidVerticalLine.m */,
+				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
+				A7A180C2154EF70600712D92 /* solidVerticalLine.h */,
+				0826BDCF1523E5C2004A9B22 /* StaffController.h */,
+				2AF14AB7154715A200C899B2 /* dashedlineAccidental.h */,
+				A7A180C3154EF70600712D92 /* solidVerticalLine.m */,
+				0826BDD01523E5C2004A9B22 /* StaffController.m */,
 				08ACF4BB152B9D1F00512760 /* star.png */,
 				08AACA6815562AB100738394 /* stop.png */,
 				08ADDEFC1557697D000C5DD2 /* strippedBackground.png */,
 				2AE1DE7A15154B72008C538D /* Supporting Files */,
 				2AF14AB8154715A200C899B2 /* dashedlineAccidental.m */,
-				0890CDAA15522B3C00D0CF36 /* wrinkledPaper.png */,
+				2AA9E3591558AABB007A271A /* trebleclef.png */,
 				0826BDC51523E5C2004A9B22 /* MainController.h */,
+				0890CDAA15522B3C00D0CF36 /* wrinkledPaper.png */,
 				0826BDCF1523E5C2004A9B22 /* StaffController.h */,
 				0826BDC51523E5C2004A9B22 /* MainController.h */,
 				0826BDC61523E5C2004A9B22 /* MainController.m */,
@@ -504,6 +507,7 @@
 				2AAF8ECA15580D6D00F31082 /* crsynth.dlsc in Resources */,
 				2AAF8ECF15580D6D00F31082 /* sample.mid in Resources */,
 				2AA9E35A1558AABB007A271A /* trebleclef.png in Resources */,
+				08C020331558B41D001CF0B8 /* volumeIcon_40pixels.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

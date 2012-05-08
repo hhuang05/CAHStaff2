@@ -40,6 +40,9 @@
     
     UIImage *_chordFrame;
     
+    // Image for chord volume
+    UIImage *_chordVol;
+    
     // 8 Buttons for the chords chosen
     UIButton *chordChosen1;
     UIButton *chordChosen2;
@@ -95,6 +98,7 @@
     Chord *previousChord;
     NSTimer *chordTimer;
     int progressionEndIndx;
+    
 }
 
 //Metronome properties
