@@ -55,12 +55,13 @@
     self.staffView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 748)];
     [self.staffView setBackgroundColor:[UIColor clearColor]];
     [[staffView layer] setZPosition:1];
-    //[self.staffView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wrinkledPaper.png"]]];
-    //[self.staffView.layer setBorderWidth:1];
-    //[self.staffView.layer setBorderColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor];
     self.view = self.canvas;
     
+    UIImageView *trebleclef = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"trebleclef.png"]];
+    [trebleclef setFrame:CGRectMake(81, 227, 131, 367)];
+    [[trebleclef layer] setZPosition:1];
     [self.canvas setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"papyrus.jpg"]]];
+    [self.canvas addSubview:trebleclef];
     [self.canvas addSubview:staffView];
     
     //wrinkledPaper = [UIImage imageNamed:@"CrinkledPaper.png"];
@@ -161,30 +162,37 @@
     dashedlineAccidental *dashedLineAccidental = [[dashedlineAccidental alloc] initWithFrame:CGRectMake(300, 0, 100, 28)];
     
     dashedLine *aline = [[dashedLine alloc] initWithFrame:CGRectMake(0, 123, 400, 28)];
+    [[aline layer] setZPosition:2];
     [aline addSubview:[self deepCopyDashedAccidentalView:dashedLineAccidental]];
     [lines setObject:aline forKey:@"aline"];
     
     solidLine *fline = [[solidLine alloc] initWithFrame:CGRectMake(0, 214, 400, 28)];
+    [[fline layer] setZPosition:2];
     [fline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
     [lines setObject:fline forKey:@"fline"];
 
     solidLine *dline = [[solidLine alloc] initWithFrame:CGRectMake(0, 305, 400, 28)];
+    [[dline layer] setZPosition:2];
     [dline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
     [lines setObject:dline forKey:@"dline"];
 
     solidLine *bline = [[solidLine alloc] initWithFrame:CGRectMake(0, 396, 400, 28)];
+    [[bline layer] setZPosition:2];
     [bline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
     [lines setObject:bline forKey:@"bline"];
 
     solidLine *gline = [[solidLine alloc] initWithFrame:CGRectMake(0, 487, 400, 28)];
+    [[gline layer] setZPosition:2];
     [gline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
     [lines setObject:gline forKey:@"gline"];
 
     solidLine *eline = [[solidLine alloc] initWithFrame:CGRectMake(0, 578, 400, 28)];
+    [[eline layer] setZPosition:2];
     [eline addSubview:[self deepCopySolidAccidentalView:solidLineAccidental]];
     [lines setObject:eline forKey:@"eline"];
 
     dashedLine *cline = [[dashedLine alloc] initWithFrame:CGRectMake(0, 669, 400, 28)];
+    [[cline layer] setZPosition:2];
     [cline addSubview:[self deepCopyDashedAccidentalView:dashedLineAccidental]];
     [lines setObject:cline forKey:@"cline"];
     
