@@ -746,7 +746,12 @@ NSArray *FMajor = [[NSArray alloc] initWithObjects:
 
 -(void)stopNote{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-	appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x80, currentNote, 100);
+    
+    int turnOff = currentNote - 15;
+    
+    for(int i = 0; i < 30; i++){
+        appDelegate._api->setChannelMessage (appDelegate.handle, 0x00, 0x80, turnOff++, 100);
+    }
 }
 
 -(void)playChord:(Chord *)chord
