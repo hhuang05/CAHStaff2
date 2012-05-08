@@ -461,13 +461,12 @@
         UIImageView *sharp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notassmallsharp.png"]];
         [sharp setFrame:CGRectMake(sharpData.x, sharpData.y, sharpData.width, sharpData.height)];
         [sharp setHidden:TRUE];
-        [[sharp layer] setZPosition:0];
+        [[sharp layer] setZPosition:3];
         //[self fadeOut : sharp withDuration: 3 andWait : 1 ];
         [sharps setValue:sharp forKey:[NSString stringWithFormat:@"%d",sharpNoteCount]];
         [canvas addSubview:sharp];
         
         if(i == 5){
-            NSLog(@"I IS 6!!!!!!!!!");
             sharpData.y += 92;
             sharpNoteCount += 2;
         } else {
@@ -482,7 +481,7 @@
         UIImageView *flat = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notassmallflat.png"]];
         [flat setFrame:CGRectMake(flatData.x, flatData.y, flatData.width, flatData.height)];
         [flat setHidden:TRUE];
-        [[flat layer] setZPosition:0];
+        [[flat layer] setZPosition:3];
         //[self fadeOut : flat withDuration: 3 andWait : 1 ];
         [flats setValue:flat forKey:[NSString stringWithFormat:@"%d",flatNoteCount]];
         [canvas addSubview:flat];
@@ -499,7 +498,7 @@
         UIImageView *dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scaledot.png"]];
         [dot setFrame:CGRectMake(dotData.x, dotData.y, dotData.width, dotData.height)];
         [dot setHidden:TRUE];
-        [[dot layer] setZPosition:0];
+        [[dot layer] setZPosition:3];
         //[self fadeOut : flat withDuration: 3 andWait : 1 ];
         [dots setValue:dot forKey:[NSString stringWithFormat:@"%d",dotCount+2]];
         [canvas addSubview:dot];
