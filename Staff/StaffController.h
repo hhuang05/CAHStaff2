@@ -69,6 +69,7 @@ typedef struct image_view_metadata {
 - (void)setSpaceTags;
 - (BOOL)changeScale:(NSArray *)notesFromDataController;
 - (void)setFlatsAndSharps;
+- (void)setFlatsAndSharpsAndDots;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)clearAllSharpsAndFlatsFromStaff;

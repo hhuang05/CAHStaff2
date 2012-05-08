@@ -543,6 +543,7 @@
                 [star3 removeFromSuperview];
                 [star4 removeFromSuperview];
                 [stop setEnabled:TRUE];
+                [play setEnabled:TRUE];
             }
         }
     }
@@ -831,18 +832,24 @@
         isFull = FALSE;
     }
          
-    // Check for gaps  
+    // Check for gaps 
     int lastChordIndex = 0;
-    for (int x=0;x<chordsToBePlayed.count; x++) {
-        // If the object is not a chord, then we check if it is larger than lastChordIndex + 1
-        // If it is, then there is a gap
-        if ([[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
-            if (x > lastChordIndex + 1) {
-                hasGaps = TRUE;
-                break;
+    // If the head element is empty, that's a problem
+    if (chordsToBePlayed.count > 0 && ![[chordsToBePlayed objectAtIndex:0] isKindOfClass:[Chord class]]) {
+        hasGaps = TRUE;    
+    }
+    else {
+        for (int x=0;x<chordsToBePlayed.count; x++) {
+            // If the object is not a chord, then we check if it is larger than lastChordIndex + 1
+            // If it is, then there is a gap
+            if ([[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
+                if (x > lastChordIndex + 1) {
+                    hasGaps = TRUE;
+                    break;
+                }
+                else if (x == lastChordIndex + 1)    
+                    lastChordIndex++;
             }
-            else if (x == lastChordIndex + 1)    
-                lastChordIndex++;
         }
     }
     
@@ -880,6 +887,7 @@
                 starsHaveAppeared = TRUE;
                 [metronomeOnOff setOn:TRUE];
                 [stop setEnabled:FALSE];
+                [play setEnabled:FALSE]; //Disable play button when we first start
             }
             else
                 beforePlayCounter = 4;
@@ -887,6 +895,10 @@
             [self metronomeOnOffChanged:metronomeOnOff];
             isPaused = FALSE;
             [play setImage:_pauseImg forState:UIControlStateNormal];
+            
+            // Disable clearing all
+            if (clearAll.enabled)
+                clearAll.enabled = FALSE;
         }
         else {
             isPaused = TRUE;
@@ -897,10 +909,20 @@
     }
     else 
     {
-        // We render something on the UI to tell the user that there are gaps
-        // For now, we'll just popup an alert message
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can not play chords with gaps in the middle" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
+        // Check if all empty, if so do nothing
+        int counter = 0;
+        for (int x=0;x<chordsToBePlayed.count; x++) {
+            if (![[chordsToBePlayed objectAtIndex:x] isKindOfClass:[Chord class]]) {
+                counter++;
+            }
+        }
+        
+        if (counter != chordsToBePlayed.count) {
+            // We render something on the UI to tell the user that there are gaps
+            // For now, we'll just popup an alert message
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Can not play chords with gaps in the middle" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }
 }
 
@@ -966,6 +988,7 @@
     // Stop the last chord
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     [mainDelegate.viewController.dataController stopChord:previousChord];
+    previousChord = nil;
     
     // Stop the chord timer
     [chordTimer invalidate];
@@ -982,6 +1005,7 @@
     
     isPaused = TRUE;
     [play setImage:_playImg forState:UIControlStateNormal];
+    clearAll.enabled = TRUE;
     beforePlayCounter = 0;
     starsHaveAppeared = FALSE;
     progressionToBeSent = nil;
