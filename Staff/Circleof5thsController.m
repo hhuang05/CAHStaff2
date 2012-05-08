@@ -12,10 +12,7 @@
 
 @implementation Circleof5thsController
 
-@synthesize circleOf5thsView;
-@synthesize circleOf5thsPicker;
-@synthesize circleOf5thsPickerElements;
-@synthesize circleOf5thsTab;
+@synthesize picker = _picker;
 
 - (id)init
 {
@@ -26,6 +23,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self setupKeySignatureElements];
+    content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    [picker setDataSource:self];
+    [picker setDelegate:self];
+    [picker setShowsSelectionIndicator:YES];
+    [content addSubview:picker];
+    [self.view addSubview:content];
 }
 
 - (void)viewDidUnload
@@ -34,6 +39,14 @@
     // Release any retained subviews of the main view.
 }
 
+- (void)setupKeySignatureElements{
+    elements = [[NSArray alloc] initWithObjects:@"Gb/eb", @"Db/bb", @"Ab/f", @"Eb/c", @"Bb/g", @"F/d", @"C/a", 
+                @"G/e", @"D/b", @"A/f#", @"E/c#", @"B/g#", @"F#/d#", nil ];
+}
+
+
+
+/*
 - (void)setup
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -41,10 +54,9 @@
                                 @"Gb", @"Db", @"Ab", @"Eb", @"Bb", @"F", @"C", 
                                   @"G", @"D", @"A", @"E", @"B", @"F#", nil ];
     
-    /*
+    
                                 @"eb", @"bb", @"f", @"c", @"g", @"d", @"a", 
                                 @"e", @"b", @"f#", @"c#", @"g#", nil];
-     */
 
     
     // CHANGED THE SECOND PARAMETER TO 100 FROM 200
@@ -94,6 +106,7 @@
     }
     
 }
+ */
 
 // Number of components.
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -104,22 +117,22 @@
 // Total rows in our component.
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [circleOf5thsPickerElements count];
+    return [elements count];
 }
 
 // Display each row's data.
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [circleOf5thsPickerElements objectAtIndex: row];
+    return [elements objectAtIndex: row];
 }
 
 // Do something with the selected row.
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [mainDelegate.viewController.dataController keySignatureWasChosen:[circleOf5thsPickerElements objectAtIndex: row]];
+    [mainDelegate.viewController.dataController keySignatureWasChosen:[elements objectAtIndex: row]];
    
-    NSLog(@"You selected this: %@", [circleOf5thsPickerElements objectAtIndex: row]);
+    NSLog(@"You selected this: %@", [elements objectAtIndex: row]);
 }
 
 

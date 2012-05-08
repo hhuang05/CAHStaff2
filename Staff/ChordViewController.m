@@ -28,6 +28,8 @@
 
 -(void) setUpChords:(NSArray*)theChords{
     
+    [circleOfFifthsButton setTitle:[[theChords objectAtIndex:0] key] forState:UIControlStateNormal];
+    
     chordChoices = [[NSMutableArray alloc] initWithArray:theChords];
     NSLog(@"key: %@, name: %@", [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]);
 
@@ -101,7 +103,7 @@
     [[circleOfFifthsButton layer] setCornerRadius:10];
     [circleOfFifthsButton.titleLabel setFont:[UIFont systemFontOfSize:24]];
     [circleOfFifthsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [circleOfFifthsButton setTitle:@"C Maj" forState:UIControlStateNormal];
+    [circleOfFifthsButton setTitle:@"C/a" forState:UIControlStateNormal];
     [[circleOfFifthsButton layer] setBorderColor:[UIColor blackColor].CGColor];
     [[circleOfFifthsButton layer] setBorderWidth:2];
     [[circleOfFifthsButton layer] setShadowColor:[UIColor blackColor].CGColor];
@@ -385,7 +387,7 @@
 
 - (void) loadView
 {
-    AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    //AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.view = [[UIView alloc] initWithFrame: CGRectMake(400, 0, 624, 768)];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"corkBoard.png"]]];
     
@@ -398,7 +400,7 @@
     [self setupMetronome];
     [self buildTopMenu];
     [self setUpVolumeSlider];
-    [mainDelegate.viewController.circleOf5thsController setup];
+    //[mainDelegate.viewController.circleOf5thsController setup];
 }
 
 // Staff is set to velocity of 100
@@ -619,9 +621,8 @@
 // which is to return the piece to its original size, as if it is being put down by the user.
 -(void)dispatchTouchEndEvent:(UIView *)theView toPosition:(CGPoint)position
 {   
-    Chord *newChord = [[Chord alloc] initWithName:draggedChord.chordName Notes:draggedChord.chordChosen.notes andID:draggedChord.chordChosen.idNumber];
+    Chord *newChord = [[Chord alloc] initWithName:draggedChord.chordName Notes:draggedChord.chordChosen.notes rootKey:draggedChord.chordChosen.rootKey andKey:draggedChord.chordChosen.key];
     [newChord resetValues];
-    [newChord setKey:draggedChord.chordChosen.key];
     
     UIImageView *_newImageview = [[UIImageView alloc] initWithImage:draggedChord.getCurrentImage];
     [_newImageview addSubview:draggedChord.getCurrentLabel];
@@ -956,10 +957,9 @@
     // stop. This also allows us to play with the number of beats per measure and actually have it be responsive
     // Though this approach is not the most memory friendly approach
     if (currentChordPlaying == nil) {
-        currentChordPlaying = [[Chord alloc] initWithName:chordToBeSent.name Notes:chordToBeSent.notes andID:chordToBeSent.idNumber];
+        currentChordPlaying = [[Chord alloc] initWithName:chordToBeSent.name Notes:chordToBeSent.notes rootKey:chordToBeSent.rootKey andKey:chordToBeSent.key];
         currentChordPlaying.beatsPerMeasure = chordToBeSent.beatsPerMeasure;
         currentChordPlaying.numberOfMeasures = chordToBeSent.numberOfMeasures;
-        currentChordPlaying.key = chordToBeSent.key;
     }
     previousChord = currentChordPlaying;
     currentChordPlaying.beatsPerMeasure--; // Decrease beats per measure

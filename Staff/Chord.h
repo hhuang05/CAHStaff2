@@ -16,9 +16,11 @@
 @property (nonatomic) int numberOfMeasures;
 @property (nonatomic) int idNumber;
 @property (nonatomic, retain) NSString* key;
+@property (nonatomic, retain) NSString* rootKey;
+
 
 -(id)initWithName:(NSString*)name Notes:(NSArray*)notes andID:(int)number;
--(id)initWithName:(NSString*)aName Notes:(NSArray*)someNotes andKey:(NSString*)aKey;
+-(id)initWithName:(NSString*)aName Notes:(NSArray*)someNotes rootKey:(NSString*)root andKey:(NSString*)aKey;
 -(void)setupKey:(NSString*)aKey;
 -(void)resetValues;
 

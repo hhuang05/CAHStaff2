@@ -10,6 +10,20 @@
 
 @interface Circleof5thsController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
+    NSArray *elements;
+    UIView *content;
+    IBOutlet UIPickerView *picker;
+}
+
+@property (nonatomic, retain) IBOutlet UIPickerView *picker;
+
+- (void)setupKeySignatureElements;
+
+
+
+
+/*
+{
     IBOutlet UIView *circleOf5thsView;
     IBOutlet UIView *circleOf5thsTab;
     IBOutlet UIPickerView *circleOf5thsPicker;
@@ -23,4 +37,5 @@
 
 - (void)setup;
 - (void)circleOf5thsTabTapped:(UITapGestureRecognizer *)recognizer;
+ */
 @end
