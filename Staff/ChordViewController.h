@@ -124,7 +124,7 @@
 
 -(NSString *) currentKey;
 -(void) currentKey: (NSString *) newKey;
--(void) setUpChords:(NSArray*)theChords;
+-(void) setUpChords:(NSArray*)theChords ForKey:(NSString*)theKey;
 -(void) setupMetronome;
 -(void) fireChord;
 -(void) setUpVolumeSlider;

@@ -30,19 +30,19 @@
     self = [super init];
     
     if(self){
-        name = aName;
-        notes = someNotes;
-        key = aKey;
+        name = [aName copy];
+        notes = [someNotes copy];
+        key = [aKey copy];
         beatsPerMeasure = 1;
         numberOfMeasures = 1;
-        rootKey = root;
+        rootKey = [root copy];
     }
     
     return self;
 }
 
 -(void)setupKey:(NSString*)aKey{
-    key = aKey;
+    key = [aKey copy];
 }
 
 -(void)resetValues

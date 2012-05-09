@@ -17,6 +17,7 @@
     if (self) {
         //self.backgroundColor = [UIColor grayColor];
         self.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"circle_of_fifths.png"]];
+        //self.backgroundColor = [UIColor clearColor];
         [self drawRect:frame];
     }
     return self;
@@ -87,16 +88,16 @@
         boxes[i + 13].innerCRY = innerY;
         
         // and the leftmost points of two others
-        if(i <12){
+        if(i < 12){
             boxes[i+1].outerCLX = outerX;
             boxes[i+1].outerCLY = outerY;
             boxes[i+1].innerCLX = middleX;
             boxes[i+1].innerCLY = middleY;
         
-            boxes[i+13].outerCLX = middleX;
-            boxes[i+13].outerCLY = middleY;
-            boxes[i+13].innerCLX = innerX;
-            boxes[i+13].innerCLY = innerY;
+            boxes[i+13 + 1].outerCLX = middleX;
+            boxes[i+13 + 1].outerCLY = middleY;
+            boxes[i+13 + 1].innerCLX = innerX;
+            boxes[i+13 + 1].innerCLY = innerY;
         }
         else{
             boxes[0].outerCLX = outerX;

@@ -26,12 +26,13 @@
 #define SHRINK_ANIMATION_DURATION_SECONDS 0.15  // Determines how fast a piece size shrinks when a piece stops moving.
 #define FONT @"Noteworthy-Light"
 
--(void) setUpChords:(NSArray*)theChords{
+-(void) setUpChords:(NSArray*)theChords ForKey:(NSString*)theKey{
     
-    [circleOfFifthsButton setTitle:[[theChords objectAtIndex:0] key] forState:UIControlStateNormal];
+[circleOfFifthsButton setTitle: theKey forState:UIControlStateNormal];
+    currentKey = theKey;
     
-    chordChoices = [[NSMutableArray alloc] initWithArray:theChords];
-    NSLog(@"key: %@, name: %@", [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]);
+    chordChoices = [theChords mutableCopy];
+    //NSLog(@"key: %@, name: %@", [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]);
 
     [picker1  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
                             [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]]];

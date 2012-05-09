@@ -329,17 +329,17 @@
     {
         num = [[notesFromDataController objectAtIndex:pos] intValue];
         if(num != 0){
-            NSLog(@"value: %d pos: %d",[[notesFromDataController objectAtIndex:pos] intValue], pos);            
+            //NSLog(@"value: %d pos: %d",[[notesFromDataController objectAtIndex:pos] intValue], pos);            
             [self setFlatOrSharpOnSpecificLineOrSpace:num withNotePosition:pos + 1];
             [self findAccidentalNote:pos + 1];
         }
     }
     
     int newDotLocation = [[notesFromDataController objectAtIndex:0] intValue];
-    NSLog(@"DOT IS: %d",newDotLocation);
+    //NSLog(@"DOT IS: %d",newDotLocation);
     [self setDotAt: newDotLocation];
     currentDotLocation = newDotLocation;
-    NSLog(@"root note %d", currentDotLocation);
+    //NSLog(@"root note %d", currentDotLocation);
     
     return TRUE;
 }
@@ -351,9 +351,9 @@
     [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", currentDotLocation+4]] setHidden:TRUE];  
     
     // show new dot
-    NSLog(@"Dot LOC: %d",location);
-    NSLog(@"Dot STR: %@", [[NSString alloc] initWithFormat:@"%d", location]);
-    NSLog(@"Dot OBJ: %@",[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location]]);
+    //NSLog(@"Dot LOC: %d",location);
+    //NSLog(@"Dot STR: %@", [[NSString alloc] initWithFormat:@"%d", location]);
+    //NSLog(@"Dot OBJ: %@",[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location]]);
     [[dots objectForKey:[[NSString alloc] initWithFormat:@"%d", location+4]] setHidden:FALSE];
 }
 

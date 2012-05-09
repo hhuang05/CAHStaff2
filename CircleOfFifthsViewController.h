@@ -10,18 +10,19 @@
 #import "CircleView.h"
 
 
-@interface CircleOfFifthsViewController : UIViewController
+@interface CircleOfFifthsViewController : UIViewController{
+    struct touchBox currentBox;
+}
 
 @property (nonatomic, retain) CircleView *content;
 @property (nonatomic, retain) NSArray* boxesKey;
+@property (nonatomic, retain) UIView* highlight;
 
 - (UIView *)deepCopyCircleView:(UIView *)theView;
 -(void)setUpBoxesKey;
 -(int)getKeyForTouch:(UITouch*)touch;
-/*
--(bool)touch:(UITouch*)touch IsInBox:(int)box;
--(int)getMaxOfOne:(int)one AndTwo:(int)two AndThree:(int)three AndFour:(int)four;
--(int)getMinOfOne:(int)one AndTwo:(int)two AndThree:(int)three AndFour:(int)four;
- */
+-(void)hightlightCurrentBox;
+-(void)removeOldHighlight;
+-(void)configureCurrentBox: (struct touchBox*)toCopy;
 
 @end
