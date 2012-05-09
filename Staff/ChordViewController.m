@@ -94,7 +94,7 @@
     topMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 624, 70)];
     [topMenu setBackgroundColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0]];
 
-    circleOfFifthsViewController = [[Circleof5thsController alloc]init];
+    circleOfFifthsViewController = [[CircleOfFifthsViewController alloc]init];
     
     circleOfFifthsButton = [[UIButton alloc] initWithFrame:CGRectMake(450, 10, 150, 50)];
     [circleOfFifthsButton setBackgroundColor:[UIColor colorWithRed:170.0/255 green:170.0/255 blue:170.0/255 alpha:1.0]];
@@ -174,8 +174,8 @@
     circleOfFifthsPopoverController = [[UIPopoverController alloc] initWithContentViewController:circleOfFifthsViewController];
     [circleOfFifthsPopoverController presentPopoverFromBarButtonItem:sender 
                                        permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    //[circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(550, 550)];
-    [circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(260, 250)];
+    [circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(555, 555)];
+    //[circleOfFifthsPopoverController setPopoverContentSize:CGSizeMake(260, 250)];
 
 }
 

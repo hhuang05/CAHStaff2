@@ -70,9 +70,10 @@
 		A705B21B154F9A980010D0B3 /* ChordInstrumentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A705B21A154F9A980010D0B3 /* ChordInstrumentsController.m */; };
 		A717FEDF1534ED9D00515250 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEDE1534ED9D00515250 /* CoreFoundation.framework */; };
 		A717FEE21534EE1300515250 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A717FEE11534EE1300515250 /* Security.framework */; };
-		A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */; };
 		A765348B15276051001885E9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A765348A15276051001885E9 /* AudioToolbox.framework */; };
-		A785F78715530EB400191D36 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A785F78615530EB400191D36 /* CircleView.m */; };
+		A795F693155A2F11000BE44F /* circle_of_fifths.png in Resources */ = {isa = PBXBuildFile; fileRef = A795F68E155A2F11000BE44F /* circle_of_fifths.png */; };
+		A795F694155A2F11000BE44F /* CircleOfFifthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A795F690155A2F11000BE44F /* CircleOfFifthsViewController.m */; };
+		A795F695155A2F11000BE44F /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A795F692155A2F11000BE44F /* CircleView.m */; };
 		A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A180C3154EF70600712D92 /* solidVerticalLine.m */; };
 /* End PBXBuildFile section */
 
@@ -162,11 +163,12 @@
 		A705B21A154F9A980010D0B3 /* ChordInstrumentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordInstrumentsController.m; sourceTree = "<group>"; };
 		A717FEDE1534ED9D00515250 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A717FEE11534EE1300515250 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFifthsViewController.h; sourceTree = "<group>"; };
-		A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFifthsViewController.m; sourceTree = "<group>"; };
 		A765348A15276051001885E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		A785F78515530EB400191D36 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
-		A785F78615530EB400191D36 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		A795F68E155A2F11000BE44F /* circle_of_fifths.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_of_fifths.png; sourceTree = "<group>"; };
+		A795F68F155A2F11000BE44F /* CircleOfFifthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFifthsViewController.h; sourceTree = "<group>"; };
+		A795F690155A2F11000BE44F /* CircleOfFifthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFifthsViewController.m; sourceTree = "<group>"; };
+		A795F691155A2F11000BE44F /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		A795F692155A2F11000BE44F /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		A7A180C2154EF70600712D92 /* solidVerticalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solidVerticalLine.h; sourceTree = "<group>"; };
 		A7A180C3154EF70600712D92 /* solidVerticalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solidVerticalLine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +231,11 @@
 		2AE1DE6415154B71008C538D = {
 			isa = PBXGroup;
 			children = (
+				A795F68E155A2F11000BE44F /* circle_of_fifths.png */,
+				A795F68F155A2F11000BE44F /* CircleOfFifthsViewController.h */,
+				A795F690155A2F11000BE44F /* CircleOfFifthsViewController.m */,
+				A795F691155A2F11000BE44F /* CircleView.h */,
+				A795F692155A2F11000BE44F /* CircleView.m */,
 				08C9512B1550DCF500D44C3E /* Icon.png */,
 				2AE1DE7915154B72008C538D /* Staff */,
 				2AE1DE7215154B72008C538D /* Frameworks */,
@@ -282,10 +289,6 @@
 				08C020321558B41D001CF0B8 /* volumeIcon_40pixels.png */,
 				0826BDB41523E5AF004A9B22 /* ChordViewController.h */,
 				0826BDB51523E5AF004A9B22 /* ChordViewController.m */,
-				A732C76F154F6E3100EE6845 /* CircleOfFifthsViewController.h */,
-				A732C770154F6E3100EE6845 /* CircleOfFifthsViewController.m */,
-				A785F78515530EB400191D36 /* CircleView.h */,
-				A785F78615530EB400191D36 /* CircleView.m */,
 				0890CDAC155231FA00D0CF36 /* corkBoard.png */,
 				2AAF8EBF15580D6D00F31082 /* crsynth */,
 				0826BDB61523E5AF004A9B22 /* CyanSquare.png */,
@@ -508,6 +511,7 @@
 				2AAF8ECF15580D6D00F31082 /* sample.mid in Resources */,
 				2AA9E35A1558AABB007A271A /* trebleclef.png in Resources */,
 				08C020331558B41D001CF0B8 /* volumeIcon_40pixels.png in Resources */,
+				A795F693155A2F11000BE44F /* circle_of_fifths.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,10 +539,10 @@
 				2AF14AB9154715A200C899B2 /* dashedlineAccidental.m in Sources */,
 				2AB9BF6A154795C9001E756E /* InstrumentsController.m in Sources */,
 				A7A180C4154EF70600712D92 /* solidVerticalLine.m in Sources */,
-				A732C771154F6E3100EE6845 /* CircleOfFifthsViewController.m in Sources */,
 				A705B21B154F9A980010D0B3 /* ChordInstrumentsController.m in Sources */,
 				08C9512A1550CB0A00D44C3E /* Circleof5thsController.m in Sources */,
-				A785F78715530EB400191D36 /* CircleView.m in Sources */,
+				A795F694155A2F11000BE44F /* CircleOfFifthsViewController.m in Sources */,
+				A795F695155A2F11000BE44F /* CircleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
