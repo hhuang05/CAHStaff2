@@ -49,25 +49,26 @@
     NSArray *allTouches = [touches allObjects];
     for(UITouch* t in allTouches){
         int location = [self getKeyForTouch:t];
-
+        
         if(location != -1){
-            //[self removeOldHighlight];
+            NSLog(@"circle location == %d", location);
             [_highlight removeFromSuperview];
-            int hightlightLocation = location + 1 < 26 ? location + 1 : 0;
-            [self configureCurrentBox:[_content returnBoxNum:hightlightLocation]];
+            int highlightLocation;
+            if(location < 13){
+                highlightLocation = location + 1 < 13 ? location + 1 : 0;
+            }
+            else{
+                highlightLocation = location + 1 < 26 ? location + 1 : 13;
+            }
+            [self configureCurrentBox:[_content returnBoxNum:highlightLocation]];
             _highlight = [[HighlightView alloc] initWithFrame:[self.view frame] AndPoints:&currentBox];
             [_content addSubview:_highlight];
-            NSLog(@"touch in key: %@ location: %d", [_boxesKey objectAtIndex:location], location);
+            //NSLog(@"touch in key: %@ location: %d", [_boxesKey objectAtIndex:location], location);
             AppDelegate *mainDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             [mainDelegate.viewController.dataController keySignatureWasChosen:[_boxesKey objectAtIndex:location]];
         }
     }
 }
-
-/*
- int outerCRX, outerCRY, innerCRX, innerCRY, 
- outerCLX, outerCLY, innerCLX, innerCLY;
- */
 
 -(void)configureCurrentBox: (struct touchBox*)toCopy{
     currentBox.innerCLX = toCopy->innerCLX;
@@ -91,31 +92,6 @@
     CGContextMoveToPoint(context, currentBox.outerCLX, currentBox.outerCLY);
     CGContextAddLineToPoint(context, currentBox.innerCLX, currentBox.innerCLY);
 }
-
--(void)removeOldHighlight{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(context, 3.0);
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    
-    CGContextMoveToPoint(context, currentBox.outerCRX, currentBox.outerCRY);
-    CGContextAddLineToPoint(context, currentBox.innerCRX, currentBox.innerCRY);
-    
-    CGContextMoveToPoint(context, currentBox.outerCLX, currentBox.outerCLY);
-    CGContextAddLineToPoint(context, currentBox.innerCLX, currentBox.innerCLY);
-    
-}
-
-/*
- int centerX = 275;
- int centerY = 275;
- int outerDiameter = 530;
- float outerRadius = outerDiameter / 2;
- int middleDiameter = 360;
- float middleRadius = middleDiameter / 2;
- int innerDiameter = 190;
- float innerRadius = innerDiameter / 2;
- 
- */
 
 -(int)getKeyForTouch:(UITouch*)touch{
     int location = -1;
@@ -157,81 +133,6 @@
     }
     
     return location;
-    
-/*    
-    if(r <= 180 && r >= 90){
-        for(int i = 0; i < 13; i++){
-            if (i == 12){
-                if( t > [_content returnArctanAtLocation:12] && t > [_content returnArctanAtLocation:0]){
-                    return 14;
-                }
-                if([_content returnArctanAtLocation:12] < 1 && [_content returnArctanAtLocation:0] > 5.0){
-                    if (t > [_content returnArctanAtLocation:12] || t <= [_content returnArctanAtLocation:0]){
-                        return 14;
-                    }
-                }
-            }
-            else{
-                if( t > [_content returnArctanAtLocation:i] && t < [_content returnArctanAtLocation:i + 1]){
-                    return i + 13;
-                }                
-                if([_content returnArctanAtLocation:i + 1] < 1 && [_content returnArctanAtLocation:i] > 5.0){
-                    if (t > [_content returnArctanAtLocation:i] || t <= [_content returnArctanAtLocation:i + 1]){
-                        if(i == 11){
-                            return 13;
-                        }
-                        else{
-                            return i + 2 + 13;   
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    if(r <= 270 && r >=180){
-        for(int i = 0; i < 13; i++){
-            if (i == 12){
-                if( t > [_content returnArctanAtLocation:12] && t > [_content returnArctanAtLocation:0]){
-                    return 1;
-                }
-                if([_content returnArctanAtLocation:12] < 1 && [_content returnArctanAtLocation:0] > 5.0){
-                    if (t > [_content returnArctanAtLocation:12] || t <= [_content returnArctanAtLocation:0]){
-                        return 1;
-                    }
-                }
-            }
-            else{
-                if( t > [_content returnArctanAtLocation:i] && t < [_content returnArctanAtLocation:i + 1]){
-                    if(i == 12){
-                        return 1;
-                    }
-                    else if(i == 11){
-                        return 0;
-                    }
-                    else{
-                        return i + 2;   
-                    }
-                }                
-                if([_content returnArctanAtLocation:i + 1] < 1 && [_content returnArctanAtLocation:i] > 5.0){
-                    if (t > [_content returnArctanAtLocation:i] || t <= [_content returnArctanAtLocation:i + 1]){
-                        if(i == 12){
-                            return 1;
-                        }
-                        else if(i == 11){
-                            return 0;
-                        }
-                        else{
-                            return i + 2;   
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
- */
-
 }
     
 - (void)viewDidUnload

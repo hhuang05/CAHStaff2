@@ -327,7 +327,7 @@
     NSNumber *sixtySixNoteNum = [[NSNumber alloc] initWithInt:66];
     NSNumber *sixtySevenNoteNum = [[NSNumber alloc] initWithInt:67];
     NSNumber *sixtyEightNoteNum = [[NSNumber alloc] initWithInt:68];
-    NSNumber *sixtyNineNoteNum = [[NSNumber alloc] initWithInt:69];
+    NSNumber *sixtyNineNoteNum = [[NSNumber alloc] initWithInt:69]; 
     NSNumber *seventyNoteNum = [[NSNumber alloc] initWithInt:70];
     NSNumber *seventyOneNoteNum = [[NSNumber alloc] initWithInt:71];
     NSNumber *seventyTwoNoteNum = [[NSNumber alloc] initWithInt:72];
@@ -507,10 +507,10 @@
     Chord *min = [[Chord alloc] initWithName:@"min" Notes:b andID:2];
     
     NSArray *f = [[NSArray alloc] initWithObjects:one, three, five, sevenFlat, nil];
-    Chord *dom7 = [[Chord alloc] initWithName:@"dom7" Notes:f andID:6];
+    Chord *dom7 = [[Chord alloc] initWithName:@"dom7" Notes:f andID:3];
     
     NSArray *h = [[NSArray alloc] initWithObjects:one, threeFlat, fiveFlat, nil];
-    Chord *dim = [[Chord alloc] initWithName:@"dim" Notes:h andID:8];
+    Chord *dim = [[Chord alloc] initWithName:@"dim" Notes:h andID:4];
     
     /*
      Maj: I, ii, iii, IV, V, V7, vi
@@ -637,43 +637,6 @@
                      AsharpMinor, @"a#", FMinor, @"f", CMinor, @"c", GMinor, @"g", DMinor, @"d", nil];
 }
 
-// give a key to each chord in the array for a major key choice
--(void)addKeysToCurrentChordsForKey:(NSString*)choice{
-    
-    NSLog(@"Assigning _currentChords for key of %@", _currentKey);
-    NSArray *friends = [_friendChords objectForKey:choice];
-    
-    int pos = 0;
-    for(Chord* c in _currentChords){
-        NSLog(@"%@ %@", [friends objectAtIndex:pos], [c name]);
-        [c setupKey: [[friends objectAtIndex:pos] mutableCopy]];
-        pos++;
-    }
-}
-
-// tell each Chord in the array what to concatenate its
-// name with, e.g. "F" + "Maj"
--(NSArray*)setUpChordsToSendWithRootKey:(NSString*)root{
-    NSArray *friends = [_friendChords objectForKey:root];
-    
-    if(isupper([root characterAtIndex:0])) {
-        _currentChords = [_majorKeyChordFormulas mutableCopy];
-    }
-    else{
-        _currentChords = [_minorKeyChordFormulas mutableCopy];
-    }
-    
-    int pos = 0;
-    NSLog(@"Creating chords to send for key: %@", root);
-    for(Chord *c in _currentChords){
-        [c setupKey:[friends objectAtIndex:pos++]];
-        NSLog(@"%@ %@", [c key], [c name]);
-    }
-    NSArray* toSend = [_currentChords mutableCopy];
-    return toSend;
-}
-
-
 // When the user selects a new key signature, tell the 
 // Staff where to draw what accidentals, send the chord controller
 // the appropriate chords, and set the currentKeySignatureNotes
@@ -684,7 +647,8 @@
     // so that we don't have lingering notes we can't turn off
     [self stopChord:currentChord];
     NSArray* keySignaturetoDraw = [_keySignatureAccidentals objectForKey:choice];  
-    NSLog(@"keySignatureWasChosen: %@", choice);
+    
+    NSLog(@"User chose key of: %@", choice);
     
     if(keySignaturetoDraw){
         _currentKey = choice;
@@ -696,6 +660,40 @@
     else
         NSLog(@"changeScale called with unknown key signature %@", choice);
 }
+
+
+// determine major or minor and grab appropirate chord formulas,
+// then assign keys to each chord
+-(NSArray*)setUpChordsToSendWithRootKey:(NSString*)root{
+    
+    if(isupper([root characterAtIndex:0])) {
+        _currentChords = [_majorKeyChordFormulas mutableCopy];
+    }
+    else{
+        _currentChords = [_minorKeyChordFormulas mutableCopy];
+    }
+    
+    NSArray *friends = [_friendChords objectForKey:root];
+    
+    
+    /*
+        ROOT KEY AND KEY ARE PROPERLY ASSIGNED IN THE LOOP BELOW
+        HOWEVER, ONLY THE ROOT KEY IS KEPT, AND THE KEY IS SHIFTED TO
+        ANOTHER KEY... NO IDEA WHY AT THE MOMENT.
+     
+     */
+    
+    for(int i = 0; i < 8; i++){
+        [[_currentChords objectAtIndex:i] setKey:[friends objectAtIndex:i]];
+        [[_currentChords objectAtIndex:i] setRootKey:root];    
+        NSLog(@"%@ %@, root: %@", [[_currentChords objectAtIndex:i] key], [[_currentChords objectAtIndex:i] name],
+              [[_currentChords objectAtIndex:i] rootKey]);
+    }
+    
+    return _currentChords;
+}
+
+
 -(void)newChordVolumeAdjustment:(float)newValue{
     _chordVolumeAddition = [[NSNumber alloc] initWithFloat:newValue];
 }
@@ -781,7 +779,7 @@
     int note = 0;
     
     //get the starting note
-    //NSLog(@"rootKey: %@ key: %@", [chord rootKey], [chord key]);
+    NSLog(@"rootKey: %@ key: %@", [chord rootKey], [chord key]);
     
     // get the root note - 1 because it's stored based on the staff view tags 1-15
     int startingLocation = [[[_keySignatureAccidentals objectForKey:[chord rootKey]] objectAtIndex:0] intValue] - 1;

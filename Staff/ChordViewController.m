@@ -32,7 +32,6 @@
     currentKey = theKey;
     
     chordChoices = [theChords mutableCopy];
-    //NSLog(@"key: %@, name: %@", [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]);
 
     [picker1  changeChordName:[[NSString alloc] initWithFormat:@"%@ %@", 
                             [[theChords objectAtIndex:0] key], [[theChords objectAtIndex:0]name]]];
@@ -326,10 +325,6 @@
     }    
 }
 
-
-/*
- CHANGED THESE Y VALUES FROM 340 TO 400
- */
 -(void) layoutControlBar
 {
     isPaused = TRUE;
@@ -362,10 +357,6 @@
         [self.view addSubview: clearAll];
     }    
 }
-
-/*
- CHANGED THESE Y VALUES FROM 280 TO 350
- */
 
 -(void) layoutStars
 {

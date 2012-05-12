@@ -21,8 +21,7 @@
 - (UIView *)deepCopyCircleView:(UIView *)theView;
 -(void)setUpBoxesKey;
 -(int)getKeyForTouch:(UITouch*)touch;
--(void)hightlightCurrentBox;
--(void)removeOldHighlight;
+-(void)highlightCurrentBox;
 -(void)configureCurrentBox: (struct touchBox*)toCopy;
 
 @end

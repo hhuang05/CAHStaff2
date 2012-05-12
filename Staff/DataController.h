@@ -20,17 +20,18 @@
     Chord* currentChord;
 }
 
-@property (nonatomic, retain) NSDictionary *keySignatureAccidentals;
-@property (nonatomic, retain) NSDictionary *keySignatureNoteMap;
-@property (nonatomic, retain) NSDictionary *chordsForKeySignatures;
-@property (nonatomic, retain) NSString *currentKeySignature;
-@property (nonatomic, retain) NSString *currentKey;
-@property (nonatomic, retain) NSArray *currentKeySignatureNotes;
-@property (nonatomic, retain) NSNumber *chordVolumeAddition;
-@property (nonatomic, retain) NSArray *majorKeyChordFormulas;
-@property (nonatomic, retain) NSArray *minorKeyChordFormulas;
-@property (nonatomic, retain) NSArray *currentChords;
-@property (nonatomic, retain) NSDictionary *friendChords;
+@property (nonatomic, strong, readonly) NSDictionary *keySignatureAccidentals;
+@property (nonatomic, strong, readonly) NSDictionary *keySignatureNoteMap;
+@property (nonatomic, strong, readonly) NSDictionary *chordsForKeySignatures;
+@property (nonatomic, strong, readonly) NSDictionary *friendChords;
+@property (nonatomic, strong, readonly) NSArray *majorKeyChordFormulas;
+@property (nonatomic, strong, readonly) NSArray *minorKeyChordFormulas;
+
+@property (nonatomic, copy) NSString *currentKeySignature;
+@property (nonatomic, copy) NSString *currentKey;
+@property (nonatomic, copy) NSArray *currentKeySignatureNotes;
+@property (nonatomic, copy) NSNumber *chordVolumeAddition;
+@property (nonatomic, copy) NSArray *currentChords;
 
 
 
@@ -52,8 +53,8 @@
 -(BOOL)loadData;
 -(void)fillKeySignatureAccidentals;
 -(void)fillNotesInKeySignatureDictionary;
--(void)fillChordsDictionary;
 -(int)calculateMajorNoteForChord:(Chord*)chord atPosition:(int) pos;
 -(void)setUpFriendChords;
+-(NSArray*)setUpChordsToSendWithRootKey:(NSString*)root;
 
 @end

@@ -13,6 +13,9 @@ struct touchBox {
     // inner and out clockwise left
     int outerCRX, outerCRY, innerCRX, innerCRY, 
     outerCLX, outerCLY, innerCLX, innerCLY;
+    CGPoint center;
+    float innerRadius, outerRadius;
+    float startAngle, endAngle;
 };
 
 @interface CircleView : UIView

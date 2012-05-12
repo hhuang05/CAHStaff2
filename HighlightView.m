@@ -30,13 +30,13 @@
 -(void)highlightCurrentBox{
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 3.0);
-    CGContextSetStrokeColorWithColor(context, [UIColor greenColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     
     CGContextMoveToPoint(context, currentBox.outerCRX, currentBox.outerCRY);
     CGContextAddLineToPoint(context, currentBox.innerCRX, currentBox.innerCRY);
-    
-    CGContextMoveToPoint(context, currentBox.outerCLX, currentBox.outerCLY);
     CGContextAddLineToPoint(context, currentBox.innerCLX, currentBox.innerCLY);
+    CGContextAddLineToPoint(context, currentBox.outerCLX, currentBox.outerCLY);
+    CGContextAddLineToPoint(context, currentBox.outerCRX, currentBox.outerCRY);
     
     CGContextStrokePath(context);
 }

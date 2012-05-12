@@ -491,8 +491,6 @@
         
     }
     
-    
-    //Aaron, configure dots here
     for(int i = 0; i < NUMBER_OF_NOTES; i++){
         //Add dot icons to staffView, hide all
         UIImageView *dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scaledot.png"]];

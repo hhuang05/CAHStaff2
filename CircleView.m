@@ -36,6 +36,8 @@
     float middleRadius = middleDiameter / 2;
     int innerDiameter = 190;
     float innerRadius = innerDiameter / 2;
+    CGPoint center = CGPointMake(centerX, centerY);
+    
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 3.0);
@@ -64,7 +66,6 @@
             loc += 2 * M_PI;
         }
         
-        
         arctans[i] = loc;
         
         //NSLog(@"using x,y : %d, %d", outerX, outerY);
@@ -81,34 +82,47 @@
         boxes[i].outerCRY = outerY;
         boxes[i].innerCRX = middleX;
         boxes[i].innerCRY = middleY;
+        boxes[i].center = center;
+        boxes[i].outerRadius = outerRadius;
+        boxes[i].innerRadius = middleRadius;
+        boxes[i].endAngle = loc;
             
         boxes[i + 13].outerCRX = middleX;
         boxes[i + 13].outerCRY = middleY;
         boxes[i + 13].innerCRX = innerX;
         boxes[i + 13].innerCRY = innerY;
+        boxes[i + 13].center = center;
+        boxes[i + 13].outerRadius = middleRadius;
+        boxes[i + 13].innerRadius = innerRadius;
+        boxes[i + 13].endAngle = loc;
+        
         
         // and the leftmost points of two others
         if(i < 12){
-            boxes[i+1].outerCLX = outerX;
-            boxes[i+1].outerCLY = outerY;
-            boxes[i+1].innerCLX = middleX;
-            boxes[i+1].innerCLY = middleY;
+            boxes[i + 1].outerCLX = outerX;
+            boxes[i + 1].outerCLY = outerY;
+            boxes[i + 1].innerCLX = middleX;
+            boxes[i + 1].innerCLY = middleY;
+            boxes[i + 1].startAngle = loc;
         
-            boxes[i+13 + 1].outerCLX = middleX;
-            boxes[i+13 + 1].outerCLY = middleY;
-            boxes[i+13 + 1].innerCLX = innerX;
-            boxes[i+13 + 1].innerCLY = innerY;
+            boxes[i + 13 + 1].outerCLX = middleX;
+            boxes[i + 13 + 1].outerCLY = middleY;
+            boxes[i + 13 + 1].innerCLX = innerX;
+            boxes[i + 13 + 1].innerCLY = innerY;
+            boxes[i + 13+ 1].startAngle = loc;
         }
         else{
             boxes[0].outerCLX = outerX;
             boxes[0].outerCLY = outerY;
             boxes[0].innerCLX = middleX;
             boxes[0].innerCLY = middleY;
+            boxes[0].startAngle = loc;
             
             boxes[13].outerCLX = middleX;
             boxes[13].outerCLY = middleY;
             boxes[13].innerCLX = innerX;
             boxes[13].innerCLY = innerY;
+            boxes[13].startAngle = loc;
         }
         
         if( i == 4 || i == 5){
